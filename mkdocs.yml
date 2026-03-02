@@ -10,9 +10,9 @@ theme:
   features:
     - content.code.copy  # <--- THIS adds the One-Click Copy button
   hide:
-    - footer.generator # <--- THIS removes the "Made with MkDocs" line
+    - generator # <--- THIS removes the "Made with Material for MkDocs" line
 
-copyright: "Copyright &copy; 2026 VEXIT &trade;, Tomorrow is Today &reg;, www.vexit.com"
+copyright: "Copyright &copy; 2026 VEXIT &reg;, Tomorrow is Today &trade;, www.vexit.com"
 
 markdown_extensions:
   - admonition  # <--- This is what makes the !!! danger box work
