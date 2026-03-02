@@ -35,3 +35,15 @@ nav:
   - Database (PostgreSQL): 5_Database_PostgreSQL.md
   - Mail Server (Postfix/Dovecot): 6_MailServer_Postfix_Dovecot_Thunderbird.md
 
+extra:
+  # social:  # Commented out - website not ready yet
+  #   - icon: fontawesome/solid/globe
+  #     link: https://www.vexit.com
+  social_cards:
+    image: images/social-cover.jpg # This tells sites what image to use when sharing the link on social media
+  # This section handles the link preview
+  site_url: https://vexit.github.io/byoserver
+  description: "Build your own Linux server from scratch. A Sovereign Systems Development guide to self-hosting web, database, and mail servers."
+  # image: images/cover.jpeg  # Link preview image for social media
+
+
