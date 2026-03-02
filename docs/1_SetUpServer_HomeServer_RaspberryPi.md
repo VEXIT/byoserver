@@ -1,4 +1,4 @@
-# Linux Server - Home Server
+# Linux Server - Home Server - Raspberry Pi
 
 
 |               |                                                   |     |
@@ -69,23 +69,12 @@ On **Linux**:
 
 
 
-# >>> Finish and Test >>> Debian & Linux Mint OS <<<
 
+## Prerequisites
 
-## Install Server Operating System
-
-We show you here 2 different options to run a Linux server at home. Select the option that suits you better.
-
-1. **Raspberry Pi** operating system - For this option you will have to:
-   - Buy a **Raspberry Pi computer**. Go to [Raspberrypi.com](https://www.raspberrypi.com) for more info.
-   - Buy **Micro SD card** of minimum 32 Gb memory size
-   - [Install Raspberry Pi OS](#install-raspberry-pi-os) on your Raspberry Pi computer
-
-2. **Linux Mint** operating system - is a user-friendly version of Linux based on Debian. For this option all you need is to:
-   - Have available **any spare computer** (desktop or laptop)
-   - [Install Linux Mint](#install-linux-mint-os) on your spare computer
-
-
+- Buy a **Raspberry Pi computer**. Go to [Raspberrypi.com](https://www.raspberrypi.com) for more info.
+- Buy **Micro SD card** of minimum 32 Gb memory size
+- **SSD (solid state drive) disc** for storage (ideally 2 terabytes), but for practice you can even use a USB drive
 
 - Why choose Raspberry Pi ? 
   - **Small** - It is the smallest server computer in the world. It is only the size of your palm
@@ -93,84 +82,11 @@ We show you here 2 different options to run a Linux server at home. Select the o
   - **Reliable** - you can simply plug it in the power, leave it there and forget about it. You can turn the power on or off in the wall whenever and it will not affect the Pi. The Pi just keeps running.
   - **Low power consumption** - It uses very little electricity. It costs only $5 per year to run it 24/7.
 
-- Why choose a spare desktop or laptop computer ?
-  - **Cheap and Convenient** - You don't need to invest any money to get it started. You just use your existing computer and install free Debian operating system on it.
 
 
+## Install Raspberry Pi OS
 
-### Install Linux Mint OS
-
-- **Download Linux Mint ISO** - Go to [linuxmint.com](https://www.linuxmint.com/) and download Linux Mint operating system iso image file (.iso)
-
-- **Download Balena Etcher** - Go to [balena.io/etcher](https://www.balena.io/etcher). Download Etcher, install it and run it.
-
-- Create **Bootable USB** 
-  - Insert empty USB of at least 4 GB in size
-  - Open **balenaEtcher** app
-  - Click on **"Flash from file"** and select Linux Mint **.iso** file that you have downloaded in the previous step
-  - Click on **Select target** and select your USB drive
-  - Click on the button **"Flash!"** to start the process. Once the process is finished, you will get a message **"Flash completed"**
-  - Your USB drive is now bootable with Linux Mint operating system
-
-From this point we will boot our spare computer from USB drive and install Linux Mint operating system on it. We will refer to this spare computer as **server computer**.
-
-> BIOS - is a program that runs on a computer when it is first turned on. It is responsible for loading and starting the operating system. BIOS is also responsible for configuring the hardware of the computer. BIOS is stored on a chip on the motherboard of the computer. BIOS is also called **"firmware"**.
-
-Boot Order is the order in which BIOS tries to boot operating systems from different devices.
-
-For safety reasons, computers try to boot operating system from the internal hard drive by default. 
-
-We need to change the boot order in BIOS of your server computer to boot from USB first.
-
-- **Enter BIOS**
-    - **Turn off** your server computer
-    - **Turn on** your server computer and **immediately** start pressing **F2** key repeatedly until you see the BIOS screen. If this does not work, you need to try other keys like **F1, F2, F8, F10, F11, F12, ESC, DEL**. If none of these keys work, you need to **search online** for your computer model and find out which key to press to enter BIOS.
-
-- **Change Boot Order in BIOS**   
-    - Use **Arrow keys** to navigate to **Boot** tab
-    - Use **Arrow keys** to navigate to **Boot Priority** and press **Enter**
-    - Use **Arrow keys** to navigate to **Boot Option #1** and press **Enter**
-    - Select **USB** and press **Enter**
-    - Press **F10** to save and exit
-  
-**If you CAN NOT SEE USB** in the list of boot options, then you need to enable USB boot in BIOS, or rather disable **Secure Boot**. This is a typical BIOS setup on Windows computers.
-
-- **Disable Secure Boot**
-    - Enter BIOS   
-    - Use **Arrow keys** to navigate to **Boot** tab
-    - Use **Arrow keys** to navigate to **Secure Boot** and press **Enter**
-    - Select **Disabled** and press **Enter**
-    - Press **F10** to save and exit
-
-If you still cant see USB in the setting called Boot Option #1, then you need to enable **Legacy Boot** in BIOS.  
-
-- **Enable Legacy Boot**
-    - Enter BIOS   
-    - Use **Arrow keys** to navigate to **Boot** tab
-    - Use **Arrow keys** to navigate to **Boot List Option** and press **Enter**
-    - Select **Legacy** and press **Enter**
-    - You should now see setting called **Set Boot Priority** and underneath it you should see options like:
-      - 1st Boot Priority [Network]
-      - 2nd Boot Priority [Hard Drive]
-      - 3rd Boot Priority [Diskette Drive]
-      - 4th Boot Priority [CD/DVD/CD-RW Device]
-      - 5th Boot Priority [USB Storage Device]
-    - Select 1st Boot Priority [Network] and press **Enter** to open the list of options
-    - Select **USB Storage Device** and press **Enter**
-    - Press **F10** to save and exit
-    
-The system will restart and this time it should boot from USB.
-
-You should see selected a line that says something: **"Start Linux Mint 21.2 Cinnamon 64-bit"**, or similar depending on the version of Linux Mint you have downloaded.
-
-- Hit **Enter** 
-- Linux Mint will load in **Live Mode**. This means that you can try out Linux Mint without installing it on your computer.
-- You will see a disc icon on the desktop called **"Install Linux Mint"**. You can click on it to start the installation process when you decide to install Linux Mint and wipe out your existing operating system.
- 
-
-### Install Raspberry Pi OS
-
-#### Download and Install Raspberry Pi OS
+### Download and Install Raspberry Pi OS
 
 - On your [Client computer](#definitions)
 - Go to Raspberry Pi OS download page: [www.raspberrypi.org/software](https://www.raspberrypi.org/software)
@@ -224,7 +140,7 @@ You should see selected a line that says something: **"Start Linux Mint 21.2 Cin
 - At the end of the wizard you should be prompted to restart the computer.
 - After the computer restarts, you will see the Desktop with the menu at the top.
 
-#### Change Boot Mode
+### Change Boot Mode
 
 Raspberry Pi computer can boot in one of 2 modes:
 
@@ -234,7 +150,7 @@ Raspberry Pi computer can boot in one of 2 modes:
 
 **It is highly recommended to use Desktop Boot mode**, because it is easier to use and you can use comand line interface by opening Terminal program.
 
-##### Changing to CLI-Only Boot Mode
+#### Changing to CLI-Only Boot Mode
 
 - Use this option only if 
   - you want to use Raspberry Pi computer as a headless server (without monitor, keyboard and mouse) - in this case probably you will be using SSH to connect to your server remotely from another computer, so better wait until you set up SSH connection before changing to CLI-Only Boot mode.
@@ -251,13 +167,13 @@ Raspberry Pi computer can boot in one of 2 modes:
 
 	  main-user@raspberrypi:~ $ _
 
-##### Changing to Desktop Boot Mode
+#### Changing to Desktop Boot Mode
 
 - `sudo raspi-config` **> System Options > Boot / Auto Login > Desktop > OK > Reboot**
 
 In the next section read in more detail instructions on how to open and use raspi-config.
 
-#### Open/Close raspi-config 
+### Open/Close raspi-config 
 
 Raspi-config is Raspberry Pi Configuration Tool. 
 
@@ -276,7 +192,7 @@ Raspi-config is Raspberry Pi Configuration Tool.
   - Move to **< Finish >** and hit Enter
 <br>
 
-#### Change Keyboard Layout
+### Change Keyboard Layout
 
 **YOU CAN SKIP**
 
@@ -307,7 +223,7 @@ To configure Keyboard in CLI (command line interface):
 - Hit **Enter** to exit raspi-config
 - <vxm-kbd>CTRL + L</vxm-kbd> to clear the screen
 
-#### Change Autologin to Require Login
+### Change Autologin to Require Login
 
 By default your Raspberry Pi will be set to log you in automatically. This is unsafe. We want to change this so that login is required every time.
 
@@ -330,7 +246,7 @@ Now Log in with:
 - Username: **main-user**
 - Password: **main**
 
-#### Set up Wi Fi
+### Set up Wi Fi
 
 **YOU CAN SKIP**
 
@@ -2337,7 +2253,7 @@ After you have enabled auto mounting your external drive, your server machine ma
 
 ### Express VPN
 
-- We recommend that you install VPN (Virtual Private Network) to ensure your privacy on the internet.
+- Optionally you may install VPN (Virtual Private Network) to ensure your privacy on the internet.
 - VPN effectively masks your IP address and geographical location.
 - Open account with any VPN provider. We recommend [ExpressVPN](https://www.expressvpn.com/)
 - You need to download and install VPN client on your Pi. We will describe here how to do it with ExpressVPN. But you can also follow steps provided by ExpressVPN at : https://www.expressvpn.com/support/vpn-setup/app-for-raspberry-pi/
@@ -2725,56 +2641,4 @@ By default, Linux mounts external drives onto **/media/{{USERNAME}}** folder.
 
 We will learn later how to mount the drive onto a different folder.
 
-
-
-
-# >>> Complete & Test >>> Debian Installation <<<
-
-
-## Install Server Operating System
-
-We show you here 3 different options to run a Linux server at home. Select the option that suits you better.
-
-1. **Raspberry Pi** operating system - For this option you will have to:
-   - Buy a **Raspberry Pi computer**. Go to [Raspberrypi.com](https://www.raspberrypi.com) for more info.
-   - Buy **Micro SD card** of minimum 32 Gb memory size
-   - [Install Raspberry Pi OS](#install-raspberry-pi-os) on your Raspberry Pi computer
-
-2. **Linux Debian** operating system - For this option all you need is to:
-   - Have available **any spare computer** (desktop or laptop)
-   - [Install Debian](#install-debian-os) on your spare computer
-
-3. **Linux Mint** operating system - is a user-friendly version of Linux Debian. For this option all you need is to:
-   - Have available **any spare computer** (desktop or laptop)
-   - [Install Linux Mint](#install-linux-mint-os) on your spare computer
-
-
-
-
-### Install Linux Debian OS
-
-
-#### Step 1. Preparation
-
-- Make sure you have :
-    - Computer with at least 25 GB of disk space
-    - USB drive with at least 4 GB in size
-    - Active internet connection
-- Back up your files from the computer you wish to use as a Server. The Debian installation will wipe out everything on your computer, so please copy your important data to some other external disk.
-
-#### Step 2. Download Debian
-   - Go to Debian download page: [debian.org/download](https://www.debian.org/download)
-   - Download Debian **.iso** image file 
-     - **Click on the link** that looks like **"debian-11.7.0-amd64-netinst.iso"**. 
-     - NOTE: The link name may look differently depending on what operating system your computer is using.
-
-#### Step 3. Create Bootable USB
-
-   - Download and install [Balena Etcher](https://www.balena.io/etcher) - for creating a **Bootable USB Drive**
-   - Insert empty USB of at least 4 GB in size
-   - Open **balenaEtcher** app
-   - **Select ISO file** - Click on **"Flash from file"** and select debian **.iso** file that you have downloaded in the previous steps
-   - **Select Target Device** - balenaEtcher app automatically selects your USB drive. However click on the link **Change** in the middle, that has a hard disc icon above it, to confirm that your USB drive is selected as a target device 
-   - **Create bootable USB** - Click on the button **"Flash!"** to start the process.
-     - Once the process is finished, you will get a message **"Flash completed"**
 

@@ -308,3 +308,5 @@ FROM THIS POINT ON, YOU WILL ONLY CONNECT TO THE SERVER **REMOTELY** USING **SSH
   ```bash
   adduser admin
   ```
+
+# NOTE: The rest of the setup is exactly the same as for Linux Mint walktrough

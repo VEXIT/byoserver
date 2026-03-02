@@ -1,4 +1,4 @@
-# Linux VPS Server
+# Linux VPS Server (Ubuntu or Debian)
 
 
 |               |                                                   |
@@ -9,6 +9,10 @@
 | Date Updated: | 2025-09-18                                        |
 |               |                                                   |
 
+
+## Overview
+
+This guide provides step-by-step instructions for setting up a VPS server and will work on either Debian or Ubuntu Linux distributions.
 
 ## Prerequisites
 
@@ -64,7 +68,7 @@ You should replace the sample data with your own data.
 ## Open Remote Server Account
 
 - Go to VPS provider's website
-- Follow the prompts to register Linux Ubuntu instance
+- Follow the prompts to register either Linux Ubuntu or Linux Debian instance. This guide works on either.
  
 
 ## SSH Connect to Server

@@ -1,5 +1,11 @@
 ![Book Cover](images/cover.jpeg)
 
+# Build Your Own Server
+(Sovereign Systems Development - Book 1 - Genesis)
+### By Vex Tatarevic
+
+
+
 > _In the beginning, there was darkness_
 > 
 > _And from the void, we commanded systems into existence_
@@ -10,12 +16,14 @@
 > 
 > _-- Sovereign Systems Development: Genesis_
 
-# Build your Own Server (BYO Server)
 
-**Note:** "Raw Technical Draft" - Work in Progress !
-    This repository contains functional, "as-is" instructions for building a production-ready server and mail server. 
+!!! danger "Raw Technical Draft / Work in Progress"
+    This book contains functional, **"as-is"** instructions for building a production-ready server and mail server. 
     **Status:** The technical steps are verified and working, but the documentation is currently in a rough, unpolished state. 
+
 
 ---
 
-Build your own Linux server manually from scratch, with web server, database server, mail server, ready for full stack apps deployment.
+In this book you will learn how to build your own Linux server manually from scratch.
+
+At the end you will have a functioning web server, database server and mail server, ready for full stack apps deployment.
