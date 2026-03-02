@@ -1,0 +1,2855 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://vexit.github.io/byoserver/0.2_Linux_Users_Groups_and_Permissions_Reference/">
+      
+      
+        <link rel="prev" href="../0.1_File_System_Basics_with_Bash/">
+      
+      
+        <link rel="next" href="../1_SetUpServer_Overview/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+    
+    
+      
+        <title>Linux Permissions Reference - BYO Server</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#linux-users-groups-and-permissions-reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="BYO Server" class="md-header__button md-logo" aria-label="BYO Server" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BYO Server
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Linux Permissions Reference
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="green"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="BYO Server" class="md-nav__button md-logo" aria-label="BYO Server" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    BYO Server
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0.1_File_System_Basics_with_Bash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core Concepts (Bash/CLI)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Permissions Reference
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Permissions Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Groups
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Groups">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-group" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create Group
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read-group" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Read Group
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Read Group">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#list-all-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        List All Groups
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#list-users-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        List User's Groups
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#list-members-of-group" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        List Members of Group
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-group" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Update Group
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete-group" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Delete Group
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#users" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Users
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Users">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create User
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Create User">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#option-1-recommended-adduser-wizard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option 1 - Recommended - ADDUSER Wizard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-2-useradd-one-liner" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option 2 - USERADD One Liner
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-3-useradd-passwd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option 3 - USERADD + PASSWD
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Read User
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Read User">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#list-all-users-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        List all Users' Details
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#list-all-usernames" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        List all Usernames
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-user-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get User Details
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#count-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Count users
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Update User
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Update User">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#change-username" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Change Username
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-password" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Change Password
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rename-home-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rename Home Directory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-display-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Change Display Name
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-manual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Show Manual
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Delete User
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User Groups
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="User Groups">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add-user-to-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Add User to Groups
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#view-users-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        View User's Groups
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-user-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Update User Groups
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remove-user-from-group" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remove User from Group
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Permissions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Permissions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#chown-change-owner" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CHOWN - Change Owner
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chgrp-change-group" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CHGRP - Change Group
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chmod-change-permissions-modifier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CHMOD - Change Permissions Modifier
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#administer-users-groups-and-file-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Administer Users, Groups and File Permissions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Administer Users, Groups and File Permissions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-admin-user-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create Admin user account
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-group-and-add-my-user-to-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create group and add my user to it
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#administer-access-to-other-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Administer access to other users
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#give-group-access-to-dir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Give group access to dir
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-and-folder-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File and Folder Permissions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File and Folder Permissions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#symbolic-notation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Symbolic notation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#absolute-or-numeric-notation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Absolute or Numeric notation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-permissions-using-absolute-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Change Permissions using Absolute Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-permissions-using-symbolic-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Change Permissions using Symbolic Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete-user-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Delete user account
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Choose Your Server Setup
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Choose Your Server Setup
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_SetUpServer_Overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Server Setup Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_SetUpServer_HomeServer_Ubuntu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home Server (Ubuntu)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_SetUpServer_HomeServer_RaspberryPi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home Server (Raspberry Pi)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_SetUpServer_HomeServer_LinuxMint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home Server (Linux Mint)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_SetUpServer_VPS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VPS / Hosting Provider
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2_WebServer_Nginx_Apache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web Server (Nginx/Apache)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3_WebApp_NetCore_Angular/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    App Deployment (.NET/Angular)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4_Cron_Jobs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Task Automation (Cron Jobs)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5_Database_PostgreSQL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database (PostgreSQL)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6_MailServer_Postfix_Dovecot_Thunderbird/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mail Server (Postfix/Dovecot)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Groups
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Groups">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-group" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create Group
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read-group" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Read Group
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Read Group">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#list-all-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        List All Groups
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#list-users-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        List User's Groups
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#list-members-of-group" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        List Members of Group
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-group" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Update Group
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete-group" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Delete Group
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#users" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Users
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Users">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create User
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Create User">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#option-1-recommended-adduser-wizard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option 1 - Recommended - ADDUSER Wizard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-2-useradd-one-liner" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option 2 - USERADD One Liner
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-3-useradd-passwd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option 3 - USERADD + PASSWD
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Read User
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Read User">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#list-all-users-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        List all Users' Details
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#list-all-usernames" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        List all Usernames
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-user-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get User Details
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#count-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Count users
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Update User
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Update User">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#change-username" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Change Username
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-password" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Change Password
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rename-home-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rename Home Directory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-display-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Change Display Name
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-manual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Show Manual
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Delete User
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User Groups
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="User Groups">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add-user-to-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Add User to Groups
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#view-users-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        View User's Groups
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-user-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Update User Groups
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remove-user-from-group" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remove User from Group
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Permissions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Permissions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#chown-change-owner" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CHOWN - Change Owner
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chgrp-change-group" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CHGRP - Change Group
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chmod-change-permissions-modifier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CHMOD - Change Permissions Modifier
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#administer-users-groups-and-file-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Administer Users, Groups and File Permissions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Administer Users, Groups and File Permissions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-admin-user-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create Admin user account
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-group-and-add-my-user-to-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create group and add my user to it
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#administer-access-to-other-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Administer access to other users
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#give-group-access-to-dir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Give group access to dir
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-and-folder-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File and Folder Permissions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File and Folder Permissions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#symbolic-notation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Symbolic notation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#absolute-or-numeric-notation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Absolute or Numeric notation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-permissions-using-absolute-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Change Permissions using Absolute Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-permissions-using-symbolic-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Change Permissions using Symbolic Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete-user-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Delete user account
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="linux-users-groups-and-permissions-reference">Linux Users Groups and Permissions Reference</h1>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Copyright:</td>
+<td>© 2022 VEXIT , Tomorow is today ® , www.vexit.com</td>
+</tr>
+<tr>
+<td>Author:</td>
+<td>Vex Tatarevic</td>
+</tr>
+<tr>
+<td>Date Created:</td>
+<td>2022-05-13</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="overview">Overview</h2>
+<p>This file is only a reference manual to help you with managing users and groups in Linux if you don't have a prior knowledge with bash script and Linux.</p>
+<p>Use this manual later on in this book as a quick reference to help you find user managment commands at a glance. </p>
+<h2 id="groups">Groups</h2>
+<blockquote>
+<p>Group is a collection of users.</p>
+<p>Primary or login group – is the group that is assigned to the files that are created by the user. Name of the primary group is the same as the name of the user. Each user must belong to exactly one primary group. 
+- Primary group info is stored in the <strong>/etc/passwd</strong> file.</p>
+<p>Secondary or supplementary group - used to grant certain privileges to a set of users. A user can be a member of zero or more secondary groups. 
+- Secondary groups data is stored in the <strong>/etc/group</strong> file.</p>
+</blockquote>
+<h3 id="create-group">Create Group</h3>
+<ul>
+<li>
+<p>Create new group "my-group"</p>
+<p>sudo groupadd my-group</p>
+</li>
+<li>
+<p>Create group with specific group id</p>
+<p>sudo groupadd -g 1010 my-group</p>
+</li>
+</ul>
+<h3 id="read-group">Read Group</h3>
+<h4 id="list-all-groups">List All Groups</h4>
+<ul>
+<li>List all groups</li>
+<li>
+<p>print to screen</p>
+<div class="language-text highlight"><pre><span></span><code>getent group
+</code></pre></div>
+</li>
+<li>
+<p>OR open group file</p>
+<div class="language-text highlight"><pre><span></span><code>nano /etc/group
+</code></pre></div>
+</li>
+<li>
+<p>For getent use awk or cut to print only the first field containing the name of the group:</p>
+<div class="language-text highlight"><pre><span></span><code>getent group | awk -F: &#39;{ print $1}&#39;
+
+getent group | cut -d: -f1
+</code></pre></div>
+</li>
+</ul>
+<h4 id="list-users-groups">List User's Groups</h4>
+<ul>
+<li>
+<p>List current user's groups</p>
+<p>groups</p>
+</li>
+<li>
+<p>List groups of user "Vex"</p>
+<p>groups Vex</p>
+</li>
+<li>
+<p>first group is the primary group</p>
+</li>
+<li>
+<p>List groups with their ids</p>
+<p>id</p>
+<p>id some-user-name</p>
+</li>
+</ul>
+<h4 id="list-members-of-group">List Members of Group</h4>
+<ul>
+<li>
+<p>To find out the members of "my-group" :</p>
+<p>getent group my-group</p>
+</li>
+</ul>
+<h3 id="update-group">Update Group</h3>
+<ul>
+<li>
+<p>Change group name</p>
+<p>sudo groupmod -n {{NEW_GROUP_NAME}} {{OLD_GROUP_NAME}}</p>
+</li>
+<li>
+<p>For example to change group name from <strong>developers</strong> to <strong>devs</strong></p>
+<div class="language-text highlight"><pre><span></span><code>sudo groupmod -n devs developers
+</code></pre></div>
+</li>
+</ul>
+<h3 id="delete-group">Delete Group</h3>
+<ul>
+<li>
+<p>Delete group <strong>my-group</strong></p>
+<p>sudo groupdel my-group</p>
+</li>
+</ul>
+<h2 id="users">Users</h2>
+<p>Suppose we are creating user called <strong>my-user</strong></p>
+<ul>
+<li>
+<p>Create just user without the user directory, by using the command below, or continue reading to see what other creation options are before you create user:</p>
+<p>sudo useradd my-user</p>
+</li>
+<li>
+<p>Create user and his home directory <strong>/home/my-user/</strong></p>
+<p>sudo useradd -m my-user</p>
+</li>
+<li>
+<p>When user is created its data entry is stored in file <strong>/etc/passwd</strong> with 7 colon-separated fields</p>
+<ul>
+<li><strong>Username</strong>: User login name used to login into the system. It should be between 1 to 32 characters long.</li>
+<li><strong>Password</strong>: User password (or x character) stored in /etc/shadow file in encrypted format.</li>
+<li><strong>User ID (UID)</strong>: Every user must have a User ID (UID) User Identification Number. By default, UID 0 is reserved for the root user and UID’s ranging from 1-99 are reserved for other predefined accounts. Further UID’s ranging from 100-999 are reserved for system accounts and groups.</li>
+<li><strong>Group ID (GID)</strong>: The primary Group ID (GID) Group Identification Number stored in the /etc/group file.</li>
+<li><strong>User Info</strong>: This field is optional and allows you to define extra information about the user. For example, user full name. This field is filled by the ‘finger’ command.</li>
+<li><strong>Home Directory</strong>: The absolute location of the user’s home directory.</li>
+<li><strong>Shell</strong>: The absolute location of a user’s shell i.e. /bin/bash.</li>
+</ul>
+</li>
+</ul>
+<p><br></p>
+<h3 id="create-user">Create User</h3>
+<h4 id="option-1-recommended-adduser-wizard">Option 1 - Recommended - ADDUSER Wizard</h4>
+<ul>
+<li>
+<p>Create user <strong>john</strong></p>
+<p>sudo adduser john</p>
+<ul>
+<li>
+<p>You should see :</p>
+<div class="language-text highlight"><pre><span></span><code>Adding user `john&#39; ...
+Adding new group `john&#39; (1002) ...
+Adding new user `john&#39; (1001) with group `john&#39; ...
+Creating home directory `/home/john&#39; ...
+Copying files from `/etc/skel&#39; ...
+New password:
+Retype new password:
+passwd: password updated successfully
+Changing the user information for john
+Enter the new value, or press ENTER for the default
+        Full Name []: John
+        Room Number []:
+        Work Phone []:
+        Home Phone []:
+        Other []:
+Is the information correct? [Y/n] Y
+</code></pre></div>
+</li>
+<li>
+<p>NOTE: When you create a user it also creates a group with the same name</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="option-2-useradd-one-liner">Option 2 - USERADD One Liner</h4>
+<ul>
+<li>
+<p>Create user <strong>john</strong> with password <strong>pass123</strong> using openssl</p>
+<p>sudo useradd -m -p $(openssl passwd -1 pass123) john</p>
+</li>
+<li>
+<p>Creates user john</p>
+</li>
+<li>Creates group <strong>john</strong></li>
+<li><strong>-m</strong> - creates home directory <strong>/home/john</strong></li>
+<li><strong>-p</strong> - creates password. </li>
+<li><strong>openssl</strong> - encrypts password with MD5 hash algorithm. The statement <strong>"$(openssl passwd -1 pass123)"</strong> will return encrypted version of password <strong>"pass123"</strong> </li>
+</ul>
+<h4 id="option-3-useradd-passwd">Option 3 - USERADD + PASSWD</h4>
+<ul>
+<li>You don't have to set the password in the same command with user creation. You can do it separately in 2 commands:</li>
+<li>
+<p>Create user</p>
+<div class="language-text highlight"><pre><span></span><code>sudo useradd -m john
+</code></pre></div>
+</li>
+<li>
+<p>Set Password</p>
+<div class="language-text highlight"><pre><span></span><code>sudo passwd my-user
+</code></pre></div>
+<ul>
+<li>
+<p>This will prompt you for password</p>
+<p>New password:</p>
+</li>
+<li>
+<p>Type in the password and hit <strong>ENTER</strong> - you should see</p>
+<p>Retype new password:</p>
+</li>
+<li>
+<p>Type in the password again and hit <strong>ENTER</strong> - you should see</p>
+<p>passwd: password updated successfully</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>IMPORTANT:</strong> If hitting ENTER to confirm the new password does not work, <strong>use "CTRL + D" instead of "ENTER"</strong> to confirm the password.</p>
+<h3 id="read-user">Read User</h3>
+<h4 id="list-all-users-details">List all Users' Details</h4>
+<p>Local user information is stored in the <strong>/etc/passwd</strong> file. Each line in this file represents login information for one user. </p>
+<p>Each line in the file has seven fields delimited by colons that contain the following information:</p>
+<ul>
+<li>Username</li>
+<li>Encrypted password (x means that the password is stored in the /etc/shadow file)</li>
+<li>User ID number (UID)</li>
+<li>User’s group ID number (GID)</li>
+<li>Full name of the user (GECOS)</li>
+<li>User home directory</li>
+<li>Login shell (defaults to /bin/bash)</li>
+</ul>
+<p>To open the user accounts file you can either use cat or less</p>
+<ul>
+<li><strong>less</strong> or <strong>nano</strong> opens the file</li>
+</ul>
+<p>LESS</p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>less<span class="w"> </span>/etc/passwd
+</span></code></pre></div>
+  - Hit leter <strong>q</strong> to exit out of less</p>
+<p>NANO</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>nano<span class="w"> </span>/etc/passwd
+</span></code></pre></div>
+<ul>
+<li>
+<p><strong>cat</strong> prints file to the terminal without opening it</p>
+<div class="language-text highlight"><pre><span></span><code>cat /etc/passwd
+</code></pre></div>
+</li>
+<li>
+<p><strong>getent</strong> does the same thing</p>
+<div class="language-text highlight"><pre><span></span><code>getent passwd
+</code></pre></div>
+</li>
+</ul>
+<h4 id="list-all-usernames">List all Usernames</h4>
+<ul>
+<li>
+<p>Print all users' usernames</p>
+<p>awk -F: '{ print $1}' /etc/passwd</p>
+<p>OR</p>
+<p>cut -d: -f1 /etc/passwd</p>
+<p>OR</p>
+<p>getent passwd | awk -F: '{ print $1}'</p>
+<p>OR</p>
+<p>getent passwd | cut -d: -f1</p>
+</li>
+</ul>
+<h4 id="get-user-details">Get User Details</h4>
+<ul>
+<li>
+<p>Show details for <strong>my-user</strong></p>
+<p>getent passwd my-user</p>
+</li>
+<li>
+<p>Details for user <strong>my-user</strong> come from file <strong>/etc/passwd</strong>. You can also use:</p>
+<div class="language-text highlight"><pre><span></span><code>getent passwd | grep my-user
+</code></pre></div>
+</li>
+</ul>
+<h4 id="count-users">Count users</h4>
+<ul>
+<li>
+<p>Show number of users</p>
+<p>getent passwd | wc -l</p>
+</li>
+</ul>
+<h3 id="update-user">Update User</h3>
+<h4 id="change-username">Change Username</h4>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo<span class="w"> </span>usermod<span class="w"> </span>-l<span class="w"> </span><span class="o">{{</span>NEW_USERNAME<span class="o">}}</span><span class="w"> </span><span class="o">{{</span>OLD_USERNAME<span class="o">}}</span>
+</span></code></pre></div>
+<ul>
+<li>
+<p>To change username <strong>john_smith</strong> to <strong>jons</strong></p>
+<div class="language-text highlight"><pre><span></span><code>sudo usermod -l jons john_smith
+</code></pre></div>
+<ul>
+<li><strong>-l</strong> - stands for login name</li>
+</ul>
+</li>
+</ul>
+<h4 id="change-password">Change Password</h4>
+<ul>
+<li>
+<p>Change password for user <strong>john</strong></p>
+<p>sudo passwd john</p>
+</li>
+<li>
+<p>You will be prompted to enter new password</p>
+<div class="language-text highlight"><pre><span></span><code>New password:
+</code></pre></div>
+</li>
+<li>
+<p>Type in the new password and hit <strong>ENTER</strong> - you should see</p>
+<div class="language-text highlight"><pre><span></span><code>Retype new password:
+</code></pre></div>
+</li>
+<li>
+<p>Type in the new password again and hit <strong>ENTER</strong> - you should see</p>
+<div class="language-text highlight"><pre><span></span><code>passwd: password updated successfully
+</code></pre></div>
+</li>
+</ul>
+<p><strong>IMPORTANT:</strong> If hitting ENTER to confirm the new password does not work, <strong>use "CTRL + D" instead of "ENTER"</strong> to confirm the password.</p>
+<h4 id="rename-home-directory">Rename Home Directory</h4>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sudo<span class="w"> </span>usermod<span class="w"> </span>-d<span class="w"> </span>/home/<span class="o">{{</span>NEW_USERNAME<span class="o">}}</span><span class="w"> </span>-m<span class="w"> </span><span class="o">{{</span>NEW_USERNAME<span class="o">}}</span>
+</span></code></pre></div>
+<ul>
+<li>
+<p>Rename home directory for user <strong>jons</strong></p>
+<p>sudo usermod -d /home/jons -m jons</p>
+</li>
+<li>
+<p>-d - specifies the new home directory</p>
+</li>
+<li>-m - moves the content of the old home directory to the new home directory</li>
+<li>NOTE: only new username is used in the command </li>
+</ul>
+<h4 id="change-display-name">Change Display Name</h4>
+<ul>
+<li>
+<p>Change John's <strong>Display Name</strong> - from <strong>John Smith</strong> to <strong>Jon S.</strong></p>
+<p>sudo usermod -c "Jon S." jons</p>
+</li>
+</ul>
+<h4 id="show-manual">Show Manual</h4>
+<ul>
+<li>
+<p>Display manual of other functions you can do with <strong>usermod</strong> command</p>
+<p>usermod -h</p>
+</li>
+</ul>
+<h3 id="delete-user">Delete User</h3>
+<ul>
+<li>
+<p>Delete user <strong>jons</strong></p>
+<p>sudo userdel -r -f jons</p>
+</li>
+<li>
+<p>Removes the account details from the <strong>/etc/passwd</strong> file</p>
+</li>
+<li>Removes user's primary group <strong>jons</strong>    </li>
+<li><strong>-r</strong> - removes home directory <strong>/home/jons</strong>, mail directory <strong>/var/mail/jons</strong> if they exist</li>
+<li><strong>-f</strong> - forces removal of files</li>
+</ul>
+<h2 id="user-groups">User Groups</h2>
+<blockquote>
+<p><definition /></p>
+<p><strong>Primary group</strong> - Each user has one primary group. Primary group is created by default at the time of user creation and is named the same as username of the user. Primary Group is listed as value of the field <strong>gid</strong> in the output of the command <strong>id</strong>.</p>
+<p><definition /></p>
+<p><strong>Supplementary group</strong> - is a name for any group other than the primary group that user belongs to. Supplimentary groups are listed at the end of the  output for command <strong>id</strong>.</p>
+</blockquote>
+<p><strong>For example:</strong></p>
+<p>Suppose we are logged in as user <strong>admin</strong></p>
+<ul>
+<li>
+<p>Type command id</p>
+<p>id</p>
+</li>
+<li>
+<p>You should see an output similar to this</p>
+<div class="language-text highlight"><pre><span></span><code>uid=1001(admin) gid=1001(admin) groups=1001(admin),27(sudo),1002(developers)
+</code></pre></div>
+</li>
+<li>
+<p>In the above output:</p>
+</li>
+<li><strong>gid=1001(admin)</strong> - tells us that user's primary group is called admin and its id is 1001</li>
+<li><strong>groups=1001(admin),27(sudo)</strong> - tells us that besides primary group admin, user is also a member of supplementary groups : sudo, developers</li>
+</ul>
+<h3 id="add-user-to-groups">Add User to Groups</h3>
+<ul>
+<li>
+<p>Use command <strong>usermod</strong> to assign user <strong>jon</strong> to the groups: <strong>g1, g2</strong> and <strong>g3</strong></p>
+<p>sudo usermod -aG g1,g2,g3 jon</p>
+</li>
+<li>
+<p>First argument <strong>-aG</strong> explained:</p>
+<ul>
+<li><strong>-a</strong>, <strong>--append</strong>  - append the user to the supplementary GROUPS
+                            mentioned by the -G option without removing
+                            him/her from other groups</li>
+<li><strong>-G</strong>, <strong>--groups</strong> GROUPS  - new list of supplementary GROUPS</li>
+</ul>
+</li>
+<li>
+<p>Second argument - name of the group or multiple groups separated by comas, without spaces between</p>
+</li>
+<li>Last argument - username of the user you wish to assign to the groups</li>
+</ul>
+<p><strong>NOTE:</strong> <strong>you must logout and login again</strong> for the changes to take effect</p>
+<h3 id="view-users-groups">View User's Groups</h3>
+<ul>
+<li>
+<p>Lets say we have user jon in groups: g1, g2 and g3</p>
+</li>
+<li>
+<p>View jon's groups</p>
+<p>groups jon</p>
+</li>
+<li>
+<p>You should see the output</p>
+<div class="language-text highlight"><pre><span></span><code>jon : jon g1 g2 g3
+</code></pre></div>
+</li>
+</ul>
+<h3 id="update-user-groups">Update User Groups</h3>
+<p>NOT recommended approach. Instead you should use Add or Remove user from group.
+- Update jon's groups with <strong>usermod</strong> command followed by <strong>-G</strong> followed by list of all groups jon should belong to</p>
+<div class="language-text highlight"><pre><span></span><code>  sudo usermod -G group1,group2,group3 jon
+</code></pre></div>
+<ul>
+<li>jon will be removed from all the groups that are not listed in comma separated list</li>
+</ul>
+<h3 id="remove-user-from-group">Remove User from Group</h3>
+<ul>
+<li>Lets say we have user <strong>jon</strong> in groups: <strong>g1, g2</strong> and <strong>g3</strong> </li>
+<li>
+<p>To remove <strong>jon</strong> from group <strong>g3</strong></p>
+<p>gpasswd -d jon g3</p>
+</li>
+<li>
+<p>You should see the message</p>
+<div class="language-text highlight"><pre><span></span><code>Removing user jon from group g3
+</code></pre></div>
+</li>
+<li>
+<p>View jon's groups</p>
+<p>groups jon</p>
+</li>
+<li>
+<p>you should see</p>
+<div class="language-text highlight"><pre><span></span><code>jon : jon g1 g2
+</code></pre></div>
+</li>
+</ul>
+<h2 id="permissions">Permissions</h2>
+<h3 id="chown-change-owner">CHOWN - Change Owner</h3>
+<ul>
+<li>
+<p>Make user <strong>admin</strong> an owner of /home/repos</p>
+<p>sudo chown -R admin /home/repos</p>
+</li>
+<li>
+<p><strong>-R</strong> - to change the <strong>user ownership</strong> for all the files and directories stored inside the target directory, use argument -R (<strong>recursive</strong>)</p>
+</li>
+</ul>
+<h3 id="chgrp-change-group">CHGRP - Change Group</h3>
+<ul>
+<li>
+<p>Assign group ownership of directory <strong>/home/repos</strong> and <strong>/home/packages</strong>  to group <strong>devs</strong></p>
+<p>sudo chgrp -R devs /home/repos /home/packages</p>
+</li>
+<li>
+<p><strong>-R</strong> - to change the <strong>group ownership</strong> for the files and directories stored inside the target directory, we can use the -R (recursive) option</p>
+</li>
+</ul>
+<h3 id="chmod-change-permissions-modifier">CHMOD - Change Permissions Modifier</h3>
+<ul>
+<li>
+<p>Change permissions on <strong>jons-shared</strong> directory</p>
+<p>sudo chmod 750 /home/jons-shared</p>
+</li>
+<li>
+<p>Above command will give the following permissions to /home/jons-shared</p>
+<table>
+<thead>
+<tr>
+<th>Entity</th>
+<th>Permission</th>
+<th>Permission Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Owner</td>
+<td>7</td>
+<td>Read, Write and Execute</td>
+</tr>
+<tr>
+<td>Group</td>
+<td>5</td>
+<td>Read and Execute</td>
+</tr>
+<tr>
+<td>Others</td>
+<td>0</td>
+<td>No Permission</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p><strong>Recursive</strong> - To change the permissions for the files and directories inside <strong>jons-shared</strong> directory, use the -R (recursive) option</p>
+<p>sudo chmod -R 750 /home/jons-shared</p>
+</li>
+<li>
+<p>Above command will apply 750 access to all the files and subfolders of jons-shared folder</p>
+</li>
+</ul>
+<p>For better understanding how permissions work go to <a href="#file-and-folder-permissions">File and Folder Permissions section</a></p>
+<h2 id="administer-users-groups-and-file-permissions">Administer Users, Groups and File Permissions</h2>
+<ul>
+<li>
+<p>Refs:</p>
+<p>File Permissions: https://www.computerhope.com/unix/uumask.htm</p>
+</li>
+</ul>
+<p><br></p>
+<h3 id="create-admin-user-account">Create Admin user account</h3>
+<p><br></p>
+<ul>
+<li>Log in as user <strong>"root"</strong></li>
+<li>
+<p>Create user <strong>admin</strong></p>
+<p>adduser admin</p>
+<ul>
+<li>
+<p>You should see :</p>
+<div class="language-text highlight"><pre><span></span><code>Adding user `admin&#39; ...
+Adding new group `admin&#39; (1002) ...
+Adding new user `admin&#39; (1001) with group `admin&#39; ...
+Creating home directory `/home/admin&#39; ...
+Copying files from `/etc/skel&#39; ...
+New password:
+Retype new password:
+passwd: password updated successfully
+Changing the user information for admin
+Enter the new value, or press ENTER for the default
+        Full Name []: Admin
+        Room Number []:
+        Work Phone []:
+        Home Phone []:
+        Other []:
+Is the information correct? [Y/n] Y
+</code></pre></div>
+</li>
+<li>
+<p>NOTE: When you create a user it also creates a group with the same name</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Give <strong>admin</strong> root privilege by assigning them to the <strong>sudo</strong> group:</p>
+<p>usermod -aG sudo admin</p>
+</li>
+<li>
+<p>Reboot and log in as admin</p>
+</li>
+<li>
+<p>You now have an admin account that can execute commands as a root using <strong>sudo</strong></p>
+</li>
+</ul>
+<p><br></p>
+<h3 id="create-group-and-add-my-user-to-it">Create group and add my user to it</h3>
+<p><br></p>
+<ul>
+<li>
+<p>As user <strong>"admin"</strong>, create group for software developers on Pi Server:</p>
+<p>sudo addgroup dev</p>
+</li>
+<li>
+<p>Oops we made a mistake. Change group name from <strong>dev</strong> to <strong>developers</strong></p>
+<p>sudo groupmod -n developers dev</p>
+</li>
+<li>
+<p>List all the groups:</p>
+<p>cat /etc/group</p>
+</li>
+<li>
+<p>Add current user <strong>admin</strong> to <strong>developers</strong> group:</p>
+<p>sudo usermod -aG developers admin</p>
+</li>
+<li>
+<p>List all groups for my logged-in user <strong>admin</strong></p>
+<p>groups</p>
+<ul>
+<li>
+<p>You should see</p>
+<p>admin sudo developers</p>
+</li>
+</ul>
+</li>
+<li>
+<p>List ids for user and groups that current user belongs to:</p>
+<p>id</p>
+</li>
+<li>
+<p>To run commands <strong>groups</strong> and <strong>id</strong> on another user for example <strong>my_user</strong>, just put the username after the command:</p>
+<p>groups my_user</p>
+<p>id my_user</p>
+</li>
+</ul>
+<h3 id="administer-access-to-other-users">Administer access to other users</h3>
+<p><br></p>
+<ul>
+<li>
+<p>Add user <strong>vex</strong> to group <strong>developers</strong> and group <strong>sudo</strong></p>
+<div class="language-text highlight"><pre><span></span><code>usermod -a -G developers,sudo vex
+</code></pre></div>
+</li>
+<li>
+<p>List groups that user <strong>vex</strong> is in</p>
+<div class="language-text highlight"><pre><span></span><code>groups vex
+</code></pre></div>
+</li>
+<li>
+<p>List ids of the groups that user vex is in</p>
+<div class="language-text highlight"><pre><span></span><code>id vex
+</code></pre></div>
+</li>
+<li>
+<p>List users that belong to the group <strong>developers</strong>:</p>
+<div class="language-text highlight"><pre><span></span><code>grep &#39;^developers&#39; /etc/group
+</code></pre></div>
+</li>
+<li>
+<p>Remove user <strong>vex</strong> from group <strong>sudo</strong></p>
+<div class="language-text highlight"><pre><span></span><code>sudo gpasswd -d vex sudo
+</code></pre></div>
+</li>
+</ul>
+<p><br></p>
+<h3 id="give-group-access-to-dir">Give group access to dir</h3>
+<p><br></p>
+<ul>
+<li>
+<p>Get the <strong>developers</strong> group id</p>
+<div class="language-text highlight"><pre><span></span><code>id
+</code></pre></div>
+<ul>
+<li>You should see  something like this if group id is <strong>1001</strong><div class="language-text highlight"><pre><span></span><code>1001(developers)
+</code></pre></div>
+</li>
+</ul>
+</li>
+<li>
+<p>Give <strong>developers</strong> group access to git repositories on your USB</p>
+<div class="language-text highlight"><pre><span></span><code>sudo chgrp -R developers /home/my-usb/repos
+</code></pre></div>
+</li>
+<li>
+<p>Go into  /home/my-usb</p>
+</li>
+<li>
+<p>Check permisisons on folders :</p>
+<div class="language-text highlight"><pre><span></span><code>ls -l
+</code></pre></div>
+<ul>
+<li>l - means long listing, which will display permissions in the first column</li>
+<li>You should see something like:<div class="language-text highlight"><pre><span></span><code>drwxr-xr-x 5 admin developers  ... repos
+</code></pre></div>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="file-and-folder-permissions">File and Folder Permissions</h2>
+<p>In Linux, each file is associated with an owner and a group and assigned with permission access rights for three different classes of users:</p>
+<ol>
+<li>The file <strong>OWNER</strong></li>
+<li>The <strong>GROUP</strong> members</li>
+<li><strong>OTHERS</strong> (everybody else)</li>
+</ol>
+<p>There are three file permissions types that apply to each class:</p>
+<ol>
+<li>r - The <strong>READ</strong> permission</li>
+<li>w - The <strong>WRITE</strong> permission</li>
+<li>x - The <strong>EXECUTE</strong> permission</li>
+</ol>
+<p>When we run command <strong>ls -l</strong> we can see file permissions displayed at the start of each line representing file or folder inside the folder we are currently in.</p>
+<p>It looks something like this:</p>
+<div class="language-text highlight"><pre><span></span><code>    drwxr-xr-x 5 admin developers 4096 Apr 10 02:21 repos
+</code></pre></div>
+<p><br></p>
+<h4 id="symbolic-notation">Symbolic notation</h4>
+<p><br></p>
+<p>Ten characters that represent symbolic notation of file or folder permisisons are:
+drwxrwxrwx</p>
+<p>The <strong>first character</strong>, d, signifies that the file is a directory.
+It can be blank (-) or one of the following characters:</p>
+<div class="language-text highlight"><pre><span></span><code>d: directory
+c: Character device
+b: Block device
+s: socket
+p: pipe
+D: Door
+l: symbolic link etc.
+</code></pre></div>
+<ul>
+<li>
+<p><strong>FIRST</strong> set of three characters (d<strong>rwx</strong>r-xr-x), are permissions for the <strong>OWNER</strong> of the file/folder</p>
+</li>
+<li>
+<p><strong>SECOND</strong> set of three characters (drwx<strong>r-x</strong>r-x), permissions for the <strong>GROUP</strong></p>
+</li>
+<li>
+<p><strong>THIRD</strong> set of three characters (drwxr-x<strong>r-x</strong>), permissions for all the <strong>OTHER</strong> users</p>
+</li>
+<li>
+<p>Character meaning is as follows:</p>
+<ul>
+<li>: Empty - no permission
+  r : Read
+  w : Write
+  x : Execute</li>
+</ul>
+</li>
+</ul>
+<h4 id="absolute-or-numeric-notation">Absolute or Numeric notation</h4>
+<p>Permisisons can be displayed in numeric notation.
+Numerals used are the following:</p>
+<div class="language-text highlight"><pre><span></span><code>0 : No permission
+1 : Execute (x)
+2 : Write (w)
+4 : Read (r)
+</code></pre></div>
+<p>The numbers are added together to form one digit number that represents combination of rwx for either an owner, group or other. For example :</p>
+<table>
+<thead>
+<tr>
+<th>Number</th>
+<th>Permission Type</th>
+<th>Symbol</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>No Permission</td>
+<td>---</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Execute</td>
+<td>--x</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Write</td>
+<td>-w-</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Execute and Write</td>
+<td>-wx</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Read</td>
+<td>r--</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Read and Execute</td>
+<td>r-x</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Read and Write</td>
+<td>rw-</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Read, Write and Execute</td>
+<td>rwx</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>So the permission rwxrwxrwx is same as 777, rwxr-xr-x is same as 755, and so on.</p>
+<h4 id="change-permissions-using-absolute-mode">Change Permissions using Absolute Mode</h4>
+<ul>
+<li>
+<p>To change permissions we can use <strong>chmod</strong> command</p>
+</li>
+<li>
+<p>For our repos directory we want to :</p>
+</li>
+<li>
+<p>give full read, write, execute permissions to owner and group, but no permissions to anyone else</p>
+</li>
+<li>
+<p>We can do this by using <strong>chmod</strong> command with numeric permission combination <strong>770</strong></p>
+<div class="language-text highlight"><pre><span></span><code>sudo chmod -R 770 /home/my-usb/repos
+</code></pre></div>
+<ul>
+<li>NOTE: -R means assign permissions recursively to all the files and folders inside the <strong>repos</strong> folder</li>
+</ul>
+</li>
+<li>
+<p>Now if you run <strong>ls -l</strong> inside <strong>/home/my-usb/</strong> you will see that persmissions on <strong>repos/</strong> directory have changed to:</p>
+<div class="language-text highlight"><pre><span></span><code>drwxrwx--- 5 admin developers 4096 Apr 10 02:21 repos
+</code></pre></div>
+</li>
+</ul>
+<h4 id="change-permissions-using-symbolic-mode">Change Permissions using Symbolic Mode</h4>
+<p>Symbolic mode allows you to change the permission for a particular owner.</p>
+<p>To do this you specify owner, followed by mathetmatical operator, followed by symbolic code for access, followed by path to file or directory you want to apply the permissions to.</p>
+<ul>
+<li>
+<p>User denotations</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>u</td>
+<td>user/owner</td>
+</tr>
+<tr>
+<td>g</td>
+<td>group</td>
+</tr>
+<tr>
+<td>o</td>
+<td>other</td>
+</tr>
+<tr>
+<td>a</td>
+<td>all</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Mathematical operators for changing the permissions</p>
+<table>
+<thead>
+<tr>
+<th>Operator</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+</td>
+<td>adds an acces/permission to a file or directory</td>
+</tr>
+<tr>
+<td>-</td>
+<td>removes the access</td>
+</tr>
+<tr>
+<td>=</td>
+<td>sets the access</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Let's assume the file called <strong>sample-file.txt</strong> with the permissions <strong>-rw-r--rw-</strong></p>
+</li>
+<li>
+<p><strong>Assign</strong> the <strong>read, write</strong> and <strong>execute</strong> permissions to user <strong>group</strong> on the file <strong>sample-file.txt</strong></p>
+<p>chmod g=rwx sample-file.txt</p>
+<ul>
+<li>If we run command <strong>ls -l</strong> now, we will see that sample-file.txt will have permissions <strong>-rw-rwxrw-</strong></li>
+</ul>
+</li>
+<li>
+<p><strong>Add</strong> the <strong>execute</strong> permission to the <strong>user</strong> on the file <strong>sample-file.txt</strong></p>
+<p>chmod u+x sample-file.txt</p>
+<ul>
+<li>If we run command <strong>ls -l</strong> now, we will see that sample-file.txt will have permissions <strong>-rwxrwxrw-</strong></li>
+</ul>
+</li>
+<li>
+<p><strong>Remove</strong> the <strong>write</strong> permission from the <strong>others</strong> on the file <strong>sample-file.txt</strong></p>
+<p>chmod o-w sample-file.txt</p>
+<ul>
+<li>If we run command <strong>ls -l</strong> now, we will see that sample-file.txt will have permissions <strong>-rwxrwxr--</strong></li>
+</ul>
+</li>
+</ul>
+<p><br></p>
+<h3 id="delete-user-account">Delete user account</h3>
+<p><br></p>
+<ul>
+<li>
+<p>Logged in as admin user, </p>
+</li>
+<li>
+<p>Disable autologin for user <strong>pi</strong> (so we can delete this user in next step)</p>
+<div class="language-text highlight"><pre><span></span><code>sudo raspi-config
+</code></pre></div>
+</li>
+<li>
+<p>Select System Options, the Boot / Auto Login and select:</p>
+<ul>
+<li>B2 Console Autologin </li>
+</ul>
+</li>
+<li>
+<p>Delete the default account we are currently logged into:</p>
+<ul>
+<li>
+<p>To logout, press [ctrl + d]</p>
+</li>
+<li>
+<p>Log back in, but as you newly created admin account using the command "ssh <username>@<server_ip_address>" and enter your password when prompted</p>
+</li>
+<li>
+<p>Delete default account, enter your password when prompted</p>
+<div class="language-text highlight"><pre><span></span><code>sudo userdel pi
+</code></pre></div>
+</li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 VEXIT &reg;, Tomorrow is Today &trade;, www.vexit.com
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,3152 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://vexit.github.io/byoserver/1_SetUpServer_VPS/">
+      
+      
+        <link rel="prev" href="../1_SetUpServer_HomeServer_LinuxMint/">
+      
+      
+        <link rel="next" href="../2_WebServer_Nginx_Apache/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+    
+    
+      
+        <title>VPS / Hosting Provider - BYO Server</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#linux-vps-server-ubuntu-or-debian" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="BYO Server" class="md-header__button md-logo" aria-label="BYO Server" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BYO Server
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              VPS / Hosting Provider
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="green"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="BYO Server" class="md-nav__button md-logo" aria-label="BYO Server" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    BYO Server
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0.1_File_System_Basics_with_Bash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core Concepts (Bash/CLI)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0.2_Linux_Users_Groups_and_Permissions_Reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Permissions Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Choose Your Server Setup
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Choose Your Server Setup
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_SetUpServer_Overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Server Setup Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_SetUpServer_HomeServer_Ubuntu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home Server (Ubuntu)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_SetUpServer_HomeServer_RaspberryPi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home Server (Raspberry Pi)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_SetUpServer_HomeServer_LinuxMint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home Server (Linux Mint)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VPS / Hosting Provider
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VPS / Hosting Provider
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#definitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definitions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-data-used" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Data Used
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#open-remote-server-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Open Remote Server Account
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ssh-connect-to-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SSH Connect to Server
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SSH Connect to Server">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-admin-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create Admin User
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disable-root-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disable root Account
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-up-passwordless-entry-default-way" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Set up Passwordless Entry - Default way
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-up-passwordless-entry-for-multiple-servers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Set up Passwordless Entry - for Multiple Servers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Set up Passwordless Entry - for Multiple Servers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-create-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1. Create Keys
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-copy-public-key-to-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2. Copy Public Key to Server
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-create-config-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3. Create Config File
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-connect-to-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4. Connect to Server
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sftp-connect-to-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SFTP Connect to Server
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure Server
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configure Server">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#colorize-command-prompt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Colorize Command Prompt
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#customize-command-prompt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Customize Command Prompt
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#customize-list-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Customize List Command
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remove-sudo-password-prompt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remove Sudo password prompt
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Remove Sudo password prompt">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#method-a-edit-main-sudoers-works-not-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method A — Edit main sudoers (works, not recommended)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method-b-recommended-sudoersd-dropin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method B — Recommended: sudoers.d drop‑in
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reconnect-and-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reconnect and test
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-hostname" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Change Hostname
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-standard-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install Standard Tools
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#set-up-workspace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Set up Workspace
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#firewall-ufw" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Firewall - UFW
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Firewall - UFW">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-and-enable-ufw" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install and Enable UFW
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-firewall-rules-before-enabling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Add Firewall Rules (Before Enabling)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enable-ufw" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable UFW
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remove-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remove Rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#intrusion-prevention-fail2ban" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Intrusion Prevention - fail2ban
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#time-synchronization-ntp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Time Synchronization (NTP)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#remote-desktop-from-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remote Desktop from Windows
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2_WebServer_Nginx_Apache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web Server (Nginx/Apache)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3_WebApp_NetCore_Angular/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    App Deployment (.NET/Angular)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4_Cron_Jobs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Task Automation (Cron Jobs)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5_Database_PostgreSQL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database (PostgreSQL)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6_MailServer_Postfix_Dovecot_Thunderbird/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mail Server (Postfix/Dovecot)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#definitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definitions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-data-used" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Data Used
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#open-remote-server-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Open Remote Server Account
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ssh-connect-to-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SSH Connect to Server
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SSH Connect to Server">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-admin-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create Admin User
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disable-root-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disable root Account
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-up-passwordless-entry-default-way" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Set up Passwordless Entry - Default way
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-up-passwordless-entry-for-multiple-servers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Set up Passwordless Entry - for Multiple Servers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Set up Passwordless Entry - for Multiple Servers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-create-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1. Create Keys
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-copy-public-key-to-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2. Copy Public Key to Server
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-create-config-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3. Create Config File
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-connect-to-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4. Connect to Server
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sftp-connect-to-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SFTP Connect to Server
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure Server
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configure Server">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#colorize-command-prompt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Colorize Command Prompt
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#customize-command-prompt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Customize Command Prompt
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#customize-list-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Customize List Command
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remove-sudo-password-prompt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remove Sudo password prompt
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Remove Sudo password prompt">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#method-a-edit-main-sudoers-works-not-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method A — Edit main sudoers (works, not recommended)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method-b-recommended-sudoersd-dropin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method B — Recommended: sudoers.d drop‑in
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reconnect-and-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reconnect and test
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-hostname" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Change Hostname
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-standard-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install Standard Tools
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#set-up-workspace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Set up Workspace
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#firewall-ufw" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Firewall - UFW
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Firewall - UFW">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-and-enable-ufw" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install and Enable UFW
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-firewall-rules-before-enabling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Add Firewall Rules (Before Enabling)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enable-ufw" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable UFW
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remove-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remove Rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#intrusion-prevention-fail2ban" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Intrusion Prevention - fail2ban
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#time-synchronization-ntp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Time Synchronization (NTP)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#remote-desktop-from-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remote Desktop from Windows
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="linux-vps-server-ubuntu-or-debian">Linux VPS Server (Ubuntu or Debian)</h1>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Copyright:</td>
+<td>© 2022 VEXIT , Tomorow is today ® , www.vexit.com</td>
+</tr>
+<tr>
+<td>Author:</td>
+<td>Vex Tatarevic</td>
+</tr>
+<tr>
+<td>Date Created:</td>
+<td>2022-10-18</td>
+</tr>
+<tr>
+<td>Date Updated:</td>
+<td>2025-09-18</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="overview">Overview</h2>
+<p>This guide provides step-by-step instructions for setting up a VPS server and will work on either Debian or Ubuntu Linux distributions.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>On Windows, we will need to install <strong>Git Bash</strong> so we can run bash commands.</p>
+<ul>
+<li>Install Git Bash. You can download Git from <a href="https://www.git-scm.com/">git-scm.com</a>.</li>
+</ul>
+<p>On Linux and macOS we will use Terminal which is already installed on the system.</p>
+<p>From this point on we will refer to both GitBash on Windows and Terminal on Linux and macOS as <strong>terminal</strong>.</p>
+<ul>
+<li>
+<p>Open account with company that does Linux hosting and purchase Linux instance. Bellow is a few recommendations:</p>
+</li>
+<li>
+<p><a href="https://hostinger.com">Hostinger.com</a> (Recommended) - Lithuanian hosting company - one of the most popular and affordable offshore hosts</p>
+</li>
+<li><a href="https://www.vultr.com/">Vultr.com</a> - based in Florida, USA</li>
+<li><a href="https://www.shinjiru.com/">Shinjiru.com</a> - Malasian offshore VPS hosting</li>
+</ul>
+<h2 id="definitions">Definitions</h2>
+<p><def></p>
+<blockquote>
+<p><strong>VPS (Virtual Private Server)</strong> - is a server you can rent from a hosting company. It is not an actual physical server machine, but a virtual one. This means that multiple VPS servers coexist on the same physical machine, but they are isolated from each other. </p>
+<p>Why use VPS?</p>
+<p>This is the best option for those who want to host their own website or server, but do not want to deal with setting up and maintaining a physical infrastructure of the server which can be very expensive and complex.</p>
+<p>Therefore it is the cheapest option to run your own server with scalable resources.
+</def></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Server, Remote machine, Remote</td>
+<td>Remote Linux server computer</td>
+</tr>
+<tr>
+<td>Client, Local machine, Local, PC</td>
+<td>Your personal Windows computer that you use to connect remotely into Linux hosted on some third party hosting</td>
+</tr>
+</tbody>
+</table>
+<h2 id="example-data-used">Example Data Used</h2>
+<p>We will use the following data for the examples. </p>
+<p>You should replace the sample data with your own data.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Company name</td>
+<td>my-com</td>
+</tr>
+<tr>
+<td>Username</td>
+<td>admin</td>
+</tr>
+<tr>
+<td>Server name</td>
+<td>my-server</td>
+</tr>
+<tr>
+<td>Server IPv4</td>
+<td>123.234.345.45</td>
+</tr>
+<tr>
+<td>Server IPv6</td>
+<td>fe80:4780:14:c78a::1</td>
+</tr>
+<tr>
+<td>SSH Port</td>
+<td>22</td>
+</tr>
+<tr>
+<td>Website Domain Name</td>
+<td>my-site.com</td>
+</tr>
+<tr>
+<td>Host Name</td>
+<td>my-site.com</td>
+</tr>
+</tbody>
+</table>
+<h2 id="open-remote-server-account">Open Remote Server Account</h2>
+<ul>
+<li>Go to VPS provider's website</li>
+<li>Follow the prompts to register either Linux Ubuntu or Linux Debian instance. This guide works on either.</li>
+</ul>
+<h2 id="ssh-connect-to-server">SSH Connect to Server</h2>
+<p><def></p>
+<blockquote>
+<p><strong>SSH</strong>, also known as Secure Shell or Secure Socket Shell, is a network protocol that lets you securely connect to a remote computer.
+</def></p>
+</blockquote>
+<ul>
+<li>
+<p>To connect to Server via SSH we need the following details of your VPS server:
+    |            |                |
+    | ---------- | -------------- |
+    | IP Address | 123.234.345.45 |
+    | Port       | 22             |
+    | Username   | root           |
+    |            |                |</p>
+<ul>
+<li><strong>IP</strong> should be provided in your Server admin panel. Let's suppose Server IP is <strong>123.234.345.45</strong>.</li>
+<li><strong>PORT</strong> for SSH is <strong>22</strong> by default. However your VPS service provider may provide SSH on a different port. In that case you should receive it in the welcome email or be able to get the port in your control panel of the service provider website.</li>
+<li><strong>USERNAME</strong> on Linux is <strong>root</strong> by default, when system is first created. This is a super user and should only be used once to set up admin user, and then it should be disabled.</li>
+</ul>
+</li>
+<li>
+<p>Open terminal on your local machine </p>
+</li>
+<li>Connect to server with SSH, using <code>root</code> user</li>
+</ul>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ssh<span class="w"> </span>root@123.234.345.45
+</span></code></pre></div>
+  or if the port is different from the default (22)</p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ssh<span class="w"> </span>-p<span class="w"> </span><span class="m">123</span><span class="w"> </span>root@123.234.345.45
+</span></code></pre></div>
+    - You will see prompt</p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Are<span class="w"> </span>you<span class="w"> </span>sure<span class="w"> </span>you<span class="w"> </span>want<span class="w"> </span>to<span class="w"> </span><span class="k">continue</span><span class="w"> </span>connecting<span class="w"> </span><span class="o">(</span>yes/no/<span class="o">[</span>fingerprint<span class="o">])</span>?
+</span></code></pre></div>
+  - Type <strong>yes</strong> and hit Enter
+    - You will be prompted for password. 
+  - Type the password and hit Enter
+    - You will see the welcome message of the Server machine and a root user prompt</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="w">    </span>root@my-server:~#
+</span></code></pre></div>
+<p><strong>Troubleshooting:</strong> If you get an error like "ssh: connect to host 123.234.345.45 port 22: Bad file number", try rebooting your local machine or retrying the connection after a few minutes.</p>
+<p>You are now connected to the Server machine remotely and can run any commands as if you were sitting in front of it.</p>
+<h3 id="create-admin-user">Create Admin User</h3>
+<ul>
+<li>Create user <strong>admin</strong>. Type the following command:</li>
+</ul>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>adduser<span class="w"> </span>admin
+</span></code></pre></div>
+  - If you get an error like:</p>
+<div class="language-text highlight"><pre><span></span><code>```bash
+root@my-server:~# adduser admin
+fatal: The group `admin&#39; already exists.
+```
+</code></pre></div>
+<ul>
+<li>
+<p>Then run this command instead:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>adduser<span class="w"> </span>--ingroup<span class="w"> </span>admin<span class="w"> </span>admin
+</span></code></pre></div>
+</li>
+<li>
+<p>Provide password: <strong>admin</strong> and Full Name: <strong>Admin</strong>. For all other fields hit <strong>Enter</strong> to continue.</p>
+</li>
+<li>
+<p>The last question of the user creation wizard will ask you if the information is correct. Type <strong>Y</strong> and hit <strong>Enter</strong>.</p>
+</li>
+<li>
+<p>You should see :</p>
+</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Adding<span class="w"> </span>user<span class="w"> </span><span class="sb">`</span>admin<span class="s1">&#39; ...</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="s1">Adding new group `admin&#39;</span><span class="w"> </span><span class="o">(</span><span class="m">1002</span><span class="o">)</span><span class="w"> </span>...
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>Adding<span class="w"> </span>new<span class="w"> </span>user<span class="w"> </span><span class="sb">`</span>admin<span class="s1">&#39; (1001) with group `admin&#39;</span><span class="w"> </span>...
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>Creating<span class="w"> </span>home<span class="w"> </span>directory<span class="w"> </span><span class="sb">`</span>/home/admin<span class="s1">&#39; ...</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="s1">Copying files from `/etc/skel&#39;</span><span class="w"> </span>...
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>New<span class="w"> </span>password:
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>Retype<span class="w"> </span>new<span class="w"> </span>password:
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>passwd:<span class="w"> </span>password<span class="w"> </span>updated<span class="w"> </span>successfully
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>Changing<span class="w"> </span>the<span class="w"> </span>user<span class="w"> </span>information<span class="w"> </span><span class="k">for</span><span class="w"> </span>admin
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>Enter<span class="w"> </span>the<span class="w"> </span>new<span class="w"> </span>value,<span class="w"> </span>or<span class="w"> </span>press<span class="w"> </span>ENTER<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>default
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">      </span>Full<span class="w"> </span>Name<span class="w"> </span><span class="o">[]</span>:<span class="w"> </span>Admin
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="w">      </span>Room<span class="w"> </span>Number<span class="w"> </span><span class="o">[]</span>:
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="w">      </span>Work<span class="w"> </span>Phone<span class="w"> </span><span class="o">[]</span>:
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="w">      </span>Home<span class="w"> </span>Phone<span class="w"> </span><span class="o">[]</span>:
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="w">      </span>Other<span class="w"> </span><span class="o">[]</span>:
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>Is<span class="w"> </span>the<span class="w"> </span>information<span class="w"> </span>correct?<span class="w"> </span><span class="o">[</span>Y/n<span class="o">]</span><span class="w"> </span>Y
+</span></code></pre></div>
+<ul>
+<li>
+<p>NOTE: When you create user <strong>admin</strong> with <strong>adduser</strong> command, this will also create a group <strong>admin</strong> and a home directory <strong>/home/admin</strong> </p>
+</li>
+<li>
+<p>Give <strong>admin</strong> user elevated priviledges by assigning them to the <strong>sudo</strong> group:</p>
+</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>usermod<span class="w"> </span>-aG<span class="w"> </span>sudo<span class="w"> </span>admin
+</span></code></pre></div>
+<ul>
+<li>Keyword <strong>sudo</strong> stands for: <strong>"superuser do"</strong>      </li>
+<li>
+<p>You now have an <strong>admin</strong> account with sudo priviledges. This means that admin account can execute commands which require elevated root priviledges by prefixing those commands with keyword <strong>sudo</strong>.</p>
+</li>
+<li>
+<p>Logout from server</p>
+</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nb">logout</span>
+</span></code></pre></div>
+<ul>
+<li>
+<p>This will disconnect your SSH session from the remote server</p>
+</li>
+<li>
+<p>SSH into server again, but this time as <strong>admin</strong> user</p>
+</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>ssh<span class="w"> </span>-p<span class="w"> </span><span class="m">22</span><span class="w"> </span>admin@123.234.345.45
+</span></code></pre></div>
+<h3 id="disable-root-account">Disable root Account</h3>
+<ul>
+<li>To disable <strong>root</strong> account run this command</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>sudo<span class="w"> </span>passwd<span class="w"> </span>-l<span class="w"> </span>root
+</span></code></pre></div>
+<ul>
+<li>
+<p>This will prompt you for password</p>
+<p><code>[sudo] password for admin:</code></p>
+</li>
+<li>
+<p>Type in your password and hit Enter to finish disabling the root user. You will get:</p>
+<p><code>passwd: password expiry information changed.</code></p>
+</li>
+<li>
+<p>We will later configure sudo not to prompt us for password every time, in the section <a href="#remove-sudo-password-prompt">Remove sudo password prompt</a></p>
+</li>
+<li>
+<p>Now, Disconnect/close remote connection to Server : <strong>CTRL + D</strong></p>
+</li>
+</ul>
+<h3 id="set-up-passwordless-entry-default-way">Set up Passwordless Entry - Default way</h3>
+<p><strong>I RECOMMEND:</strong> that you set up SSH connections in the way that allows for multiple servers. To do that, <strong>go to</strong> =&gt; <a href="#set-up-passwordless-entry---for-multiple-servers">Set up Passwordless Entry - for Multiple Servers</a></p>
+<p>Below is a simple default configuration for one server. I provide this only for your reference, but do not recommend using it.</p>
+<hr>
+
+<ul>
+<li>
+<p>Suppose we are using username <strong>MyUser</strong></p>
+</li>
+<li>
+<p>Open terminal (Git Bash on Windows) on your local machine</p>
+</li>
+<li>
+<p>Create public and private keys using <strong>ssh-keygen</strong>, command:</p>
+</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>ssh-keygen<span class="w"> </span>
+</span></code></pre></div>
+<ul>
+<li>
+<p>You should see:</p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>Generating<span class="w"> </span>public/private<span class="w"> </span>ed25519<span class="w"> </span>key<span class="w"> </span>pair.
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>Enter<span class="w"> </span>file<span class="w"> </span><span class="k">in</span><span class="w"> </span>which<span class="w"> </span>to<span class="w"> </span>save<span class="w"> </span>the<span class="w"> </span>key<span class="w"> </span><span class="o">(</span>/c/Users/MyUser/.ssh/id_ed25519<span class="o">)</span>:
+</span></code></pre></div>
+- Above is a default path to ssh private key file</p>
+<p><strong>IMPORTANT:</strong> Older versions of ssh-keygen may use RSA algorithm instead of ED25519, which is less secure. If you see <strong>rsa</strong> instead of <strong>ed25519</strong> in the prompt, quit the command <kbd>CTRL + C</kbd> and use the following command instead: <code>ssh-keygen -t ed25519</code></p>
+<ul>
+<li>
+<p>Hit <strong>Enter</strong> 3 times, without typing-in any text. </p>
+</li>
+<li>
+<p>You should see these prompts coming up after each time you hit Enter</p>
+</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>Enter<span class="w"> </span>passphrase<span class="w"> </span><span class="o">(</span>empty<span class="w"> </span><span class="k">for</span><span class="w"> </span>no<span class="w"> </span>passphrase<span class="o">)</span>:
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>Enter<span class="w"> </span>same<span class="w"> </span>passphrase<span class="w"> </span>again:
+</span></code></pre></div>
+</li>
+<li>
+<p>Copy the public key to Server using <strong>ssh-copy-id</strong>, command:</p>
+</li>
+</ul>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>ssh-copy-id<span class="w"> </span>-i<span class="w"> </span>~/.ssh/id_ed25519.pub<span class="w"> </span>-p<span class="w"> </span><span class="m">22</span><span class="w"> </span>admin@123.234.345.45
+</span></code></pre></div>
+  - <strong>Troubleshooting:</strong> If you get an error like <code>/usr/bin/ssh-copy-id: ERROR: failed to open ID file '/home/admin/.ssh/id_ed25519.pub': No such file</code>, make sure you're running the command from your local machine (not the server) and that the key file exists in your local ~/.ssh/ directory.</p>
+<ul>
+<li>Enter password for admin. You should see:</li>
+</ul>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>Number<span class="w"> </span>of<span class="w"> </span>key<span class="o">(</span>s<span class="o">)</span><span class="w"> </span>added:<span class="w"> </span><span class="m">1</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>Now<span class="w"> </span>try<span class="w"> </span>logging<span class="w"> </span>into<span class="w"> </span>the<span class="w"> </span>machine,<span class="w"> </span>with:<span class="w"> </span><span class="s2">&quot;ssh -i /c/Users/MyUser/.ssh/id_ed25519 -p 22 &#39;admin@123.234.345.45&#39;&quot;</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>and<span class="w"> </span>check<span class="w"> </span>to<span class="w"> </span>make<span class="w"> </span>sure<span class="w"> </span>that<span class="w"> </span>only<span class="w"> </span>the<span class="w"> </span>key<span class="o">(</span>s<span class="o">)</span><span class="w"> </span>you<span class="w"> </span>wanted<span class="w"> </span>were<span class="w"> </span>added.
+</span></code></pre></div>
+- Run the command as prompted above:</p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>ssh<span class="w"> </span>-i<span class="w"> </span>/c/Users/MyUser/.ssh/id_ed25519<span class="w"> </span>-p<span class="w"> </span><span class="m">22</span><span class="w"> </span>admin@123.234.345.45
+</span></code></pre></div>
+  - This should log you into server without asking for password</p>
+<ul>
+<li>
+<p>Verify that the key has been copied to the server by checking the authorized_keys file:</p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>nano<span class="w"> </span>~/.ssh/authorized_keys
+</span></code></pre></div>
+- You should see a line starting with <strong>ssh-ed25519</strong>. It will contain : algorhythm name , public key, local computer name. For example:</p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>ssh-ed25519<span class="w"> </span>AAAAC3NzaC1lZDI1NTE5AAAAIKyhVWnQ5XJFQjT7RwJU9+Z7VHr9g4QIe2Z030b683U<span class="w"> </span>MyUser@my-pc
+</span></code></pre></div>
+- Close the file <strong>CTRL + X</strong>
+- <strong>NOTE:</strong> .ssh is a hidden folder. If you go inside /home/admin and list all the folders using command <strong>ls -l</strong>, you will not see folder ".ssh" as all folders prefixed with a dot (.) are hidden in Linux. To view the hidden folders you need to use argument "<strong>a</strong>" after <strong>ls</strong> command. So in our example we can do this:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="nb">cd</span><span class="w"> </span>/home/admin<span class="w"> </span><span class="c1"># or cd ~/</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>ls<span class="w"> </span>-la<span class="w">         </span><span class="c1"># this will show all hidden folders as well like .ssh</span>
+</span></code></pre></div>
+</li>
+<li>
+<p>Disconnect from the server <kbd>CTRL</kbd> <kbd>D</kbd></p>
+</li>
+<li>
+<p>On <strong>Client Computer</strong> (your local PC) go into your users's .ssh folder:</p>
+</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="nb">cd</span><span class="w"> </span>~/.ssh
+</span></code></pre></div>
+<ul>
+<li>Create <strong>config</strong> file without any file extension</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>touch<span class="w"> </span>~/.ssh/config
+</span></code></pre></div>
+<ul>
+<li>
+<p>Open config file</p>
+</li>
+<li>
+<p>Type into it Host connection configuration like:      </p>
+</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>Host<span class="w"> </span>my-site.com<span class="w">            </span><span class="c1"># SERVER_ALIAS - unique identifier for your server like domain name</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="w">  </span>HostName<span class="w"> </span><span class="m">123</span>.234.345.45<span class="w">   </span><span class="c1"># SERVER_IP_ADDRESS</span>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="w">  </span>Port<span class="w"> </span><span class="m">22</span><span class="w">                   </span><span class="c1"># SERVER_SSH_PORT</span>
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="w">  </span>User<span class="w"> </span>admin<span class="w">                </span><span class="c1"># SERVER_LOGIN_USERNAME</span>
+</span></code></pre></div>
+<ul>
+<li>
+<p>Save and close the <strong>config</strong> file</p>
+</li>
+<li>
+<p>Now you can log into remote Server by typing just:</p>
+</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>ssh<span class="w"> </span>my-site.com
+</span></code></pre></div>
+<h3 id="set-up-passwordless-entry-for-multiple-servers">Set up Passwordless Entry - for Multiple Servers</h3>
+<p>I will explain how to do this on your local computer whether it is Windows, Linux or Mac.</p>
+<p>The only difference is location of user's home directory on each operating system:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Windows</td>
+<td>C:\Users\{{USERNAME}}</td>
+</tr>
+<tr>
+<td>Linux</td>
+<td>/home/{{USERNAME}}</td>
+</tr>
+<tr>
+<td>Mac</td>
+<td>/Users/{{USERNAME}}</td>
+</tr>
+</tbody>
+</table>
+<p>When writing the Bash commands, we will use home directory alias <code>~</code> (tilde symbol) to refer to the home directory of the user. That way the commands will be the same for all operating systems.</p>
+<ul>
+<li>For the purpose of this exercise, suppose we have the following situation:</li>
+<li>Our local Windows username is <strong>MyUser</strong></li>
+<li>
+<p>We are planing to use a domain name <strong>my-site.com</strong> for our server. Therefore we will use <strong>my-site.com</strong> as <strong>SERVER_ALIAS</strong> in our ssh config file.</p>
+</li>
+<li>
+<p>Open <strong>Terminal</strong> - on <strong>local</strong> machine (On Windows we refer to GitBash command line shell as Terminal)</p>
+</li>
+</ul>
+<h4 id="step-1-create-keys">Step 1. Create Keys</h4>
+<ul>
+<li><strong>Create keys</strong> - Create public and private keys using <strong>ssh-keygen</strong>, command:</li>
+</ul>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>ssh-keygen<span class="w"> </span>-t<span class="w"> </span>ed25519
+</span></code></pre></div>
+  - <strong>-t</strong> - flag specifies the type of encryption algorithm
+  - We selected <strong>"ed25519"</strong> instead of default <strong>"rsa"</strong> because it is more secure</p>
+<p>You should see:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>Generating<span class="w"> </span>public/private<span class="w"> </span>ed25519<span class="w"> </span>key<span class="w"> </span>pair.
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>Enter<span class="w"> </span>file<span class="w"> </span><span class="k">in</span><span class="w"> </span>which<span class="w"> </span>to<span class="w"> </span>save<span class="w"> </span>the<span class="w"> </span>key<span class="w"> </span><span class="o">(</span>DEFAULT_FILE_PATH<span class="o">)</span>:
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code>| Where      | DEFAULT_FILE_PATH                 |
+| ---------- | --------------------------------- |
+| On Windows | `/c/Users/MyUser/.ssh/id_ed25519` |
+| On Mac     | `/Users/MyUser/.ssh/id_ed25519`   |
+| On Linux   | `/home/MyUser/.ssh/id_ed25519`    |
+</code></pre></div>
+<ul>
+<li>
+<p><strong>COPY</strong> the DEFAULT_FILE_PATH and <strong>PASTE</strong> it after the colon into the command prompt. Then <strong>APPEND</strong> your server domain name to it e.g. <strong>"my-site.com"</strong>. </p>
+<p>It should now look like this :</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>Enter<span class="w"> </span>file<span class="w"> </span><span class="k">in</span><span class="w"> </span>which<span class="w"> </span>to<span class="w"> </span>save<span class="w"> </span>the<span class="w"> </span>key<span class="w"> </span><span class="o">(</span>/c/Users/MyUser/.ssh/id_ed25519<span class="o">)</span>:<span class="w"> </span>/c/Users/MyUser/.ssh/id_ed25519_my-site.com
+</span></code></pre></div>
+</li>
+<li>
+<p>Then hit <kbd>Enter</kbd></p>
+</li>
+<li>
+<p>You should see password prompts after that</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>Enter<span class="w"> </span>passphrase<span class="w"> </span><span class="o">(</span>empty<span class="w"> </span><span class="k">for</span><span class="w"> </span>no<span class="w"> </span>passphrase<span class="o">)</span>:
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>Enter<span class="w"> </span>same<span class="w"> </span>passphrase<span class="w"> </span>again:
+</span></code></pre></div>
+</li>
+<li>
+<p>Hit <kbd>Enter</kbd> 2 times, without providing any password </p>
+</li>
+<li>
+<p>The keys will be generated and you will see the following output (where <strong>"my-pc"</strong> is the name of your local computer, <strong>"MyUser"</strong> is your username on your local computer,<strong>"my-site.com"</strong> is your Server computer alias):</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>Your<span class="w"> </span>identification<span class="w"> </span>has<span class="w"> </span>been<span class="w"> </span>saved<span class="w"> </span><span class="k">in</span><span class="w"> </span>/c/Users/MyUser/.ssh/id_ed25519_my-site.com
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>Your<span class="w"> </span>public<span class="w"> </span>key<span class="w"> </span>has<span class="w"> </span>been<span class="w"> </span>saved<span class="w"> </span><span class="k">in</span><span class="w"> </span>/c/Users/MyUser/.ssh/id_ed25519_my-site.com.pub
+</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>The<span class="w"> </span>key<span class="w"> </span>fingerprint<span class="w"> </span>is:
+</span><span id="__span-29-4"><a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a>SHA256:h7FUEfiH8PtvNANPjc7uZM1VH6pGG/5LmI/PNp83M6E<span class="w"> </span>MyUser@my-pc
+</span><span id="__span-29-5"><a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a>The<span class="w"> </span>key<span class="err">&#39;</span>s<span class="w"> </span>randomart<span class="w"> </span>image<span class="w"> </span>is:
+</span><span id="__span-29-6"><a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a>+---<span class="o">[</span>ED25519<span class="w"> </span><span class="m">256</span><span class="o">]</span>----+
+</span><span id="__span-29-7"><a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a><span class="p">|</span><span class="w">         </span>.+o<span class="w">     </span><span class="p">|</span>
+</span><span id="__span-29-8"><a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a><span class="p">|</span><span class="w">        </span>o.<span class="w">       </span><span class="p">|</span>
+</span><span id="__span-29-9"><a id="__codelineno-29-9" name="__codelineno-29-9" href="#__codelineno-29-9"></a><span class="p">|</span><span class="w">        </span>o+<span class="w"> </span>.<span class="w">   </span>+.<span class="p">|</span>
+</span><span id="__span-29-10"><a id="__codelineno-29-10" name="__codelineno-29-10" href="#__codelineno-29-10"></a><span class="p">|</span><span class="w">       </span>.<span class="w"> </span>++<span class="w"> </span>o<span class="w"> </span>+<span class="w"> </span><span class="o">=</span><span class="p">|</span>
+</span><span id="__span-29-11"><a id="__codelineno-29-11" name="__codelineno-29-11" href="#__codelineno-29-11"></a><span class="p">|</span><span class="w">        </span>S<span class="w"> </span>.<span class="o">=</span><span class="w"> </span>B<span class="w">  </span>o<span class="p">|</span>
+</span><span id="__span-29-12"><a id="__codelineno-29-12" name="__codelineno-29-12" href="#__codelineno-29-12"></a><span class="p">|</span><span class="w">         </span>.+<span class="w"> </span>*<span class="w"> </span>B+.<span class="p">|</span>
+</span><span id="__span-29-13"><a id="__codelineno-29-13" name="__codelineno-29-13" href="#__codelineno-29-13"></a><span class="p">|</span><span class="w">           </span>O<span class="w"> </span>++o+<span class="p">|</span>
+</span><span id="__span-29-14"><a id="__codelineno-29-14" name="__codelineno-29-14" href="#__codelineno-29-14"></a><span class="p">|</span><span class="w">          </span>.<span class="w"> </span>BEo+o<span class="p">|</span>
+</span><span id="__span-29-15"><a id="__codelineno-29-15" name="__codelineno-29-15" href="#__codelineno-29-15"></a><span class="p">|</span><span class="w">           </span>.oX*o<span class="o">=</span><span class="p">|</span>
+</span><span id="__span-29-16"><a id="__codelineno-29-16" name="__codelineno-29-16" href="#__codelineno-29-16"></a>+----<span class="o">[</span>SHA256<span class="o">]</span>-----+
+</span></code></pre></div>
+<h4 id="step-2-copy-public-key-to-server">Step 2. Copy Public Key to Server</h4>
+</li>
+<li>
+<p><strong>Copy pub key</strong> - Copy the public key to Server using <strong>ssh-copy-id</strong>, command:</p>
+</li>
+</ul>
+<p><strong>IMPORTANT</strong>: The file path <strong>MUST have .pub</strong> extension</p>
+<p>For example - if using custom port 1234:</p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>ssh-copy-id<span class="w"> </span>-i<span class="w"> </span>~/.ssh/id_ed25519_my-site.com.pub<span class="w"> </span>-p<span class="w"> </span><span class="m">1234</span><span class="w"> </span>admin@123.234.345.45
+</span></code></pre></div>
+  - <strong>-i</strong> - specifies the path to the private key file
+  - <strong>-p</strong> - specifies the port to use for the connection</p>
+<p>Example if you are using default port 22, you can ommit the port</p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>ssh-copy-id<span class="w"> </span>-i<span class="w"> </span>~/.ssh/id_ed25519_my-site.com.pub<span class="w"> </span>admin@123.234.345.45
+</span></code></pre></div>
+  - You will be prompted for password</p>
+<div class="language-text highlight"><pre><span></span><code>```bash
+admin@123.234.345.454&#39;s password:
+```
+</code></pre></div>
+<ul>
+<li>
+<p>Enter your admin user's password and hit Enter. You will be shown this message and disconnected from server:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>Number<span class="w"> </span>of<span class="w"> </span>key<span class="o">(</span>s<span class="o">)</span><span class="w"> </span>added:<span class="w"> </span><span class="m">1</span>
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>
+</span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>Now<span class="w"> </span>try<span class="w"> </span>logging<span class="w"> </span>into<span class="w"> </span>the<span class="w"> </span>machine,<span class="w"> </span>with:<span class="w">   </span><span class="s2">&quot;ssh -p &#39;22&#39; &#39;admin@123.234.345.45&#39;&quot;</span>
+</span><span id="__span-33-4"><a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a>and<span class="w"> </span>check<span class="w"> </span>to<span class="w"> </span>make<span class="w"> </span>sure<span class="w"> </span>that<span class="w"> </span>only<span class="w"> </span>the<span class="w"> </span>key<span class="o">(</span>s<span class="o">)</span><span class="w"> </span>you<span class="w"> </span>wanted<span class="w"> </span>were<span class="w"> </span>added.
+</span></code></pre></div>
+</li>
+<li>
+<p><strong>NOTE:</strong> If you run command <strong>"ssh -p 22 admin@123.234.345.45"</strong> - it will still ask us for password, because we have not created our keys in the default file "id_ed25519". <br/>
+  Instead we have created keys in the custom file named "id_ed25519_my-site.com" . <br/>
+  Therefore <strong>we need to specify the location of the key file</strong> when using ssh to connect, for example: <br/>
+  <code>ssh -i ~/.ssh/id_ed25519_my-site.com -p 22 admin@123.234.345.45</code></p>
+</li>
+<li>
+<p>Connect to VPS using the key file: (<strong>MUST NOT have .pub</strong> extension in the file)</p>
+</li>
+</ul>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>ssh<span class="w"> </span>-i<span class="w"> </span>~/.ssh/id_ed25519_my-site.com<span class="w"> </span>-p<span class="w"> </span><span class="m">22</span><span class="w"> </span>admin@123.234.345.45
+</span></code></pre></div>
+  - This time you should not be prompted for password
+  - <strong>NOTE:</strong> The key has been stored on the remote server inside "<strong>~/.ssh/authorized_keys</strong>" file. To check that it matches a public key on your local computer inside "~/.ssh/id_ed25519_my-site.com.pub", open the authorized_keys file on remote computer:</p>
+<div class="language-text highlight"><pre><span></span><code>```bash
+nano ~/.ssh/authorized_keys
+```
+</code></pre></div>
+<ul>
+<li>This will show you contents of the file starting with <strong>ssh-rsa</strong></li>
+<li>Close the file <kbd>CTRL + X</kbd></li>
+<li><strong>Disconnect</strong> from the server <kbd>CTRL + D</kbd></li>
+</ul>
+<h4 id="step-3-create-config-file">Step 3. Create Config File</h4>
+<ul>
+<li><strong>Create config</strong> - On your local computer create ssh config file without any file extension</li>
+</ul>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>nano<span class="w"> </span>~/.ssh/config
+</span></code></pre></div>
+  - This will open the file in nano editor.</p>
+<ul>
+<li><strong>Add server connection</strong> - type the following inside the <strong>config</strong> file:        </li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>Host<span class="w"> </span>my-site.com<span class="w">                </span><span class="c1"># SERVER_ALIAS - unique identifier for your server like domain name</span>
+</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="w">  </span>HostName<span class="w"> </span><span class="m">123</span>.234.345.45<span class="w">       </span><span class="c1"># SERVER_IP_ADDRESS</span>
+</span><span id="__span-37-3"><a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a><span class="w">  </span>Port<span class="w"> </span><span class="m">22</span><span class="w">                       </span><span class="c1"># SERVER_SSH_PORT</span>
+</span><span id="__span-37-4"><a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a><span class="w">  </span>User<span class="w"> </span>admin<span class="w">                    </span><span class="c1"># SERVER_LOGIN_USERNAME</span>
+</span><span id="__span-37-5"><a id="__codelineno-37-5" name="__codelineno-37-5" href="#__codelineno-37-5"></a><span class="w">  </span>IdentityFile<span class="w">  </span>~/.ssh/id_ed25519_my-site.com<span class="w"> </span><span class="c1"># path to the private key file</span>
+</span></code></pre></div>
+<ul>
+<li>Save and close the <strong>.ssh/config</strong> file : <kbd>CTRL + S</kbd>, <kbd>CTRL + X</kbd></li>
+</ul>
+<h4 id="step-4-connect-to-server">Step 4. Connect to Server</h4>
+<ul>
+<li><strong>Conect to host</strong> - Now you can simply type this command to connect to remote host (server) without having to provide the password and other details:</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>ssh<span class="w"> </span>my-site.com
+</span></code></pre></div>
+<h2 id="sftp-connect-to-server">SFTP Connect to Server</h2>
+<p><def></p>
+<blockquote>
+<p><strong>SFTP</strong> stands for <strong>Secure File Transfer Protocol</strong>. It is a secure way to transfer files between local and remote computers.
+</def></p>
+</blockquote>
+<h2 id="configure-server">Configure Server</h2>
+<h3 id="colorize-command-prompt">Colorize Command Prompt</h3>
+<p>By default your command prompt on remote server may be not colorized.</p>
+<p>To turn on command prompt colorization follow these steps:</p>
+<ul>
+<li>Go inside user home directory</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="nb">cd</span><span class="w"> </span>~/
+</span></code></pre></div>
+<ul>
+<li>Open .bashrc file</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>nano<span class="w"> </span>.bashrc
+</span></code></pre></div>
+<ul>
+<li>Search for words <strong>"colored prompt"</strong> - Hit <kbd>CTRL</kbd> <kbd>W</kbd>, type "colored prompt", hit Enter</li>
+<li>
+<p>Look for the following section:</p>
+<p># uncomment for a colored prompt, if the terminal has the capability; turned
+  # off by default to not distract the user: the focus in a terminal window
+  # should be on the output of commands, not on the prompt
+  # force_color_prompt=yes</p>
+</li>
+<li>
+<p>Uncomment line: <strong>"# force_color_prompt=yes"</strong> by removing the # symbol</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="nv">force_color_prompt</span><span class="o">=</span>yes
+</span></code></pre></div>
+</li>
+<li>
+<p>Exit file and save changes: <kbd>CTRL</kbd> <kbd>S</kbd>, <kbd>CTRL</kbd> <kbd>X</kbd></p>
+</li>
+<li>
+<p>Refresh .bashrc to see the prompt change: </p>
+</li>
+</ul>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-42-1"><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="nb">source</span><span class="w"> </span>.bashrc
+</span></code></pre></div>
+  - If the prompt has not changed, then disconnect and connect again to server: </p>
+<div class="language-text highlight"><pre><span></span><code>&lt;kbd&gt;CTRL&lt;/kbd&gt; &lt;kbd&gt;D&lt;/kbd&gt;
+
+```bash      
+ssh my-site.com
+```
+</code></pre></div>
+<ul>
+<li>
+<p>Now you should see your prompt colorized. For example</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-44-1"><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a>admin@my-host-name:~$
+</span></code></pre></div>
+</li>
+<li>
+<p><strong>admin@my-host-name</strong> should now be green</p>
+</li>
+<li><strong>:</strong> should be white</li>
+<li><strong>~</strong> - which is directory path - should be blue</li>
+<li>
+<p><strong>$</strong> - should be white</p>
+</li>
+<li>
+<p>NOTE: <strong>my-host-name</strong> is a random host name assigned by the service provider. We will change this later to be the same as our site's domain name e.g. my-site.com</p>
+</li>
+</ul>
+<h3 id="customize-command-prompt">Customize Command Prompt</h3>
+<p>You can further customize the prompt if you like.</p>
+<p>We will demonstrate how to change the prompt to look similar to popular Git Bash terminal on Windows: <strong>more colourized and cursor on new line</strong>.</p>
+<ul>
+<li>CD into user home: </li>
+</ul>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-45-1"><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="nb">cd</span><span class="w"> </span>~
+</span></code></pre></div>
+- Open bash profile : </p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-46-1"><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a>codium<span class="w"> </span>.bashrc
+</span></code></pre></div>
+  or </p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-47-1"><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a>nano<span class="w"> </span>.bashrc
+</span></code></pre></div>
+- Search for Terminal prompt configuration block
+  - If using nano - hit <code>CTRL + W</code> to open the search prompt
+  - If using VS Code or VS Codium - hit <code>CTRL + F</code>
+  - Paste this line <code>if [ "$color_prompt"</code> and hit <code>ENTER</code> to go to the start of the block
+  - The default prompt code block should look like this:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-48-1"><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$color_prompt</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>yes<span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+</span><span id="__span-48-2"><a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a><span class="w">    </span><span class="nv">PS1</span><span class="o">=</span><span class="s1">&#39;${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ &#39;</span>
+</span><span id="__span-48-3"><a id="__codelineno-48-3" name="__codelineno-48-3" href="#__codelineno-48-3"></a><span class="k">else</span>
+</span><span id="__span-48-4"><a id="__codelineno-48-4" name="__codelineno-48-4" href="#__codelineno-48-4"></a><span class="w">    </span><span class="nv">PS1</span><span class="o">=</span><span class="s1">&#39;${debian_chroot:+($debian_chroot)}\u@\h:\w\$ &#39;</span>
+</span><span id="__span-48-5"><a id="__codelineno-48-5" name="__codelineno-48-5" href="#__codelineno-48-5"></a><span class="k">fi</span>
+</span><span id="__span-48-6"><a id="__codelineno-48-6" name="__codelineno-48-6" href="#__codelineno-48-6"></a><span class="nb">unset</span><span class="w"> </span>color_prompt<span class="w"> </span>force_color_prompt
+</span></code></pre></div>
+<ul>
+<li>Comment out default prompt:</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-49-1"><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="c1">#------------------------------------------</span>
+</span><span id="__span-49-2"><a id="__codelineno-49-2" name="__codelineno-49-2" href="#__codelineno-49-2"></a><span class="c1">#       Default Prompt</span>
+</span><span id="__span-49-3"><a id="__codelineno-49-3" name="__codelineno-49-3" href="#__codelineno-49-3"></a><span class="c1">#------------------------------------------</span>
+</span><span id="__span-49-4"><a id="__codelineno-49-4" name="__codelineno-49-4" href="#__codelineno-49-4"></a><span class="c1"># if [ &quot;$color_prompt&quot; = yes ]; then</span>
+</span><span id="__span-49-5"><a id="__codelineno-49-5" name="__codelineno-49-5" href="#__codelineno-49-5"></a><span class="c1">#     PS1=&#39;${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ &#39;</span>
+</span><span id="__span-49-6"><a id="__codelineno-49-6" name="__codelineno-49-6" href="#__codelineno-49-6"></a><span class="c1"># else</span>
+</span><span id="__span-49-7"><a id="__codelineno-49-7" name="__codelineno-49-7" href="#__codelineno-49-7"></a><span class="c1">#     PS1=&#39;${debian_chroot:+($debian_chroot)}\u@\h:\w\$ &#39;</span>
+</span><span id="__span-49-8"><a id="__codelineno-49-8" name="__codelineno-49-8" href="#__codelineno-49-8"></a><span class="c1"># fi</span>
+</span><span id="__span-49-9"><a id="__codelineno-49-9" name="__codelineno-49-9" href="#__codelineno-49-9"></a><span class="c1"># unset color_prompt force_color_prompt</span>
+</span><span id="__span-49-10"><a id="__codelineno-49-10" name="__codelineno-49-10" href="#__codelineno-49-10"></a><span class="c1">#------------------------------------------</span>
+</span></code></pre></div>
+<ul>
+<li>Add custom prompt like in Git Bash</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-50-1"><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="c1">#------------------------------------------------</span>
+</span><span id="__span-50-2"><a id="__codelineno-50-2" name="__codelineno-50-2" href="#__codelineno-50-2"></a><span class="c1">#       Git Bash Prompt</span>
+</span><span id="__span-50-3"><a id="__codelineno-50-3" name="__codelineno-50-3" href="#__codelineno-50-3"></a><span class="c1">#------------------------------------------------</span>
+</span><span id="__span-50-4"><a id="__codelineno-50-4" name="__codelineno-50-4" href="#__codelineno-50-4"></a>parse_git_branch<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-50-5"><a id="__codelineno-50-5" name="__codelineno-50-5" href="#__codelineno-50-5"></a><span class="w"> </span>git<span class="w"> </span>branch<span class="w"> </span><span class="m">2</span>&gt;<span class="w"> </span>/dev/null<span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span>-e<span class="w"> </span><span class="s1">&#39;/^[^*]/d&#39;</span><span class="w"> </span>-e<span class="w"> </span><span class="s1">&#39;s/* \(.*\)/(\1)/&#39;</span>
+</span><span id="__span-50-6"><a id="__codelineno-50-6" name="__codelineno-50-6" href="#__codelineno-50-6"></a><span class="o">}</span>
+</span><span id="__span-50-7"><a id="__codelineno-50-7" name="__codelineno-50-7" href="#__codelineno-50-7"></a><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$color_prompt</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>yes<span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+</span><span id="__span-50-8"><a id="__codelineno-50-8" name="__codelineno-50-8" href="#__codelineno-50-8"></a><span class="w"> </span><span class="nv">PS1</span><span class="o">=</span><span class="s1">&#39;${debian_chroot:+($debian_chroot)}\[\e[38;5;34m\]\u\[\e[38;5;171m\]@\h\[\033[00m\] \[\e[38;5;220m\]\w \[\e[38;5;14m\]$(parse_git_branch)\[\033[00m\] \n\$ &#39;</span>
+</span><span id="__span-50-9"><a id="__codelineno-50-9" name="__codelineno-50-9" href="#__codelineno-50-9"></a><span class="k">else</span>
+</span><span id="__span-50-10"><a id="__codelineno-50-10" name="__codelineno-50-10" href="#__codelineno-50-10"></a><span class="w"> </span><span class="nv">PS1</span><span class="o">=</span><span class="s1">&#39;${debian_chroot:+($debian_chroot)}\u@\h:\w$(parse_git_branch)\$ &#39;</span>
+</span><span id="__span-50-11"><a id="__codelineno-50-11" name="__codelineno-50-11" href="#__codelineno-50-11"></a><span class="k">fi</span>
+</span><span id="__span-50-12"><a id="__codelineno-50-12" name="__codelineno-50-12" href="#__codelineno-50-12"></a><span class="c1">#-------------------------------------------------</span>
+</span></code></pre></div>
+<ul>
+<li>Save and Close .bashrc (in nano : <code>CTRL + S</code> , <code>CTRL + X</code>)</li>
+<li>Reload .bashrc in Terminal </li>
+</ul>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-51-1"><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a><span class="nb">source</span><span class="w"> </span>.bashrc
+</span></code></pre></div>
+  - The terminal prompt should change. If not, then restart the Terminal</p>
+<p><strong>NOTE:</strong> To change colours to something else you can go to bash prompt generator website to generate the code for .bashrc.
+- Go to: https://robotmoon.com/bash-prompt-generator/ to play with different prompt colours and generate bash code for prompt customization inside .bashrc </p>
+<h3 id="customize-list-command">Customize List Command</h3>
+<p>We want to customize <code>ls</code> command to achieve the following:</p>
+<ol>
+<li>Sort files and folders by name - By default, when you list files and folders in a directory, they are sorted by date.</li>
+<li>
+<p>Use aliases for <code>ls</code> command with options to avoid typing the command options every time. For example instead of  typing <code>ls -l</code> to show details of files and folders, we can create an alias <code>ll</code> that will call <code>ls -l</code> command.</p>
+</li>
+<li>
+<p>Open <strong>.bashrc</strong> file</p>
+<p>nano ~/.bashrc</p>
+</li>
+<li>
+<p>Look for the following section or any lines starting with <code>#alias</code> or <code>alias</code>:</p>
+</li>
+</ol>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-52-1"><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a><span class="c1"># some more ls aliases</span>
+</span><span id="__span-52-2"><a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a><span class="c1">#alias ll=&#39;ls -l&#39;</span>
+</span><span id="__span-52-3"><a id="__codelineno-52-3" name="__codelineno-52-3" href="#__codelineno-52-3"></a><span class="c1">#alias la=&#39;ls -A&#39;</span>
+</span><span id="__span-52-4"><a id="__codelineno-52-4" name="__codelineno-52-4" href="#__codelineno-52-4"></a><span class="c1">#alias l=&#39;ls -CF&#39;</span>
+</span></code></pre></div>
+  - Those are the command aliases</p>
+<p><def></p>
+<blockquote>
+<p><strong>Command aliases</strong> are shortcuts for commands. For example, instead of typing <code>ls -l</code> to show details of files and folders, we can create an alias <code>ll</code> that will call <code>ls -l</code> command by putting the line <code>alias ll='ls -l'</code> in the .bashrc file.
+</def></p>
+</blockquote>
+<p>In order to keep .bashrc file clean, we will put the aliases inside .bash_aliases file which is included in .bashrc file.</p>
+<ul>
+<li>Create or edit the <strong>.bash_aliases</strong> file inside user home directory</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-53-1"><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a>nano<span class="w"> </span>~/.bash_aliases
+</span></code></pre></div>
+<ul>
+<li>Move all the aliases from .bashrc file to the .bash_aliases file:</li>
+</ul>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-54-1"><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a><span class="c1"># Aliases</span>
+</span><span id="__span-54-2"><a id="__codelineno-54-2" name="__codelineno-54-2" href="#__codelineno-54-2"></a><span class="nb">alias</span><span class="w"> </span><span class="nv">ll</span><span class="o">=</span><span class="s1">&#39;LC_COLLATE=en_US ls -l&#39;</span>
+</span><span id="__span-54-3"><a id="__codelineno-54-3" name="__codelineno-54-3" href="#__codelineno-54-3"></a><span class="nb">alias</span><span class="w"> </span><span class="nv">la</span><span class="o">=</span><span class="s1">&#39;ls -A&#39;</span>
+</span><span id="__span-54-4"><a id="__codelineno-54-4" name="__codelineno-54-4" href="#__codelineno-54-4"></a><span class="nb">alias</span><span class="w"> </span><span class="nv">l</span><span class="o">=</span><span class="s1">&#39;ls -CF&#39;</span>
+</span></code></pre></div>
+  - NOTE: we prefix the value of ll alias with <code>LC_COLLATE=en_US</code> to sort files displayed by ll command, by name.
+  - You should add any future aliases you create in this file</p>
+<ul>
+<li>
+<p>Exit file and save changes: <strong>CTRL + S</strong>,  <strong>CTRL + X</strong></p>
+</li>
+<li>
+<p>Activate changes by running the following command</p>
+</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-55-1"><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a><span class="nb">source</span><span class="w"> </span>~/.bashrc<span class="w"> </span>~/.bash_aliases
+</span></code></pre></div>
+<p><def></p>
+<blockquote>
+<p><strong>.bashrc</strong> - is the main bash configuration file. It is read by the bash shell when it starts. So current user session will use the settings from this file. .bashrc is located in the user home directory.
+</def></p>
+</blockquote>
+<h3 id="remove-sudo-password-prompt">Remove Sudo password prompt</h3>
+<p>When you want to run priviledged commands you type <strong>sudo</strong> before the command.</p>
+<p>By default using sudo asks for password every 15 minutes.</p>
+<p>We want to get rid of that annoying password prompt.</p>
+<p>There are two methods to do this:
+- Method A - Edit main sudoers file (works, not recommended)
+- Method B - Recommended: sudoers.d drop‑in</p>
+<h4 id="method-a-edit-main-sudoers-works-not-recommended">Method A — Edit main sudoers (works, not recommended)</h4>
+<ul>
+<li>
+<p>Open <strong>sudoers</strong> file for editing using <strong>visudo</strong> (safe editor for sudoers):</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-56-1"><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a>sudo<span class="w"> </span>visudo
+</span></code></pre></div>
+</li>
+<li>
+<p>Set <strong>NOPASSWD</strong> for all users in sudo group</p>
+</li>
+<li>
+<p>Look for the line starting with <strong>%sudo</strong>. It should look like this:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-57-1"><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a><span class="c1"># Allow members of group sudo to execute any command</span>
+</span><span id="__span-57-2"><a id="__codelineno-57-2" name="__codelineno-57-2" href="#__codelineno-57-2"></a>%sudo<span class="w">   </span><span class="nv">ALL</span><span class="o">=(</span>ALL<span class="o">)</span><span class="w"> </span>ALL
+</span></code></pre></div>
+</li>
+<li>
+<p>Add keyword <strong>NOPASSWD</strong> and a colon before the last <strong>ALL</strong>. It should now look like this:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-58-1"><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a><span class="c1"># Allow members of group sudo to execute any command</span>
+</span><span id="__span-58-2"><a id="__codelineno-58-2" name="__codelineno-58-2" href="#__codelineno-58-2"></a>%sudo<span class="w">   </span><span class="nv">ALL</span><span class="o">=(</span>ALL<span class="o">)</span><span class="w"> </span>NOPASSWD:ALL
+</span></code></pre></div>
+</li>
+<li>
+<p>Save and close the file: <kbd>CTRL + S</kbd>, <kbd>CTRL + X</kbd></p>
+</li>
+</ul>
+<p><strong>NOTE:</strong> This method works but is not the best practice because it modifies the main <code>/etc/sudoers</code> file. Prefer the drop-in method below.</p>
+<h4 id="method-b-recommended-sudoersd-dropin">Method B — Recommended: sudoers.d drop‑in</h4>
+<p>Using a dedicated drop-in avoids editing the main file and is the standard best practice.</p>
+<p>Drop-in is a file that is used to override the main sudoers file.</p>
+<ul>
+<li>
+<p>Open a drop-in with visudo for validation:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-59-1"><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a>sudo<span class="w"> </span>visudo<span class="w"> </span>-f<span class="w"> </span>/etc/sudoers.d/010-nopasswd-sudo
+</span></code></pre></div>
+</li>
+<li>
+<p>Add this single line to the file:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-60-1"><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a>%sudo ALL=(ALL) NOPASSWD:ALL
+</span></code></pre></div>
+</li>
+<li>
+<p>Save and close the file: <kbd>CTRL + S</kbd>, <kbd>CTRL + X</kbd></p>
+</li>
+<li>
+<p>Ensure correct permissions and ownership:</p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-61-1"><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a>sudo<span class="w"> </span>chown<span class="w"> </span>root:root<span class="w"> </span>/etc/sudoers.d/010-nopasswd-sudo
+</span><span id="__span-61-2"><a id="__codelineno-61-2" name="__codelineno-61-2" href="#__codelineno-61-2"></a>sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">440</span><span class="w"> </span>/etc/sudoers.d/010-nopasswd-sudo
+</span></code></pre></div>
+- chown root:root - means that the file is owned by the root user and group.
+- chmod 440 - means that the file is only readable and writable by the root user.</p>
+</li>
+</ul>
+<h4 id="reconnect-and-test">Reconnect and test</h4>
+<ul>
+<li>Disconnect and reconnect to Server: </li>
+</ul>
+<p><kbd>CTRL</kbd> <kbd>D</kbd></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-62-1"><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a>ssh<span class="w"> </span>my-site.com
+</span></code></pre></div>
+<ul>
+<li>Test if you can run sudo commands without being prompted for password. Create new directory inside /home/ and then delete it</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-63-1"><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a><span class="nb">cd</span><span class="w"> </span>/home
+</span><span id="__span-63-2"><a id="__codelineno-63-2" name="__codelineno-63-2" href="#__codelineno-63-2"></a>sudo<span class="w"> </span>mkdir<span class="w"> </span>new-dir
+</span><span id="__span-63-3"><a id="__codelineno-63-3" name="__codelineno-63-3" href="#__codelineno-63-3"></a>sudo<span class="w"> </span>rmdir<span class="w"> </span>new-dir
+</span></code></pre></div>
+<ul>
+<li>You should not be prompted for password this time</li>
+</ul>
+<h3 id="change-hostname">Change Hostname</h3>
+<p>Initially the service provider assigns a random name to our VPS host.</p>
+<p>Generally we want to change this to a custom name which should normally be the same as the main website we are hosting on this server.</p>
+<p>For the purpose of this exercise we will name the website and the host: <strong>my-site.com</strong></p>
+<ul>
+<li>Check current host name</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-64-1"><a id="__codelineno-64-1" name="__codelineno-64-1" href="#__codelineno-64-1"></a>hostname
+</span></code></pre></div>
+<ul>
+<li>
+<p>You should see current host name - let's call it for this example <strong>my-host-name</strong></p>
+</li>
+<li>
+<p>Change to new host name: <strong>my-site.com</strong></p>
+</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-65-1"><a id="__codelineno-65-1" name="__codelineno-65-1" href="#__codelineno-65-1"></a>sudo<span class="w"> </span>hostnamectl<span class="w"> </span>set-hostname<span class="w"> </span>my-site.com
+</span></code></pre></div>
+<ul>
+<li>Update host name inside <strong>/etc/hosts</strong> </li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-66-1"><a id="__codelineno-66-1" name="__codelineno-66-1" href="#__codelineno-66-1"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/hosts
+</span></code></pre></div>
+<ul>
+<li>
+<p>Change <strong>my-host-name</strong> to <strong>my-site.com</strong></p>
+</li>
+<li>
+<p>Reboot the server</p>
+</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-67-1"><a id="__codelineno-67-1" name="__codelineno-67-1" href="#__codelineno-67-1"></a>sudo<span class="w"> </span>reboot
+</span></code></pre></div>
+<ul>
+<li>Reconnect after waiting couple of minutes</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-68-1"><a id="__codelineno-68-1" name="__codelineno-68-1" href="#__codelineno-68-1"></a>ssh<span class="w"> </span>my-site.com
+</span></code></pre></div>
+<ul>
+<li>The command line prompt should now look like:</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-69-1"><a id="__codelineno-69-1" name="__codelineno-69-1" href="#__codelineno-69-1"></a>admin@my-site
+</span></code></pre></div>
+<ul>
+<li>Confirm that the host name has been changed - run the following commands one by one:  </li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-70-1"><a id="__codelineno-70-1" name="__codelineno-70-1" href="#__codelineno-70-1"></a>hostnamectl
+</span><span id="__span-70-2"><a id="__codelineno-70-2" name="__codelineno-70-2" href="#__codelineno-70-2"></a>hostname
+</span></code></pre></div>
+<h2 id="install-standard-tools">Install Standard Tools</h2>
+<p><def></p>
+<blockquote>
+<p><strong>APT (Advanced Package Tool)</strong> - is a package management system on Linux used for easy installation of packages for programs used to execute specific functionality on Linux system.
+</def></p>
+</blockquote>
+<ul>
+<li>Run command <strong>ifconfig</strong> . If it says its missing install net tools</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-71-1"><a id="__codelineno-71-1" name="__codelineno-71-1" href="#__codelineno-71-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>net-tools
+</span></code></pre></div>
+<h2 id="set-up-workspace">Set up Workspace</h2>
+<p>We will create a working directory inside /home where we will store almost everything we are working with. We will name this directory with a name of our company. For the purpose of this tutorial we will refer to it as <strong>my-com</strong></p>
+<ul>
+<li>
+<p>Create directory with your company name</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-72-1"><a id="__codelineno-72-1" name="__codelineno-72-1" href="#__codelineno-72-1"></a>sudo<span class="w"> </span>mkdir<span class="w"> </span>/home/my-com
+</span></code></pre></div>
+</li>
+<li>
+<p>Inside <strong>/home/my-com</strong> create the following directories</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>downloads</td>
+<td>Installation files and scripts</td>
+</tr>
+<tr>
+<td>repos</td>
+<td>Git repository directories</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Give ownership and exclusive access to admin user and group for the whole /home/my-com directory. </li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-73-1"><a id="__codelineno-73-1" name="__codelineno-73-1" href="#__codelineno-73-1"></a>sudo<span class="w"> </span>chown<span class="w"> </span>admin:admin<span class="w"> </span>-R<span class="w"> </span>/home/my-com
+</span><span id="__span-73-2"><a id="__codelineno-73-2" name="__codelineno-73-2" href="#__codelineno-73-2"></a>sudo<span class="w"> </span>chmod<span class="w"> </span>-R<span class="w"> </span><span class="m">770</span><span class="w"> </span>/home/my-com
+</span></code></pre></div>
+<ul>
+<li><strong>NOTE:</strong> From here on you should only create directories and files inside your workspace without using sudo keyword. This is because using sudo will give execute permissions on created files and folders to root user only and so you will have to use sudo keyword before editing or running any files inside your workspace</li>
+</ul>
+<h2 id="firewall-ufw">Firewall - UFW</h2>
+<p><def></p>
+<blockquote>
+<p><strong>UFW</strong> - <strong>Uncomplicated Firewall</strong> is a command-line interface for working with the firewall on Linux.
+</def></p>
+</blockquote>
+<h3 id="install-and-enable-ufw">Install and Enable UFW</h3>
+<p><strong>NOTE:</strong> This sequence is safe for remote access (e.g., via SSH) because we add critical rules before enabling the firewall.</p>
+<ul>
+<li>Install ufw</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-74-1"><a id="__codelineno-74-1" name="__codelineno-74-1" href="#__codelineno-74-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>ufw
+</span></code></pre></div>
+<ul>
+<li>Check status:</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-75-1"><a id="__codelineno-75-1" name="__codelineno-75-1" href="#__codelineno-75-1"></a>sudo<span class="w"> </span>ufw<span class="w"> </span>status
+</span></code></pre></div>
+<ul>
+<li>
+<p>You may get</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-76-1"><a id="__codelineno-76-1" name="__codelineno-76-1" href="#__codelineno-76-1"></a>ERROR:<span class="w"> </span>Couldn<span class="err">&#39;</span>t<span class="w"> </span>determine<span class="w"> </span>iptables<span class="w"> </span>version
+</span></code></pre></div>
+</li>
+<li>
+<p>You need to reboot the system to fix this error</p>
+</li>
+<li>
+<p>Reboot:</p>
+</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-77-1"><a id="__codelineno-77-1" name="__codelineno-77-1" href="#__codelineno-77-1"></a>sudo<span class="w"> </span>reboot
+</span></code></pre></div>
+<ul>
+<li>Check status again:</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-78-1"><a id="__codelineno-78-1" name="__codelineno-78-1" href="#__codelineno-78-1"></a>sudo<span class="w"> </span>ufw<span class="w"> </span>status
+</span></code></pre></div>
+<ul>
+<li>This time you should get: <code>Status: inactive</code></li>
+</ul>
+<h3 id="add-firewall-rules-before-enabling">Add Firewall Rules (Before Enabling)</h3>
+<p>We add rules while UFW is inactive to ensure your SSH connection isn't disrupted when we enable it later.</p>
+<ul>
+<li>Add port 22 - the standard port for SSH (Secure Shell) connections, which is how we connect to our server remotely.</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-79-1"><a id="__codelineno-79-1" name="__codelineno-79-1" href="#__codelineno-79-1"></a>sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span><span class="m">22</span>
+</span></code></pre></div>
+<ul>
+<li>Add another port 1234</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-80-1"><a id="__codelineno-80-1" name="__codelineno-80-1" href="#__codelineno-80-1"></a>sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span><span class="m">1234</span>
+</span></code></pre></div>
+<ul>
+<li>Show firewall status (still inactive, but rules are queued)</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-81-1"><a id="__codelineno-81-1" name="__codelineno-81-1" href="#__codelineno-81-1"></a>sudo<span class="w"> </span>ufw<span class="w"> </span>status
+</span></code></pre></div>
+<ul>
+<li>
+<p>You should see</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-82-1"><a id="__codelineno-82-1" name="__codelineno-82-1" href="#__codelineno-82-1"></a>Status:<span class="w"> </span>inactive
+</span></code></pre></div>
+</li>
+</ul>
+<h3 id="enable-ufw">Enable UFW</h3>
+<p>Now that rules are in place, enable the firewall safely.</p>
+<ul>
+<li>Enable firewall:</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-83-1"><a id="__codelineno-83-1" name="__codelineno-83-1" href="#__codelineno-83-1"></a>sudo<span class="w"> </span>ufw<span class="w"> </span><span class="nb">enable</span>
+</span></code></pre></div>
+<ul>
+<li>
+<p>You will get</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-84-1"><a id="__codelineno-84-1" name="__codelineno-84-1" href="#__codelineno-84-1"></a>Command<span class="w"> </span>may<span class="w"> </span>disrupt<span class="w"> </span>existing<span class="w"> </span>ssh<span class="w"> </span>connections.<span class="w"> </span>Proceed<span class="w"> </span>with<span class="w"> </span>operation<span class="w"> </span><span class="o">(</span>y<span class="p">|</span>n<span class="o">)</span>?
+</span></code></pre></div>
+</li>
+<li>
+<p>Type <strong>"y"</strong> and hit Enter</p>
+</li>
+<li>
+<p>You should see</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-85-1"><a id="__codelineno-85-1" name="__codelineno-85-1" href="#__codelineno-85-1"></a>Firewall<span class="w"> </span>is<span class="w"> </span>active<span class="w"> </span>and<span class="w"> </span>enabled<span class="w"> </span>on<span class="w"> </span>system<span class="w"> </span>startup
+</span></code></pre></div>
+</li>
+<li>
+<p>Check existing firewall rules (list of allowed ports)</p>
+</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-86-1"><a id="__codelineno-86-1" name="__codelineno-86-1" href="#__codelineno-86-1"></a>sudo<span class="w"> </span>ufw<span class="w"> </span>status
+</span></code></pre></div>
+<ul>
+<li>You should see: <code>Status: active</code></li>
+<li>
+<p>With your rules listed, e.g.:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-87-1"><a id="__codelineno-87-1" name="__codelineno-87-1" href="#__codelineno-87-1"></a>Status:<span class="w"> </span>active
+</span><span id="__span-87-2"><a id="__codelineno-87-2" name="__codelineno-87-2" href="#__codelineno-87-2"></a>
+</span><span id="__span-87-3"><a id="__codelineno-87-3" name="__codelineno-87-3" href="#__codelineno-87-3"></a>To<span class="w">                         </span>Action<span class="w">      </span>From
+</span><span id="__span-87-4"><a id="__codelineno-87-4" name="__codelineno-87-4" href="#__codelineno-87-4"></a>--<span class="w">                         </span>------<span class="w">      </span>----
+</span><span id="__span-87-5"><a id="__codelineno-87-5" name="__codelineno-87-5" href="#__codelineno-87-5"></a><span class="m">22</span><span class="w">                         </span>ALLOW<span class="w">       </span>Anywhere
+</span><span id="__span-87-6"><a id="__codelineno-87-6" name="__codelineno-87-6" href="#__codelineno-87-6"></a><span class="m">1234</span><span class="w">                       </span>ALLOW<span class="w">       </span>Anywhere
+</span><span id="__span-87-7"><a id="__codelineno-87-7" name="__codelineno-87-7" href="#__codelineno-87-7"></a><span class="m">22</span><span class="w"> </span><span class="o">(</span>v6<span class="o">)</span><span class="w">                    </span>ALLOW<span class="w">       </span>Anywhere<span class="w"> </span><span class="o">(</span>v6<span class="o">)</span>
+</span><span id="__span-87-8"><a id="__codelineno-87-8" name="__codelineno-87-8" href="#__codelineno-87-8"></a><span class="m">1234</span><span class="w"> </span><span class="o">(</span>v6<span class="o">)</span><span class="w">                  </span>ALLOW<span class="w">       </span>Anywhere<span class="w"> </span><span class="o">(</span>v6<span class="o">)</span>
+</span></code></pre></div>
+</li>
+</ul>
+<h3 id="remove-rule">Remove Rule</h3>
+<ul>
+<li>Display a numbered list of rules</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-88-1"><a id="__codelineno-88-1" name="__codelineno-88-1" href="#__codelineno-88-1"></a>sudo<span class="w"> </span>ufw<span class="w"> </span>status<span class="w"> </span>numbered
+</span></code></pre></div>
+<ul>
+<li>
+<p>You should see something like</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-89-1"><a id="__codelineno-89-1" name="__codelineno-89-1" href="#__codelineno-89-1"></a><span class="w">     </span>To<span class="w">                         </span>Action<span class="w">      </span>From
+</span><span id="__span-89-2"><a id="__codelineno-89-2" name="__codelineno-89-2" href="#__codelineno-89-2"></a><span class="w">     </span>--<span class="w">                         </span>------<span class="w">      </span>----
+</span><span id="__span-89-3"><a id="__codelineno-89-3" name="__codelineno-89-3" href="#__codelineno-89-3"></a><span class="o">[</span><span class="w"> </span><span class="m">1</span><span class="o">]</span><span class="w"> </span><span class="m">22</span>/tcp<span class="w">                     </span>ALLOW<span class="w"> </span>IN<span class="w">    </span>Anywhere
+</span><span id="__span-89-4"><a id="__codelineno-89-4" name="__codelineno-89-4" href="#__codelineno-89-4"></a><span class="o">[</span><span class="w"> </span><span class="m">2</span><span class="o">]</span><span class="w"> </span><span class="m">1234</span><span class="w">                       </span>ALLOW<span class="w"> </span>IN<span class="w">    </span>Anywhere
+</span><span id="__span-89-5"><a id="__codelineno-89-5" name="__codelineno-89-5" href="#__codelineno-89-5"></a><span class="o">[</span><span class="w"> </span><span class="m">3</span><span class="o">]</span><span class="w"> </span><span class="m">22</span>/tcp<span class="w"> </span><span class="o">(</span>v6<span class="o">)</span><span class="w">                </span>ALLOW<span class="w"> </span>IN<span class="w">    </span>Anywhere<span class="w"> </span><span class="o">(</span>v6<span class="o">)</span>
+</span><span id="__span-89-6"><a id="__codelineno-89-6" name="__codelineno-89-6" href="#__codelineno-89-6"></a><span class="o">[</span><span class="w"> </span><span class="m">4</span><span class="o">]</span><span class="w"> </span><span class="m">1234</span><span class="w"> </span><span class="o">(</span>v6<span class="o">)</span><span class="w">                  </span>ALLOW<span class="w"> </span>IN<span class="w">    </span>Anywhere<span class="w"> </span><span class="o">(</span>v6<span class="o">)</span>
+</span></code></pre></div>
+</li>
+<li>
+<p>Remove port 1234 by rule number</p>
+</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-90-1"><a id="__codelineno-90-1" name="__codelineno-90-1" href="#__codelineno-90-1"></a>sudo<span class="w"> </span>ufw<span class="w"> </span>delete<span class="w"> </span><span class="m">2</span>
+</span></code></pre></div>
+<ul>
+<li>
+<p>NOTE: When you remove the rule, the number position of all rules after it , decreases by one</p>
+</li>
+<li>
+<p>Display numbered list again</p>
+</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-91-1"><a id="__codelineno-91-1" name="__codelineno-91-1" href="#__codelineno-91-1"></a>sudo<span class="w"> </span>ufw<span class="w"> </span>status<span class="w"> </span>numbered
+</span></code></pre></div>
+<ul>
+<li>
+<p>You should now see</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-92-1"><a id="__codelineno-92-1" name="__codelineno-92-1" href="#__codelineno-92-1"></a><span class="w">     </span>To<span class="w">                         </span>Action<span class="w">      </span>From
+</span><span id="__span-92-2"><a id="__codelineno-92-2" name="__codelineno-92-2" href="#__codelineno-92-2"></a><span class="w">     </span>--<span class="w">                         </span>------<span class="w">      </span>----
+</span><span id="__span-92-3"><a id="__codelineno-92-3" name="__codelineno-92-3" href="#__codelineno-92-3"></a><span class="o">[</span><span class="w"> </span><span class="m">1</span><span class="o">]</span><span class="w"> </span><span class="m">22</span><span class="w">                         </span>ALLOW<span class="w"> </span>IN<span class="w">    </span>Anywhere
+</span><span id="__span-92-4"><a id="__codelineno-92-4" name="__codelineno-92-4" href="#__codelineno-92-4"></a><span class="o">[</span><span class="w"> </span><span class="m">2</span><span class="o">]</span><span class="w"> </span><span class="m">22</span><span class="w"> </span><span class="o">(</span>v6<span class="o">)</span><span class="w">                    </span>ALLOW<span class="w"> </span>IN<span class="w">    </span>Anywhere<span class="w"> </span><span class="o">(</span>v6<span class="o">)</span>
+</span><span id="__span-92-5"><a id="__codelineno-92-5" name="__codelineno-92-5" href="#__codelineno-92-5"></a><span class="o">[</span><span class="w"> </span><span class="m">3</span><span class="o">]</span><span class="w"> </span><span class="m">1234</span><span class="w"> </span><span class="o">(</span>v6<span class="o">)</span><span class="w">                  </span>ALLOW<span class="w"> </span>IN<span class="w">    </span>Anywhere<span class="w"> </span><span class="o">(</span>v6<span class="o">)</span>
+</span></code></pre></div>
+</li>
+<li>
+<p>Remove port <strong>"1234 (v6)"</strong> by rule number</p>
+</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-93-1"><a id="__codelineno-93-1" name="__codelineno-93-1" href="#__codelineno-93-1"></a>sudo<span class="w"> </span>ufw<span class="w"> </span>delete<span class="w"> </span><span class="m">3</span>
+</span></code></pre></div>
+<h2 id="intrusion-prevention-fail2ban">Intrusion Prevention - fail2ban</h2>
+<p>Fail2ban protects SSH and other exposed services by blocking IPs with repeated failed login attempts.</p>
+<ul>
+<li>Install fail2ban</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-94-1"><a id="__codelineno-94-1" name="__codelineno-94-1" href="#__codelineno-94-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
+</span><span id="__span-94-2"><a id="__codelineno-94-2" name="__codelineno-94-2" href="#__codelineno-94-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>fail2ban
+</span></code></pre></div>
+<ul>
+<li>Enable and start the service</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-95-1"><a id="__codelineno-95-1" name="__codelineno-95-1" href="#__codelineno-95-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>fail2ban
+</span><span id="__span-95-2"><a id="__codelineno-95-2" name="__codelineno-95-2" href="#__codelineno-95-2"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>fail2ban
+</span></code></pre></div>
+<ul>
+<li>Check status</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-96-1"><a id="__codelineno-96-1" name="__codelineno-96-1" href="#__codelineno-96-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>fail2ban
+</span></code></pre></div>
+<ul>
+<li>Create a basic jail configuration</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-97-1"><a id="__codelineno-97-1" name="__codelineno-97-1" href="#__codelineno-97-1"></a>sudo<span class="w"> </span>cp<span class="w"> </span>/etc/fail2ban/jail.conf<span class="w"> </span>/etc/fail2ban/jail.local
+</span></code></pre></div>
+<ul>
+<li>Edit the SSH jail (example settings)</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-98-1"><a id="__codelineno-98-1" name="__codelineno-98-1" href="#__codelineno-98-1"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/fail2ban/jail.local
+</span></code></pre></div>
+<ul>
+<li>
+<p>Set:</p>
+<ul>
+<li><code>enabled = true</code></li>
+<li><code>port = ssh</code></li>
+<li><code>maxretry = 5</code></li>
+<li><code>bantime = 1h</code></li>
+<li><code>findtime = 10m</code></li>
+</ul>
+</li>
+<li>
+<p>Restart fail2ban to apply</p>
+</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-99-1"><a id="__codelineno-99-1" name="__codelineno-99-1" href="#__codelineno-99-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>fail2ban
+</span></code></pre></div>
+<blockquote>
+<p>NOTE: Keep UFW enabled. Fail2ban complements the firewall, it does not replace it.</p>
+</blockquote>
+<h2 id="time-synchronization-ntp">Time Synchronization (NTP)</h2>
+<p>Accurate time is crucial for logs, SSL certificates, cron jobs, and system security. We'll use chrony for NTP synchronization.</p>
+<ul>
+<li>Install chrony</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-100-1"><a id="__codelineno-100-1" name="__codelineno-100-1" href="#__codelineno-100-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
+</span><span id="__span-100-2"><a id="__codelineno-100-2" name="__codelineno-100-2" href="#__codelineno-100-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>chrony
+</span></code></pre></div>
+<ul>
+<li>Enable and start chrony</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-101-1"><a id="__codelineno-101-1" name="__codelineno-101-1" href="#__codelineno-101-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>chrony
+</span><span id="__span-101-2"><a id="__codelineno-101-2" name="__codelineno-101-2" href="#__codelineno-101-2"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>chrony
+</span></code></pre></div>
+<ul>
+<li>Check status</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-102-1"><a id="__codelineno-102-1" name="__codelineno-102-1" href="#__codelineno-102-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>chrony
+</span></code></pre></div>
+<ul>
+<li>Verify time synchronization</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-103-1"><a id="__codelineno-103-1" name="__codelineno-103-1" href="#__codelineno-103-1"></a>chronyc<span class="w"> </span>tracking
+</span></code></pre></div>
+<ul>
+<li>
+<p>Look for "Leap status: Normal" and small offset values (&lt;0.1 seconds)</p>
+</li>
+<li>
+<p>Check sources</p>
+</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-104-1"><a id="__codelineno-104-1" name="__codelineno-104-1" href="#__codelineno-104-1"></a>chronyc<span class="w"> </span>sources
+</span></code></pre></div>
+<ul>
+<li>Should show NTP servers with "^*" indicating good sync</li>
+</ul>
+<blockquote>
+<p>NOTE: Debian/Ubuntu often has systemd-timesyncd by default, but chrony is more robust for servers.</p>
+</blockquote>
+<h2 id="remote-desktop-from-windows">Remote Desktop from Windows</h2>
+<p>Ref: http://www.xrdp.org/</p>
+<p>We can connect to our server's Desktop (graphic user interface) from our Windows laptop/desktop easily by using program called <strong>Remote Desktop Connection</strong> that comes pre-installed on Windows.</p>
+<p>But first we need to install program called <strong>xrdp</strong> on the Linux home server and then we can connect to it from our Windows computer.</p>
+<ul>
+<li>Update and upgrade packages</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-105-1"><a id="__codelineno-105-1" name="__codelineno-105-1" href="#__codelineno-105-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
+</span><span id="__span-105-2"><a id="__codelineno-105-2" name="__codelineno-105-2" href="#__codelineno-105-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>upgrade
+</span></code></pre></div>
+<ul>
+<li>Install <strong>xrdp</strong> on Raspberry Pi</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-106-1"><a id="__codelineno-106-1" name="__codelineno-106-1" href="#__codelineno-106-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>xrdp
+</span></code></pre></div>
+<ul>
+<li>Check status of xrdp service</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-107-1"><a id="__codelineno-107-1" name="__codelineno-107-1" href="#__codelineno-107-1"></a>sudo<span class="w"> </span>service<span class="w"> </span>xrdp<span class="w"> </span>status
+</span></code></pre></div>
+<ul>
+<li>
+<p>You should see something like</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-108-1"><a id="__codelineno-108-1" name="__codelineno-108-1" href="#__codelineno-108-1"></a>●<span class="w"> </span>xrdp.service<span class="w"> </span>-<span class="w"> </span>xrdp<span class="w"> </span>daemon
+</span><span id="__span-108-2"><a id="__codelineno-108-2" name="__codelineno-108-2" href="#__codelineno-108-2"></a><span class="w">   </span>Loaded:<span class="w"> </span>loaded<span class="w"> </span><span class="o">(</span>/lib/systemd/system/xrdp.service<span class="p">;</span><span class="w"> </span>enabled<span class="p">;</span><span class="w"> </span>vendor<span class="w"> </span>preset:<span class="w"> </span>enabled<span class="o">)</span>
+</span><span id="__span-108-3"><a id="__codelineno-108-3" name="__codelineno-108-3" href="#__codelineno-108-3"></a><span class="w">   </span>Active:<span class="w"> </span>active<span class="w"> </span><span class="o">(</span>running<span class="o">)</span><span class="w"> </span>since<span class="w"> </span>Mon<span class="w"> </span><span class="m">2023</span>-09-04<span class="w"> </span><span class="m">22</span>:55:13<span class="w"> </span>BST<span class="p">;</span><span class="w"> </span>4min<span class="w"> </span>18s<span class="w"> </span>ago
+</span><span id="__span-108-4"><a id="__codelineno-108-4" name="__codelineno-108-4" href="#__codelineno-108-4"></a><span class="w">     </span>Docs:<span class="w"> </span>man:xrdp<span class="o">(</span><span class="m">8</span><span class="o">)</span>
+</span><span id="__span-108-5"><a id="__codelineno-108-5" name="__codelineno-108-5" href="#__codelineno-108-5"></a><span class="w">           </span>man:xrdp.ini<span class="o">(</span><span class="m">5</span><span class="o">)</span>
+</span></code></pre></div>
+</li>
+</ul>
+<p><strong>XRDP</strong> listens on port <strong>3389</strong>, so you will need to open that port on your firewall.</p>
+<ul>
+<li>Allow port 3389 in your firewall</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-109-1"><a id="__codelineno-109-1" name="__codelineno-109-1" href="#__codelineno-109-1"></a>sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span><span class="m">3389</span>
+</span></code></pre></div>
+<ul>
+<li>Get your server's IP address and note it down</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-110-1"><a id="__codelineno-110-1" name="__codelineno-110-1" href="#__codelineno-110-1"></a>hostname<span class="w"> </span>-I
+</span></code></pre></div>
+<ul>
+<li><strong>NOTE:</strong> You'll see 3 addresses. Use the <strong>second address</strong> (the IPv4 address).</li>
+<li>
+<p>For example, if you see <code>127.0.0.1 123.234.345.45 fe80:4780:14:c78a::1</code> then your IP address is <code>123.234.345.45</code></p>
+</li>
+<li>
+<p>On your Windows computer, open <strong>Remote Desktop Connection</strong> program</p>
+</li>
+<li>You can find it by typing <strong>"Remote Desktop Connection"</strong> in the search bar at the bottom left of your screen</li>
+<li>
+<p>Or you can find it in the Start Menu under <strong>Windows Accessories</strong> folder</p>
+</li>
+<li>
+<p>In the <strong>Remote Desktop Connection</strong> window, type the IP address of your server and click <strong>Connect</strong></p>
+</li>
+<li>
+<p>You will get a warning message about certificate. Click <strong>Yes</strong> to continue</p>
+</li>
+<li>You will get a login screen. Enter your username and password and click <strong>OK</strong></li>
+</ul>
+<p><strong>Troubleshooting:</strong> If you can see the remote computer login window but fail to connect, try the following:
+  - Ensure port 3389 is open in your firewall: </p>
+<div class="language-text highlight"><pre><span></span><code>```bash
+sudo ufw allow 3389
+```
+</code></pre></div>
+<ul>
+<li>
+<p>Check that xrdp service is running: </p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-112-1"><a id="__codelineno-112-1" name="__codelineno-112-1" href="#__codelineno-112-1"></a>sudo<span class="w"> </span>service<span class="w"> </span>xrdp<span class="w"> </span>status
+</span></code></pre></div>
+  - Restart xrdp service if needed: </p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-113-1"><a id="__codelineno-113-1" name="__codelineno-113-1" href="#__codelineno-113-1"></a>sudo<span class="w"> </span>service<span class="w"> </span>xrdp<span class="w"> </span>restart
+</span></code></pre></div>
+  - Try connecting from a different network or computer to isolate the issue</p>
+</li>
+<li>
+<p>After your login screen you will see the <strong>Connection Log</strong> window that says:</p>
+</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-114-1"><a id="__codelineno-114-1" name="__codelineno-114-1" href="#__codelineno-114-1"></a>Connecting<span class="w"> </span>to<span class="w"> </span>sesman<span class="w"> </span>IP<span class="w"> </span><span class="m">127</span>.0.0.1<span class="w"> </span>port<span class="w"> </span><span class="m">3350</span>
+</span><span id="__span-114-2"><a id="__codelineno-114-2" name="__codelineno-114-2" href="#__codelineno-114-2"></a>sesman<span class="w"> </span>connect<span class="w"> </span>ok
+</span><span id="__span-114-3"><a id="__codelineno-114-3" name="__codelineno-114-3" href="#__codelineno-114-3"></a>sending<span class="w"> </span>login<span class="w"> </span>info<span class="w"> </span>to<span class="w"> </span>session<span class="w"> </span>manager,<span class="w"> </span>please<span class="w"> </span>wait...
+</span><span id="__span-114-4"><a id="__codelineno-114-4" name="__codelineno-114-4" href="#__codelineno-114-4"></a>login<span class="w"> </span>successful<span class="w"> </span><span class="k">for</span><span class="w"> </span>display<span class="w"> </span><span class="m">10</span>
+</span></code></pre></div>
+<ul>
+<li>Click <strong>OK</strong> to continue</li>
+</ul>
+<h1 id="appendix">Appendix</h1>
+<h2 id="directory-size-disk-usage">Directory Size - Disk Usage</h2>
+<h3 id="du">DU</h3>
+<ul>
+<li>To print usage for all sub directories</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-115-1"><a id="__codelineno-115-1" name="__codelineno-115-1" href="#__codelineno-115-1"></a>du<span class="w"> </span>-hc<span class="w"> </span>--max-depth<span class="o">=</span><span class="m">0</span><span class="w"> </span>downloads
+</span></code></pre></div>
+<ul>
+<li><strong>-h</strong> - makes it more readable</li>
+<li><strong>-c</strong> - prints a total size</li>
+<li><strong>--max-depth=0</strong> - limit the scan to a certain level of subdirectory. 0 will scan size of only the top directory.</li>
+<li>
+<p>last argument is the name of the directory you wish the query or an absolute path to directory. If you don't provide this, the command will print out size for all the directories within current directory which is normally not a good idea.</p>
+</li>
+<li>
+<p>To read usage manual for this command</p>
+</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-116-1"><a id="__codelineno-116-1" name="__codelineno-116-1" href="#__codelineno-116-1"></a>du<span class="w"> </span>--help
+</span></code></pre></div>
+<h2 id="processes">Processes</h2>
+<h3 id="top">TOP</h3>
+<ul>
+<li>View a list of all current processes</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-117-1"><a id="__codelineno-117-1" name="__codelineno-117-1" href="#__codelineno-117-1"></a>top
+</span></code></pre></div>
+<ul>
+<li>
+<p>Kill processes directly from the top interface,  press <strong>k</strong> and enter the process ID</p>
+</li>
+<li>
+<p>Exit - press <strong>q</strong></p>
+</li>
+</ul>
+<h3 id="ps">PS</h3>
+<ul>
+<li>List processes</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-118-1"><a id="__codelineno-118-1" name="__codelineno-118-1" href="#__codelineno-118-1"></a>ps<span class="w"> </span>-aux
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code>|     |                                                                   |
+| --- | ----------------------------------------------------------------- |
+| -a  | View processes of all users rather than just the current user     |
+| -u  | Provide detailed information about each of the processes          |
+| -x  | Include processes that are controlled not by users but by daemons |
+</code></pre></div>
+<h3 id="pgrep">PGREP</h3>
+<ul>
+<li>List processes using pattern like regular expression</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-119-1"><a id="__codelineno-119-1" name="__codelineno-119-1" href="#__codelineno-119-1"></a>pgrep<span class="w"> </span><span class="o">{{</span>options<span class="o">}}</span><span class="w"> </span><span class="o">{{</span>pattern<span class="o">}}</span>
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code>|     |                                                          |
+| --- | -------------------------------------------------------- |
+| -l  | List both the process names and the PIDs                 |
+| -n  | Return the process that is newest                        |
+| -o  | Return the process that is oldest                        |
+| -u  | Only find processes that belong to a specific user       |
+| -x  | Only find processes that exactly match the given pattern |
+</code></pre></div>
+<ul>
+<li>Examples</li>
+<li>
+<p>Processes owned by root</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-120-1"><a id="__codelineno-120-1" name="__codelineno-120-1" href="#__codelineno-120-1"></a>pgrep<span class="w"> </span>-u<span class="w"> </span>root
+</span></code></pre></div>
+</li>
+<li>
+<p>Processes owned by root that start with the letter <strong>a</strong></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-121-1"><a id="__codelineno-121-1" name="__codelineno-121-1" href="#__codelineno-121-1"></a>pgrep<span class="w"> </span>-u<span class="w"> </span>root<span class="w"> </span><span class="s1">&#39;a*&#39;</span>
+</span></code></pre></div>
+</li>
+</ul>
+<h3 id="pidof">PIDOF</h3>
+<ul>
+<li>List the ID of a processes - search by name</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-122-1"><a id="__codelineno-122-1" name="__codelineno-122-1" href="#__codelineno-122-1"></a>pidof<span class="w"> </span><span class="o">{{</span>options<span class="o">}}</span><span class="w"> </span><span class="o">{{</span>program<span class="o">}}</span>
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code>|     |                                                                  |
+| --- | ---------------------------------------------------------------- |
+| -c  | Only return PIDs within a single root directory                  |
+| -o  | Omit certain PIDs (include the processes to omit after the flag) |
+| -s  | Only return a single PID                                         |
+| -x  | Also returns PIDs of shells that are running scripts             |
+</code></pre></div>
+<h3 id="killall">KILLALL</h3>
+<ul>
+<li>Kill processes by name</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-123-1"><a id="__codelineno-123-1" name="__codelineno-123-1" href="#__codelineno-123-1"></a>killall<span class="w"> </span><span class="o">{{</span>options<span class="o">}}</span><span class="w"> </span><span class="o">{{</span>pattern<span class="o">}}</span>
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code>|     |                                                                         |
+| --- | ----------------------------------------------------------------------- |
+| -e  | Find an exact match for the process name                                |
+| -I  | Ignore case when trying to find the process name                        |
+| -i  | Ask for additional confirmation when killing the process                |
+| -u  | Only kill processes owned by a specific user                            |
+| -v  | Report back on whether the process has been successfully killed         |
+| -o  | Kill all processes that have been running more than that amount of time |
+| -y  | Kill all processes that have been running less than that amount of time |
+</code></pre></div>
+<ul>
+<li>Examples</li>
+<li>
+<p>Kill processes running more than 15 minutes</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-124-1"><a id="__codelineno-124-1" name="__codelineno-124-1" href="#__codelineno-124-1"></a>killall<span class="w"> </span>-o<span class="w"> </span>15m
+</span></code></pre></div>
+</li>
+<li>
+<p>Kill processes running less than 15 minutes</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-125-1"><a id="__codelineno-125-1" name="__codelineno-125-1" href="#__codelineno-125-1"></a>killall<span class="w"> </span>-y<span class="w"> </span>15m
+</span></code></pre></div>
+</li>
+</ul>
+<h3 id="pkill">PKILL</h3>
+<ul>
+<li>Kill processes using pattern like regular expression</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-126-1"><a id="__codelineno-126-1" name="__codelineno-126-1" href="#__codelineno-126-1"></a>pkill<span class="w"> </span><span class="o">{{</span>options<span class="o">}}</span><span class="w"> </span><span class="o">{{</span>pattern<span class="o">}}</span>
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code>|         |                                                             |
+| ------- | ----------------------------------------------------------- |
+| -n      | Only kill the newest of the processes that are discovered   |
+| -o      | Only kill the oldest of the processes that are discovered   |
+| -u      | Only kill the processes that are owned by the selected user |
+| -x      | Only kill the processes that match the pattern exactly      |
+| -signal | Send a specific signal to the process, rather than SIGTERM  |
+</code></pre></div>
+<h3 id="kill">KILL</h3>
+<ul>
+<li>Kill process by ID</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-127-1"><a id="__codelineno-127-1" name="__codelineno-127-1" href="#__codelineno-127-1"></a><span class="nb">kill</span><span class="w"> </span><span class="o">{{</span>processID<span class="o">}}</span>
+</span></code></pre></div>
+<ul>
+<li>Kill unresponsive process</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-128-1"><a id="__codelineno-128-1" name="__codelineno-128-1" href="#__codelineno-128-1"></a><span class="nb">kill</span><span class="w"> </span>-9<span class="w"> </span><span class="o">{{</span>processID<span class="o">}}</span>
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code>OR
+</code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-129-1"><a id="__codelineno-129-1" name="__codelineno-129-1" href="#__codelineno-129-1"></a><span class="nb">kill</span><span class="w"> </span>-SIGKILL<span class="w"> </span><span class="o">{{</span>processID<span class="o">}}</span>
+</span></code></pre></div>
+<ul>
+<li>9 - is a code for SIGKILL signal which is a forceful way to kill a process AKA <strong>"hard-kill"</strong></li>
+</ul>
+<h2 id="network">Network</h2>
+<h3 id="ifconfig">IFCONFIG</h3>
+<ul>
+<li>Show network interfaces</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-130-1"><a id="__codelineno-130-1" name="__codelineno-130-1" href="#__codelineno-130-1"></a>ifconfig
+</span></code></pre></div>
+<ul>
+<li>Show host IP address</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-131-1"><a id="__codelineno-131-1" name="__codelineno-131-1" href="#__codelineno-131-1"></a>ifconfig<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>inet
+</span></code></pre></div>
+<ul>
+<li>Your IP will be the first number in the result</li>
+</ul>
+<h3 id="netstat">NETSTAT</h3>
+<ul>
+<li>Display listening ports</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-132-1"><a id="__codelineno-132-1" name="__codelineno-132-1" href="#__codelineno-132-1"></a>netstat<span class="w"> </span>-nlt
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-133-1"><a id="__codelineno-133-1" name="__codelineno-133-1" href="#__codelineno-133-1"></a>netstat<span class="w"> </span>-nltp
+</span></code></pre></div>
+<ul>
+<li>Display all active ports</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-134-1"><a id="__codelineno-134-1" name="__codelineno-134-1" href="#__codelineno-134-1"></a>netstat<span class="w"> </span>-ant
+</span></code></pre></div>
+<p>Parameters meaning:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-lt</td>
+<td>List all listening TCP ports</td>
+</tr>
+<tr>
+<td>-n</td>
+<td>Show numerical addresses</td>
+</tr>
+<tr>
+<td>-p</td>
+<td>Display the PID/Program name related to a specific connection</td>
+</tr>
+<tr>
+<td>-a</td>
+<td>Displays all active TCP connections and the TCP and UDP ports on which the computer is listening.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ss">SS</h3>
+<p><def></p>
+<blockquote>
+<p><strong>ss (Socket Statistics)</strong> - is a CLI command used to show network statistics. The ss command is a simpler and faster version of the now obsolete netstat command. Together with the ip command, ss is essential for gathering network information and troubleshooting network issues.
+</def></p>
+</blockquote>
+<ul>
+<li>Basic usage</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-135-1"><a id="__codelineno-135-1" name="__codelineno-135-1" href="#__codelineno-135-1"></a>ss
+</span></code></pre></div>
+<p>The columns show the following details:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Netid</td>
+<td>Type of socket. Common types are TCP, UDP, u_str (Unix stream), and   u_seq (Unix sequence).</td>
+</tr>
+<tr>
+<td>State</td>
+<td>State of the socket. Most commonly ESTAB (established), UNCONN (unconnected), LISTEN (listening).</td>
+</tr>
+<tr>
+<td>Recv-Q</td>
+<td>Number of received packets in the queue.</td>
+</tr>
+<tr>
+<td>Send-Q</td>
+<td>Number of sent packets in the queue.</td>
+</tr>
+<tr>
+<td>Local address:port</td>
+<td>Address of local machine and port.</td>
+</tr>
+<tr>
+<td>Peer address:port</td>
+<td>Address of remote machine and port.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="errors-were-encountered-while-processing">Errors were encountered while processing</h3>
+<p>If you get this error while trying to install packages <strong>Errors were encountered while processing:</strong> , try the following sequence to fix it.</p>
+<ul>
+<li>Ensure that the shared libraries are properly registered (also fixes some GCC/G++ errors)</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-136-1"><a id="__codelineno-136-1" name="__codelineno-136-1" href="#__codelineno-136-1"></a>sudo<span class="w"> </span>ldconfig
+</span></code></pre></div>
+<ul>
+<li>Try to remove the package (replace ‘your-app’ with the name of the dodgy application)</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-137-1"><a id="__codelineno-137-1" name="__codelineno-137-1" href="#__codelineno-137-1"></a>sudo<span class="w"> </span>dpkg<span class="w"> </span>-r<span class="w"> </span>YOUR-APP
+</span></code></pre></div>
+<ul>
+<li>Check your package cache</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-138-1"><a id="__codelineno-138-1" name="__codelineno-138-1" href="#__codelineno-138-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>check
+</span></code></pre></div>
+<ul>
+<li>Update your package list</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-139-1"><a id="__codelineno-139-1" name="__codelineno-139-1" href="#__codelineno-139-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+</span></code></pre></div>
+<ul>
+<li>Ensure package downloads were properly completed when the system last updated</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-140-1"><a id="__codelineno-140-1" name="__codelineno-140-1" href="#__codelineno-140-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>upgrade<span class="w"> </span>--fix-missing
+</span></code></pre></div>
+<ul>
+<li>Try to upgrade the system (sometimes an updated package version fixes the issue)</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-141-1"><a id="__codelineno-141-1" name="__codelineno-141-1" href="#__codelineno-141-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>upgrade
+</span><span id="__span-141-2"><a id="__codelineno-141-2" name="__codelineno-141-2" href="#__codelineno-141-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>dist-upgrade
+</span></code></pre></div>
+<ul>
+<li>Try to reconfigure all applications that failed to install</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-142-1"><a id="__codelineno-142-1" name="__codelineno-142-1" href="#__codelineno-142-1"></a>sudo<span class="w"> </span>dpkg<span class="w"> </span>--configure<span class="w"> </span>-a
+</span></code></pre></div>
+<ul>
+<li>Try to reconfigure specific applications that failed to install</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-143-1"><a id="__codelineno-143-1" name="__codelineno-143-1" href="#__codelineno-143-1"></a>sudo<span class="w"> </span>dpkg<span class="w"> </span>--configure<span class="w"> </span>YOUR-APP
+</span></code></pre></div>
+<ul>
+<li>Try to fix broken packages</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-144-1"><a id="__codelineno-144-1" name="__codelineno-144-1" href="#__codelineno-144-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-f
+</span></code></pre></div>
+<ul>
+<li>Try to fix a specific broken package</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-145-1"><a id="__codelineno-145-1" name="__codelineno-145-1" href="#__codelineno-145-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>YOUR-APP<span class="w"> </span>-f
+</span></code></pre></div>
+<ul>
+<li>Try to install the dependencies that an application requires for it to install successfully</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-146-1"><a id="__codelineno-146-1" name="__codelineno-146-1" href="#__codelineno-146-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>build-dep<span class="w"> </span>YOUR-APP
+</span></code></pre></div>
+<ul>
+<li>Re-try to install the failed apps</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-147-1"><a id="__codelineno-147-1" name="__codelineno-147-1" href="#__codelineno-147-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install
+</span></code></pre></div>
+<hr />
+<p><em>© 2025 VEXIT® — Tomorrow is today...® — <a href="https://www.vexit.com">www.vexit.com</a></em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 VEXIT &reg;, Tomorrow is Today &trade;, www.vexit.com
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com"></script>
+      
+    
+  </body>
+</html>

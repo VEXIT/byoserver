@@ -1,0 +1,1247 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://vexit.github.io/byoserver/1_SetUpServer_Overview/">
+      
+      
+        <link rel="prev" href="../0.2_Linux_Users_Groups_and_Permissions_Reference/">
+      
+      
+        <link rel="next" href="../1_SetUpServer_HomeServer_Ubuntu/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+    
+    
+      
+        <title>Server Setup Overview - BYO Server</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#server-setup-options-overview" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="BYO Server" class="md-header__button md-logo" aria-label="BYO Server" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BYO Server
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Server Setup Overview
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="green"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="BYO Server" class="md-nav__button md-logo" aria-label="BYO Server" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    BYO Server
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0.1_File_System_Basics_with_Bash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core Concepts (Bash/CLI)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0.2_Linux_Users_Groups_and_Permissions_Reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Permissions Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Choose Your Server Setup
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Choose Your Server Setup
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Server Setup Overview
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Server Setup Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#choosing-your-server-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Choosing Your Server Setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#available-setup-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Available Setup Options
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Available Setup Options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#home-server-setups-3-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Home Server Setups (3 Options)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Home Server Setups (3 Options)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-home-server-linux-mint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Home Server - Linux Mint
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-home-server-ubuntu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Home Server - Ubuntu
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-home-server-raspberry-pi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Home Server - Raspberry Pi
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vps-virtual-private-server-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VPS (Virtual Private Server) Setup
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="VPS (Virtual Private Server) Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vps-server-ubuntu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VPS Server - Ubuntu
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cost-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cost Comparison
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Considerations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key Considerations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#for-home-server-setups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        For Home Server Setups:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#for-vps-setups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        For VPS Setups:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommendation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommendation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_SetUpServer_HomeServer_Ubuntu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home Server (Ubuntu)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_SetUpServer_HomeServer_RaspberryPi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home Server (Raspberry Pi)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_SetUpServer_HomeServer_LinuxMint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home Server (Linux Mint)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_SetUpServer_VPS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VPS / Hosting Provider
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2_WebServer_Nginx_Apache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web Server (Nginx/Apache)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3_WebApp_NetCore_Angular/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    App Deployment (.NET/Angular)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4_Cron_Jobs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Task Automation (Cron Jobs)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5_Database_PostgreSQL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database (PostgreSQL)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6_MailServer_Postfix_Dovecot_Thunderbird/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mail Server (Postfix/Dovecot)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#choosing-your-server-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Choosing Your Server Setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#available-setup-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Available Setup Options
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Available Setup Options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#home-server-setups-3-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Home Server Setups (3 Options)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Home Server Setups (3 Options)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-home-server-linux-mint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Home Server - Linux Mint
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-home-server-ubuntu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Home Server - Ubuntu
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-home-server-raspberry-pi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Home Server - Raspberry Pi
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vps-virtual-private-server-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VPS (Virtual Private Server) Setup
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="VPS (Virtual Private Server) Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vps-server-ubuntu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VPS Server - Ubuntu
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cost-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cost Comparison
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Considerations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key Considerations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#for-home-server-setups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        For Home Server Setups:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#for-vps-setups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        For VPS Setups:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommendation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommendation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="server-setup-options-overview">Server Setup Options Overview</h1>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Copyright:</td>
+<td>© 2022 VEXIT , Tomorow is today ® , www.vexit.com</td>
+</tr>
+<tr>
+<td>Author:</td>
+<td>Vex Tatarevic</td>
+</tr>
+<tr>
+<td>Date Created:</td>
+<td>2026-03-02</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="choosing-your-server-setup">Choosing Your Server Setup</h2>
+<p>This guide provides an overview of the different server setup options available in this book. You don't need to read through every manual - choose the option that best fits your needs, budget, and technical comfort level.</p>
+<h2 id="available-setup-options">Available Setup Options</h2>
+<h3 id="home-server-setups-3-options">Home Server Setups (3 Options)</h3>
+<h4 id="1-home-server-linux-mint">1. Home Server - Linux Mint</h4>
+<ul>
+<li><strong>Hardware Required</strong>: Any old computer (desktop/laptop) you have lying around</li>
+<li><strong>Cost</strong>: Essentially free (reuse existing hardware)</li>
+<li><strong>Electricity</strong>: Moderate consumption (depends on your computer)</li>
+<li><strong>Internet</strong>: Requires static IP from your home ISP</li>
+<li><strong>Maintenance</strong>: Moderate - may need occasional hardware maintenance</li>
+<li><strong>Best For</strong>: People who want to repurpose existing hardware and don't mind slightly higher electricity costs</li>
+</ul>
+<h4 id="2-home-server-ubuntu">2. Home Server - Ubuntu</h4>
+<ul>
+<li><strong>Hardware Required</strong>: Any old computer (desktop/laptop) you have lying around</li>
+<li><strong>Cost</strong>: Essentially free (reuse existing hardware)</li>
+<li><strong>Electricity</strong>: Moderate consumption (depends on your computer)</li>
+<li><strong>Internet</strong>: Requires static IP from your home ISP</li>
+<li><strong>Maintenance</strong>: Moderate - may need occasional hardware maintenance</li>
+<li><strong>Best For</strong>: People who want to repurpose existing hardware and don't mind slightly higher electricity costs</li>
+</ul>
+<h4 id="3-home-server-raspberry-pi">3. Home Server - Raspberry Pi</h4>
+<ul>
+<li><strong>Hardware Required</strong>: Raspberry Pi board ($70-300 depending on model)</li>
+<li><strong>Cost</strong>: One-time hardware cost ($70-300)</li>
+<li><strong>Electricity</strong>: Extremely low consumption (costs about $5/year to run 24/7)</li>
+<li><strong>Internet</strong>: Requires static IP from your home ISP</li>
+<li><strong>Maintenance</strong>: Very low - "set it and forget it" reliability</li>
+<li><strong>Best For</strong>: People willing to invest in dedicated low-power hardware for maximum efficiency and reliability</li>
+</ul>
+<h3 id="vps-virtual-private-server-setup">VPS (Virtual Private Server) Setup</h3>
+<h4 id="vps-server-ubuntu">VPS Server - Ubuntu</h4>
+<ul>
+<li><strong>Hardware Required</strong>: None (rented from hosting provider)</li>
+<li><strong>Cost</strong>: Ongoing monthly or annual fees ($5-50+ per month depending on provider and specs)</li>
+<li><strong>Electricity</strong>: No electricity costs (handled by provider)</li>
+<li><strong>Internet</strong>: Included with VPS (no static IP requirements)</li>
+<li><strong>Maintenance</strong>: Minimal hardware maintenance (provider handles this)</li>
+<li><strong>Best For</strong>: People who want professional hosting without hardware investment, or those without suitable home hardware</li>
+</ul>
+<h2 id="cost-comparison">Cost Comparison</h2>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Initial Cost</th>
+<th>Ongoing Cost</th>
+<th>Electricity (annual)</th>
+<th>Internet Requirements</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Linux Mint Home Server</td>
+<td>$0</td>
+<td>$0</td>
+<td>$50-200</td>
+<td>Static IP required</td>
+</tr>
+<tr>
+<td>Ubuntu Home Server</td>
+<td>$0</td>
+<td>$0</td>
+<td>$50-200</td>
+<td>Static IP required</td>
+</tr>
+<tr>
+<td>Raspberry Pi Home Server</td>
+<td>$70-300</td>
+<td>$0</td>
+<td>$5</td>
+<td>Static IP required</td>
+</tr>
+<tr>
+<td>VPS Server</td>
+<td>$0</td>
+<td>$60-600+</td>
+<td>$0</td>
+<td>Included</td>
+</tr>
+</tbody>
+</table>
+<h2 id="key-considerations">Key Considerations</h2>
+<h3 id="for-home-server-setups">For Home Server Setups:</h3>
+<ul>
+<li><strong>Static IP</strong>: You'll need to contact your internet provider to get a static IP address (may cost $5-15/month extra)</li>
+<li><strong>Port Forwarding</strong>: You'll need to configure port forwarding on your home router</li>
+<li><strong>Power Reliability</strong>: Home servers are subject to power outages unless you have UPS backup</li>
+<li><strong>Security</strong>: Your home network becomes part of your server infrastructure</li>
+</ul>
+<h3 id="for-vps-setups">For VPS Setups:</h3>
+<ul>
+<li><strong>Reliability</strong>: Professional data centers with 99.9%+ uptime guarantees</li>
+<li><strong>Scalability</strong>: Easy to upgrade/downgrade resources as needed</li>
+<li><strong>No Home Network Exposure</strong>: Your personal network remains separate</li>
+<li><strong>Global Access</strong>: Can choose data center locations worldwide</li>
+</ul>
+<h2 id="recommendation">Recommendation</h2>
+<p><strong>Start with what you have available:</strong>
+1. If you have an old computer collecting dust → Choose Linux Mint or Ubuntu Home Server
+2. If you want dedicated, low-power hardware → Choose Raspberry Pi Home Server
+3. If you want zero hardware investment and maximum reliability → Choose VPS Server</p>
+<p>Each setup option will result in a fully functional server capable of running web applications, databases, and mail servers as covered in the subsequent chapters of this book.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 VEXIT &reg;, Tomorrow is Today &trade;, www.vexit.com
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com"></script>
+      
+    
+  </body>
+</html>

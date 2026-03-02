@@ -1,0 +1,1546 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://vexit.github.io/byoserver/1_SetUpServer_HomeServer_Ubuntu/">
+      
+      
+        <link rel="prev" href="../1_SetUpServer_Overview/">
+      
+      
+        <link rel="next" href="../1_SetUpServer_HomeServer_RaspberryPi/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+    
+    
+      
+        <title>Home Server (Ubuntu) - BYO Server</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#home-server-ubuntu-setup" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="BYO Server" class="md-header__button md-logo" aria-label="BYO Server" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BYO Server
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Home Server (Ubuntu)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="green"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="BYO Server" class="md-nav__button md-logo" aria-label="BYO Server" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    BYO Server
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0.1_File_System_Basics_with_Bash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core Concepts (Bash/CLI)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0.2_Linux_Users_Groups_and_Permissions_Reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Permissions Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Choose Your Server Setup
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Choose Your Server Setup
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_SetUpServer_Overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Server Setup Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home Server (Ubuntu)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home Server (Ubuntu)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#definitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definitions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-data-used" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Data Used
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install System
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Install System">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#download-ubuntu-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Download Ubuntu Image
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-bootable-usb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create Bootable USB
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boot-from-usb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Boot from USB
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installation-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installation Setup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User Setup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#location-and-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Location and Installation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#start-using-terminal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Start Using Terminal
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sudo-disable-password-prompt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sudo Disable Password Prompt
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#update-upgrade-reboot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Update Upgrade Reboot
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ssh-remotely-connect-to-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SSH - Remotely Connect to Server
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SSH - Remotely Connect to Server">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#set-up-ssh-on-server-remote-machine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Set Up SSH on Server (Remote) Machine
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connect-to-server-from-pc-local-machine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Connect to Server from PC (Local) Machine
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enable-root-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable root User
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-admin-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create Admin Account
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_SetUpServer_HomeServer_RaspberryPi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home Server (Raspberry Pi)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_SetUpServer_HomeServer_LinuxMint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home Server (Linux Mint)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_SetUpServer_VPS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VPS / Hosting Provider
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2_WebServer_Nginx_Apache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web Server (Nginx/Apache)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3_WebApp_NetCore_Angular/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    App Deployment (.NET/Angular)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4_Cron_Jobs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Task Automation (Cron Jobs)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5_Database_PostgreSQL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database (PostgreSQL)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6_MailServer_Postfix_Dovecot_Thunderbird/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mail Server (Postfix/Dovecot)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#definitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definitions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-data-used" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Data Used
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install System
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Install System">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#download-ubuntu-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Download Ubuntu Image
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-bootable-usb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create Bootable USB
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boot-from-usb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Boot from USB
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installation-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installation Setup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User Setup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#location-and-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Location and Installation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#start-using-terminal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Start Using Terminal
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sudo-disable-password-prompt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sudo Disable Password Prompt
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#update-upgrade-reboot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Update Upgrade Reboot
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ssh-remotely-connect-to-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SSH - Remotely Connect to Server
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SSH - Remotely Connect to Server">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#set-up-ssh-on-server-remote-machine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Set Up SSH on Server (Remote) Machine
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connect-to-server-from-pc-local-machine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Connect to Server from PC (Local) Machine
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enable-root-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable root User
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-admin-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create Admin Account
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="home-server-ubuntu-setup">Home Server Ubuntu Setup</h1>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Copyright:</td>
+<td>© 2025 VEXIT , Tomorow is today ® , www.vexit.com</td>
+</tr>
+<tr>
+<td>Author:</td>
+<td>Vex Tatarevic</td>
+</tr>
+<tr>
+<td>Date Created:</td>
+<td>2025-09-18</td>
+</tr>
+<tr>
+<td>Date Updated:</td>
+<td>2025-09-18</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="definitions">Definitions</h2>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Server / Remote (machine) / Host</td>
+<td>Ubuntu Linux server computer</td>
+</tr>
+<tr>
+<td>PC / Local (machine) / Client</td>
+<td>Your personal computer</td>
+</tr>
+</tbody>
+</table>
+<h2 id="example-data-used">Example Data Used</h2>
+<p>We will use the following data for the examples. </p>
+<p>You should replace the sample data with your own data.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Company name</td>
+<td>my-com</td>
+</tr>
+<tr>
+<td>Personal USername on Server</td>
+<td>my-user</td>
+</tr>
+<tr>
+<td>Admin Username on Server</td>
+<td>admin</td>
+</tr>
+<tr>
+<td>Server name</td>
+<td>my-server</td>
+</tr>
+<tr>
+<td>Server IP</td>
+<td>192.168.1.105</td>
+</tr>
+<tr>
+<td>SSH Port</td>
+<td>22</td>
+</tr>
+<tr>
+<td>Website Domain Name</td>
+<td>my-site.com</td>
+</tr>
+<tr>
+<td>Host Name</td>
+<td>my-site.com</td>
+</tr>
+</tbody>
+</table>
+<h2 id="install-system">Install System</h2>
+<h3 id="prerequisites">Prerequisites</h3>
+<ul>
+<li>Ensure laptop/PC has minimum 25GB storage space</li>
+<li>Have USB flash drive (12GB or above recommended)</li>
+<li>Backup existing data if reinstalling on used device</li>
+</ul>
+<p>Ref: <a href="https://ubuntu.com/tutorials/install-ubuntu-desktop#1-overview">Ubuntu.com - Overview</a></p>
+<h3 id="download-ubuntu-image">Download Ubuntu Image</h3>
+<ul>
+<li>Open browser</li>
+<li>Go to https://ubuntu.com/download/desktop</li>
+<li>Download latest Ubuntu Desktop ISO (24.04 LTS recommended)</li>
+<li>Save ISO to memorable location on your PC</li>
+</ul>
+<p>Ref: <a href="https://ubuntu.com/tutorials/install-ubuntu-desktop#2-download-an-ubuntu-image">Ubuntu.com - Download An Ubuntu Image</a></p>
+<h3 id="create-bootable-usb">Create Bootable USB</h3>
+<ul>
+<li>Download balenaEtcher for your current OS from https://www.balena.io/etcher/</li>
+<li>Install and run balenaEtcher</li>
+<li>Select downloaded Ubuntu ISO file</li>
+<li>Select your USB flash drive</li>
+<li>Click Flash! to write the image</li>
+</ul>
+<p>Ref: <a href="https://ubuntu.com/tutorials/install-ubuntu-desktop#3-create-a-bootable-usb-stick">Ubuntu.com - Create A Bootable Usb Stick</a></p>
+<h3 id="boot-from-usb">Boot from USB</h3>
+<ul>
+<li>Insert USB drive into target laptop/PC</li>
+<li>Restart device</li>
+<li>Enter BIOS boot menu (usually F12, F2, F10, or ESC key)</li>
+<li>Select USB drive from boot menu</li>
+<li>Choose language when prompted</li>
+<li>Select accessibility options if needed</li>
+<li>Choose keyboard layout</li>
+<li>Connect to network (enables driver downloads)</li>
+<li>Click "Try Ubuntu" to test or "Install Ubuntu" to proceed</li>
+</ul>
+<p>Ref: <a href="https://ubuntu.com/tutorials/install-ubuntu-desktop#4-boot-from-usb-flash-drive">Ubuntu.com - Boot From Usb Flash Drive</a></p>
+<h3 id="installation-setup">Installation Setup</h3>
+<ul>
+<li>Choose "Interactive installation"</li>
+<li>Select installation type:</li>
+<li>"Erase disk and install Ubuntu" for clean install</li>
+<li>Or choose alongside existing OS if dual-booting</li>
+<li>Check boxes for third-party software and media formats</li>
+<li>Configure disk partitioning as needed</li>
+</ul>
+<p>Ref: <a href="https://ubuntu.com/tutorials/install-ubuntu-desktop#5-installation-setup">Ubuntu.com - Installation Setup</a></p>
+<h3 id="user-setup">User Setup</h3>
+<ul>
+<li>Enter your name</li>
+<li>Choose computer name (appears on network)</li>
+<li>Create username and strong password</li>
+<li>Choose login options (automatic or password required)</li>
+</ul>
+<p>Ref: <a href="https://ubuntu.com/tutorials/install-ubuntu-desktop#7-create-your-login-details">Ubuntu.com - Create Your Login Details</a></p>
+<h3 id="location-and-installation">Location and Installation</h3>
+<ul>
+<li>Select your timezone/location</li>
+<li>Review installation summary</li>
+<li>Click "Install" to begin installation</li>
+<li>Wait for installation to complete</li>
+<li>Click "Restart Now" when prompted</li>
+<li>Remove USB drive when prompted</li>
+<li>Enter encryption password if set</li>
+</ul>
+<p>Ref: <a href="https://ubuntu.com/tutorials/install-ubuntu-desktop#8-choose-your-location">Ubuntu.com - Choose Your Location</a></p>
+<h2 id="start-using-terminal">Start Using Terminal</h2>
+<p>After the installation you should be logged in as <strong>my-user</strong> into the Server machine.</p>
+<ul>
+<li>
+<p><strong>Open Terminal</strong> : <kbd>CTRL + ALT + T</kbd></p>
+</li>
+<li>
+<p>You should see</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>my-user@my-server:~$
+</span></code></pre></div>
+</li>
+<li>
+<p><strong>Close Terminal</strong> - type command <code>exit</code> to close the Terminal </p>
+</li>
+</ul>
+<p><strong>IMPORTANT:</strong> From this point on we will ONLY use the Terminal to interact with the Server machine. Whenever you see a command in this document, you should type it into the Terminal. We will not explicitly tell you to do so. You should know that seeing a code block with a command means that you should type it into the Terminal.</p>
+<h2 id="sudo-disable-password-prompt">Sudo Disable Password Prompt</h2>
+<p>To run priviledged commands we must type <strong>sudo</strong> before the commands. By default using sudo asks for password every 15 minutes.</p>
+<ul>
+<li>Run the following command to see how annoying it is. Cancel when it asks you for password by pressing <kbd>CTRL + C</kbd></li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
+</span></code></pre></div>
+<p>Disable sudo password prompt so that you don't have to type it ever again when you want to run a sudo command.</p>
+<ul>
+<li>Open <strong>sudoers</strong> file</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo<span class="w"> </span>visudo
+</span></code></pre></div>
+<ul>
+<li>Look for the line starting with <strong>%sudo</strong>. It should look like this:</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Allow members of group sudo to execute any command</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>%sudo<span class="w">   </span><span class="nv">ALL</span><span class="o">=(</span>ALL<span class="o">)</span><span class="w"> </span>ALL
+</span></code></pre></div>
+<ul>
+<li>Add keyword <strong>NOPASSWD</strong> and a column symbol before the last <strong>ALL</strong>. It should now look like this</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Allow members of group sudo to execute any command</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>%sudo<span class="w">   </span><span class="nv">ALL</span><span class="o">=(</span>ALL<span class="o">)</span><span class="w"> </span>NOPASSWD:ALL
+</span></code></pre></div>
+<ul>
+<li>Save and close the file: <kbd>CTRL + S</kbd> <kbd>CTRL + X</kbd></li>
+</ul>
+<h2 id="update-upgrade-reboot">Update Upgrade Reboot</h2>
+<ul>
+<li>Update system - this will update the list of available packages</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
+</span></code></pre></div>
+<ul>
+<li>Upgrade system - this will upgrade all the packages to the latest version</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>upgrade
+</span></code></pre></div>
+<ul>
+<li>Restart</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sudo<span class="w"> </span>reboot
+</span></code></pre></div>
+<h2 id="ssh-remotely-connect-to-server">SSH - Remotely Connect to Server</h2>
+<h3 id="set-up-ssh-on-server-remote-machine">Set Up SSH on Server (Remote) Machine</h3>
+<p>On <strong>Server</strong> machine:</p>
+<ul>
+<li><strong>Install SSH server</strong></li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>openssh-server
+</span></code></pre></div>
+<ul>
+<li><strong>Print internal IP address</strong> of server machine</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>hostname<span class="w"> </span>-I
+</span></code></pre></div>
+<ul>
+<li>You should see address like : <code>192.168.1.105</code></li>
+<li><strong>Note the IP address for remote access</strong></li>
+</ul>
+<h3 id="connect-to-server-from-pc-local-machine">Connect to Server from PC (Local) Machine</h3>
+<ul>
+<li>
+<p>Log into your local <strong>PC</strong> computer</p>
+</li>
+<li>
+<p>Open Terminal</p>
+</li>
+<li>Connect to Server using SSH with the server IP address you noted down earlier and your user name on the server</li>
+</ul>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>ssh<span class="w"> </span>my-user@192.168.1.105
+</span></code></pre></div>
+  - You will see prompt</p>
+<div class="language-text highlight"><pre><span></span><code>```bash
+Are you sure you want to continue connecting (yes/no/[fingerprint])?
+```
+</code></pre></div>
+<ul>
+<li>Type <strong>yes</strong> and hit Enter</li>
+<li>You will be prompted for password. </li>
+<li>Type the password and hit Enter</li>
+<li>You will see the welcome message of the Server machine</li>
+</ul>
+<p>You are now connected to the Server machine remotely and can run any commands as if you were sitting in front of it.</p>
+<ul>
+<li><strong>Disconnect</strong> from Server: <kbd>CTRL + D</kbd></li>
+</ul>
+<p>FROM THIS POINT ON, YOU WILL ONLY CONNECT TO THE SERVER <strong>REMOTELY</strong> USING <strong>SSH</strong> VIA THE TERMINAL ON YOUR PC.</p>
+<h2 id="enable-root-user">Enable root User</h2>
+<ul>
+<li>SSH into Server as <strong>my-user</strong></li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>ssh<span class="w"> </span>my-user@192.168.1.105
+</span></code></pre></div>
+<ul>
+<li>Generate password</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>head<span class="w"> </span>-c<span class="w"> </span><span class="m">8</span><span class="w"> </span>/dev/urandom<span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w"> </span><span class="p">|</span><span class="w"> </span>tr<span class="w"> </span>-dc<span class="w"> </span><span class="s1">&#39;a-zA-Z0-9&#39;</span><span class="p">;</span><span class="w"> </span><span class="nb">echo</span><span class="w">   </span>
+</span></code></pre></div>
+<ul>
+<li>
+<p>Copy the password</p>
+</li>
+<li>
+<p>Enable "<strong>root</strong>" user</p>
+</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>sudo<span class="w"> </span>passwd<span class="w"> </span>root
+</span></code></pre></div>
+<ul>
+<li>
+<p>Paste the password and hit Enter</p>
+</li>
+<li>
+<p>You should see prompt: <code>Retype new password:</code></p>
+</li>
+<li>
+<p>Paste the password and hit Enter again</p>
+</li>
+</ul>
+<p><strong>NOTE:</strong> If you make a mistake, exit out of interactive mode by typing <kbd>CTRL + D</kbd> and try again.</p>
+<p><strong>IMPORTANT:</strong> Save the password somewhere safe. You will need it in the next section</p>
+<p><strong>NOTE:</strong> We will be using root user to set up the admin user. This is only temporary. We will disable the root user very soon.</p>
+<ul>
+<li>
+<p><strong>Enable password-based login via SSH for root</strong> user  - This is disabled by default in SSH config.</p>
+</li>
+<li>
+<p>Open ssh config file <code>sshd_config</code> for editing</p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/ssh/sshd_config
+</span></code></pre></div>
+  - Locate line starting with <code>#PermitRootLogin</code>
+  - Change its value to <code>yes</code>
+  - Uncomment the line - remove the <code>#</code> from the start
+  - It should now look like this: <code>PermitRootLogin yes</code>
+  - Save and close the file: <kbd>CTRL + S</kbd> <kbd>CTRL + X</kbd>
+  - Restart ssh service</p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>ssh
+</span></code></pre></div>
+  - Reload daemon</p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>daemon-reload
+</span></code></pre></div>
+  - Verify status of ssh service</p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>ssh
+</span></code></pre></div>
+- You should see <code>Active: active (running)</code>  </p>
+</li>
+<li>
+<p>Disconnect from Server</p>
+</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nb">exit</span>
+</span></code></pre></div>
+<h2 id="create-admin-account">Create Admin Account</h2>
+<ul>
+<li>SSH into Server as <strong>root</strong></li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>ssh<span class="w"> </span>root@192.168.1.105
+</span></code></pre></div>
+<ul>
+<li>Create admin user</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>adduser<span class="w"> </span>admin
+</span></code></pre></div>
+<h1 id="note-the-rest-of-the-setup-is-exactly-the-same-as-for-linux-mint-walktrough">NOTE: The rest of the setup is exactly the same as for Linux Mint walktrough</h1>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 VEXIT &reg;, Tomorrow is Today &trade;, www.vexit.com
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,5956 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://vexit.github.io/byoserver/1_SetUpServer_HomeServer_RaspberryPi/">
+      
+      
+        <link rel="prev" href="../1_SetUpServer_HomeServer_Ubuntu/">
+      
+      
+        <link rel="next" href="../1_SetUpServer_HomeServer_LinuxMint/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+    
+    
+      
+        <title>Home Server (Raspberry Pi) - BYO Server</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#linux-server-home-server-raspberry-pi" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="BYO Server" class="md-header__button md-logo" aria-label="BYO Server" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BYO Server
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Home Server (Raspberry Pi)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="green"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="BYO Server" class="md-nav__button md-logo" aria-label="BYO Server" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    BYO Server
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0.1_File_System_Basics_with_Bash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core Concepts (Bash/CLI)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0.2_Linux_Users_Groups_and_Permissions_Reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Permissions Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Choose Your Server Setup
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Choose Your Server Setup
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_SetUpServer_Overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Server Setup Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_SetUpServer_HomeServer_Ubuntu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home Server (Ubuntu)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home Server (Raspberry Pi)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home Server (Raspberry Pi)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#definitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definitions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#obtain-static-ip-address-from-isp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Obtain Static IP Address from ISP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-client-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install Client Software
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Install Client Software">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-git-bash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install Git Bash
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-telnet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install Telnet
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-raspberry-pi-os" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install Raspberry Pi OS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Install Raspberry Pi OS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#download-and-install-raspberry-pi-os" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Download and Install Raspberry Pi OS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-boot-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Change Boot Mode
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Change Boot Mode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#changing-to-cli-only-boot-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Changing to CLI-Only Boot Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changing-to-desktop-boot-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Changing to Desktop Boot Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#openclose-raspi-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Open/Close raspi-config
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-keyboard-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Change Keyboard Layout
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-autologin-to-require-login" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Change Autologin to Require Login
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-up-wi-fi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Set up Wi Fi
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#start-using-command-line-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Start Using Command Line Interface
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#update-and-upgrade-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Update and Upgrade system
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shut-down-safely" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shut Down Safely
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-the-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure the System
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configure the System">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#set-up-wi-fi_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Set up Wi-Fi
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enabledisable-root-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable/Disable root user
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Enable/Disable root user">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enable-root" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable root
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disable-root" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disable root
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-username-and-group-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Change Username and Group Name
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remove-sudo-password-prompt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remove Sudo Password Prompt
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-users-home-folder-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure Users' Home Folder Security
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configure Users&#39; Home Folder Security">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#demonstrate-system-insecurity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Demonstrate System Insecurity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fix-system-insecurity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fix System Insecurity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chroot-jail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CHROOT Jail
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-user-admin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create User Admin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-computer-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Change Computer Name
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#set-up-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Set up Network
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Set up Network">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#check-local-network-connectivity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Check Local Network Connectivity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#open-router-admin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Open Router Admin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-internal-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get Internal IP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-up-static-internal-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Set up Static Internal IP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-external-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get External IP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-port-forwarding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure Port Forwarding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-outside-connectivity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Check Outside Connectivity
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Check Outside Connectivity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#use-ismyportopencom" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use IsMyPortOpen.com
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-netcat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use Netcat
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#set-up-firewall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Set up Firewall
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Set up Firewall">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-and-enable-ufw" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install and Enable UFW
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-firewall-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Add Firewall Rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remove-firewall-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remove Firewall Rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ssh-remote-connect" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SSH - Remote Connect
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SSH - Remote Connect">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-enable-ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1 - Enable SSH
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-remote-connect-with-ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2 - Remote Connect with SSH
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 2 - Remote Connect with SSH">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ssh-over-lan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SSH over LAN
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssh-over-internet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SSH over Internet
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-passwordless-connect-with-rsa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3 - Passwordless Connect with RSA
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-one-word-connect-with-ssh-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4 - One Word Connect with SSH Config
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rdp-remote-connect-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RDP - Remote Connect - Windows
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RDP - Remote Connect - Windows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configure-xrdp-on-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure XRDP on Server
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connect-from-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Connect from Client
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#upload-download" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Upload / Download
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Upload / Download">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#upload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Upload
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#download" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Download
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manage-external-storage-device" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manage External Storage Device
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Manage External Storage Device">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#temporary-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Temporary Storage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#permanent-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Permanent Storage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Permanent Storage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-create-partition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1. Create Partition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-format-partition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2. Format Partition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-mount-external-drive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3. Mount External Drive
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-give-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5. Give Access
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unmount" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unmount
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Unmount">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dealing-with-target-is-busy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dealing with 'target is busy'
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assign-access-only-to-our-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Assign access only to our user
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#troubleshoot-mounting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshoot Mounting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshoot Mounting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fixing-error-root-account-locked" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FIXING ERROR Root account locked
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixing-error-failed-to-mount" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FIXING ERROR Failed to mount
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="FIXING ERROR Failed to mount">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fix-1-change-mount-option-for-check-fylesystem-during-boot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FIX 1. - Change mount option for check fylesystem during boot
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fix-2-format-and-partition-usb-disc-in-desktop-gui-with-gparted" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FIX 2. - Format and Partition USB disc in Desktop GUI with GParted
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixing-long-boot-checking-in-progress" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FIXING Long Boot - Checking in progress
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional Installation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Optional Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add-support-for-32-bit-programs-on-64-bit-os" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Add Support for 32 bit programs on 64 bit OS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#express-vpn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Express VPN
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Express VPN">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-download-express-vpn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Download Express VPN
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-install-express-vpn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Install Express VPN
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-activate-expressvpn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Activate ExpressVPN.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-connect-disconnect-to-vpn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Connect &amp; Disconnect to VPN
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-automatically-start-on-logn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Automatically start on logn
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_SetUpServer_HomeServer_LinuxMint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home Server (Linux Mint)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_SetUpServer_VPS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VPS / Hosting Provider
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2_WebServer_Nginx_Apache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web Server (Nginx/Apache)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3_WebApp_NetCore_Angular/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    App Deployment (.NET/Angular)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4_Cron_Jobs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Task Automation (Cron Jobs)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5_Database_PostgreSQL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database (PostgreSQL)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6_MailServer_Postfix_Dovecot_Thunderbird/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mail Server (Postfix/Dovecot)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#definitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definitions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#obtain-static-ip-address-from-isp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Obtain Static IP Address from ISP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-client-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install Client Software
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Install Client Software">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-git-bash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install Git Bash
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-telnet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install Telnet
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-raspberry-pi-os" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install Raspberry Pi OS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Install Raspberry Pi OS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#download-and-install-raspberry-pi-os" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Download and Install Raspberry Pi OS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-boot-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Change Boot Mode
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Change Boot Mode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#changing-to-cli-only-boot-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Changing to CLI-Only Boot Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changing-to-desktop-boot-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Changing to Desktop Boot Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#openclose-raspi-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Open/Close raspi-config
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-keyboard-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Change Keyboard Layout
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-autologin-to-require-login" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Change Autologin to Require Login
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-up-wi-fi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Set up Wi Fi
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#start-using-command-line-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Start Using Command Line Interface
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#update-and-upgrade-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Update and Upgrade system
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shut-down-safely" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shut Down Safely
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-the-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure the System
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configure the System">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#set-up-wi-fi_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Set up Wi-Fi
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enabledisable-root-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable/Disable root user
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Enable/Disable root user">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enable-root" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable root
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disable-root" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disable root
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-username-and-group-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Change Username and Group Name
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remove-sudo-password-prompt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remove Sudo Password Prompt
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-users-home-folder-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure Users' Home Folder Security
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configure Users&#39; Home Folder Security">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#demonstrate-system-insecurity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Demonstrate System Insecurity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fix-system-insecurity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fix System Insecurity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chroot-jail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CHROOT Jail
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-user-admin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create User Admin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-computer-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Change Computer Name
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#set-up-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Set up Network
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Set up Network">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#check-local-network-connectivity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Check Local Network Connectivity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#open-router-admin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Open Router Admin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-internal-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get Internal IP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-up-static-internal-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Set up Static Internal IP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-external-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get External IP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-port-forwarding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure Port Forwarding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-outside-connectivity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Check Outside Connectivity
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Check Outside Connectivity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#use-ismyportopencom" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use IsMyPortOpen.com
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-netcat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use Netcat
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#set-up-firewall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Set up Firewall
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Set up Firewall">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-and-enable-ufw" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install and Enable UFW
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-firewall-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Add Firewall Rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remove-firewall-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remove Firewall Rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ssh-remote-connect" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SSH - Remote Connect
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SSH - Remote Connect">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-enable-ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1 - Enable SSH
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-remote-connect-with-ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2 - Remote Connect with SSH
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 2 - Remote Connect with SSH">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ssh-over-lan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SSH over LAN
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssh-over-internet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SSH over Internet
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-passwordless-connect-with-rsa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3 - Passwordless Connect with RSA
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-one-word-connect-with-ssh-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4 - One Word Connect with SSH Config
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rdp-remote-connect-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RDP - Remote Connect - Windows
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RDP - Remote Connect - Windows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configure-xrdp-on-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure XRDP on Server
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connect-from-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Connect from Client
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#upload-download" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Upload / Download
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Upload / Download">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#upload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Upload
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#download" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Download
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manage-external-storage-device" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manage External Storage Device
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Manage External Storage Device">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#temporary-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Temporary Storage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#permanent-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Permanent Storage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Permanent Storage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-create-partition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1. Create Partition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-format-partition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2. Format Partition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-mount-external-drive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3. Mount External Drive
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-give-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5. Give Access
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unmount" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unmount
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Unmount">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dealing-with-target-is-busy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dealing with 'target is busy'
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assign-access-only-to-our-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Assign access only to our user
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#troubleshoot-mounting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshoot Mounting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshoot Mounting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fixing-error-root-account-locked" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FIXING ERROR Root account locked
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixing-error-failed-to-mount" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FIXING ERROR Failed to mount
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="FIXING ERROR Failed to mount">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fix-1-change-mount-option-for-check-fylesystem-during-boot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FIX 1. - Change mount option for check fylesystem during boot
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fix-2-format-and-partition-usb-disc-in-desktop-gui-with-gparted" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FIX 2. - Format and Partition USB disc in Desktop GUI with GParted
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixing-long-boot-checking-in-progress" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FIXING Long Boot - Checking in progress
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional Installation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Optional Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add-support-for-32-bit-programs-on-64-bit-os" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Add Support for 32 bit programs on 64 bit OS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#express-vpn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Express VPN
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Express VPN">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-download-express-vpn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Download Express VPN
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-install-express-vpn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Install Express VPN
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-activate-expressvpn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Activate ExpressVPN.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-connect-disconnect-to-vpn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Connect &amp; Disconnect to VPN
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-automatically-start-on-logn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Automatically start on logn
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="linux-server-home-server-raspberry-pi">Linux Server - Home Server - Raspberry Pi</h1>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Copyright:</td>
+<td>© 2022 VEXIT , Tomorow is today ® , www.vexit.com</td>
+<td></td>
+</tr>
+<tr>
+<td>Author:</td>
+<td>Vex Tatarevic</td>
+<td></td>
+</tr>
+<tr>
+<td>Date Created:</td>
+<td>2022-11-23</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="definitions">Definitions</h2>
+<p>In this book we will use technical words that you may not be familiar with. </p>
+<p>Below is a table explaining these words.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Client</td>
+<td>Your personal computer: Windows, Mac or Linux, that you use to connect remotely to home server</td>
+</tr>
+<tr>
+<td>Server</td>
+<td>Computer that we are using as a home server machine</td>
+</tr>
+<tr>
+<td>Directory</td>
+<td>Folder</td>
+</tr>
+<tr>
+<td>Machine</td>
+<td>Computer</td>
+</tr>
+<tr>
+<td>Terminal</td>
+<td>Program used for inputing commands to interact with operating system. On Windows we use <strong>Git Bash</strong> terminal program. On Linux and macOS, terminal program is called <strong>Terminal</strong></td>
+</tr>
+</tbody>
+</table>
+<h2 id="obtain-static-ip-address-from-isp">Obtain Static IP Address from ISP</h2>
+<p>By default, your <strong>ISP (internet service provider)</strong> will assign your local network a <strong>Dynamic IP Address</strong> - which keeps on changing all the time.</p>
+<p>In order for your server computer to be reachable from outside world (by other computers on the internet), it must have a <strong>Static IP Address</strong>.</p>
+<ul>
+<li>Contact your ISP and ask them to upgrade your internet connection plan to one that provides a <strong>Static IP Address</strong></li>
+</ul>
+<h2 id="install-client-software">Install Client Software</h2>
+<ul>
+<li>Log into your <a href="#definitions">Client computer</a>. This is the computer you use every day. We will use this computer to connect remotelly to our server at the later stage.</li>
+</ul>
+<h3 id="install-git-bash">Install Git Bash</h3>
+<ul>
+<li>On your <a href="#definitions">Client computer</a></li>
+<li>Open the browser and go to <a href="https://www.git-scm.com/">git-scm.com</a>.</li>
+<li>Download and install Git</li>
+</ul>
+<h3 id="install-telnet">Install Telnet</h3>
+<p>On <strong>Windows</strong>:
+- Open <strong>Control Panel</strong>
+- Click on <strong>Programs</strong>
+- Click on <strong>Turn Windows features on or off</strong>
+- Check the box next to <strong>Telnet Client</strong>
+- Click <strong>OK</strong>
+- Telnet is now installed</p>
+<p>On <strong>macOS</strong>:
+- Open Terminal: CMD + Space &gt; type Terminal &gt; Enter
+- Install Telnet</p>
+<div class="language-text highlight"><pre><span></span><code>  brew install telnet
+</code></pre></div>
+<ul>
+<li>If you don't have <strong>brew</strong> installed, go to <a href="https://brew.sh">brew.sh</a> and follow the instructions to install it.</li>
+</ul>
+<p>On <strong>Linux</strong>:
+- Open Terminal: CTRL + ALT + T
+- Install telnet</p>
+<div class="language-text highlight"><pre><span></span><code>  sudo apt install telnet
+</code></pre></div>
+<h2 id="prerequisites">Prerequisites</h2>
+<ul>
+<li>Buy a <strong>Raspberry Pi computer</strong>. Go to <a href="https://www.raspberrypi.com">Raspberrypi.com</a> for more info.</li>
+<li>Buy <strong>Micro SD card</strong> of minimum 32 Gb memory size</li>
+<li>
+<p><strong>SSD (solid state drive) disc</strong> for storage (ideally 2 terabytes), but for practice you can even use a USB drive</p>
+</li>
+<li>
+<p>Why choose Raspberry Pi ? </p>
+</li>
+<li><strong>Small</strong> - It is the smallest server computer in the world. It is only the size of your palm</li>
+<li><strong>Portable</strong> - If there's a flood, fire, war, earthquake or any kind of disaster happens around you and you need to quickly move, you simply unplug your Raspberry Pi, put it in your pocket and run. It's that simple.</li>
+<li><strong>Reliable</strong> - you can simply plug it in the power, leave it there and forget about it. You can turn the power on or off in the wall whenever and it will not affect the Pi. The Pi just keeps running.</li>
+<li><strong>Low power consumption</strong> - It uses very little electricity. It costs only $5 per year to run it 24/7.</li>
+</ul>
+<h2 id="install-raspberry-pi-os">Install Raspberry Pi OS</h2>
+<h3 id="download-and-install-raspberry-pi-os">Download and Install Raspberry Pi OS</h3>
+<ul>
+<li>On your <a href="#definitions">Client computer</a></li>
+<li>
+<p>Go to Raspberry Pi OS download page: <a href="https://www.raspberrypi.org/software">www.raspberrypi.org/software</a></p>
+</li>
+<li>
+<p>Download and install <strong>"Raspberry Pi Imager"</strong></p>
+</li>
+<li>
+<p>This program is used to install the operating system onto the MicroSD Card</p>
+</li>
+<li>
+<p>Plug the <strong>Micro SD card</strong> into your Client PC. </p>
+</li>
+<li>
+<p>If you don't have a Micro SD card slot on your computer, you will have to use <strong>MicroSD to USB adapter</strong>.</p>
+</li>
+<li>
+<p>Run the <strong>"Raspberry Pi Imager"</strong> program:</p>
+<ul>
+<li>Under <strong>Operating System</strong>, Click <strong>"CHOOSE OS"</strong> </li>
+<li>Select <strong>"Raspberry Pi OS (other)"</strong> </li>
+<li>Scroll down and select <strong>"Raspberry Pi OS (64-bit)"</strong> - A port of Debian Bullseye with the Raspberry Pi Desktop</li>
+<li>Under <strong>Storage</strong>, Click <strong>"CHOOSE STORAGE"</strong>, then select your SD card</li>
+<li>Click <strong>"WRITE"</strong> and wait for the process to complete</li>
+</ul>
+</li>
+<li>
+<p>Remove the MicroSD card from your PC and insert it into your Raspberry Pi</p>
+</li>
+<li>
+<p>Connect keyboard, mouse and monitor to <a href="#definitions">Server</a> (Raspberry Pi).</p>
+</li>
+<li>
+<p>Turn on the <a href="#definitions">Server</a></p>
+</li>
+<li>
+<p>You will see the first screen of the setup wizard with the text:</p>
+<p>Welcome to the Raspberry Pi Desktop!</p>
+</li>
+</ul>
+<blockquote>
+<p><strong>IMPORTANT:</strong> If you are using Bluetooth keyboard and mouse, make sure to put them in pairing mode on the very first screen of the setup wizard and wait for the Connect popup to come up. Do not progress to the next wizard screen until your keyboard has been connected, because you will not be able to type in the text or connect the keyboard at the later screens.</p>
+</blockquote>
+<ul>
+<li>
+<p>Walk through installation wizard by clicking <strong>Next</strong></p>
+</li>
+<li>
+<p>On <strong>Set Country</strong> screen:</p>
+</li>
+<li>Set your Country and Timezone</li>
+<li>Check Use English language</li>
+<li>
+<p>Check use US keyboard</p>
+</li>
+<li>
+<p>On <strong>Create User</strong> screen, set traditional default username and password :</p>
+</li>
+<li>Username: <strong>main-user</strong></li>
+<li>
+<p>Password: <strong>main</strong></p>
+</li>
+<li>
+<p>You may get the warning popup</p>
+<p>You have used a known default value for the username or password.
+  We strongly recommend you go back and chose something else.</p>
+</li>
+<li>
+<p>Don't wory about this. We will change the username and password later.</p>
+</li>
+<li>
+<p>On <strong>Select WiFi Network</strong> screen, select your wireless network from the list and provide password so that server computer can connect to the internet.</p>
+</li>
+<li>
+<p>On <strong>Update Software</strong> click <strong>Next</strong> to download the latest software.</p>
+</li>
+<li>At the end of the wizard you should be prompted to restart the computer.</li>
+<li>After the computer restarts, you will see the Desktop with the menu at the top.</li>
+</ul>
+<h3 id="change-boot-mode">Change Boot Mode</h3>
+<p>Raspberry Pi computer can boot in one of 2 modes:</p>
+<ol>
+<li>
+<p><a href="#option-1-desktop-boot---terminal">Desktop Boot</a> - computer runs in graphic user interface mode.</p>
+</li>
+<li>
+<p><a href="#option-2-cli-boot">CLI Boot</a> - computer runs only in command line interface mode and you cannot access any graphic user interface.</p>
+</li>
+</ol>
+<p><strong>It is highly recommended to use Desktop Boot mode</strong>, because it is easier to use and you can use comand line interface by opening Terminal program.</p>
+<h4 id="changing-to-cli-only-boot-mode">Changing to CLI-Only Boot Mode</h4>
+<ul>
+<li>Use this option only if </li>
+<li>you want to use Raspberry Pi computer as a headless server (without monitor, keyboard and mouse) - in this case probably you will be using SSH to connect to your server remotely from another computer, so better wait until you set up SSH connection before changing to CLI-Only Boot mode.</li>
+<li>you want to save resources by not running Desktop interface</li>
+<li>
+<p>you are comfortable using command line interface only.</p>
+</li>
+<li>
+<p>Click on : <strong>Start (Top-Left Raspberry Pi Icon) &gt; Preferences &gt; Raspberry Pi Configuration</strong></p>
+</li>
+<li>
+<p>Change the setting <strong>Boot</strong> to '<strong>To CLI</strong>' and click OK</p>
+</li>
+<li>
+<p>Click Menu &gt; Shutdown &gt; Reboot , to restart the computer</p>
+</li>
+<li>
+<p>The computer should restart and you will see the <a href="#command-line-prompt">command line prompt</a>:</p>
+<p>main-user@raspberrypi:~ $ _</p>
+</li>
+</ul>
+<h4 id="changing-to-desktop-boot-mode">Changing to Desktop Boot Mode</h4>
+<ul>
+<li><code>sudo raspi-config</code> <strong>&gt; System Options &gt; Boot / Auto Login &gt; Desktop &gt; OK &gt; Reboot</strong></li>
+</ul>
+<p>In the next section read in more detail instructions on how to open and use raspi-config.</p>
+<h3 id="openclose-raspi-config">Open/Close raspi-config</h3>
+<p>Raspi-config is Raspberry Pi Configuration Tool. </p>
+<ul>
+<li>
+<p><strong>Open raspi-config</strong> - type in the following command</p>
+<p>sudo raspi-config</p>
+</li>
+<li>
+<p>Use the up and down arrow keys to move the highlighted selection between the options available. Pressing the right arrow key will jump out of the Options menu and take you to the <strong>&lt; Select &gt;</strong> and <strong>&lt; Finish &gt;</strong> buttons. Pressing left will take you back to the options. </p>
+</li>
+<li>
+<p>If arrows do not work, then use the <strong>Tab</strong> key to move from one section to another.</p>
+</li>
+<li>
+<p><strong>Close raspi-config</strong></p>
+</li>
+<li>
+<p>Hit <strong>ESC</strong> key</p>
+<p>OR 
+  - Move to <strong>&lt; Finish &gt;</strong> and hit Enter
+<br></p>
+</li>
+</ul>
+<h3 id="change-keyboard-layout">Change Keyboard Layout</h3>
+<p><strong>YOU CAN SKIP</strong></p>
+<blockquote>
+<p><strong>NOTE:</strong> You can skip this section and go to <a href="#change-autologin-to-require-login">Change Autologin to Require Login</a> because you have already configured keyboard to <strong>"use US keyboard"</strong> in the Setup Wizard. This <strong>"Change Keyboard Layout"</strong> section was for the users who were installing Raspberry Pi from old command line interface installation and is no longer relevant.</p>
+</blockquote>
+<p>By default Raspberry Pi uses <strong>English (UK)</strong> keyboard layout which has a problem with displaying pipe symbol <strong>"|"</strong> in a standard way. It instead displays tilde symbol <strong>"~"</strong>.
+<br>
+Because we need "|" (pipe symbol) for some of the commands, we will change keyboard layout to standard US keyboard layout.</p>
+<p>NOTE: If you are using Desktop view and you get problems with navigating to Keyboard layout via Terminal CLI, you can do it via Desktop menu instead: 
+- <strong>Start &gt; Preferences Keyboard and Mouse &gt; Keyboard &gt; Keyboard Layout &gt; Model: Generic 105-key PC (intl.) &gt; Layout English (US)</strong></p>
+<p>To configure Keyboard in CLI (command line interface):
+- <a href="#openclose-raspi-config">Open raspi-config</a>
+- Select: <strong>5 Localisation Options &gt; L3 Keyboard</strong>
+  - Use <strong>Down Arrow</strong> to move down to <strong>"5 Localisation Options"</strong>, then hit <strong>Enter</strong> key
+  - Use <strong>Down Arrow</strong> to move down to <strong>"L3 Keyboard"</strong>, then hit <strong>Tab</strong> key to focus on <strong>&lt; Select &gt;</strong> button, then hit <strong>Enter</strong> key to select</p>
+<ul>
+<li>You should see <strong>Keyboard model</strong> page with <strong>Generic 105-key PC</strong> selected</li>
+<li>Hit <strong>Enter</strong> to continue to <strong>Keyboard layout</strong> </li>
+<li>On <strong>Keyboard layout</strong> it will have selected <strong>English (UK)</strong></li>
+<li>On <strong>Keyboard layout</strong> page scroll-down and select <strong>Other</strong></li>
+<li>
+<p>Select <strong>English (US)</strong> &gt; Hit Enter &gt; Scroll-up &gt; Select <strong>English (US)</strong> &gt; Hit Enter</p>
+</li>
+<li>
+<p>On the next pages hit <strong>Enter</strong> to select defaults, until you return back to main screen with <strong>System Options</strong> selected</p>
+</li>
+<li>
+<p>Hit <strong>Tab</strong> 2 times to select <strong>Finish</strong> </p>
+</li>
+<li>Hit <strong>Enter</strong> to exit raspi-config</li>
+<li><vxm-kbd>CTRL + L</vxm-kbd> to clear the screen</li>
+</ul>
+<h3 id="change-autologin-to-require-login">Change Autologin to Require Login</h3>
+<p>By default your Raspberry Pi will be set to log you in automatically. This is unsafe. We want to change this so that login is required every time.</p>
+<blockquote>
+<p><strong>HINT:</strong> In command line interface you can select previously typed-in commands by hitting <strong>"UP-ARROW"</strong></p>
+</blockquote>
+<ul>
+<li><a href="#openclose-raspi-config">Open raspi-config</a> </li>
+<li>Select:  <strong>System Options &gt; Boot / Auto Login</strong> </li>
+<li>
+<p>If you are using <strong>Desktop</strong> interface : Select <strong>B3 Desktop</strong> &gt; Hit <strong>Enter</strong></p>
+<p>OR</p>
+</li>
+<li>
+<p>If you are using <strong>CLI</strong> interface : Select <strong>B1 Console</strong> &gt; Hit <strong>Enter</strong></p>
+</li>
+<li>You will be taken to main config screen</li>
+<li>Hit <strong>Tab</strong> &gt; <strong>Tab</strong> to select <strong>&lt; Finish &gt;</strong> button, then hit <strong>Enter</strong></li>
+<li>You should see "<strong>Would you like to reboot now?</strong>" . Select <strong>&lt; Yes &gt;</strong> and hit <strong>Enter</strong></li>
+</ul>
+<p>The computer will restart and then you will be presented with login interface.</p>
+<p>Now Log in with:
+- Username: <strong>main-user</strong>
+- Password: <strong>main</strong></p>
+<h3 id="set-up-wi-fi">Set up Wi Fi</h3>
+<p><strong>YOU CAN SKIP</strong></p>
+<p><strong>NOTE:</strong> You can skip this section as your WiFi has already been configured in the Setup Wizard. </p>
+<ul>
+<li>
+<p>Refs: </p>
+<ul>
+<li>Settig up WiFi: https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md</li>
+</ul>
+</li>
+<li>
+<p><a href="#openclose-raspi-config">Open raspi-config</a></p>
+<p>sudo raspi-config</p>
+</li>
+<li>
+<p>Select: <strong>5 Localisation Options &gt; WLAN Country</strong> </p>
+<ul>
+<li>Select your country &gt; Enter &gt; Reboot</li>
+</ul>
+</li>
+<li>
+<p>After reboot &gt; log in &gt; run : sudo raspi-config </p>
+</li>
+<li>
+<p>Select: <strong>1 System Options &gt; S1 Wireless LAN &gt; Enter SSID (means type-in WiFi name) &gt; Hit Enter &gt; Type-in WiFi password &gt; Hit Enter &gt; Hit Esc (to exit) &gt; CTRL + L (to clear the screen)</strong></p>
+</li>
+</ul>
+<h2 id="start-using-command-line-interface">Start Using Command Line Interface</h2>
+<blockquote>
+<p><strong>CLI (Command Line Interface)</strong> - is a name for any command line program that accepts text input to execute operating system functions.</p>
+</blockquote>
+<p>From this point on we will configure the system via command line interface.</p>
+<ul>
+<li>
+<p><strong>Open Terminal</strong> with keyboard shortcut : <vxm-kbd>CTRL + ALT + T</vxm-kbd></p>
+</li>
+<li>
+<p>This will open the Terminal command line interface and you will see the <a href="#command-line-prompt">command line prompt</a>: </p>
+<p>main-user@raspberrypi:~ $</p>
+</li>
+<li>
+<p>You can now type the commands.</p>
+</li>
+<li>
+<p><strong>Close Terminal</strong> - type command <code>exit</code> to close the Terminal</p>
+</li>
+</ul>
+<h2 id="update-and-upgrade-system">Update and Upgrade system</h2>
+<p><strong>YOU CAN SKIP</strong></p>
+<p><strong>NOTE:</strong> You can skip this section as your system has already been updated and upgraded in the Setup Wizard.</p>
+<ul>
+<li>
+<p>Update system, type command:</p>
+<p>sudo apt-get update</p>
+</li>
+<li>
+<p>Upgrade system, type command:</p>
+<p>sudo apt-get upgrade</p>
+</li>
+</ul>
+<h2 id="shut-down-safely">Shut Down Safely</h2>
+<p>When turning off your Server, you should always shut down safely.</p>
+<ul>
+<li>
+<p>To safely turn off your Server, type in the following command</p>
+<p>sudo shutdown -h now</p>
+</li>
+<li>
+<p>The <strong>-h</strong> option will halt the working processes. If you remove -h from the above command, it will directly shutdown the Raspberry Pi without waiting for anything, which is not recommended.</p>
+</li>
+<li>
+<p>To shut down after 10 minutes type</p>
+<p>sudo shutdown -h 10</p>
+</li>
+<li>
+<p>To cancel scheduled shutdown</p>
+<div class="language-text highlight"><pre><span></span><code>shutdown -c
+</code></pre></div>
+</li>
+</ul>
+<h2 id="configure-the-system">Configure the System</h2>
+<p><br></p>
+<p>Refs: </p>
+<ul>
+<li>Using Raspi Config:  https://www.raspberrypi.org/documentation/configuration/raspi-config.md</li>
+</ul>
+<h3 id="set-up-wi-fi_1">Set up Wi-Fi</h3>
+<p><strong>YOU CAN SKIP</strong></p>
+<blockquote>
+<p><strong>NOTE:</strong> You can skip this WiFi setup section, because your Wi-Fi should have already been set in the Setup Wizard. This section shows you how to set up WiFi in the command line interface on any version of Linux operating system, including Raspberry Pi OS.</p>
+</blockquote>
+<ul>
+<li>
+<p>Get the name of wireless network interface</p>
+<p>iwconfig</p>
+</li>
+<li>
+<p>You should get something like:</p>
+<div class="language-text highlight"><pre><span></span><code>lo        no wireless extensions.
+
+eth0      no wireless extensions.
+
+wlan0     IEEE 802.11  ESSID:&quot;TPG-5G-1C2A&quot;  
+          Mode:Managed  Frequency:5.18 GHz  Access Point: 00:1C:2A:1C:2A:1C   
+          Bit Rate=6 Mb/s   Tx-Power=31 dBm   
+          Retry short limit:7   RTS thr:off   Fragment thr:off
+          Power Management:on
+          Link Quality=70/70  Signal level=-32 dBm  
+          Rx invalid nwid:0  Rx invalid crypt:0  Rx invalid frag:0
+          Tx excessive retries:0  Invalid misc:0   Missed beacon:0
+</code></pre></div>
+<ul>
+<li><strong>wlan0</strong> - is the name of the wireless network interface. </li>
+<li><strong>ESSID</strong> (Extended Service Set Identifier) - is the name of your wireless network. In above example it is <strong>TPG-5G-1C2A</strong></li>
+<li>ESSID should be "off/any" if the wireless interface has not been activated yet.</li>
+</ul>
+</li>
+<li>
+<p>Activate wirelessnetwork interface</p>
+<p>sudo ifconfig wlan0 up</p>
+</li>
+<li>
+<p>Connect to your wireless network using WPA (Wi-Fi Protected Access) encryption</p>
+<p>sudo wpa_passphrase {{WIFI_NAME}} {{WIFI_PASSWORD}} &gt; /etc/wpa_supplicant.conf</p>
+</li>
+<li>
+<p>Replace {{WIFI_NAME}} and {{WIFI_PASSWORD}} with your actual WiFi name and password</p>
+</li>
+<li>
+<p>Check that your WiFi details have been saved:</p>
+<div class="language-text highlight"><pre><span></span><code>sudo nano /etc/wpa_supplicant/wpa_supplicant.conf
+</code></pre></div>
+<ul>
+<li>You should see<div class="language-text highlight"><pre><span></span><code>country={{YOUR_COUNTRY_CODE}}
+
+network={
+    ssid={{YOUR_WIFI_NAME}}
+    psk={{YOUR_WIFI_PASSWORD}}
+}
+</code></pre></div>
+</li>
+</ul>
+</li>
+<li>
+<p>Reboot</p>
+<p>sudo reboot</p>
+</li>
+<li>
+<p>Check that you are connected to your WiFi</p>
+</li>
+</ul>
+<h3 id="enabledisable-root-user">Enable/Disable root user</h3>
+<p><definition></p>
+<blockquote>
+<p><strong>root</strong> account is a superuser account that exists in system by default and it can execute any priviledged actions without using prefix <strong>sudo</strong>.
+</definition></p>
+</blockquote>
+<p>It is not advisable to ever enable <strong>root</strong> account but there are some situation when we may need it.</p>
+<h4 id="enable-root">Enable root</h4>
+<ul>
+<li>
+<p>Log in as <strong>main-user</strong></p>
+</li>
+<li>
+<p>Enable "<strong>root</strong>" user</p>
+<p>sudo passwd root</p>
+</li>
+<li>
+<p>This will prompt you for password</p>
+</li>
+<li>
+<p>Enter password <strong>root</strong></p>
+</li>
+<li>
+<p>Reboot (restart computer)</p>
+<p>reboot</p>
+</li>
+<li>
+<p>Log in with username <strong>root</strong> and password <strong>root</strong></p>
+</li>
+</ul>
+<blockquote>
+<p><strong>NOTE:</strong> If using the Dektop view, when you log in with <strong>root</strong>, you will not see the menu at the top. In this case, hit <vxm-kbd>CTRL + ALT + T</vxm-kbd> to open the <strong>Terminal</strong>. Now you will be able to execute the commands with root.</p>
+</blockquote>
+<ul>
+<li>
+<p>Execute priviledged command "apt-get update"</p>
+<p>apt-get update</p>
+</li>
+<li>
+<p>This time we did not have to use prefix sudo</p>
+</li>
+</ul>
+<blockquote>
+<p><strong>IMPORTANT:</strong> Make sure to disable the root user after you complete priviledged actions available only to root user</p>
+</blockquote>
+<ul>
+<li>
+<p>Reboot computer</p>
+<p>reboot</p>
+</li>
+</ul>
+<h4 id="disable-root">Disable root</h4>
+<ul>
+<li>
+<p>Log in with non-root account</p>
+</li>
+<li>
+<p>Disable <strong>root</strong> account</p>
+<p>sudo passwd -l root</p>
+</li>
+<li>
+<p>Restart computer</p>
+<p>reboot</p>
+</li>
+</ul>
+<p><br></p>
+<h3 id="change-username-and-group-name">Change Username and Group Name</h3>
+<p>In this section we will change initially created username <strong>"main-user"</strong> and password <strong>"main"</strong> to our new username and password.</p>
+<p>We cannot change username of main-user while logged in as <strong>main-user</strong> and the only other user in the system is super user account called <strong>root</strong>.</p>
+<p>This is the only reason why we will enable user root in this unique situation. Normally root user should always be disabled and instead all the commands that require root priviledges, can be executed by prefixing them with keyword <strong>sudo</strong>.</p>
+<p>After we are finished with executing priviledged actions using root account, we must disable the <strong>root</strong> account.
+<br/></p>
+<ul>
+<li>
+<p>Log in as <strong>main-user</strong></p>
+</li>
+<li>
+<p><strong>Enable root account</strong> and reboot</p>
+<p>sudo passwd root
+  sudo reboot</p>
+</li>
+<li>
+<p>Log in as <strong>root</strong></p>
+</li>
+<li>
+<p>If in Desktop view : Open Terminal <vxm-kbd>CTRL + ALT + T</vxm-kbd></p>
+</li>
+<li>
+<p><strong>Change username</strong> <strong>main-user</strong> to your desired username (We will call it "my-user" but you can call it whatever you like)</p>
+<p>usermod -l my-user main-user</p>
+<blockquote>
+<p><strong>NOTE:</strong> THROUGHOUT THIS BOOK WE WILL REFER TO YOUR USERNAME AS "<strong>my-user</strong>". Replace all the occurences of my-user with your own personal username.</p>
+</blockquote>
+</li>
+<li>
+<p><strong>Change user's directory</strong> name to my-user</p>
+<p>usermod -m -d /home/my-user my-user</p>
+</li>
+<li>
+<p><strong>Change user's group</strong> name to my-user</p>
+<p>groupmod -n my-user main-user</p>
+</li>
+<li>
+<p><strong>Reboot</strong></p>
+<p>reboot</p>
+</li>
+<li>
+<p>Log in as <strong>"my-user"</strong>, with password <strong>"main"</strong></p>
+</li>
+<li>
+<p><strong>Change password</strong> to a very strong password</p>
+<p>passwd</p>
+</li>
+<li>
+<p>Confirm that <strong>my-user</strong> account has sudo privileges, by running system update command:</p>
+<p>sudo apt-get update</p>
+</li>
+<li>
+<p>You will be prompted for password</p>
+<div class="language-text highlight"><pre><span></span><code>[sudo] password for my-user:
+</code></pre></div>
+</li>
+<li>
+<p>Type in password to continue</p>
+</li>
+</ul>
+<blockquote>
+<p><strong>NOTE:</strong> When we changed the username main-user to my-user, it has reset the way sudo behaves to default - asking for password every 15 minutes.
+In the next section we will configure sudo not to prompt <strong>my-user</strong> to enter password every time we want to run a priviledged command.</p>
+</blockquote>
+<ul>
+<li>
+<p><strong>IMPORTANT:</strong> <strong>Disable</strong> <strong>root</strong> account</p>
+<p>sudo passwd -l root</p>
+</li>
+</ul>
+<blockquote>
+<p><strong>NOTE:</strong> From this point forward we will not use <strong>root</strong> account again.</p>
+</blockquote>
+<h3 id="remove-sudo-password-prompt">Remove Sudo Password Prompt</h3>
+<p>When we want to run priviledged commands we type <strong>sudo</strong> before the command. For this to work, our user account must be a member of <strong>sudo</strong> <strong>group</strong> - which our default account is.</p>
+<p>By default, using sudo asks for password every 15 minutes</p>
+<p>To disable asking for sudo password, do the following:</p>
+<ul>
+<li>
+<p>Open <strong>sudoers</strong> file for editing using <strong>visudo</strong> command (visudo command is a safe and secure way of editing the /etc/sudoers file)</p>
+<p>sudo visudo</p>
+</li>
+<li>
+<p>Look for the line starting with <strong>%sudo</strong>. It should look like this:</p>
+<p># Allow members of group sudo to execute any command
+  %sudo   ALL=(ALL) ALL</p>
+</li>
+<li>
+<p>Add keyword <strong>NOPASSWD</strong> and a column symbol before the last <strong>ALL</strong>. It should now look like this</p>
+<p># Allow members of group sudo to execute any command
+  %sudo   ALL=(ALL) NOPASSWD:ALL</p>
+</li>
+<li>
+<p>Save and close the file: <vxm-kbd>CTRL + S</vxm-kbd> <vxm-kbd>CTRL + X</vxm-kbd></p>
+</li>
+<li>
+<p>Reboot and log in with <strong>my-user</strong></p>
+</li>
+<li>
+<p>Run update command to make sure you are not being prompted for password:</p>
+<p>sudo apt-get update</p>
+</li>
+<li>
+<p>You should NOT be prompted for password this time</p>
+</li>
+</ul>
+<h3 id="configure-users-home-folder-security">Configure Users' Home Folder Security</h3>
+<p>When you create a new user in Raspberry Pi operating system, he can see all other users' folders by going inside <strong>/home</strong> folder.</p>
+<p>Then a user can enter any other user's folder and read and execute any files.</p>
+<p>This is not a very secure set-up for a serious multi user information system.</p>
+<p>Let's demonstrate this insecure setup practically and then we will apply the fix to make it more secure.</p>
+<h4 id="demonstrate-system-insecurity">Demonstrate System Insecurity</h4>
+<blockquote>
+<p>NOTE: You can skip to next section <a href="#fix-system-insecurity">Fix System Insecurity</a> . This section is just a demonstration for understanding of the problem.</p>
+</blockquote>
+<ul>
+<li>Log in as <strong>my-user</strong></li>
+<li>Create a <strong>sample file</strong> inside user's home directory</li>
+<li>
+<p>Go inside user's home folder</p>
+<div class="language-text highlight"><pre><span></span><code>cd ~/
+</code></pre></div>
+</li>
+<li>
+<p>Create file <strong>"my-secure-file.txt"</strong> in the root of my-user'shome folder</p>
+<div class="language-text highlight"><pre><span></span><code>touch my-secure-file.txt
+</code></pre></div>
+</li>
+<li>
+<p>Open my-secure-file.txt in nano editor</p>
+<div class="language-text highlight"><pre><span></span><code>nano my-secure-file.txt
+</code></pre></div>
+</li>
+<li>
+<p>Write inside it the text: <strong>"My secure content..."</strong></p>
+</li>
+<li>
+<p>Save and close the file: <vxm-kbd>CTRL + S</vxm-kbd> <vxm-kbd>CTRL + X</vxm-kbd></p>
+</li>
+<li>
+<p>Create user <strong>testuser</strong></p>
+<p>sudo adduser testuser</p>
+</li>
+<li>
+<p>When prompted for password type "test"</p>
+</li>
+<li>For all other prompts hit <vxm-kbd>Enter</vxm-kbd></li>
+<li>
+<p>On the last prompt "Is the information correct? [Y/n]" , type  "y" and hit Enter</p>
+</li>
+<li>
+<p>Reboot</p>
+</li>
+<li>Log in as <strong>testuser</strong> </li>
+<li>
+<p>Go inside <strong>/home</strong> folder</p>
+<p>cd /home</p>
+</li>
+<li>
+<p>List all the files and folders inside the /home</p>
+<p>ls -l</p>
+</li>
+<li>
+<p>You should see the folders: testuser, my-user</p>
+</li>
+</ul>
+<blockquote>
+<p>A secure system should not show other users' home folders</p>
+</blockquote>
+<ul>
+<li>
+<p>Attempt to navigate inside the folder of the user <strong>my-user</strong> that is not currently logged in and list the contents of that folder:</p>
+<p>cd my-user
+  ls -l</p>
+</li>
+<li>
+<p>You should see a list of user's folders and a file my-secure-file.txt</p>
+</li>
+</ul>
+<blockquote>
+<p>A secure system should not allow access to files and folders of other users</p>
+</blockquote>
+<ul>
+<li>
+<p>Open file my-secure-file.txt</p>
+<p>nano my-secure-file.txt</p>
+</li>
+<li>
+<p>The file will be opened and you will see "<strong>My secure content...</strong>"</p>
+</li>
+</ul>
+<blockquote>
+<p>A secure system should not allow viewing the contents of other users' files</p>
+</blockquote>
+<p>Clean up the test data:</p>
+<ul>
+<li>Reboot the Server</li>
+<li>Log in as <strong>my-user</strong></li>
+<li>
+<p>Delete <strong>testuser</strong> account (if you have created it in previous section)</p>
+<p>sudo userdel -r -f testuser</p>
+</li>
+<li>
+<p>You will get a message "userdel: testuser mail spool (/var/mail/testuser) not found" . Don't worry about that message. It just means that there was no mail folder found when deleting this user. </p>
+</li>
+<li>The user has been deleted</li>
+<li>
+<p>Go inside the /home directory and list  the contents. You will see that testuser folder has disappeared:</p>
+<p>cd /home
+  ls -l</p>
+</li>
+<li>
+<p>Delete the temporary file "my-secure-file.txt" that we created</p>
+<p>rm /home/my-user/my-secure-file.txt</p>
+</li>
+</ul>
+<p>In the next section we will fix the above system insecurities in a way that a security policy will be applied to any new users that get created in the system.</p>
+<h4 id="fix-system-insecurity">Fix System Insecurity</h4>
+<blockquote>
+<p>NOTE: We will use <strong>chmod</strong> command to change permissions on user folders. For now you don't need to understand how chmod works. We will explain this in the later sections. </p>
+</blockquote>
+<p>There are 3 things we need to do to secure our system. Go ahead and do the following:</p>
+<ol>
+<li>
+<p>Hide all the folders inside the <strong>/home</strong> folder:</p>
+<p>sudo chmod 701 /home</p>
+</li>
+<li>
+<p>Users will now NOT be able to see other users' folders inside /home</p>
+</li>
+<li>
+<p>Users will still be able to access other users' folders if they know the location of the folder e.g. /home/my-user. We will fix this in the next 2 steps</p>
+</li>
+<li>
+<p>Change permissions on our user's folder, to prevent access by other users</p>
+<p>sudo chmod 750 /home/my-user</p>
+</li>
+<li>
+<p>Change the default permission assigned to user's folder automatically when user is created using <strong>adduser</strong> command. The default permission is 755 - means anyone can read and execute the files in any user's folder. We want to change it to 750 - means other users have no access to user's folder at all.</p>
+</li>
+<li>
+<p>Open <strong>adduser.conf</strong></p>
+<div class="language-text highlight"><pre><span></span><code> sudo nano /etc/adduser.conf
+</code></pre></div>
+</li>
+<li>
+<p>Scroll down to <strong>"DIR_MODE=0755"</strong> and change it to <strong>"DIR_MODE=0750"</strong></p>
+</li>
+<li>
+<p>Save and close the file: <vxm-kbd>CTRL + S</vxm-kbd> <vxm-kbd>CTRL + X</vxm-kbd></p>
+</li>
+</ol>
+<p>Now only the owner of the folder and the group assigned to folder will be able to access it. All others will not be able to, unless of course they have root priviledges, then they can access it with "sudo".</p>
+<h4 id="chroot-jail">CHROOT Jail</h4>
+<p>https://phoenixnap.com/kb/chroot-jail</p>
+<p>https://www.tecmint.com/restrict-ssh-user-to-directory-using-chrooted-jail/</p>
+<h3 id="create-user-admin">Create User Admin</h3>
+<p>In the previous sections we showed you how to change existing username and password.</p>
+<p>Now we will learn how to create a priviledged account called <strong>admin</strong>. </p>
+<blockquote>
+<p><strong>IMPORTANT:</strong> <strong>Disable</strong> <strong>root</strong> account - in case you missed to do it before. </p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>  sudo passwd -l root
+</code></pre></div>
+<blockquote>
+<p><strong>NOTE:</strong> <strong>my-user</strong> is already a priviledged account, so we can execute any priviledged commands with my-user account by prefixing them with keyword <strong>sudo</strong></p>
+</blockquote>
+<ul>
+<li>
+<p>Log in with <strong>my-user</strong></p>
+</li>
+<li>
+<p><strong>Create user admin</strong></p>
+<p>sudo adduser admin</p>
+</li>
+<li>
+<p>Provide password: <strong>admin</strong> and Full Name: <strong>Admin</strong>. For all other fields hit <strong>Enter</strong> to continue.</p>
+</li>
+<li>
+<p>The last question of the user creation wizard will ask you if the information is correct. Type <strong>y</strong> and hit <strong>Enter</strong>.</p>
+</li>
+<li>
+<p>You should see :</p>
+<div class="language-text highlight"><pre><span></span><code>  Adding user `admin&#39; ...
+  Adding new group `admin&#39; (1001) ...
+  Adding new user `admin&#39; (1001) with group `admin&#39; ...
+  Creating home directory `/home/admin&#39; ...
+  Copying files from `/etc/skel&#39; ...
+  New password:
+  Retype new password:
+  passwd: password updated successfully
+  Changing the user information for admin
+  Enter the new value, or press ENTER for the default
+        Full Name []: Admin
+        Room Number []:
+        Work Phone []:
+        Home Phone []:
+        Other []:
+  Is the information correct? [Y/n] y
+</code></pre></div>
+</li>
+</ul>
+<blockquote>
+<p><strong>IMPORTANT:</strong> You should create a <strong>strong password</strong> for your admin account. Password we are using here is just for practice.</p>
+<p><strong>NOTE:</strong> When you create user <strong>admin</strong> with <strong>adduser</strong> command, this will also create a group <strong>admin</strong> and a home directory <strong>/home/admin</strong> </p>
+</blockquote>
+<ul>
+<li>
+<p>Go inside /home and list the contents</p>
+<p>cd /home
+  ls -l</p>
+</li>
+<li>
+<p>we will get a message:</p>
+<div class="language-text highlight"><pre><span></span><code>ls: cannot open directory &#39;.&#39;: Permission denied
+</code></pre></div>
+</li>
+<li>
+<p>This is because we configured our system, in the previous section, to hide user directories. </p>
+</li>
+<li>
+<p>As a priviledged user we can still see users' directories by using sudo keyword</p>
+<div class="language-text highlight"><pre><span></span><code> sudo ls -l
+</code></pre></div>
+</li>
+<li>
+<p>You should see that a new directory <strong>admin</strong> has been created.</p>
+</li>
+<li>
+<p>Try to enter into admin user's directory /home/admin</p>
+<p>cd /home/admin</p>
+</li>
+<li>
+<p>You will get a message</p>
+<div class="language-text highlight"><pre><span></span><code>-bash: cd: /home/admin: Permission denied
+</code></pre></div>
+</li>
+<li>
+<p>Our security configuration works well. No user can enter inside the directory of the other user.</p>
+</li>
+<li>
+<p><strong>Give elevated priviledges</strong> to admin - assign admin user to the <strong>sudo</strong> group:</p>
+<p>sudo usermod -aG sudo admin</p>
+</li>
+<li>
+<p>The <strong>-aG</strong> flag stands for Append and Group. This command instructs <strong>usermod</strong> command to append the username to a group, which in this case is the sudo group.</p>
+</li>
+<li>
+<p>Keyword <strong>sudo</strong> stands for: <strong>"superuser do"</strong>      </p>
+</li>
+<li>
+<p>You now have an <strong>admin</strong> account with sudo priviledges. This means that admin account can execute commands which require elevated root priviledges by prefixing those commands with keyword <strong>sudo</strong>.</p>
+</li>
+<li>
+<p>Check what groups user <strong>admin</strong> is in</p>
+<p>groups admin</p>
+</li>
+<li>
+<p>You should get</p>
+<div class="language-text highlight"><pre><span></span><code>admin : admin sudo
+</code></pre></div>
+</li>
+<li>
+<p>Reboot computer</p>
+</li>
+</ul>
+<blockquote>
+<p><strong>NOTE:</strong> From this point forward we will only use <strong>admin</strong> account.</p>
+</blockquote>
+<h3 id="change-computer-name">Change Computer Name</h3>
+<blockquote>
+<p><strong>NOTE:</strong> THROUGHOUT THIS BOOK WE WILL REFER TO YOUR SERVER COMPUTER NAME AS "<strong>my-home-server</strong>". Wherever you see "my-home-server", replace it with the actual name of your home server machine.</p>
+</blockquote>
+<ul>
+<li>
+<p>Log in as <strong>admin</strong></p>
+</li>
+<li>
+<p>Change name in <strong>hostname file</strong> </p>
+</li>
+<li>
+<p>Open file "hostname", located in the "/etc" directory, using nano editor</p>
+<div class="language-text highlight"><pre><span></span><code>sudo nano /etc/hostname
+</code></pre></div>
+</li>
+<li>
+<p>Change the line of text that says "<strong>raspberrypi</strong>" to your desired computer name (e.g. "my-home-server"). </p>
+</li>
+<li>
+<p>Save and close the file: <vxm-kbd>CTRL + S</vxm-kbd> <vxm-kbd>CTRL + X</vxm-kbd></p>
+</li>
+</ul>
+<p><definition /></p>
+<blockquote>
+<p><strong>nano</strong> - is a popular simple text editor used in Linux to edit text in files.
+</definition></p>
+</blockquote>
+<ul>
+<li>
+<p>Change name in <strong>hosts file</strong></p>
+</li>
+<li>
+<p>Open file "hosts", located in the "/etc" directory, with nano</p>
+<div class="language-text highlight"><pre><span></span><code>sudo nano /etc/hosts
+</code></pre></div>
+</li>
+<li>
+<p>Change the line of text that has your old computer name. It should be the last line that starts with 127.0.0.1 </p>
+<div class="language-text highlight"><pre><span></span><code>127.0.0.1       localhost
+::1             localhost ip6-localhost ip6-loopback
+ff02::1         ip6-allnodes
+ff02::2         ip6-allrouters
+
+127.0.1.1       old-computer-name
+</code></pre></div>
+<ul>
+<li>Change <strong>old-computer-name</strong> to your new computer name (e.g. <strong>my-home-server</strong>)</li>
+</ul>
+</li>
+<li>
+<p>Save and close the file: <vxm-kbd>CTRL + S</vxm-kbd> , <vxm-kbd>CTRL + X</vxm-kbd></p>
+</li>
+<li>
+<p>Reboot computer</p>
+<p>sudo reboot</p>
+</li>
+<li>
+<p>Log in with <strong>admin</strong></p>
+</li>
+<li>
+<p>Your command line prompt should now show</p>
+<p>admin@my-home-server:~ $</p>
+</li>
+<li>
+<p>Confirm hostname has been changed</p>
+<p>hostname</p>
+<ul>
+<li>it should now say <strong>my-home-server</strong></li>
+</ul>
+</li>
+</ul>
+<h2 id="set-up-network">Set up Network</h2>
+<h3 id="check-local-network-connectivity">Check Local Network Connectivity</h3>
+<ul>
+<li>
+<p><strong>Ping the machine</strong> - Check that your computer is on the network using ping command</p>
+<p>ping my-home-server.local</p>
+</li>
+<li>
+<p>Hit <vxm-kbd>CTRL + C</vxm-kbd> to exit PING (Packet Internet Groper)</p>
+</li>
+<li>
+<p>You should see lines of something like this repeating:</p>
+<div class="language-text highlight"><pre><span></span><code>64 bytes from 192-168-1-105.tpgi.com.au (192.168.1.105): icmp_seq=1 ttl=64 time=0.102 ms
+</code></pre></div>
+</li>
+<li>
+<p><strong>NOTE</strong>: 192.168.1.105 in this example is Server machine's IP address on your local network</p>
+</li>
+<li>
+<p><strong>Print internal IP address</strong> of this machine</p>
+<p>hostname -I</p>
+</li>
+<li>
+<p>You should see address like : 192.168.1.105</p>
+</li>
+<li>
+<p><strong>Print interface configuration</strong></p>
+<p>ifconfig</p>
+<ul>
+<li>You should see your Ethernet, loopback and wireless network interfaces: eth0, lo, wlan0</li>
+</ul>
+</li>
+</ul>
+<h3 id="open-router-admin">Open Router Admin</h3>
+<ul>
+<li>
+<p>On your <a href="#definitions">Client computer</a> open any browser e.g. Chrome, and navigate to your local network <strong>router admin</strong> web-page by typing in the address bar the following url:</p>
+<div class="language-text highlight"><pre><span></span><code>http://192.168.1.1
+</code></pre></div>
+</li>
+<li>
+<p>If that does not work, then try:</p>
+<div class="language-text highlight"><pre><span></span><code>http://192.168.0.1
+</code></pre></div>
+</li>
+<li>
+<p>If that does not work, search on Google "what is router admin url for {{NAME_OF_YOUR_ROUTER_BRAND}}", for example "what is router admin url for tp-link"</p>
+</li>
+</ul>
+<h3 id="get-internal-ip">Get Internal IP</h3>
+<ul>
+<li>
+<p>In your Router Admin - <strong>Verify that the your server machine is visible on router admin website</strong> </p>
+</li>
+<li>
+<p>You should see a link that says something like "<strong>Wireless Clients</strong>". It may say something different depending on your router brand.</p>
+</li>
+<li>
+<p>On the list of connected wireless clients you should see a name of your <a href="#definitions">Server computer</a> ( e.g. <strong>my-home-server</strong> ) and its <strong>Internal IP Address</strong> next to it (e.g. 192.168.1.105)</p>
+</li>
+<li>
+<p>Note down the Internal IP address of your Server machine. You will be using it in the next section to configure Port Forwarding.</p>
+</li>
+</ul>
+<h3 id="set-up-static-internal-ip">Set up Static Internal IP</h3>
+<p>Internal IP addresses are not static. They get changed by the router's DHCP server.</p>
+<p><definition></p>
+<blockquote>
+<p><strong>DHCP (Dynamic Host Configuration Protocol)</strong> - is a protocol that provides quick, automatic, and central management for the distribution of IP addresses to devices on the network within a network. A DHCP server dynamically issues unique IP addresses to devices on the network and automatically configures other network information. In most homes and small businesses, the router acts as the DHCP server.
+</definition></p>
+</blockquote>
+<p>We need to make sure that our home server machine always has the same IP address on the local network (static IP) so that we can reliably connect to it.</p>
+<ul>
+<li>
+<p>In your router admin look for <strong>LAN Settings</strong>.
+  For example on tp-link modem go to : <strong>Advanced &gt; Network &gt; Lan Settings</strong></p>
+</li>
+<li>
+<p>You should see sections: <strong>DHCP Server, Client List, Address Reservation</strong></p>
+</li>
+<li>
+<p>In <strong>Client List</strong> find your server computer and note it's <strong>MAC Address</strong> and <strong>Assigned IP</strong> for example 192.168.1.105</p>
+</li>
+<li>In <strong>Address Reservation</strong> section, click <strong>Add</strong> button which will prompt you to enter MAC and IP address.</li>
+<li>Type in manually MAC and IP or click on button SCAN if available and select your device from list.</li>
+<li>
+<p>Click OK</p>
+</li>
+<li>
+<p>Your server computer now has static internal IP and it will not be changed by DHCP server.</p>
+</li>
+</ul>
+<h3 id="get-external-ip">Get External IP</h3>
+<ul>
+<li>
+<p><a href="#open-router-admin">Open Router Admin</a></p>
+</li>
+<li>
+<p>You should see the <strong>External IP</strong> address of your router on the main page of the router admin website. It should look something like this:</p>
+<p>IP Address: 113.216.184.151</p>
+</li>
+</ul>
+<h3 id="configure-port-forwarding">Configure Port Forwarding</h3>
+<p><strong>SKIP this section if you do not want to open your server to Internet</strong>, but rather just want to access it from your local network. In this case go to section <a href="#set-up-firewall">Set up Firewall</a>.</p>
+<p><strong>NOTE:</strong> You can only do this if you have a <strong>Static External IP</strong> that your ISP has provided for you.</p>
+<p>In order to access our Server from anywhere via internet, we need to first set up <strong>port forwarding</strong> on our router.</p>
+<p><definition></p>
+<blockquote>
+<p><strong>Port Forwarding</strong> - allows incoming connections from broader Internet (in technical terms known as WAN (Wide Area Network)) to reach a specific device/port on a <strong>LAN</strong> (Local Area Network). Port forwarding is achieved by using <strong>NAT</strong> (Network Address Translation) table that maps <strong>External Port</strong> to the <strong>Internal IP</strong> address.
+</definition></p>
+</blockquote>
+<ul>
+<li>
+<p>On your <a href="#definitions">Client computer</a>, open the internet browser window and go to <strong>router admin</strong> webpage which should be located at url <strong>http://192.168.1.1/</strong> or <strong>http://192.168.0.1/</strong></p>
+</li>
+<li>
+<p>Go to the page for port forwarding. It is different for different routers.</p>
+</li>
+<li>
+<p>To find where the port forwarding settings are on your router =&gt; Search on the internet for keywords: "{{NAME_OF_YOUR_ROUTER_BRAND}} port forwarding", for example "tp-link router port forwarding"</p>
+</li>
+<li>
+<p>Here is an example of port forwarding location for tplink router Archer VR1600v:</p>
+<ul>
+<li>On the main menu go to : <strong>Advanced &gt; NAT Forwarding &gt; Virtual Servers</strong></li>
+<li>You should see :</li>
+<li>Buttons <strong>Add</strong> and <strong>Delete</strong></li>
+<li>List of Virtual Servers with IPs and Ports </li>
+</ul>
+</li>
+</ul>
+<p>At this point we want to add a new virtual server that points to our SSH port accessing SSH program. </p>
+<p><strong>SSH (Secure Shell)</strong> is used to remotely execute commands on our home server in a secure way. </p>
+<p>We will install SSH later.</p>
+<ul>
+<li>
+<p>Add new Virtual Server by clicking button <strong>Add</strong></p>
+<ul>
+<li>Set Service Type to "SSH" </li>
+<li>Set External Port to number from 1024 to 49151</li>
+<li>Set Internal IP to your Home Server's IP address on the network e.g. 192.168.1.105</li>
+<li>Set Internal Port to default SSH port 22</li>
+<li>Set Protocol to "TCP"</li>
+</ul>
+</li>
+<li>
+<p>Settings should look something like this:</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Service Type:</td>
+<td>SSH</td>
+</tr>
+<tr>
+<td>External Port:</td>
+<td>1234</td>
+</tr>
+<tr>
+<td>Internal IP:</td>
+<td>192.168.1.105</td>
+</tr>
+<tr>
+<td>Internal Port:</td>
+<td>22</td>
+</tr>
+<tr>
+<td>Protocol:</td>
+<td>TCP</td>
+</tr>
+</tbody>
+</table>
+<p>Now you have forwarded <strong>External Port</strong> 1234 to machine on your network with <strong>Internal IP</strong> 192.168.1.105 and SSH program that is running on that machine's <strong>Internal Port</strong> 22.</p>
+<p>This means that you can now access SSH on that machine from the remote computer via your home network's <strong>Static External IP</strong> e.g. 113.216.184.151 and  <strong>External Port</strong> 1234.</p>
+<p>We will explain later how to connect to your server remotely using SSH in <a href="#set-up-ssh">SSH Setup Section</a>.</p>
+<p><definition></p>
+<blockquote>
+<p><strong>Network Port</strong> - is a logical number that identifies to which local <strong>process</strong> or <strong>service</strong>, the specific incoming internet traffic should be directed towards.</p>
+<p>Ports are classified into 3 main categories:</p>
+<ol>
+<li>
+<p><strong>Well Known Ports</strong> - ( 0 - 1023 ) - are used by system or processes run by root or with specific privileges.</p>
+</li>
+<li>
+<p><strong>Registered Ports</strong> - ( 1024 - 49151 ) - are used by programs run by users in the system.</p>
+</li>
+<li>
+<p><strong>Dynamic Ports</strong> - ( 49152 - 65535 ) - are not assigned for any specific purpose.
+</definition></p>
+</li>
+</ol>
+</blockquote>
+<p><br></p>
+<h3 id="check-outside-connectivity">Check Outside Connectivity</h3>
+<p>There are 2 ways to check network ports' outside connectivity. You should know both ways.
+- IsMyPortOpen.com
+- Netcat</p>
+<h4 id="use-ismyportopencom">Use IsMyPortOpen.com</h4>
+<p>Check if your server's ip and port is reachable from outside by using utility website <a href="http://ismyportopen.com">ismyportopen.com</a></p>
+<ul>
+<li>Go to http://ismyportopen.com/</li>
+<li>Type in your IP and port and hit button Check</li>
+<li>You should get a green check and a message : <strong>Port is open</strong></li>
+</ul>
+<h4 id="use-netcat">Use Netcat</h4>
+<ul>
+<li><strong>On Mac OS Install Homebrew first</strong> - If you are on Mac OS make sure to install <strong>homebrew</strong> first. Go to: https://brew.sh/ for more info.</li>
+<li>Open Terminal</li>
+<li>
+<p>Run command</p>
+<div class="language-text highlight"><pre><span></span><code>/bin/bash -c &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;
+</code></pre></div>
+</li>
+<li>
+<p>Add homebrew to your PATH. <strong>NOTE:</strong> replace <strong>admin</strong> with your username:</p>
+<div class="language-text highlight"><pre><span></span><code>(echo; echo &#39;eval &quot;$(/opt/homebrew/bin/brew shellenv)&quot;&#39;) &gt;&gt; /Users/admin/.bash_profile
+
+eval &quot;$(/opt/homebrew/bin/brew shellenv)&quot;
+</code></pre></div>
+</li>
+<li>
+<p>Install Netcat on your client computer</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Windows</td>
+<td>Go to: https://nmap.org/download.html</td>
+</tr>
+<tr>
+<td>Mac OS</td>
+<td>Run command: <strong>brew install netcat</strong></td>
+</tr>
+<tr>
+<td>Linux</td>
+<td>Run command: <strong>sudo apt install netcat</strong></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>
+<p>Check on your client computer if you can connect from outside to your server computer ip and port e.g. 113.216.184.151:8333</p>
+</li>
+<li>
+<p>On <strong>Linux</strong> and <strong>Mac OS</strong> run</p>
+<div class="language-text highlight"><pre><span></span><code>nc -zv 113.216.184.151 1234
+</code></pre></div>
+</li>
+<li>
+<p>On <strong>Windows</strong> open command prompt and run</p>
+<div class="language-text highlight"><pre><span></span><code>ncat -zv 113.216.184.151 1234
+</code></pre></div>
+</li>
+</ul>
+<h2 id="set-up-firewall">Set up Firewall</h2>
+<p><definition></p>
+<blockquote>
+<p>Firewall - is a network security system that monitors and controls incoming and outgoing network traffic based on predetermined security rules. It  restricts internet traffic in to, out of, or within a private network. Firewall functions by selectively blocking or allowing data packets. Its purpose is to prevent anyone inside or outside of a private network from engaging in unauthorized web activities.
+</definition></p>
+</blockquote>
+<p><definition></p>
+<blockquote>
+<p><strong>UFW</strong> - <strong>Uncomplicated Firewall</strong> is a standard CLI program for working with the firewall on Linux.
+</definition></p>
+</blockquote>
+<h3 id="install-and-enable-ufw">Install and Enable UFW</h3>
+<p><strong>NOTE:</strong> Make sure you are logged in physically on the server machine and not remotely(e.g. via SSH). This because if you enable firewall remotely, you will be disconnected from the server and will not be able to connect again until you disable firewall or add a rule to allow the port on which remote connection program connects to the server (e.g. port 22 for SSH).</p>
+<ul>
+<li>
+<p>Install ufw </p>
+<p>sudo apt install ufw</p>
+</li>
+<li>
+<p>Check status: </p>
+<p>sudo ufw status</p>
+</li>
+<li>
+<p>You may get </p>
+<div class="language-text highlight"><pre><span></span><code>ERROR: Couldn&#39;t determine iptables version
+</code></pre></div>
+<p>OR</p>
+<div class="language-text highlight"><pre><span></span><code>Status: inactive
+</code></pre></div>
+</li>
+<li>
+<p>Reboot: </p>
+<p>sudo reboot</p>
+</li>
+<li>
+<p>Check status again: <code>sudo ufw status</code></p>
+</li>
+<li>
+<p>This time you should get: <code>Status: inactive</code></p>
+</li>
+<li>
+<p>Enable firewall: </p>
+<p>sudo ufw enable</p>
+</li>
+<li>
+<p>You should see</p>
+<div class="language-text highlight"><pre><span></span><code>Firewall is active and enabled on system startup
+</code></pre></div>
+</li>
+<li>
+<p>Check existing firewall rules (list of allowed ports)</p>
+<p>sudo ufw status</p>
+</li>
+<li>
+<p>You should see: <code>Status: active</code></p>
+</li>
+<li>This means that firewall is active and running but has no rules yet. You have to add rules to allow ports.</li>
+</ul>
+<p>We will first add a rule for SSH port because in the next section we will enable SSH on the server.</p>
+<h3 id="add-firewall-rule">Add Firewall Rule</h3>
+<ul>
+<li>
+<p>Add port 22 - the standard port for SSH (Secure Shell) connections, which is how we will connect to our server remotely.</p>
+<p>sudo ufw allow 22</p>
+</li>
+<li>
+<p>Add another port 1234 </p>
+<p>sudo ufw allow 1234</p>
+</li>
+<li>
+<p>Show firewall status</p>
+<p>sudo ufw status</p>
+</li>
+<li>
+<p>You should see</p>
+<div class="language-text highlight"><pre><span></span><code>Status: active
+
+To                         Action      From
+--                         ------      ----
+22                         ALLOW       Anywhere
+1234                       ALLOW       Anywhere
+22 (v6)                    ALLOW       Anywhere (v6)
+1234 (v6)                  ALLOW       Anywhere (v6)
+</code></pre></div>
+</li>
+<li>
+<p>Reboot</p>
+<p>sudo reboot</p>
+</li>
+</ul>
+<h3 id="remove-firewall-rule">Remove Firewall Rule</h3>
+<ul>
+<li>
+<p>Display a numbered list of rules</p>
+<p>sudo ufw status numbered</p>
+</li>
+<li>
+<p>You should see something like</p>
+<div class="language-text highlight"><pre><span></span><code>     To                         Action      From
+     --                         ------      ----
+[ 1] 22/tcp                     ALLOW IN    Anywhere
+[ 2] 1234                       ALLOW IN    Anywhere
+[ 3] 22/tcp (v6)                ALLOW IN    Anywhere (v6)
+[ 4] 1234 (v6)                  ALLOW IN    Anywhere (v6)
+</code></pre></div>
+</li>
+<li>
+<p>Remove port 1234 by rule number</p>
+<p>sudo ufw delete 2</p>
+</li>
+<li>
+<p>NOTE: When you remove the rule, the number position of all rules after it , decreases by one</p>
+</li>
+<li>
+<p>Display numbered list again</p>
+<p>sudo ufw status numbered</p>
+</li>
+<li>
+<p>You should now see</p>
+<div class="language-text highlight"><pre><span></span><code>     To                         Action      From
+     --                         ------      ----
+[ 1] 22                         ALLOW IN    Anywhere
+[ 2] 22 (v6)                    ALLOW IN    Anywhere (v6)
+[ 3] 1234 (v6)                  ALLOW IN    Anywhere (v6)
+</code></pre></div>
+</li>
+<li>
+<p>Remove port <strong>"1234 (v6)"</strong> by rule number</p>
+<p>sudo ufw delete 3</p>
+</li>
+</ul>
+<h2 id="ssh-remote-connect">SSH - Remote Connect</h2>
+<p>Ref: https://www.raspberrypi.org/documentation/remote-access/ssh/</p>
+<p><definition></p>
+<blockquote>
+<p><strong>SSH (Secure Shell)</strong> - is a cryptographic network protocol for operating network services securely over an unsecured network. Typical applications include remote command-line, login, and remote command execution, but any network service can be secured with SSH.
+</definition></p>
+</blockquote>
+<p>In order to connect to our Server remotely (from the Client computer), we need to enable SSH on the Server.</p>
+<h3 id="step-1-enable-ssh">Step 1 - Enable SSH</h3>
+<ul>
+<li>
+<p>Log into the <a href="#definitions">Server</a> with <strong>admin</strong> user.</p>
+</li>
+<li>
+<p>Enable SSH with Linux commands</p>
+<p>sudo systemctl enable ssh
+  sudo systemctl start ssh</p>
+</li>
+<li>
+<p>Confirm that SSH is active</p>
+<p>sudo systemctl status ssh</p>
+</li>
+<li>
+<p>You should see a green dot and a text like</p>
+<div class="language-text highlight"><pre><span></span><code>ssh.service - OpenBSD Secure Shell server
+    Loaded: loaded (/lib/systemd/system/ssh.service; enabled; vendor preset: enabled)
+    Active: active (running) ...
+    ...
+</code></pre></div>
+</li>
+</ul>
+<h3 id="step-2-remote-connect-with-ssh">Step 2 - Remote Connect with SSH</h3>
+<p>We can connect remotely from another machine on our Local Network (LAN) or from the Internet (WAN).</p>
+<h4 id="ssh-over-lan">SSH over LAN</h4>
+<p>To connect over <strong>LAN</strong> we need to get Server's <strong>Internal IP</strong> and Internal Port</p>
+<ul>
+<li><a href="#open-router-admin">Open Router Admin</a></li>
+<li><a href="#get-internal-ip">Get Internal IP</a> of your server e.g. my-home-server</li>
+</ul>
+<h4 id="ssh-over-internet">SSH over Internet</h4>
+<p>To connect over <strong>Internet</strong> we need to get Server's <strong>External IP</strong> and External Port</p>
+<ul>
+<li>
+<p>Log into the <a href="#definitions">Client computer</a> (your personal computer)</p>
+</li>
+<li>
+<p><strong>Open Router Admin</strong> - in the browser go to url <strong>http://192.168.1.1/</strong> or <strong>http://192.168.0.1/</strong></p>
+</li>
+<li>
+<p><strong>Get the IP Address</strong> - You should see your network's IP Address on the first page of your router admin. This is the static internet address assigned by your Internet Service Provider.</p>
+</li>
+<li>
+<p><strong>Get the port of the Server machine</strong> - The port should be the same as the one you configured in the section <a href="#configure-port-forwarding">Configure port forwarding</a> e.g. 1234</p>
+</li>
+<li>
+<p>Suppose that we are using the following details</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Port</td>
+<td>1234</td>
+</tr>
+<tr>
+<td>Username</td>
+<td>admin</td>
+</tr>
+<tr>
+<td>IP</td>
+<td>113.216.184.151</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Open <strong>Git Bash</strong> or <strong>Terminal</strong></p>
+</li>
+<li>
+<p><strong>Connect to the Server</strong> - connect remotely to the Server using ssh command</p>
+<p>ssh -p {{EXTERNAL_PORT}} {{USERNAME}}@{{IP_ADDRESS}}</p>
+<p><strong>For example:</strong></p>
+<p>ssh -p 1234 admin@113.216.184.151</p>
+</li>
+<li>
+<p>You will get this message</p>
+<div class="language-text highlight"><pre><span></span><code>The authenticity of host &#39;[113.216.184.151]:1234 ([113.216.184.151]:1234)&#39; can&#39;t be established.
+ED25519 key fingerprint is SHA256:1f8b2ad4be0e47c9b52ce4af6c652663.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])?
+</code></pre></div>
+</li>
+<li>
+<p>Enter <strong>yes</strong> to continue. You will get something like this</p>
+<div class="language-text highlight"><pre><span></span><code>Warning: Permanently added &#39;[113.216.184.151]:1234&#39; (ED25519) to the list of known hosts.
+</code></pre></div>
+</li>
+<li>
+<p>You may (or may not) get disconnected with this message</p>
+<div class="language-text highlight"><pre><span></span><code>Connection closed by 113.216.184.151 port 1234
+</code></pre></div>
+<ul>
+<li>
+<p>In this case, just enter ssh connect command again</p>
+<p>ssh -p 1234 admin@113.216.184.151   </p>
+</li>
+</ul>
+</li>
+<li>
+<p>You should see a password prompt</p>
+<p>admin@113.216.184.151's password:</p>
+</li>
+<li>
+<p>After you type in the correct password, you will be remotely logged into the Server</p>
+</li>
+<li>
+<p>You can do everything on SSH remote connection as if you were logged in on the physical server computer. You should see a <a href="#command-line-prompt">command line prompt</a> like this:</p>
+<p>admin@my-home-server:~ $</p>
+</li>
+<li>
+<p><strong>Disconnect from the Server</strong> : Hit <vxm-kbd>CTRL + D</vxm-kbd></p>
+</li>
+<li>
+<p>From this point onwards you can use your Client PC to access the Server and run all the commands on it.</p>
+<ul>
+<li>Therefore you can disconnect monitor and keyboard from the Server computer if you wish so.</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>NOTE:</strong> On your Client computer, ssh has created a <a href="#dot-directories">dot directory</a> called <strong>.ssh</strong> inside the <a href="#user-home-directory">user home directory</a>
+- To see the hidden .ssh directory, open terminal and type in this command</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>  ls -la
+</code></pre></div>
+<ul>
+<li>
+<p>Go inside the .ssh folder and view contents of it</p>
+<p>cd .ssh
+  ls -l</p>
+</li>
+<li>
+<p>You should see the file called <strong>known_hosts</strong></p>
+</li>
+<li>
+<p>Open <strong>known_hosts</strong></p>
+<p>nano known_hosts</p>
+</li>
+<li>
+<p>You should see something like:</p>
+<p>[113.216.184.151]:1234 ssh-ed25519 jfY8xUO1cfDAlbbB ...
+  [113.216.184.151]:1234 ecdsa-sha2-nistp256 FUbUx1a3sM= ...</p>
+</li>
+<li>
+<p>These are identifying keys related to your Server. If you connect to any other servers, similar keys will be added to this file to mark those servers/hosts as known hosts.</p>
+</li>
+</ul>
+<h3 id="step-3-passwordless-connect-with-rsa">Step 3 - Passwordless Connect with RSA</h3>
+<p><definition></p>
+<blockquote>
+<p><strong>RSA (Rivest-Shamir-Adleman) encryption</strong> - is a public-key encryption used for securing data transmission of e-mail and other digital transactions over the Internet. "RSA" is the acronym for the surnames of Ron Rivest, Adi Shamir and Leonard Adleman, who publicly described the algorithm in 1977.
+</definition></p>
+</blockquote>
+<p>SSH protocol uses RSA encryption to enable Client computer to connect remotely to Server computer by use of <strong>public and private key</strong>, instead of having to type in the password.</p>
+<p>SSH files are stored inside <strong>".ssh"</strong> folder located in the <a href="#user-home-directory">User Home directory</a>.</p>
+<ul>
+<li>
+<p>Let's suppose that we have the following client-server set-up:</p>
+</li>
+<li>
+<p>Client computer:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Client Machine Name</td>
+<td>my-pc</td>
+</tr>
+<tr>
+<td>Operating System</td>
+<td>Windows</td>
+</tr>
+<tr>
+<td>Username</td>
+<td>Admin</td>
+</tr>
+<tr>
+<td>User directory</td>
+<td>C:\Users\Admin\</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Replace Admin above with your username</li>
+</ul>
+</li>
+<li>
+<p>Server computer:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Server Machine Name (hostname)</td>
+<td>my-home-server</td>
+</tr>
+<tr>
+<td>Operating System</td>
+<td>Raspberry Pi OS</td>
+</tr>
+<tr>
+<td>Username</td>
+<td>admin</td>
+</tr>
+<tr>
+<td>User directory</td>
+<td>/home/admin/</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Replace <strong>my-home-server</strong> above with your server name</li>
+</ul>
+</li>
+<li>
+<p>On the <a href="#definitions">Client</a> open <strong>Git Bash</strong> or <strong>Terminal</strong></p>
+</li>
+<li>
+<p><strong>Create RSA encryption keys on Client</strong> using <strong>ssh-keygen</strong> command:</p>
+<p>ssh-keygen </p>
+</li>
+<li>
+<p>You should see a prompt:</p>
+<div class="language-text highlight"><pre><span></span><code>Generating public/private rsa key pair.
+Enter file in which to save the key (/c/Users/Admin/.ssh/id_rsa):
+</code></pre></div>
+<p>The prompt gives a suggestion to use a default file called <strong>id_rsa</strong> inside <strong>.ssh/</strong> folder to store the private key.</p>
+<p>However this is not good enough for us. We want to structure our files with the view that we will connect to many other servers.</p>
+</li>
+<li>
+<p><strong>Copy the suggested file path</strong> (/c/Users/Admin/.ssh/id_rsa) and <strong>append the Server name at the end</strong> like:</p>
+<div class="language-text highlight"><pre><span></span><code>/c/Users/Admin/.ssh/id_rsa_my-home-server
+</code></pre></div>
+</li>
+<li>
+<p>Hit <vxm-kbd>Enter</vxm-kbd></p>
+</li>
+<li>
+<p>Next you should see passphrase prompts. Just hit <vxm-kbd>Enter</vxm-kbd> without typing in any text. </p>
+<p>Enter passphrase (empty for no passphrase):
+  Enter same passphrase again:</p>
+</li>
+<li>
+<p>The keys will be generated and you will see the following output (where <strong>"my-pc"</strong> is the name of your Client computer, <strong>"Admin"</strong> is your username on your Client computer,<strong>"my-home-server"</strong> is your Server computer name):</p>
+<div class="language-text highlight"><pre><span></span><code>Your identification has been saved in /c/Users/Admin/.ssh/id_rsa_my-home-server
+Your public key has been saved in /c/Users/Admin/.ssh/id_rsa_my-home-server.pub
+The key fingerprint is:
+SHA256:h7FUEfiH8PtvNANPjc7uZM1VH6pGG/5LmI/PNp83M6E Admin@my-pc
+The key&#39;s randomart image is:
++---[RSA 3072]----+
+|         .+o     |
+|        o.       |
+|        o+ .   +.|
+|       . ++ o + =|
+|        S .= B  o|
+|         .+ * B+.|
+|           O ++o+|
+|          . BEo+o|
+|           .oX*o=|
++----[SHA256]-----+
+</code></pre></div>
+</li>
+<li>
+<p><strong>Copy the public key to the <a href="#definitions">Server</a></strong> using <strong>ssh-copy-id</strong> command. Type in the following command. (Replace the tokens - words starting with <strong>{{</strong> and ending with <strong>}}</strong> - with your own data)</p>
+<p>ssh-copy-id -i ~/.ssh/id_rsa_{{SERVER_NAME}}.pub -p {{SERVER_PORT}} {{SERVER_USERNAME}}@{{SERVER_IP_ADDRESS}}</p>
+<p><strong>For example:</strong></p>
+<p>ssh-copy-id -i ~/.ssh/id_rsa_my-home-server.pub -p 1234 admin@113.216.184.151</p>
+<ul>
+<li>
+<p><strong>NOTE:</strong> Path <strong>"~/"</strong> is a short notation for your <a href="#user-home-directory">user home directory path</a> e.g. "/c/Users/Admin/" </p>
+</li>
+<li>
+<p>You will be prompted for password:</p>
+<p>/usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: "/c/Users/Admin/.ssh/id_rsa_my-home-server.pub"
+  /usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
+  /usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
+  admin@113.216.184.151's password:</p>
+</li>
+<li>
+<p>After you type in the password you will see output:</p>
+<p>Number of key(s) added: 1</p>
+<p>Now try logging into the machine, with:   "ssh -p '1234' 'admin@113.216.184.151'"
+  and check to make sure that only the key(s) you wanted were added.</p>
+</li>
+<li>
+<p><strong>NOTE:</strong> logging into the Server machine by using command <strong>"ssh -p 1234 admin@113.216.184.151"</strong> will still ask us for password. This is because we have not created our RSA keys in the default file "id_rsa" but instead we have created it in the custom file named "id_rsa_my-home-server". Therefore we need to specify the location of the key file when using ssh to connect, for example: <strong>"ssh -i ~/.ssh/id_rsa_my-home-server -p 1234 admin@113.216.184.151"</strong></p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Connect to the Server without a password</strong></p>
+<p>ssh -i ~/.ssh/id_rsa_my-home-server -p 1234 admin@113.216.184.151</p>
+</li>
+<li>
+<p><strong>NOTE:</strong> We are using the path to file "id_rsa_my-home-server" and NOT "id_rsa_my-home-server.pub" (private key, not public key).</p>
+</li>
+<li>
+<p>This time, you should be logged into Server without a password prompt</p>
+</li>
+<li>
+<p>View public key on Server (for the purpose of understanding the private-public key handshake)</p>
+</li>
+<li>
+<p>Navigate to .ssh folder on the server</p>
+<div class="language-text highlight"><pre><span></span><code>cd ~/.ssh
+</code></pre></div>
+<ul>
+<li>
+<p>View contents of the folder</p>
+<p>ls -l</p>
+</li>
+<li>
+<p>You should see one file <strong>"authorized_keys"</strong></p>
+</li>
+</ul>
+</li>
+<li>
+<p>Open <strong>authorized_keys</strong> file</p>
+<div class="language-text highlight"><pre><span></span><code>nano authorized_keys
+</code></pre></div>
+</li>
+<li>
+<p>You will see inside the file <strong>authorized_keys</strong>, the copied public key from the Client that looks like <strong>"ssh-rsa VMXfGsZk9MmnTFvkwSZ11O ..."</strong></p>
+</li>
+<li>
+<p>This is how Server authorizes Client connection - by making sure that the public RSA key matches the one stored in <strong>authorized_keys</strong> file.</p>
+</li>
+<li>
+<p>Exit nano editor  : <vxm-kbd>CTRL + X</vxm-kbd></p>
+</li>
+</ul>
+<p>As you can see, eventhough we now don't need to provide the password, it is still cumbersome to type in all the connection data every time we want to connect to the Server.</p>
+<p>In the next section we will learn how to connect to the Server by just providing the Server name in ssh command like: <strong>"ssh my-home-server"</strong>.</p>
+<ul>
+<li>Disconnect from the Server : <vxm-kbd>CTRL + D</vxm-kbd></li>
+<li>Clean the terminal window : <vxm-kbd>CTRL + L</vxm-kbd></li>
+</ul>
+<h3 id="step-4-one-word-connect-with-ssh-config">Step 4 - One Word Connect with SSH Config</h3>
+<ul>
+<li>
+<p>On the Client, go into .ssh folder:</p>
+<p>cd ~/.ssh</p>
+</li>
+<li>
+<p>Create file <strong>"config"</strong> without any file extension</p>
+<p>touch config</p>
+</li>
+<li>
+<p>Open file config</p>
+<p>nano config</p>
+</li>
+<li>
+<p>Paste into it Host connection configuration like:     </p>
+<p>Host {{SERVER_NAME}}
+    HostName {{SERVER_IP_ADDRESS}}
+    Port {{SERVER_PORT}}
+    User {{SERVER_USERNAME}}</p>
+<p><strong>For example:</strong></p>
+<p>Host my-home-server
+    HostName 113.216.184.151
+    Port 1234
+    User admin
+    IdentityFile  ~/.ssh/id_rsa_my-home-server</p>
+</li>
+<li>
+<p>Save and exit nano editor : <vxm-kbd>CTRL + S</vxm-kbd> <vxm-kbd>CTRL + X</vxm-kbd></p>
+</li>
+<li>
+<p>Connect to Server</p>
+<p>ssh my-home-server</p>
+</li>
+<li>
+<p>You should be automatically logged into Server without password prompt</p>
+</li>
+</ul>
+<h2 id="rdp-remote-connect-windows">RDP - Remote Connect - Windows</h2>
+<p><strong>NOTE:</strong> This section is relevant only to Windows client computer.</p>
+<p><definition></p>
+<blockquote>
+<p>RDP (Remote Desktop Protocol) is a proprietary protocol developed by Microsoft which provides a user with a graphical interface to connect to another computer over a network connection.
+</definition></p>
+</blockquote>
+<p>If we want to access remotely graphical user interface (GUI) of our server, from Windows personal computer, we can use <strong>Remote Desktop Connection</strong> program that comes pre-installed on Windows.</p>
+<p>But first we need to install program called <strong>xrdp</strong> on the Linux home server and then we can connect to it from our Windows computer.
+Ref: http://www.xrdp.org/</p>
+<h3 id="configure-xrdp-on-server">Configure XRDP on Server</h3>
+<ul>
+<li>
+<p>Open terminal on your Client and SSH into your server machine</p>
+<p>ssh my-home-server</p>
+</li>
+<li>
+<p>Update and upgrade packages</p>
+<p>sudo apt update
+  sudo apt upgrade</p>
+</li>
+<li>
+<p>Install <strong>xrdp</strong></p>
+<p>sudo apt install xrdp</p>
+</li>
+<li>
+<p>Check status of xrdp service</p>
+<p>sudo service xrdp status</p>
+</li>
+<li>
+<p>You should see something like</p>
+<div class="language-text highlight"><pre><span></span><code>● xrdp.service - xrdp daemon
+   Loaded: loaded (/lib/systemd/system/xrdp.service; enabled; vendor preset: enabled)
+   Active: active (running) since Mon 2023-09-04 22:55:13 BST; 4min 18s ago
+     Docs: man:xrdp(8)
+           man:xrdp.ini(5)
+</code></pre></div>
+</li>
+</ul>
+<p><strong>XRDP</strong> listens on port <strong>3389</strong>, so you will need to open that port on your firewall.</p>
+<ul>
+<li>
+<p>Allow port 3389 in your firewall</p>
+<p>sudo ufw allow 3389</p>
+</li>
+<li>
+<p>Get your server's IP address and note it down</p>
+<p>hostname -I</p>
+</li>
+<li>
+<p>NOTE: this will give you internal IP address of your server on your local network. If you want to connect to your server from outside your local network, you will need to get your external IP address. See section <a href="#get-external-ip">Get External IP</a> for more info.</p>
+</li>
+</ul>
+<h3 id="connect-from-client">Connect from Client</h3>
+<ul>
+<li>On your Windows computer, open <strong>Remote Desktop Connection</strong> program</li>
+<li>You can find it by typing <strong>"Remote Desktop Connection"</strong> in the search bar at the bottom left of your screen</li>
+<li>
+<p>Or you can find it in the Start Menu under <strong>Windows Accessories</strong> folder</p>
+</li>
+<li>
+<p>In the <strong>Remote Desktop Connection</strong> window, type the IP address of your server and click <strong>Connect</strong></p>
+</li>
+<li>
+<p>You will get a warning message about certificate. Click <strong>Yes</strong> to continue</p>
+</li>
+<li>You will get a login screen. Enter your username and password and click <strong>OK</strong></li>
+<li>You should be logged in and see the desktop of your Linux server on the screen of your Windows computer</li>
+</ul>
+<p>That's it. Now you can use your Linux server's GUI from your Windows computer, from anywhere in the world.</p>
+<h2 id="upload-download">Upload / Download</h2>
+<h3 id="upload">Upload</h3>
+<ul>
+<li>
+<p>Copy file from local windows computer to Raspbery Pi server</p>
+<div class="language-text highlight"><pre><span></span><code>scp -P {{SERVER_SSH_PORT}} {{CLIENT_FILE_PATH}} {{USERNAME}}@{{SERVER_IP_ADDRESS}}:/{{SERVER_FILE_OR_FOLDER_PATH}}
+</code></pre></div>
+<ul>
+<li>
+<p>Example: from directory of the source files</p>
+<div class="language-text highlight"><pre><span></span><code>scp -P 1234 file1.json admin@220.237.80.202:/home/my-files/
+scp -P 1234 file2.json file3.txt admin@220.237.80.202:/home/my-files/
+</code></pre></div>
+</li>
+<li>
+<p>Example: from any directory using full path</p>
+<div class="language-text highlight"><pre><span></span><code>scp -P 1234 /C/my-files/file1.json admin@220.237.80.202:/home/my-files/
+scp -P 1234 /C/my-files/file2.json /C/my-files/file3.txt admin@220.237.80.202:/home/my-files/
+</code></pre></div>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="download">Download</h3>
+<ul>
+<li>Copy file from Raspbery Pi server to local windows computer</li>
+</ul>
+<h2 id="manage-external-storage-device">Manage External Storage Device</h2>
+<p>Refs: <br />
+- <a href="https://www.raspberrypi.com/documentation/computers/configuration.html#external-storage-configuration">Raspberry Pi - External Storage Config</a></p>
+<ul>
+<li><a href="https://help.ubuntu.com/community/Fstab">Ubuntu.com - Fstab</a></li>
+</ul>
+<h3 id="temporary-storage">Temporary Storage</h3>
+<ul>
+<li>
+<p>Turn on your server machine in Desktop mode (not headless mode) - it should already be set up in Desktop mode</p>
+</li>
+<li>
+<p>Insert external storage device into your server computer</p>
+</li>
+<li>
+<p>On Raspberry Pi you will get popup that says <strong>"Removable medium is inserted."</strong> Click OK</p>
+</li>
+<li>
+<p>Open file explorer</p>
+</li>
+<li>
+<p>You should see your external drive mounted on the left panel inside directory <strong>"/media/{{USERNAME}}"</strong>. </p>
+<p>For example: <strong>"/media/admin/2.1 TB Volume"</strong></p>
+</li>
+</ul>
+<p>By default, Linux mounts external drives onto <strong>/media/{{USERNAME}}</strong> folder. </p>
+<p>In <strong>file explorer</strong> there is a <strong>quick access link</strong> to your external drive on the left panel.
+- On Linux Mint it is under the <strong>"Devices"</strong> section
+- On Raspberry Pi it is at the top of the left panel under the <strong>Home Folder</strong> and <strong>Filesystem Root</strong></p>
+<p>You should see a name of your external drive for example <strong>"123 GB Volume"</strong>.</p>
+<p>Now you can use your external drive as a temporary storage for your files.</p>
+<h3 id="permanent-storage">Permanent Storage</h3>
+<p>In this section we are going to learn how to mount an external drive on the selected directory of our Server machine so that we can use it as a permanent storage for our data. </p>
+<p>We will reformat the drive to use ext4 file format which is Linux's file format that allows us to set permissions on files and folders for multiple users - same as for the rest of the files on our Server machine. </p>
+<p>We will configure the server to automatically mounts our storage when machine is rebooted.</p>
+<ul>
+<li>Prepare External Storage device.  It can be one of these 3:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.</td>
+<td>HDD (Hard Disk Drive)</td>
+<td>Cheap, spacious and slow. Old spinning disc technology</td>
+</tr>
+<tr>
+<td>2.</td>
+<td>USB (Flash Drive)</td>
+<td>Small, portable and quick (prefered is USB 3 which is quicker and larger than USB 2)</td>
+</tr>
+<tr>
+<td>3.</td>
+<td>SSD (Solid State Drive)</td>
+<td>Best performance, large storage, most expensive. Best option.</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>
+<p>Plug your external storage device into your Server</p>
+</li>
+<li>
+<p><strong>NOTE:</strong> if using USB 3, you should plug it in the port that has a <strong>BLUE</strong> colored line</p>
+</li>
+</ul>
+<p>In order to properly administer user permissions on the external drive, we need to reformat it into EXT4 format.</p>
+<blockquote>
+<p><strong>ext4</strong> (fourth extended filesystem) - is the default file system for Linux.</p>
+</blockquote>
+<h4 id="step-1-create-partition">Step 1. Create Partition</h4>
+<ul>
+<li>
+<p>Get external drive partition: <code>sudo blkid</code></p>
+<ul>
+<li>
+<p>Your external drive details will look something like:</p>
+<p>/dev/sda1: UUID="5C24-1453" BLOCK_SIZE="512" TYPE="exfat" PARTUUID="00000000-01"</p>
+</li>
+<li>
+<p>If you are not sure which one on the list is your drive's block device info , then unplug the external drive and run the <code>blkid</code> command again. The one that is missing from the list is your external drive.</p>
+</li>
+<li>
+<p>Note down these details:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>device name</strong></td>
+<td>/dev/sda1</td>
+</tr>
+<tr>
+<td><strong>device id</strong></td>
+<td>UUID="5C24-1453"</td>
+</tr>
+<tr>
+<td><strong>device type</strong></td>
+<td>TYPE="exfat"</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+<li>
+<p>Start disk format:</p>
+<p>sudo fdisk /dev/sda1 --wipe auto</p>
+</li>
+<li>
+<p>You will get warning in red like this: </p>
+<div class="language-text highlight"><pre><span></span><code>The device contains &#39;exfat&#39; signature and it will be removed by a write command. See fdisk(8) man page and --wipe option for more details.
+</code></pre></div>
+<p>Just ignore it</p>
+</li>
+<li>
+<p>You will see a prompt: <strong>Command (m for help):</strong></p>
+</li>
+<li>
+<p>Type <code>g</code> and hit <strong>Enter</strong> - to create a new empty GPT partition table</p>
+</li>
+<li>You will see message like <code>Created a new GPT disklabel (GUID: aa60d5a8-6a7f-43f6-8c41-8958ae018526).</code></li>
+<li>You may see a warning in red - just ignore it</li>
+<li>
+<p>You will get a prompt: <strong>Command (m for help):</strong></p>
+</li>
+<li>
+<p>Type <code>n</code> and hit <strong>Enter</strong> - to create a new partition on the disk</p>
+</li>
+<li>You will get a prompt: <code>Partition number (1-128, default 1):</code></li>
+<li>Hit <strong>Enter</strong> to accept default value</li>
+<li>You will get a prompt: <code>First sector (2048-1953525167, default 2048):</code></li>
+<li>Hit <strong>Enter</strong> to accept default value</li>
+<li>You will get a prompt: <code>Last sector, +/-sectors or +/-size{K,M,G,T,P} (2048-4095997918, default 4095995903):</code></li>
+<li>Hit <strong>Enter</strong> to accept default value</li>
+<li>You will get message like: <code>Created a new partition 1 of type 'Linux filesystem' and of size 1.9 TiB.</code></li>
+<li>
+<p>You will get a prompt: <strong>Command (m for help):</strong></p>
+</li>
+<li>
+<p>Type <code>w</code> and hit <strong>Enter</strong> - to write table to disk and exit</p>
+</li>
+<li>
+<p>You will get message like: <code>The partition table has been altered.</code></p>
+</li>
+<li>
+<p>NOTE: You may get this error message or messages:</p>
+<div class="language-text highlight"><pre><span></span><code>Failed to add partition 1 to system: Invalid argument
+</code></pre></div>
+<p>OR</p>
+<div class="language-text highlight"><pre><span></span><code>Calling ioctl() to re-read partition table.
+Re-reading the partition table failed.: Invalid argument
+</code></pre></div>
+<p>AND</p>
+<div class="language-text highlight"><pre><span></span><code>The kernel still uses the old table. The new table will be used at the next reboot.
+Syncing disks.
+</code></pre></div>
+</li>
+<li>
+<p>Just ignore above messages</p>
+</li>
+<li>
+<p>Reboot</p>
+<p>sudo reboot</p>
+</li>
+<li>
+<p>Run <code>sudo blkid</code> again</p>
+</li>
+<li>
+<p>Your external drive details should now look like this:</p>
+<p>/dev/sda1: PTUUID="aa60d5a8-6a7f-43f6-8c41-8958ae018526" PTTYPE="gpt" PARTUUID="eb3cd722-01"</p>
+</li>
+</ul>
+<h4 id="step-2-format-partition">Step 2. Format Partition</h4>
+<ul>
+<li>
+<p>To format partition:</p>
+<p>sudo mkfs.ext4 /dev/sda1</p>
+</li>
+<li>
+<p>You will get:  </p>
+<p>Found a gpt partition table in /dev/sda1
+  Proceed anyway? (y,N)</p>
+</li>
+<li>
+<p>Type <strong>y</strong>, hit <strong>Enter</strong> and <strong>WAIT</strong> !!!</p>
+</li>
+<li>
+<p><strong>NOTE:</strong> Creating journal may take a long time especially if you have a large disk (terabytes in size). So <strong>BE PATIENT AND DON'T TOUCH ANYTHING</strong> until it's finished. Go and grab a coffee while you wait ;-)</p>
+</li>
+<li>
+<p>You will see output like:</p>
+<div class="language-text highlight"><pre><span></span><code>Creating filesystem with 15155195 4k blocks and 3792896 inodes
+Filesystem UUID: aa60d5a8-6a7f-43f6-8c41-8958ae018526
+Superblock backups stored on blocks:
+        32768, 98304, 163840, 229376, 294912, 819200, 884736, 1605632, 2654208,
+        4096000, 7962624, 11239424
+
+Allocating group tables: done
+Writing inode tables: done
+Creating journal (65536 blocks): done
+Writing superblocks and filesystem accounting information: done
+</code></pre></div>
+</li>
+<li>
+<p>You will know it's finished when you see the last line:</p>
+<p>Writing superblocks and filesystem accounting information: done</p>
+</li>
+<li>
+<p>Run command to check block ids again</p>
+<p>sudo blkid</p>
+</li>
+<li>
+<p>It should now look like this:</p>
+<p>/dev/sda1: UUID="aa60d5a8-6a7f-43f6-8c41-8958ae018526" BLOCK_SIZE="4096" TYPE="ext4" PARTUUID="eb3cd722-01"</p>
+</li>
+</ul>
+<h4 id="step-3-mount-external-drive">Step 3. Mount External Drive</h4>
+<p>To start using our external drive, we first need to <strong>mount it</strong>.</p>
+<blockquote>
+<p><definition /></p>
+<p>Mounting - is the act of associating a storage device to a particular location in the directory tree. Unix systems have a <strong>single directory tree</strong>. All accessible storage must have an associated location in this single directory tree.</p>
+<p><definition /></p>
+<p><strong>"/dev/" directory</strong> - contains files that represent devices that are attached to the local system. These are not regular files that a user can read and write to. These files are called devices files or special files.</p>
+<p><definition /></p>
+<p><strong>blkid command</strong> - displays information about available block devices e.g. external hard drives or USBs. <strong>blkid</strong> without any argument will list all the available devices with their Universally Unique Identifier (UUID), the TYPE of the file system, and the LABEL if it's set.</p>
+<p><definition /></p>
+</blockquote>
+<p><strong>NOTE:</strong> We will refer to your external storage device as "<strong>my-drive</strong>". You can replace this with your own name.</p>
+<p>We will have to create a directory onto which we will mount our external drive.</p>
+<p><strong>NOTE:</strong> Standard practice is to create mount directory inside <strong>"/mnt/"</strong> directory. However, you can create it anywhere you like and it will still work.</p>
+<ul>
+<li>
+<p>Create mount directory</p>
+<p>sudo mkdir /mnt/my-drive</p>
+</li>
+<li>
+<p>Get device id </p>
+<p>sudo blkid</p>
+</li>
+<li>
+<p><strong>Mount</strong> external drive by pointing device id to mount directory</p>
+<p>sudo mount /dev/sda1 /mnt/my-drive</p>
+</li>
+<li>
+<p><strong>Unmount</strong> the external drive</p>
+<p>sudo umount /mnt/my-drive</p>
+</li>
+</ul>
+<p>Manually mounting external drive that we want to use as permanent storage is not practical. We want to set it up to automatically mount on the same folder every time Server machine starts up.</p>
+<p>To automatically mount external drive we need to add entry to <strong>/etc/fstab</strong> file.</p>
+<blockquote>
+<p><strong>FSTAB</strong> (File System Table) file - is a system configuration file that contains information about disk partitions and other devices that are mounted after the system boots.</p>
+</blockquote>
+<p>To understand persistent mounting of file system in more details check out <a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/managing_file_systems/assembly_persistently-mounting-file-systems_managing-file-systems">Redhat - Persistently mounting file systems</a></p>
+<p>For the full description of fstab file syntax, see <a href="#fstab-file-syntax">FSTAB File Syntax</a> in the <a href="#appendix">Appendix</a>.</p>
+<p>You can also check out <a href="https://help.ubuntu.com/community/Fstab">Ubuntu.com - Fstab</a> for more detail info about fstab.</p>
+<ul>
+<li>
+<p>Run command to check block ids again</p>
+<p>sudo blkid</p>
+</li>
+<li>
+<p>Find your external drive in the list (normally starts with <strong>/dev/sd...</strong>)</p>
+</li>
+<li>
+<p><strong>Write down 3 things</strong></p>
+</li>
+<li>UUID</li>
+<li>TYPE </li>
+<li>
+<p>mount directory path</p>
+<p><strong>For example:</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UUID</td>
+<td>5C24-1453</td>
+</tr>
+<tr>
+<td>TYPE</td>
+<td>exfat</td>
+</tr>
+<tr>
+<td>MOUNT_DIR_PATH</td>
+<td>/mnt/my-drive</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p><strong>Open the fstab file for edit</strong></p>
+<p>sudo nano /etc/fstab</p>
+</li>
+<li>
+<p>Add the following line at the bottom of fstab file </p>
+<div class="language-text highlight"><pre><span></span><code>UUID={{UUID}} {{MOUNT_DIR_PATH}} {{TYPE}} defaults,auto,users,rw,nofail 0 0
+</code></pre></div>
+<ul>
+<li>Replace tokens {{UUID}}, {{MOUNT_DIR_PATH}} and {{TYPE}} with the data you noted above in the previous step.</li>
+</ul>
+<p>For example:</p>
+<div class="language-text highlight"><pre><span></span><code>UUID=aa60d5a8-6a7f-43f6-8c41-8958ae018526 /mnt/my-drive ext4 defaults,auto,users,rw,nofail 0 0
+</code></pre></div>
+<ul>
+<li>Save and exit nano editor : <vxm-kbd>CTRL + S</vxm-kbd> <vxm-kbd>CTRL + X</vxm-kbd></li>
+</ul>
+</li>
+<li>
+<p>Restart the Server machine</p>
+<p>sudo reboot</p>
+</li>
+</ul>
+<p>Now your Server should automatically mount the external drive when you start the Server machine.</p>
+<p>You should not unplug this drive. This is our main storage device.</p>
+<p>If you want to unplug the external drive that has been mounted, you should <strong>unmount</strong> it first. </p>
+<p>#### Step 4. Test Auto Mounting</p>
+<p>If after reboot you get a black screen with a long message that contains "<strong>Root account locked</strong>" got to section <a href="#troubleshoot-mounting">Troubleshoot Mounting</a> to fix it. The solution is in <a href="#fixing-error-root-account-locked">Fixing Error - Root account locked</a> section.</p>
+<p>Otherwise continue with steps bellow</p>
+<ul>
+<li>
+<p><strong>Check your mount directory</strong> to see if the external drive has been mounted</p>
+<p>ls -l /mnt/my-drive</p>
+</li>
+<li>
+<p>You should see <strong>"lost+found"</strong> directory inside your mount directory like:</p>
+<div class="language-text highlight"><pre><span></span><code>total 0
+drwxr-xr-x 2 root root 0 Sep  5 00:00 lost+found
+</code></pre></div>
+</li>
+<li>
+<p>If you cannot see the folder <strong>"lost+found"</strong> inside your mount directory, then your external drive has not been mounted successfully. Proceed to next checks.</p>
+</li>
+<li>
+<p><strong>Check fstab file</strong> to see if the UUID, mount directory path and type are correct. First runn blkid to get your drive details.</p>
+<p>sudo blkid
+  sudo nano /etc/fstab</p>
+</li>
+<li>
+<p><strong>UUID</strong> must match the UUID of your external drive e.g. UUID=aa60d5a8-6a7f-43f6-8c41-8958ae018526 </p>
+</li>
+<li><strong>Mount directory path</strong> must match the mount directory path you created e.g. /mnt/my-drive</li>
+<li>
+<p><strong>File System Type</strong> must match the file system type of your external drive e.g. ext4</p>
+</li>
+<li>
+<p><strong>Check journal logs</strong> for mount directory /mnt/my-drive</p>
+<p>journalctl -u mnt-my-drive.mount -b</p>
+</li>
+<li>
+<p>Slashes in mount directory path are escaped with dashes. So if your mount directory path is <strong>"/mnt/my-drive"</strong> then you need to type <strong>"mnt-my-drive.mount"</strong> in the command above.</p>
+</li>
+<li>
+<p><strong>-b</strong> - filters out entries for last boot. If you dont't use -b , you will see a journal log for the whole journal of mounting onto directory /mnt/my-drive</p>
+</li>
+<li>
+<p>If mount was succesfull journal log should show you something like this</p>
+<div class="language-text highlight"><pre><span></span><code>Dec 08 12:44:33 my-home-server systemd[1]: Mounting mnt-my-drive.mount - /mnt/my-drive...
+Dec 08 12:44:34 my-home-server systemd[1]: Mounted mnt-my-drive.mount - /mnt/my-drive.
+</code></pre></div>
+</li>
+<li>
+<p>If mount failed, you may see this error in journal logs</p>
+<div class="language-text highlight"><pre><span></span><code>mount: /mnt/my-drive: wrong fs type, bad option, bad superblock on /dev/sda1, missing codepage or helper program, or other error.
+</code></pre></div>
+</li>
+</ul>
+<p>If journal logs show that the boot failed and you can see <strong>"bad superblock error"</strong>:</p>
+<div class="language-text highlight"><pre><span></span><code>mount: /mnt/my-drive: wrong fs type, bad option, bad superblock on /dev/sda1, missing codepage or helper program, or other error.
+</code></pre></div>
+<p>Then you need to run <strong>file system check</strong> for your external drive.</p>
+<ul>
+<li>
+<p><strong>Run fsck (file system check)</strong> command on the external drive</p>
+<p>sudo fsck /dev/sda1</p>
+</li>
+<li>
+<p>Say <strong>yes</strong> to all prompts</p>
+</li>
+<li>
+<p>Reboot the Server machine</p>
+<p>sudo reboot</p>
+</li>
+<li>
+<p>Check journal logs again</p>
+</li>
+</ul>
+<p>If your external drive has not been mounted again and you got the bad superblock error again, chances are that your external drive is corrupte and not fixable. In this case you just have to get a new external drive.</p>
+<ul>
+<li><strong>Check that files and directories persist</strong></li>
+<li>
+<p>Create files and directories inside your mount directory</p>
+<div class="language-text highlight"><pre><span></span><code>sudo touch /mnt/my-drive/test.txt  \
+&amp;&amp; sudo mkdir /mnt/my-drive/test  \
+&amp;&amp; sudo touch /mnt/my-drive/test/test2.txt
+</code></pre></div>
+</li>
+<li>
+<p>Reboot the Server machine</p>
+<div class="language-text highlight"><pre><span></span><code>sudo reboot
+</code></pre></div>
+</li>
+<li>
+<p>List the files in your mount directory</p>
+<div class="language-text highlight"><pre><span></span><code>ls -l /mnt/my-drive \
+&amp;&amp; ls -l /mnt/my-drive/test
+</code></pre></div>
+<ul>
+<li>You should see the files and directories you created before reboot<div class="language-text highlight"><pre><span></span><code>total 20
+drwx------ 2 root root 16384 Dec  8 11:10 lost+found
+drwxr-xr-x 2 root root  4096 Dec  8 13:12 test
+-rw-r--r-- 1 root root     0 Dec  8 13:12 test.txt
+total 0
+-rw-r--r-- 1 root root 0 Dec  8 13:12 test2.txt
+</code></pre></div>
+</li>
+</ul>
+</li>
+<li>
+<p>If you cannot see the files and directories you created before reboot, then your external drive has not been mounted successfully. Proceed to next checks.</p>
+</li>
+<li>
+<p>If you have problems with booting or auto mounting, go to section <a href="#troubleshoot-mounting">Troubleshoot Mounting</a></p>
+</li>
+</ul>
+<h4 id="step-5-give-access">Step 5. Give Access</h4>
+<ul>
+<li>
+<p>Give all access to group admins (read, write, execute)</p>
+<p>setfacl -m ""g:admins:rwx" /mnt/my-drive</p>
+</li>
+</ul>
+<h3 id="unmount">Unmount</h3>
+<ul>
+<li>
+<p>Make sure you are not inside the directory that you are trying to unmount. So if you are inside the directory, you need to go out of it first:</p>
+<p>cd ~</p>
+</li>
+</ul>
+<p>For this exercise we will rename the directory <strong>"my-drive"</strong> to <strong>"myDrive"</strong> to demonstrate unmounting but we will rename it back to "my-drive" after that.</p>
+<ul>
+<li>
+<p><strong>Try to rename mount directory</strong> from my-drive to myDrive</p>
+<p>sudo mv /mnt/my-drive /home/myDrive</p>
+</li>
+<li>
+<p>You will get this message</p>
+<div class="language-text highlight"><pre><span></span><code>mv: cannot move &#39;/mnt/my-drive&#39; to &#39;/home/myDrive&#39;: Device or resource busy
+</code></pre></div>
+</li>
+<li>
+<p>This is because your external drive is mounted onto this directory</p>
+</li>
+</ul>
+<p>In this situation we need to unmount the external drive.</p>
+<ul>
+<li>
+<p><strong>Unmount the external drive</strong></p>
+<p>sudo umount /mnt/my-drive</p>
+</li>
+<li>
+<p>Rename mount directory from my-drive to myDrive </p>
+<p>sudo mv my-drive myDrive</p>
+</li>
+<li>
+<p>List home directories</p>
+<p>ls -l /home/</p>
+</li>
+<li>
+<p>You will see that the directory my-drive has been changed to myDrive</p>
+</li>
+<li>
+<p>If you wanted this directory to be mounted automatically, you would have to change the line of text inside the file <strong>"/etc/fstab"</strong> to use new directory name for example:</p>
+<div class="language-text highlight"><pre><span></span><code>UUID=5C24-1453 /home/myDrive exfat defaults,auto,users,rw,nofail 0 0
+</code></pre></div>
+</li>
+<li>
+<p>And then you would have to reboot the server computer</p>
+</li>
+<li>
+<p>However we will not be changing the name of the drive. This was just for practice.</p>
+</li>
+<li>
+<p>Change back the name of the drive to my-drive</p>
+<p>sudo mv /home/myDrive /mnt/my-drive</p>
+</li>
+<li>
+<p>Make sure that file <strong>"/etc/fstab"</strong> contains the correct file path <strong>"/mnt/my-drive"</strong>, for example:</p>
+<p>UUID=5C24-1453 /mnt/my-drive exfat defaults,auto,users,rw,nofail 0 0</p>
+</li>
+</ul>
+<blockquote>
+<p>NOTE: When you use <strong>sudo mv</strong> to rename the directory, the group and the owner of the directory will change to <strong>root</strong>. You need to change this back to your user e.g. admin</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>sudo chown admin /mnt/my-drive 
+sudo chgrp admin /mnt/my-drive
+</code></pre></div>
+<h4 id="dealing-with-target-is-busy">Dealing with 'target is busy'</h4>
+<p>If you cannot unmount external drive because of the persisting '<strong>target is busy</strong>' message, then continue to read this section to fix it.</p>
+<p>The 'target is busy' message means there are files on the storage device that are in use by a program. To close the files, use the following procedure.</p>
+<ul>
+<li>
+<p>Close any program which has open files on the storage device.</p>
+</li>
+<li>
+<p>If you have a terminal open, make sure that you are not in the folder where the storage device is mounted, or in a sub-folder of it.</p>
+</li>
+<li>
+<p>If you are still unable to unmount the storage device, you can use the lsof tool to check which program has files open on the device. You need to first install lsof using apt:</p>
+<p>sudo apt update
+  sudo apt install lsof</p>
+</li>
+<li>
+<p>To use lsof:</p>
+<p>lsof /mnt/my-drive</p>
+</li>
+</ul>
+<h3 id="assign-access-only-to-our-user">Assign access only to our user</h3>
+<ul>
+<li>
+<p>We will temporarily allow access to external-drive only to our user:</p>
+<p>sudo chown $(whoami):$(whoami) -R /mnt/my-drive</p>
+<ul>
+<li>The $(whoami) variable will take the value of the user you are currently logged in as e.g. admin</li>
+</ul>
+</li>
+</ul>
+<h3 id="troubleshoot-mounting">Troubleshoot Mounting</h3>
+<h4 id="fixing-error-root-account-locked">FIXING ERROR Root account locked</h4>
+<p>You reboot Raspberry Pi after having changed /etc/fstab to auto-mount your external drive.</p>
+<p>You get the black screen with a long mesage:</p>
+<div class="language-text highlight"><pre><span></span><code>You are in emergency mode. After logging in, type &quot;journalctl -xb&quot; to view system logs, &quot;systemctl reboot&quot; to reboot, &quot;systemctl default&quot; or &quot;exit&quot; to boot into default mode.
+
+Cannot open access to console, the root account is locked.
+See sulogin(8) man page for more details.
+
+Press Enter to continue.
+</code></pre></div>
+<ul>
+<li>Turn off your RaspberryPi</li>
+<li>Take out the Micro SD that OS is installed on</li>
+<li>Put the SD into your personal computer (Windows, Mac etc.)</li>
+<li>Go inside the SD boot disk and find file <strong>cmdline.txt</strong> and open it</li>
+<li>
+<p>Add the following to the end of the text on the same line, separating it with space</p>
+<div class="language-text highlight"><pre><span></span><code>init=/bin/sh
+</code></pre></div>
+</li>
+<li>
+<p>Eject the SD card</p>
+</li>
+<li>Put the SD card back into Raspberry Pi and turn the Pi on. </li>
+<li>
+<p>This time the Pi will start in command line mode and take your commands input.</p>
+</li>
+<li>
+<p>Raspberry pi SD card has two main partitions, since we cannot read the partition table directly you must manually locate the device for your root and boot partitions and mount them.</p>
+</li>
+<li>
+<p>To do this </p>
+<p>ls /dev</p>
+</li>
+<li>
+<p>You should see <strong>mmcblk0p1</strong> &amp; <strong>mmcblk0p2</strong>. The second device mmcblk0p2 will be your root partition. You need to remount this with read write permissions.</p>
+<div class="language-text highlight"><pre><span></span><code>mount -o remount,rw /dev/mmcblk0p2 /
+</code></pre></div>
+</li>
+<li>
+<p>Open fstab</p>
+<div class="language-text highlight"><pre><span></span><code>nano /etc/fstab
+</code></pre></div>
+<ul>
+<li>Remove the line for mounting your external drive. Use <vxm-kbd>CTRL + K</vxm-kbd> to delete the whole line.</li>
+</ul>
+</li>
+<li>
+<p>Turn off Raspberry Pi by turning off power or pulling out the power cable</p>
+</li>
+<li>
+<p>Put the SD card back into your PC and open <strong>cmdline.txt</strong> file again</p>
+</li>
+<li>
+<p>Lastly we need to revert <strong>cmdline.txt</strong> to original state (remove the temporary <strong>init=/bin/sh</strong> we added to it). </p>
+</li>
+<li>
+<p>Now put SD card back into Pi and turn it on. The Pi will boot normally this time</p>
+</li>
+</ul>
+<p><br></p>
+<h4 id="fixing-error-failed-to-mount">FIXING ERROR Failed to mount</h4>
+<p>If you rebooted your Pi and your USB disc is not mounted. </p>
+<ul>
+<li>
+<p>For example you see red line in boot progress text:</p>
+<div class="language-text highlight"><pre><span></span><code>[FAILED] Failed to mount /mnt/my-drive.
+</code></pre></div>
+<p>OR</p>
+</li>
+<li>
+<p>Or you log in and notice that /mnt/my-drive does not contain files</p>
+</li>
+<li>
+<p>Then you try to manually mount it and you receive error:</p>
+<p>mount : /mnt/my-drive : wrong fs type, bad option, bad superblock on /dev/sda1, missing codepage or helper program, or other error.</p>
+</li>
+<li>
+<p>You can check report of what happened by running</p>
+<div class="language-text highlight"><pre><span></span><code>journalctl -u mnt-my-drive.mount -b
+</code></pre></div>
+<ul>
+<li>Slashes in mount directory path are escaped with dashes. So if your mount directory path is <strong>"/mnt/my-drive"</strong> then you need to type <strong>"mnt-my-drive.mount"</strong> in the command above.</li>
+<li>Option -b is just for last boot. Omit that if you want the whole journal for mounting your external drive</li>
+<li>Hit <strong>CTRL + C</strong> to exit journal logs</li>
+</ul>
+</li>
+</ul>
+<h5 id="fix-1-change-mount-option-for-check-fylesystem-during-boot">FIX 1. - Change mount option for check fylesystem during boot</h5>
+<ul>
+<li>
+<p>Open fstab </p>
+<div class="language-text highlight"><pre><span></span><code>sudo nano /etc/fstab
+</code></pre></div>
+</li>
+<li>
+<p>Change mount mapping for your external drive to use flags "<strong>1 1</strong>" instead of "<strong>0</strong>" at the end. For example:</p>
+<div class="language-text highlight"><pre><span></span><code>UUID=aa60d5a8-6a7f-43f6-8c41-8958ae018526 /mnt/my-drive ext4 defaults 1 1
+</code></pre></div>
+</li>
+<li>
+<p>Reboot</p>
+</li>
+</ul>
+<h5 id="fix-2-format-and-partition-usb-disc-in-desktop-gui-with-gparted">FIX 2. - Format and Partition USB disc in Desktop GUI with GParted</h5>
+<ul>
+<li>
+<p>Change to Desktop boot</p>
+<div class="language-text highlight"><pre><span></span><code>sudo raspi-config
+</code></pre></div>
+<ul>
+<li>System Options &gt; Boot &gt; Desktop</li>
+</ul>
+</li>
+<li>
+<p>Reboot</p>
+</li>
+<li>
+<p>Install GParted - tool for disc partitioning. Open Terminal at the top menu and type command</p>
+<div class="language-text highlight"><pre><span></span><code>sudo apt install gparted
+</code></pre></div>
+</li>
+<li>
+<p>Open GParted: Start Menu &gt; System Tools &gt; GParted</p>
+</li>
+<li>
+<p>Select your device from dropdown list in top right. Should be something like: /dev/sda (1.91 TiB)</p>
+<ul>
+<li>This will display your disk below</li>
+</ul>
+</li>
+<li>Delete old partition: <ul>
+<li>Right-click on partition &gt; Delete</li>
+<li>This will display : "Delete pending" at the bottom . Ignore that and continue</li>
+</ul>
+</li>
+<li>
+<p>Create new parition:</p>
+<ul>
+<li>Right-click on partition &gt; New </li>
+<li>"Create new Partition" window will pop-up</li>
+<li>Leave all the defaults</li>
+<li>Select File system: ext4</li>
+<li>Click Add</li>
+<li>popup will close and you will see green tick at the top</li>
+</ul>
+</li>
+<li>
+<p>Click on green tick at the top</p>
+<ul>
+<li>You will get warning : "Are you sure you want to apply the pending operations?"</li>
+<li>Click Apply</li>
+<li>Wait for operations to complete</li>
+</ul>
+</li>
+<li>
+<p>Get your USB drive's UUID from the list of blocks</p>
+<div class="language-text highlight"><pre><span></span><code>sudo blkid
+</code></pre></div>
+</li>
+<li>
+<p>Open fstab </p>
+<div class="language-text highlight"><pre><span></span><code>sudo nano /etc/fstab
+</code></pre></div>
+</li>
+<li>
+<p>Edit the line for your external drive mount or add it if it doesn't exist already:</p>
+<div class="language-text highlight"><pre><span></span><code>UUID=aa60d5a8-6a7f-43f6-8c41-8958ae018526 /mnt/my-drive ext4 defaults 1 1
+</code></pre></div>
+<ul>
+<li>NOTE: UUID should be changed to the one you noted previously, after running <strong>blkid</strong> command</li>
+<li>NOTE: flags "<strong>1 1</strong>" at the end. That's very important. They mean that on startup should : 1 = Dump, 1 = Check filesystem for errors. </li>
+<li>With <strong>1 1</strong> flags set Raspberry Pi will take long time to start about 5 to 10 minutes because it will be doing a file system check. However this is necessary if you have a large USB 1 terabite or more.</li>
+</ul>
+</li>
+<li>
+<p>Save </p>
+</li>
+</ul>
+<h4 id="fixing-long-boot-checking-in-progress">FIXING Long Boot - Checking in progress</h4>
+<p>After you have enabled auto mounting your external drive, your server machine may be taking very long time to boot, especially if your external drive is large e.g. terabytes in size.</p>
+<ul>
+<li>
+<p>You may get this message on boot <strong>Checking in progress on 1 disk (1.0% complete)</strong></p>
+</li>
+<li>
+<p>The Problem: </p>
+<p>fsck is supposed to only run only when it needs to: either the filesystem wasn't cleanly unmounted or "it's been a while since it ran". The filesystem records the timestamp of when it was last unmounted for that second reason.</p>
+<p>The pi doesn't have a real time clock, though. This doesn't matter if you're connected to the internet because of NTP. Otherwise it will just default to 1/1/1970 12:00 AM UTC (or some hardcoded time in kernel) on every boot.</p>
+<p>So during boot (without ntp, the date is set back 1970), it looks at the current ridiculously current time, which is "before the last unmount date". Linux fscks just to be on the safe side in this insane situation. From its point of view, the FS was last unmounted "in the future".</p>
+<p>There's already a workaround this: a service called fake-hwclock which keeps the time going forward by auto saving and loading from a file. It's enabled by default. The problem with it is that the boot order is such that often the fsck part is run before the system time is restored by fake-hwclock.</p>
+</li>
+<li>
+<p>The Solution:</p>
+<p>Fix the boot order. Configure systemd so that fake-hwclock runs before the fsck.</p>
+</li>
+<li>
+<p>Create /etc/systemd/system/fake-hwclock.service.d/fsck.conf</p>
+<div class="language-text highlight"><pre><span></span><code>sudo mkdir /etc/systemd/system/fake-hwclock.service.d
+sudo touch /etc/systemd/system/fake-hwclock.service.d/fsck.conf
+sudo nano /etc/systemd/system/fake-hwclock.service.d/fsck.conf
+</code></pre></div>
+</li>
+<li>
+<p>Edit fsck.conf - add following lines</p>
+<div class="language-text highlight"><pre><span></span><code>[Unit]
+Before=systemd-fsck-root.service
+</code></pre></div>
+</li>
+<li>
+<p>Reboot</p>
+</li>
+</ul>
+<h2 id="optional-installation">Optional Installation</h2>
+<h3 id="add-support-for-32-bit-programs-on-64-bit-os">Add Support for 32 bit programs on 64 bit OS</h3>
+<ul>
+<li>
+<p>When we try to run programs created for 32 bit system on our 64 bit Raspberry Pi OS, it will not work. </p>
+</li>
+<li>
+<p>We recommend adding support for 32 bit programs as some software providers still haven't upgraded their products to support 64 bit Raspberry Pi OS </p>
+</li>
+<li>
+<p>For example, in the next optional section - <a href="#install-and-run-vpn">Install and Run VPN</a> - we will be installing Express VPN but at the current time ExpressVPN only has installation for 32 bit Raspbery Pi OS.</p>
+</li>
+<li>
+<p>To provide support for 32 bit programs run the following commands one by one:</p>
+<div class="language-text highlight"><pre><span></span><code>sudo dpkg --add-architecture armhf
+
+sudo apt-get update
+
+sudo apt-get install libc6:armhf libstdc++6:armhf
+
+cd /lib
+sudo ln -s arm-linux-gnueabihf/ld-2.23.so ld-linux.so.3
+</code></pre></div>
+</li>
+<li>
+<p><strong>NOTE</strong>: There is a downside to this approach - after adding armhf you have to be careful when installing new packages that you get the 64 bit version if available and don't end up installing 32bit packages that you don't need.</p>
+</li>
+</ul>
+<h3 id="express-vpn">Express VPN</h3>
+<ul>
+<li>Optionally you may install VPN (Virtual Private Network) to ensure your privacy on the internet.</li>
+<li>VPN effectively masks your IP address and geographical location.</li>
+<li>Open account with any VPN provider. We recommend <a href="https://www.expressvpn.com/">ExpressVPN</a></li>
+<li>You need to download and install VPN client on your Pi. We will describe here how to do it with ExpressVPN. But you can also follow steps provided by ExpressVPN at : https://www.expressvpn.com/support/vpn-setup/app-for-raspberry-pi/</li>
+</ul>
+<h4 id="1-download-express-vpn">1. Download Express VPN</h4>
+<ul>
+<li>Open <strong>Git Bash</strong> terminal on your PC and connect to your Pi.</li>
+<li>
+<p>Create download directory where you will download expressvpn. This should be inside your mounted USB directory. Suppose your USB drive is mounted on /mnt/my-drive then run this command:</p>
+<div class="language-text highlight"><pre><span></span><code>   sudo mkdir -p /mnt/my-drive/downloads
+
+- This will create downloads directory on your external drive folder if you don&#39;t already have it. You should download installation files into this folder.
+</code></pre></div>
+</li>
+<li>
+<p>On your PC open browser</p>
+</li>
+<li>Go to :<ul>
+<li>Linux distribution page https://www.expressvpn.com/setup#linux</li>
+<li>Or latest downloads page : https://www.expressvpn.com/latest#linux</li>
+</ul>
+</li>
+<li>Select <strong>Raspberry Pi OS</strong> from dropdown list of distribution</li>
+<li>Right-click on <strong>Download</strong> button &gt; Copy link address<ul>
+<li>Should be something like: https://www.expressvpn.works/clients/linux/expressvpn_3.30.0.2-1_armhf.deb    </li>
+</ul>
+</li>
+<li>On your server cd into <strong>/mnt/my-drive/downloads</strong> and run download command<div class="language-text highlight"><pre><span></span><code> sudo wget {{download_url}}
+
+- Replace {{download_url}} with the link you have copied
+</code></pre></div>
+</li>
+</ul>
+<h4 id="2-install-express-vpn">2. Install Express VPN</h4>
+<div class="language-text highlight"><pre><span></span><code>    sudo dpkg -i {{installation_file_name}}
+</code></pre></div>
+<ul>
+<li>
+<p>Confirm expressvpn is installed</p>
+<div class="language-text highlight"><pre><span></span><code>expressvpn
+</code></pre></div>
+</li>
+<li>
+<p>This command should give you overview of expressvpn program</p>
+</li>
+</ul>
+<h4 id="3-activate-expressvpn">3. Activate ExpressVPN.</h4>
+<div class="language-text highlight"><pre><span></span><code>    expressvpn activate
+</code></pre></div>
+<ul>
+<li>This will prompt you to enter your activation code</li>
+<li>Go to https://www.expressvpn.com/setup#linux - linux setup page on Express VPN website, and you should see your code there. Copy and paste the code in your command line interface where you were prompted. </li>
+<li><strong>NOTE</strong>: you will not see characters when you paste the code. Just hit Enter to proceed.</li>
+<li>If you haven't selected to opt out of diagnostics, do that now. This will disable sending anonymous diagnostics to expressvpn<div class="language-text highlight"><pre><span></span><code> expressvpn preferences set send_diagnostics false
+</code></pre></div>
+</li>
+</ul>
+<h4 id="4-connect-disconnect-to-vpn">4. Connect &amp; Disconnect to VPN</h4>
+<ul>
+<li>
+<p>Ref: https://www.expressvpn.com/support/vpn-setup/app-for-raspberry-pi/#connect</p>
+</li>
+<li>
+<p>Connect</p>
+<div class="language-text highlight"><pre><span></span><code>expressvpn connect
+</code></pre></div>
+<p>or connect to specific country</p>
+<div class="language-text highlight"><pre><span></span><code>expressvpn connect Colombia
+</code></pre></div>
+</li>
+<li>
+<p>Check Status</p>
+<div class="language-text highlight"><pre><span></span><code>expressvpn status
+</code></pre></div>
+</li>
+<li>
+<p>Disconnect</p>
+<div class="language-text highlight"><pre><span></span><code>expressvpn disconnect
+</code></pre></div>
+</li>
+<li>
+<p>To see all the commands simply type</p>
+<div class="language-text highlight"><pre><span></span><code>expressvpn
+</code></pre></div>
+</li>
+</ul>
+<h4 id="5-automatically-start-on-logn">5. Automatically start on logn</h4>
+<p>Let's say if we wanted to connect expressvpn to Bahamas automatically when user logs into Raspbery Pi. Then do this:</p>
+<ul>
+<li>Open ~/.profile file</li>
+<li>"~/" stands for /home/{my_username}. For example if user is admin then "~/" will be "/home/admin/"</li>
+<li>
+<p>Paste this at the bottom of the <strong>.profile</strong> file</p>
+<div class="language-text highlight"><pre><span></span><code>#___________ Run commands on login___________
+
+# Start Express VPN on login
+expressvpn connect Bahamas
+</code></pre></div>
+</li>
+<li>
+<p>Reboot</p>
+<div class="language-text highlight"><pre><span></span><code>sudo reboot
+</code></pre></div>
+</li>
+<li>
+<p>Check status</p>
+<div class="language-text highlight"><pre><span></span><code>expressvpn status
+</code></pre></div>
+</li>
+<li>
+<p>It should say</p>
+<div class="language-text highlight"><pre><span></span><code>Connected to Bahamas
+</code></pre></div>
+</li>
+</ul>
+<h1 id="appendix">Appendix</h1>
+<p>This section is used to explain concepts in more detail. It is not meant for reading from start to finish. It is meant to be used as a reference when you need to understand a particular concept in more detail. </p>
+<p>There will be reference links to Appendix sections from other parts of the book.</p>
+<h2 id="command-line-prompt">Command Line Prompt</h2>
+<blockquote>
+<p><definition /></p>
+<p><strong>Command Line Prompt</strong> - is a small text inside the command line interface that is printed by the system before every command that you execute. This text informs user of his username, computer name, current folder location, and account type (normal user or root).</p>
+</blockquote>
+<p>The format of the command line prompt is</p>
+<div class="language-text highlight"><pre><span></span><code>{{USERNAME}}@{{COMPUTER_NAME}}:{{CURRENT_DIRECTORY_LOCATION_PATH}} {{ACCOUNT_TYPE}}
+</code></pre></div>
+<p><strong>For example</strong>:</p>
+<div class="language-text highlight"><pre><span></span><code>john@my-home-server:/home $
+</code></pre></div>
+<p><def></p>
+<blockquote>
+<p><strong>Account Type Symbol</strong> - is the symbol printed at the end of the Command Line Prompt. It can be $ or #</p>
+<p><strong>$</strong> - stands for normal account</p>
+<p><strong>#</strong> - stands for superuser / root account. # symbol will be visible instead of $ <strong>only when you are logged in as a root account</strong>
+</def></p>
+</blockquote>
+<p>When you first open command line, you are automatically placed inside ~ (tilde) folder - which in fact is your <a href="#user-home-directory">User Home folder</a>.</p>
+<p><strong>For example:</strong> if we log into computer called <strong>my-home-server</strong> with a username <strong>john</strong>, we will see prompt:</p>
+<div class="language-text highlight"><pre><span></span><code>john@my-home-server:~ $
+</code></pre></div>
+<ul>
+<li>In above example <strong>"~"</strong> is a short notation for <strong>"/home/john/"</strong></li>
+</ul>
+<h2 id="user-home-directory">User Home Directory</h2>
+<p><def></p>
+<blockquote>
+<p><strong>User Home Directory</strong> - is a directory created automatically by the operating system at the time of user account creation. This directory is intended for storing only user related documents and programs.
+</def></p>
+</blockquote>
+<p>The following is the location of user's home directory on the main 3 operating systems:</p>
+<table>
+<thead>
+<tr>
+<th>OS (Operating System)</th>
+<th>User's Home location</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Linux</td>
+<td>/home/{{USERNAME}}</td>
+</tr>
+<tr>
+<td>macOS</td>
+<td>/Users/{{USERNAME}}</td>
+</tr>
+<tr>
+<td>Windows</td>
+<td>C:\Users\{{USERNAME}}</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>NOTE: In Windows operating system we use back slash symbol <strong>"\"</strong> to separate folders in the file path. In most other operating systems we use forward slash <strong>"/"</strong>.</p>
+</blockquote>
+<p><def></p>
+<blockquote>
+<p><strong>~ (tilde symbol)</strong> - is a shorthand notation for User Home directory path. In Linux command line, User Home directory path can be replaced with <strong>tilde symbol ~</strong>
+</def></p>
+</blockquote>
+<p>You can navigate into User Home directory by using short notation <strong>"~"</strong> instead of the whole User Home path</p>
+<div class="language-text highlight"><pre><span></span><code>cd ~
+</code></pre></div>
+<p>When inside User Home directory, the command line prompt will display ~ instead of the full directory path. It will look like this:</p>
+<div class="language-text highlight"><pre><span></span><code>john@my-home-server:~ $
+</code></pre></div>
+<h2 id="dot-directories">Dot Directories</h2>
+<p><def></p>
+<blockquote>
+<p><strong>Dot Directories</strong> - are hidden directories whose names start with a dot symbol. Dot directories are normally used to store configuration data for the application named the same as the dot-directory without a dot. 
+</def></p>
+</blockquote>
+<p><strong>For example:</strong> 
+- <strong>Visual Studio Code</strong> application data for user <strong>John</strong> on <strong>Windows</strong> is stored inside "<strong>C:\Users\John\.vscode</strong>"</p>
+<p>Because the dot directories are hidden, we need to show them to be able to view them:</p>
+<ul>
+<li>In <strong>Windows 11</strong> : Open <strong>File Explorer &gt; View &gt; Show &gt; Hidden items</strong></li>
+<li>
+<p>In <strong>Linux</strong> and <strong>OS X</strong> terminal : Add argument "<strong>a</strong>" to list command (it means show <strong>all</strong> files and folders including hidden)</p>
+<p>ls -a
+OR</p>
+<p>ls -la</p>
+</li>
+</ul>
+<h2 id="permissions-explained">Permissions Explained</h2>
+<p><br></p>
+<p>When we run command <strong>ls -l</strong> we can see file permissions displayed at the start of each line representing file or folder inside the folder we are currently in.</p>
+<p>It looks something like this:</p>
+<div class="language-text highlight"><pre><span></span><code>    drwxr-xr-x 5 admin developers 4096 Apr 10 02:21 repos
+</code></pre></div>
+<p><br></p>
+<h3 id="symbolic-notation">Symbolic notation</h3>
+<p><br></p>
+<p>Ten characters that represent symbolic notation of file or folder permisisons are:
+drwxrwxrwx</p>
+<p>The first character, d, signifies that the file is a directory.
+It can be blank (-) or one of the following characters:</p>
+<div class="language-text highlight"><pre><span></span><code>d: directory
+c: Character device
+b: Block device
+s: socket
+p: pipe
+D: Door
+l: symbolic link etc.
+</code></pre></div>
+<ul>
+<li>
+<p>Owner - Next three characters (d<strong>rwx</strong>r-xr-x), are permissions for the owner of the file/folder</p>
+</li>
+<li>
+<p>Group - Next three characters (drwx<strong>r-x</strong>r-x), permissions for the group</p>
+</li>
+<li>
+<p>Others - Last three characters (drwxr-x<strong>r-x</strong>), permissions for all the other users</p>
+</li>
+</ul>
+<p>Meaning of each character is as follows:</p>
+<div class="language-text highlight"><pre><span></span><code>    - : Empty - no permission
+    r : Read
+    w : Write
+    x : Execute
+</code></pre></div>
+<p><br></p>
+<h3 id="numeric-notation">Numeric notation</h3>
+<p><br></p>
+<p>Permisisons can be displayed in numeric notation.
+Numerals used are the following:</p>
+<div class="language-text highlight"><pre><span></span><code>0 : No permission
+1 : Execute (x)
+2 : Write (w)
+4 : Read (r)
+</code></pre></div>
+<p>The numbers are added together to form one digit number that represents combination of rwx for either an owner, group or other. For example :</p>
+<table>
+<thead>
+<tr>
+<th>Numeric</th>
+<th>Symbolic</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7</td>
+<td>rwx</td>
+</tr>
+<tr>
+<td>6</td>
+<td>rw-</td>
+</tr>
+<tr>
+<td>3</td>
+<td>-wx</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>So the permission rwxrwxrwx is same as 777, rwxr-xr-x is same as 755, and so on.</p>
+<h2 id="fstab-file-syntax">FSTAB File Syntax</h2>
+<p>In this section we just layout the full syntax of fstab entry.</p>
+<h3 id="fstab-entry">FSTAB ENTRY</h3>
+<p>Example line in /etc/fstab file (aka fstab entry):</p>
+<div class="language-text highlight"><pre><span></span><code> UUID=aa60d5a8-6a7f-43f6-8c41-8958ae018526 /mnt/my-drive ext4 defaults,auto,users,rw,nofail 0 0
+</code></pre></div>
+<p>Structure:</p>
+<div class="language-text highlight"><pre><span></span><code>{{DEVICE}} {{MOUNT_POINT}} {{FILE_SYSTEM_TYPE}} {{OPTIONS}} {{DUMP}} {{PASS}}
+</code></pre></div>
+<p>Fields Explained:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DEVICE</td>
+<td>/dev location or UUID of the device/partition</td>
+</tr>
+<tr>
+<td>MOUNT_POINT</td>
+<td>The file path location where the device will be mounted.</td>
+</tr>
+<tr>
+<td>FILE_SYSTEM_TYPE</td>
+<td>The type of file system on the device.</td>
+</tr>
+<tr>
+<td>OPTIONS</td>
+<td>Mount options, separated by commas. See <a href="#fstab-options">FSTAB Options Section</a> for the list of options and their meaning.</td>
+</tr>
+<tr>
+<td>DUMP</td>
+<td>Can be 0 or 1. Enable or disable backing up of the device/partition (the command dump). 0 means no backup. 1 means backup.</td>
+</tr>
+<tr>
+<td>PASS</td>
+<td>Can be 0, 1 or 2. Controls the order in which fsck checks the device/partition for errors at boot time. The root device should be 1. Other partitions should be 2, or 0 to disable checking.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="fstab-options">FSTAB OPTIONS</h3>
+<p>NOTE: options with slashes mean that you can choose only one of the options separated by slash, for example: <strong>auto/noauto</strong> - means that you can write either <strong>auto</strong> or <strong>noauto</strong> but not both.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>auto/noauto</strong></td>
+<td>partition is mounted automatically on boot (or not)</td>
+</tr>
+<tr>
+<td><strong>ro/rw</strong></td>
+<td>“ro” is read-only, and “rw” is read-write.  If you want to be able to write to a file-system as the user and not as root, you’ll need to have “rw” specified.</td>
+</tr>
+<tr>
+<td><strong>exec/noexec</strong></td>
+<td>partition can execute binaries (or not). Usually set to “noexec” for security</td>
+</tr>
+<tr>
+<td><strong>nouser/user/users</strong></td>
+<td>Using user or users <strong>defaults to noexec for all user accounts.</strong> So if you need to execute binaries and still mount as a user, be sure to explicitly use <strong>“exec”</strong> as an option.</td>
+</tr>
+<tr>
+<td><strong>nouser</strong></td>
+<td>only root can mount the filesystem</td>
+</tr>
+<tr>
+<td><strong>user</strong></td>
+<td>any user can mount the filesystem. Only the user that mounted a filesystem can unmount it again</td>
+</tr>
+<tr>
+<td><strong>users</strong></td>
+<td>any user can mount or unmount the filesystem</td>
+</tr>
+<tr>
+<td>nofail</td>
+<td>the system will look for your disk (and partition) at boot time. If the device is plugged, the filesystem will be mounted. If not, the boot will continue as normal.</td>
+</tr>
+<tr>
+<td><strong>sync/async</strong></td>
+<td>“sync” forces writing to occur immediately on execution of the command, which is ideal for floppies and USB drives, but isn’t entirely necessary for internal hard disks.  What “async” does is allow the command to execute over an elapsed time period, perhaps when user activity dies down and the like.  Ever get a message asking to your “wait while changes are being written to the drive?”  This is usually why.</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>These options are separated by a comma and no spaces, and can be put in any order.</li>
+</ul>
+<h2 id="format-device-in-desktop-ui">Format Device in Desktop UI</h2>
+<p>For Desktop formatting, you need to have a monitor and keyboard connected to your server machine. Or you can <a href="#rdp---remote-connect---windows">RDP</a> into it from Windows computer.</p>
+<p>Depending on your server's operating system, you will need to use different programs to format the external drive.</p>
+<p>We describe below how to format the drive in <strong>Linux Mint</strong> and <strong>Raspberry Pi</strong> desktop.</p>
+<h3 id="linux-mint-format-on-desktop">Linux Mint - Format on Desktop</h3>
+<p>In Linux Mint formating external drive is very easy. </p>
+<ul>
+<li>Right click on the drive icon and select <strong>Format</strong>, if that option is available</li>
+</ul>
+<p>If you can't see option Format on the context menu, you need to open program <strong>USB Stick Formatter</strong></p>
+<ul>
+<li>Click on Start icon (LM) in the bottom left corner of the screen. This will open the main menu and you will see the list of programs.</li>
+<li>Start typing <strong>format</strong> and you should see <strong>USB Stick Formatter</strong> program</li>
+<li>Click on it to open it. </li>
+<li>You will see 3 fields: USB stick, Filesystem, Volume label. Make sure to:     </li>
+<li>select the correct USB stick - You can mouse over the USB stick icon, in the left file explorer panel, to see the name of the USB stick. For example: <strong>/dev/sda1</strong></li>
+<li>select <strong>EXT4</strong> as Filesystem </li>
+<li>
+<p>type in a name for Volume label.For example:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>USB stick</td>
+<td>/dev/sda1</td>
+</tr>
+<tr>
+<td>Filesystem</td>
+<td>EXT4</td>
+</tr>
+<tr>
+<td>Volume label</td>
+<td>my-drive</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Click <strong>Format</strong></p>
+</li>
+<li>
+<p>Wait for the formatting to finish. You will see a confirmation message when it's done.</p>
+</li>
+<li>
+<p>Open file explorer</p>
+</li>
+<li>You should see your external drive mounted on the left panel under <strong>Devices</strong> section</li>
+<li>Click on it to select it</li>
+<li>
+<p>You should see a folder called <strong>lost+found</strong> inside it</p>
+</li>
+<li>
+<p><strong>Right click &gt; Properties</strong> on the drive to see the details. Note the location. It should say /media/{{USERNAME}} For example: <strong>/media/admin</strong></p>
+</li>
+</ul>
+<p>By default, Linux mounts external drives onto <strong>/media/{{USERNAME}}</strong> folder. </p>
+<p>We will learn later how to mount the drive onto a different folder.</p>
+<h3 id="raspberry-pi-format-on-desktop">Raspberry Pi - Format on Desktop</h3>
+<p>In Raspberry Pi we use program Gparted to format the external drive.</p>
+<ul>
+<li>Click on Main Menu - Start icon (Raspberry) in the top left corner of the screen. This will open the main menu and you will see the list of programs.</li>
+<li>You should see menu item <strong>System Tools &gt; GParted</strong>. If you don't see it, you need to install it first. </li>
+</ul>
+<p>To install GParted:</p>
+<ul>
+<li>Click on <strong>Main Menu &gt; Preferences &gt; Add/Remove Software</strong></li>
+<li>Type gparted in the search bar and hit <strong>Enter</strong></li>
+<li>You should see 2 packages: GNOME partition editor and GNOME partition editor - common data</li>
+<li>Check the boxes next to both packages and click <strong>Apply</strong> at the bottom right of the window</li>
+<li>Wait for the installation to finish</li>
+</ul>
+<p>You should be able to see GParted in the main menu now</p>
+<ul>
+<li>Click on <strong>Main Menu &gt; System Tools &gt; GParted</strong> to open it</li>
+<li>Select your external drive from the drop down menu in the top right corner of the window. It should be something like <strong>/dev/sda1</strong></li>
+<li>You will see a list of partitions with only one partition named like <strong>/dev/sda1</strong></li>
+<li>Righ-click on the partition and select <strong>Format to &gt; ext4</strong></li>
+<li>Click on Green tick icon at the top of the window to apply the changes</li>
+</ul>
+<p>You will see a confirmation message when formating is completed.</p>
+<ul>
+<li>
+<p>Reboot</p>
+</li>
+<li>
+<p>Open file explorer</p>
+</li>
+<li>You should see your external drive mounted on the left panel inside folder /media/{{USERNAME}}. For example: <strong>"/media/admin/2.1 TB Volume"</strong></li>
+</ul>
+<p>By default, Linux mounts external drives onto <strong>/media/{{USERNAME}}</strong> folder. </p>
+<p>We will learn later how to mount the drive onto a different folder.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 VEXIT &reg;, Tomorrow is Today &trade;, www.vexit.com
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com"></script>
+      
+    
+  </body>
+</html>

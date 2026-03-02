@@ -1,0 +1,4415 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://vexit.github.io/byoserver/1_SetUpServer_HomeServer_LinuxMint/">
+      
+      
+        <link rel="prev" href="../1_SetUpServer_HomeServer_RaspberryPi/">
+      
+      
+        <link rel="next" href="../1_SetUpServer_VPS/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+    
+    
+      
+        <title>Home Server (Linux Mint) - BYO Server</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#linux-server-home-server-linux-mint" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="BYO Server" class="md-header__button md-logo" aria-label="BYO Server" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BYO Server
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Home Server (Linux Mint)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="green"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="BYO Server" class="md-nav__button md-logo" aria-label="BYO Server" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    BYO Server
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0.1_File_System_Basics_with_Bash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core Concepts (Bash/CLI)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0.2_Linux_Users_Groups_and_Permissions_Reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Permissions Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Choose Your Server Setup
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Choose Your Server Setup
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_SetUpServer_Overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Server Setup Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_SetUpServer_HomeServer_Ubuntu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home Server (Ubuntu)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_SetUpServer_HomeServer_RaspberryPi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home Server (Raspberry Pi)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home Server (Linux Mint)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home Server (Linux Mint)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#definitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definitions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-local-machine-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install Local machine Software
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Install Local machine Software">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-git-bash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install Git Bash
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-telnet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install Telnet
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-server-operating-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install Server Operating System
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Install Server Operating System">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-bootable-usb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create Bootable USB
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boot-computer-from-usb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Boot Computer from USB
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-in-live-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Run in Live Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-linux-mint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install Linux Mint
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#start-using-terminal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Start Using Terminal
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-terminal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure Terminal
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configure Terminal">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#customize-prompt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Customize Prompt
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#customize-terminal-background-color" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Customize Terminal Background Color
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#customize-terminal-cursor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Customize Terminal Cursor
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#update-and-upgrade-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Update and Upgrade system
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shut-down-via-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shut Down via CLI
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-the-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure the System
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configure the System">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#set-up-wi-fi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Set up Wi-Fi
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enabledisable-root-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable/Disable root user
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Enable/Disable root user">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enable-root" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable root
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disable-root" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disable root
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-username-and-group-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Change Username and Group Name
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remove-sudo-password-prompt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remove Sudo Password Prompt
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-user-sysadmin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create User sysadmin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-computer-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Change Computer Name
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#set-up-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Set up Network
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Set up Network">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#check-local-network-connectivity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Check Local Network Connectivity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-internal-ip-from-command-line" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get Internal IP from Command Line
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#open-router-admin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Open Router Admin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-internal-ip-from-router-admin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get Internal IP from Router Admin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-up-static-internal-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Set up Static Internal IP
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#obtain-static-ip-address-from-isp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Obtain Static IP Address from ISP
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Obtain Static IP Address from ISP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-external-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get External IP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-port-forwarding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure Port Forwarding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-outside-connectivity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Check Outside Connectivity
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Check Outside Connectivity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#use-ismyportopencom" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use IsMyPortOpen.com
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-netcat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use Netcat
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#set-up-firewall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Set up Firewall
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Set up Firewall">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-and-enable-ufw" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install and Enable UFW
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-firewall-rules-before-enabling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Add Firewall Rules (Before Enabling)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enable-ufw" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable UFW
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remove-firewall-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remove Firewall Rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#remotely-connect-with-ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remotely Connect with SSH
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Remotely Connect with SSH">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-enable-ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1 - Enable SSH
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-remote-connect-with-ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2 - Remote Connect with SSH
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-passwordless-connect-with-rsa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3 - Passwordless Connect with RSA
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-connect-with-server-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4 - Connect with Server Name
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#remotely-connect-with-rdp-on-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remotely Connect with RDP - On Windows
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Remotely Connect with RDP - On Windows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configure-xrdp-on-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure XRDP on Server
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connect-from-local-machine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Connect from Local machine
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#upload-download-with-scp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Upload / Download with SCP
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Upload / Download with SCP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#upload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Upload
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#download" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Download
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#upload-download-with-sftp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Upload / Download with SFTP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#upload-download-with-filezilla" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Upload / Download with Filezilla
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_SetUpServer_VPS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VPS / Hosting Provider
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2_WebServer_Nginx_Apache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web Server (Nginx/Apache)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3_WebApp_NetCore_Angular/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    App Deployment (.NET/Angular)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4_Cron_Jobs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Task Automation (Cron Jobs)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5_Database_PostgreSQL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database (PostgreSQL)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6_MailServer_Postfix_Dovecot_Thunderbird/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mail Server (Postfix/Dovecot)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#definitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definitions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-local-machine-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install Local machine Software
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Install Local machine Software">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-git-bash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install Git Bash
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-telnet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install Telnet
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-server-operating-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install Server Operating System
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Install Server Operating System">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-bootable-usb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create Bootable USB
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boot-computer-from-usb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Boot Computer from USB
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-in-live-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Run in Live Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-linux-mint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install Linux Mint
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#start-using-terminal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Start Using Terminal
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-terminal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure Terminal
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configure Terminal">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#customize-prompt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Customize Prompt
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#customize-terminal-background-color" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Customize Terminal Background Color
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#customize-terminal-cursor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Customize Terminal Cursor
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#update-and-upgrade-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Update and Upgrade system
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shut-down-via-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shut Down via CLI
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-the-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure the System
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configure the System">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#set-up-wi-fi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Set up Wi-Fi
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enabledisable-root-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable/Disable root user
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Enable/Disable root user">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enable-root" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable root
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disable-root" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disable root
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-username-and-group-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Change Username and Group Name
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remove-sudo-password-prompt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remove Sudo Password Prompt
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-user-sysadmin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create User sysadmin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-computer-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Change Computer Name
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#set-up-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Set up Network
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Set up Network">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#check-local-network-connectivity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Check Local Network Connectivity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-internal-ip-from-command-line" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get Internal IP from Command Line
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#open-router-admin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Open Router Admin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-internal-ip-from-router-admin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get Internal IP from Router Admin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-up-static-internal-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Set up Static Internal IP
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#obtain-static-ip-address-from-isp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Obtain Static IP Address from ISP
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Obtain Static IP Address from ISP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-external-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get External IP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-port-forwarding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure Port Forwarding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-outside-connectivity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Check Outside Connectivity
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Check Outside Connectivity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#use-ismyportopencom" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use IsMyPortOpen.com
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-netcat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use Netcat
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#set-up-firewall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Set up Firewall
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Set up Firewall">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-and-enable-ufw" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install and Enable UFW
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-firewall-rules-before-enabling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Add Firewall Rules (Before Enabling)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enable-ufw" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable UFW
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remove-firewall-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remove Firewall Rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#remotely-connect-with-ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remotely Connect with SSH
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Remotely Connect with SSH">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-enable-ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1 - Enable SSH
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-remote-connect-with-ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2 - Remote Connect with SSH
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-passwordless-connect-with-rsa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3 - Passwordless Connect with RSA
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-connect-with-server-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4 - Connect with Server Name
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#remotely-connect-with-rdp-on-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remotely Connect with RDP - On Windows
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Remotely Connect with RDP - On Windows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configure-xrdp-on-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure XRDP on Server
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connect-from-local-machine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Connect from Local machine
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#upload-download-with-scp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Upload / Download with SCP
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Upload / Download with SCP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#upload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Upload
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#download" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Download
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#upload-download-with-sftp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Upload / Download with SFTP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#upload-download-with-filezilla" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Upload / Download with Filezilla
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="linux-server-home-server-linux-mint">Linux Server - Home Server - Linux Mint</h1>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Copyright:</td>
+<td>© 2022 VEXIT , Tomorow is today ® , www.vexit.com</td>
+<td></td>
+</tr>
+<tr>
+<td>Author:</td>
+<td>Vex Tatarevic</td>
+<td></td>
+</tr>
+<tr>
+<td>Date Created:</td>
+<td>2022-11-23</td>
+<td></td>
+</tr>
+<tr>
+<td>Date Updated:</td>
+<td>2024-11-19</td>
+<td>Separated Linux Mint into separate book. Extracted from initial book Linux Server - Home Server</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="definitions">Definitions</h2>
+<p>In this book we will use technical words that you may not be familiar with. </p>
+<p>Below is a table explaining these words. You can skip this table and refer to it when you encounter a word you don't understand. We will link these words to this table throughout the book.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Local machine</td>
+<td>Your personal computer: Windows, Mac or Linux, that you use to connect remotely to home server</td>
+</tr>
+<tr>
+<td>Server</td>
+<td>Computer that we are using as a home server machine</td>
+</tr>
+<tr>
+<td>Directory</td>
+<td>Folder</td>
+</tr>
+<tr>
+<td>Machine</td>
+<td>Computer</td>
+</tr>
+<tr>
+<td>Terminal</td>
+<td>Program used for inputing commands to interact with operating system. On Windows we use <strong>Git Bash</strong> terminal program. On Linux and macOS, terminal program is called <strong>Terminal</strong></td>
+</tr>
+<tr>
+<td>CLI (Command Line Interface)</td>
+<td>A generic name for any command line interface that accepts text input to execute programs. Terminal is an example of program with such interface.</td>
+</tr>
+</tbody>
+</table>
+<p>We will use the following sample usernames and machine names:</p>
+<table>
+<thead>
+<tr>
+<th>Machine type</th>
+<th>Machine name</th>
+<th>Usernames</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Local</td>
+<td>my-pc</td>
+<td>Jon</td>
+</tr>
+<tr>
+<td>Server</td>
+<td>my-server</td>
+<td>sysadmin , main_user, jons</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note:</strong> sample personal username on local is <strong>jon</strong> while on server is <strong>jons</strong> (s is for server) to avoid confusion with jon on local machine.</p>
+<h2 id="install-local-machine-software">Install Local machine Software</h2>
+<ul>
+<li>Log into your <a href="#definitions">Local machine</a>. This is your personal computer that you use every day. We will use this computer to connect remotely to our server at the later stage.</li>
+</ul>
+<h3 id="install-git-bash">Install Git Bash</h3>
+<ul>
+<li>On your <a href="#definitions">Local machine</a></li>
+<li>Open the browser and go to <a href="https://www.git-scm.com/">git-scm.com</a>.</li>
+<li>Download and install Git</li>
+</ul>
+<h3 id="install-telnet">Install Telnet</h3>
+<p>On <strong>Windows</strong>:
+- Open <strong>Control Panel</strong>
+- Click on <strong>Programs</strong>
+- Click on <strong>Turn Windows features on or off</strong>
+- Check the box next to <strong>Telnet Client</strong>
+- Click <strong>OK</strong>
+- Telnet is now installed</p>
+<p>On <strong>macOS</strong>:
+- Open Terminal: <kbd>CMD + Space</kbd> &gt; type Terminal &gt; <kbd>Enter</kbd>
+- Install Telnet</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>brew<span class="w"> </span>install<span class="w"> </span>telnet
+</span></code></pre></div>
+<ul>
+<li>If you don't have <strong>brew</strong> installed, go to <a href="https://brew.sh">brew.sh</a> and follow the instructions to install it.</li>
+</ul>
+<p>On <strong>Linux</strong>:
+- Open Terminal: <kbd>CTRL + ALT + T</kbd>
+- Install telnet</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>telnet
+</span></code></pre></div>
+<h2 id="install-server-operating-system">Install Server Operating System</h2>
+<p>We will use <strong>Linux Mint</strong> as a server operating system.</p>
+<blockquote>
+<p><strong>Linux Mint</strong> - is a free and open-source operating system based on Debian and Ubuntu. It is a great operating system for beginners and advanced users. It is easy to use and has a lot of software available for it. It is a great choice for a home server operating system.</p>
+</blockquote>
+<p>You need to have avaliable a spare computer (desktop or laptop) to install Linux Mint on it.</p>
+<h3 id="create-bootable-usb">Create Bootable USB</h3>
+<ul>
+<li>
+<p><strong>Download Linux Mint ISO</strong> - Go to <a href="https://www.linuxmint.com/">linuxmint.com</a> and download Linux Mint operating system iso image file (.iso)</p>
+</li>
+<li>
+<p><strong>Download Balena Etcher</strong> - Go to <a href="https://www.balena.io/etcher">balena.io/etcher</a>. Download Etcher, install it and run it.</p>
+</li>
+<li>
+<p>Create <strong>Bootable USB</strong> </p>
+</li>
+<li>Insert empty USB of at least 4 GB in size</li>
+<li>Open <strong>balenaEtcher</strong> app</li>
+<li>Click on <strong>"Flash from file"</strong> and select Linux Mint <strong>.iso</strong> file that you have downloaded in the previous step</li>
+<li>Click on <strong>Select target</strong> and select your USB drive</li>
+<li>Click on the button <strong>"Flash!"</strong> to start the process. Once the process is finished, you will get a message <strong>"Flash completed"</strong></li>
+<li>Your USB drive is now bootable with Linux Mint operating system</li>
+</ul>
+<p>From this point on, we will boot our spare computer from USB drive and install Linux Mint operating system on it. We will refer to this spare computer as <strong>server computer</strong>.</p>
+<h3 id="boot-computer-from-usb">Boot Computer from USB</h3>
+<blockquote>
+<p>BIOS - is a program that runs on a computer when it is first turned on. It is responsible for loading and starting the operating system. BIOS is also responsible for configuring the hardware of the computer. BIOS is stored on a chip on the motherboard of the computer. BIOS is also called <strong>"firmware"</strong>.</p>
+</blockquote>
+<p>Boot Order is the order in which BIOS tries to boot operating systems from different devices.</p>
+<p>For safety reasons, computers try to boot operating system from the internal hard drive by default. </p>
+<p>We need to change the boot order in BIOS of your server computer to boot from USB first.</p>
+<ul>
+<li>
+<p><strong>Enter BIOS</strong></p>
+<ul>
+<li><strong>Turn off</strong> your server computer</li>
+<li><strong>Turn on</strong> your server computer and <strong>immediately</strong> start pressing <strong>F2</strong> key repeatedly until you see the BIOS screen. If this does not work, try these keys: <strong>ESC, DEL, F1, F2, F8, F10, F11, F12</strong>. If none of these keys work, you need to <strong>search online</strong> for your computer model and find out which key to press to enter BIOS.</li>
+</ul>
+</li>
+<li>
+<p><strong>Change Boot Order in BIOS</strong>   </p>
+<ul>
+<li>Use <strong>Arrow keys</strong> to navigate to <strong>Boot</strong> tab</li>
+<li>Use <strong>Arrow keys</strong> to navigate to <strong>Boot Priority</strong> and press <strong>Enter</strong></li>
+<li>Use <strong>Arrow keys</strong> to navigate to <strong>Boot Option #1</strong> and press <strong>Enter</strong></li>
+<li>Select <strong>USB</strong> and press <strong>Enter</strong></li>
+<li>Press <strong>F10</strong> to save and exit</li>
+</ul>
+</li>
+</ul>
+<p><strong>If you CAN NOT SEE USB</strong> in the list of boot options, then you need to enable USB boot in BIOS, or rather disable <strong>Secure Boot</strong>. This is a typical BIOS setup on Windows computers.</p>
+<ul>
+<li><strong>Disable Secure Boot</strong><ul>
+<li>Enter BIOS   </li>
+<li>Use <strong>Arrow keys</strong> to navigate to <strong>Boot</strong> tab</li>
+<li>Use <strong>Arrow keys</strong> to navigate to <strong>Secure Boot</strong> and press <strong>Enter</strong></li>
+<li>Select <strong>Disabled</strong> and press <strong>Enter</strong></li>
+<li>Press <strong>F10</strong> to save and exit</li>
+</ul>
+</li>
+</ul>
+<p>If you still cant see USB in the setting called Boot Option #1, then you need to enable <strong>Legacy Boot</strong> in BIOS.  </p>
+<ul>
+<li><strong>Enable Legacy Boot</strong><ul>
+<li>Enter BIOS   </li>
+<li>Use <strong>Arrow keys</strong> to navigate to <strong>Boot</strong> tab</li>
+<li>Use <strong>Arrow keys</strong> to navigate to <strong>Boot List Option</strong> and press <strong>Enter</strong></li>
+<li>Select <strong>Legacy</strong> and press <strong>Enter</strong></li>
+<li>You should now see setting called <strong>Set Boot Priority</strong> and underneath it you should see options like:</li>
+<li>1st Boot Priority [Network]</li>
+<li>2nd Boot Priority [Hard Drive]</li>
+<li>3rd Boot Priority [Diskette Drive]</li>
+<li>4th Boot Priority [CD/DVD/CD-RW Device]</li>
+<li>5th Boot Priority [USB Storage Device]</li>
+<li>Select 1st Boot Priority [Network] and press <strong>Enter</strong> to open the list of options</li>
+<li>Select <strong>USB Storage Device</strong> and press <strong>Enter</strong></li>
+<li>Press <strong>F10</strong> to save and exit</li>
+</ul>
+</li>
+</ul>
+<p>The system will restart and this time it should boot from USB.</p>
+<h3 id="run-in-live-mode">Run in Live Mode</h3>
+<p>When you boot from USB, you will see the Linux Mint installation screen.</p>
+<p>You should see selected a line that says something: <strong>"Start Linux Mint 21.2 Cinnamon 64-bit"</strong>, or similar depending on the version of Linux Mint you have downloaded.</p>
+<ul>
+<li>Hit <strong>Enter</strong> </li>
+<li>Linux Mint will load in <strong>Live Mode</strong>. This means that you can try out Linux Mint without installing it on your computer.</li>
+<li>You will see a disc icon on the desktop called <strong>"Install Linux Mint"</strong>. You can click on it to start the installation process when you decide to install Linux Mint and wipe out your existing operating system.</li>
+</ul>
+<h3 id="install-linux-mint">Install Linux Mint</h3>
+<p>During the installation you will be asked to set username and password.</p>
+<p>Set username to <strong>"main_user"</strong> and password to <strong>"main"</strong>.</p>
+<p>These are just temporary credentials. We will later change both, username and password.</p>
+<h2 id="start-using-terminal">Start Using Terminal</h2>
+<p>From this point on we will configure the system via <a href="#definitions">Command Line Interface (CLI)</a> because that's how we will communicate with server at the later stage when we start connecting remotely to it.</p>
+<ul>
+<li>
+<p><strong>Open Terminal</strong> : hit keyboard shortcut <kbd>CTRL + ALT + T</kbd> to open the Terminal</p>
+</li>
+<li>
+<p>This will open the Terminal command line interface and you will see the <a href="#command-line-prompt">command line prompt</a>: </p>
+</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>main_user@my-server:~<span class="w"> </span>$
+</span></code></pre></div>
+<ul>
+<li>
+<p>You can now type the commands.</p>
+</li>
+<li>
+<p><strong>Close Terminal</strong> - type command <code>exit</code> to close the Terminal </p>
+</li>
+</ul>
+<h2 id="configure-terminal">Configure Terminal</h2>
+<h3 id="customize-prompt">Customize Prompt</h3>
+<p>We will change the prompt to look similar to popular Git Bash terminal on Windows: more colourized and cursor on new line.</p>
+<ul>
+<li>CD into user home: <code>cd ~</code></li>
+<li>Open bash profile : <code>codium .bashrc</code> or <code>nano .bashrc</code></li>
+<li>Search for Terminal prompt configuration block</li>
+<li>If using nano - hit <kbd>CTRL + W</kbd> to open the search prompt</li>
+<li>If using VS Code or VS Codium - hit <kbd>CTRL + F</kbd></li>
+<li>Paste this line <code>if [ "$color_prompt"</code> and hit <kbd>ENTER</kbd> to go to the start of the block</li>
+<li>The default prompt code block should look like this:</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$color_prompt</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>yes<span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="nv">PS1</span><span class="o">=</span><span class="s1">&#39;${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ &#39;</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">else</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="nv">PS1</span><span class="o">=</span><span class="s1">&#39;${debian_chroot:+($debian_chroot)}\u@\h:\w\$ &#39;</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="k">fi</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="nb">unset</span><span class="w"> </span>color_prompt<span class="w"> </span>force_color_prompt
+</span></code></pre></div>
+<ul>
+<li>Comment out default prompt:</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">#------------------------------------------</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="c1">#       Default Prompt</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1">#------------------------------------------</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># if [ &quot;$color_prompt&quot; = yes ]; then</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="c1">#     PS1=&#39;${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ &#39;</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="c1"># else</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1">#     PS1=&#39;${debian_chroot:+($debian_chroot)}\u@\h:\w\$ &#39;</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="c1"># fi</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="c1"># unset color_prompt force_color_prompt</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="c1">#------------------------------------------</span>
+</span></code></pre></div>
+<ul>
+<li>Add custom prompt like in Git Bash</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">#------------------------------------------------</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="c1">#       Git Bash Prompt</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="c1">#------------------------------------------------</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>parse_git_branch<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w"> </span>git<span class="w"> </span>branch<span class="w"> </span><span class="m">2</span>&gt;<span class="w"> </span>/dev/null<span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span>-e<span class="w"> </span><span class="s1">&#39;/^[^*]/d&#39;</span><span class="w"> </span>-e<span class="w"> </span><span class="s1">&#39;s/* \(.*\)/(\1)/&#39;</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="o">}</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$color_prompt</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>yes<span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w"> </span><span class="nv">PS1</span><span class="o">=</span><span class="s1">&#39;${debian_chroot:+($debian_chroot)}\[\e[38;5;34m\]\u\[\e[38;5;171m\]@\h\[\033[00m\] \[\e[38;5;220m\]\w \[\e[38;5;14m\]$(parse_git_branch)\[\033[00m\] \n\$ &#39;</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="k">else</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w"> </span><span class="nv">PS1</span><span class="o">=</span><span class="s1">&#39;${debian_chroot:+($debian_chroot)}\u@\h:\w$(parse_git_branch)\$ &#39;</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="k">fi</span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="c1">#-------------------------------------------------</span>
+</span></code></pre></div>
+<ul>
+<li>Save and Close .bashrc (in nano : <kbd>CTRL + S</kbd> , <kbd>CTRL + X</kbd>)</li>
+<li>Reload .bashrc in Terminal <code>source .bashrc</code></li>
+<li>The terminal prompt should change. If not, then restart the Terminal</li>
+</ul>
+<p><strong>NOTE:</strong> To change colours to something else you can go to bash prompt generator website to generate the code for .bashrc.
+- Go to: https://robotmoon.com/bash-prompt-generator/ to play with different prompt colours and generate bash code for prompt customization inside .bashrc </p>
+<h3 id="customize-terminal-background-color">Customize Terminal Background Color</h3>
+<p>This is how you can change background color of terminal to black rather than default gray color:</p>
+<ul>
+<li>Open Terminal : <kbd>CTRL + ALT + T</kbd></li>
+<li>Open Colours: <strong>Edit &gt; Preferences &gt; Profiles - Unnamed (left menu) &gt; Colours (top tab)</strong></li>
+<li>Uncheck <strong>"Use colours from system theme"</strong></li>
+<li>In <strong>Default Colour</strong> field, click on <strong>Background</strong> square color picker</li>
+<li>Type in black colour <strong>"#000000"</strong></li>
+<li>Click <strong>Select</strong>, Click <strong>Close</strong></li>
+</ul>
+<h3 id="customize-terminal-cursor">Customize Terminal Cursor</h3>
+<p>This is how you can change cursor to thin vertical line, rather than default vertical block:</p>
+<ul>
+<li>Open Terminal : <kbd>CTRL + ALT + T</kbd></li>
+<li>Open Text: <strong>Edit &gt; Preferences &gt; Profiles - Unnamed (left menu) &gt; Text (top tab)</strong></li>
+<li>Select: <strong>Cursor &gt; Cursor shape : I-Beam</strong></li>
+<li>Click <strong>Close</strong></li>
+</ul>
+<h2 id="update-and-upgrade-system">Update and Upgrade system</h2>
+<p><strong>NOTE:</strong> You can skip this section as your system has already been updated and upgraded in the Setup Wizard.</p>
+<ul>
+<li>Update system, type command:</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+</span></code></pre></div>
+<ul>
+<li>Upgrade system, type command:</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>upgrade
+</span></code></pre></div>
+<h2 id="shut-down-via-cli">Shut Down via CLI</h2>
+<p>When turning off your Server machine, you should always shut down safely.</p>
+<ul>
+<li>To safely turn off your Server, type in the following command</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>sudo<span class="w"> </span>shutdown<span class="w"> </span>-h<span class="w"> </span>now
+</span></code></pre></div>
+<ul>
+<li>
+<p>The <strong>-h</strong> option will halt the working processes. If you remove -h from the above command, it will directly shutdown the machine without waiting for anything, which is not recommended.</p>
+</li>
+<li>
+<p>To shut down after 10 minutes type</p>
+</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>sudo<span class="w"> </span>shutdown<span class="w"> </span>-h<span class="w"> </span><span class="m">10</span>
+</span></code></pre></div>
+<ul>
+<li>To cancel scheduled shutdown</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>shutdown<span class="w"> </span>-c
+</span></code></pre></div>
+<h2 id="configure-the-system">Configure the System</h2>
+<h3 id="set-up-wi-fi">Set up Wi-Fi</h3>
+<p><strong>YOU CAN SKIP</strong></p>
+<blockquote>
+<p><strong>NOTE:</strong> You can skip this WiFi setup section, because your Wi-Fi should have already been set in the Setup Wizard. This section shows you how to set up WiFi in the command line interface on any version of Linux operating system.</p>
+</blockquote>
+<ul>
+<li>Get the name of wireless network interface</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>iwconfig
+</span></code></pre></div>
+<ul>
+<li>
+<p>You should get something like:</p>
+<div class="language-text highlight"><pre><span></span><code>lo        no wireless extensions.
+
+eth0      no wireless extensions.
+
+wlan0     IEEE 802.11  ESSID:&quot;TPG-5G-1C2A&quot;  
+          Mode:Managed  Frequency:5.18 GHz  Access Point: 00:1C:2A:1C:2A:1C   
+          Bit Rate=6 Mb/s   Tx-Power=31 dBm   
+          Retry short limit:7   RTS thr:off   Fragment thr:off
+          Power Management:on
+          Link Quality=70/70  Signal level=-32 dBm  
+          Rx invalid nwid:0  Rx invalid crypt:0  Rx invalid frag:0
+          Tx excessive retries:0  Invalid misc:0   Missed beacon:0
+</code></pre></div>
+<ul>
+<li><strong>wlan0</strong> - is the name of the wireless network interface. </li>
+<li><strong>ESSID</strong> (Extended Service Set Identifier) - is the name of your wireless network. In above example it is <strong>TPG-5G-1C2A</strong></li>
+<li>ESSID should be "off/any" if the wireless interface has not been activated yet.</li>
+</ul>
+</li>
+<li>
+<p>Activate wireless network interface</p>
+</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>sudo<span class="w"> </span>ifconfig<span class="w"> </span>wlan0<span class="w"> </span>up
+</span></code></pre></div>
+<ul>
+<li>Connect to your wireless network using WPA (Wi-Fi Protected Access) encryption</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>sudo<span class="w"> </span>wpa_passphrase<span class="w"> </span><span class="o">{{</span>WIFI_NAME<span class="o">}}</span><span class="w"> </span><span class="o">{{</span>WIFI_PASSWORD<span class="o">}}</span><span class="w"> </span>&gt;<span class="w"> </span>/etc/wpa_supplicant.conf
+</span></code></pre></div>
+<ul>
+<li>
+<p>Replace {{WIFI_NAME}} and {{WIFI_PASSWORD}} with your actual WiFi name and password</p>
+</li>
+<li>
+<p>Check that your WiFi details have been saved:</p>
+</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/wpa_supplicant/wpa_supplicant.conf
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code>- You should see
+
+    ```bash
+  country={{YOUR_COUNTRY_CODE}}
+
+  network={
+      ssid={{YOUR_WIFI_NAME}}
+      psk={{YOUR_WIFI_PASSWORD}}
+  }
+    ```
+- Exit nano editor: &lt;kbd&gt;CTRL + X&lt;/kbd&gt; , &lt;kbd&gt;Y&lt;/kbd&gt; , &lt;kbd&gt;Enter&lt;/kbd&gt;
+</code></pre></div>
+<ul>
+<li>Reboot</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>sudo<span class="w"> </span>reboot
+</span></code></pre></div>
+<ul>
+<li>Check that you are connected to your WiFi</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>iwconfig
+</span></code></pre></div>
+<h3 id="enabledisable-root-user">Enable/Disable root user</h3>
+<p><def></p>
+<blockquote>
+<p><strong>root</strong> account is a superuser account that exists in system by default and it can execute any priviledged actions without using prefix <strong>sudo</strong>.
+</def></p>
+</blockquote>
+<p>It is not advisable to ever enable <strong>root</strong> account but there are some situation when we may need it.</p>
+<h4 id="enable-root">Enable root</h4>
+<ul>
+<li>
+<p>Log in as <strong>main_user</strong></p>
+</li>
+<li>
+<p>Enable "<strong>root</strong>" user</p>
+<p>sudo passwd root</p>
+</li>
+<li>
+<p>This will prompt you for password</p>
+</li>
+<li>
+<p>Enter password <strong>root</strong></p>
+</li>
+<li>
+<p>Reboot (restart computer)</p>
+<p>reboot</p>
+</li>
+<li>
+<p>Log in with username <strong>root</strong> and password <strong>root</strong></p>
+</li>
+</ul>
+<p><strong>NOTE:</strong> If using the Dektop view, when you log in with <strong>root</strong>, you will not see the menu at the top. In this case, hit <kbd>CTRL + ALT + T</kbd> to open the <strong>Terminal</strong>. Now you will be able to execute the commands with root.</p>
+<ul>
+<li>
+<p>Execute priviledged command "apt-get update"</p>
+<p>apt-get update</p>
+</li>
+<li>
+<p>This time we did not have to use prefix sudo</p>
+</li>
+</ul>
+<p><strong>IMPORTANT:</strong> Make sure to disable the root user after you complete priviledged actions available only to root user</p>
+<ul>
+<li>
+<p>Reboot computer</p>
+<p>reboot</p>
+</li>
+</ul>
+<h4 id="disable-root">Disable root</h4>
+<ul>
+<li>
+<p>Log in with non-root account</p>
+</li>
+<li>
+<p>Disable <strong>root</strong> account</p>
+<p>sudo passwd -l root</p>
+</li>
+<li>
+<p>Restart computer</p>
+<p>reboot</p>
+</li>
+</ul>
+<h3 id="change-username-and-group-name">Change Username and Group Name</h3>
+<p>In this section we will change initially created generic username <strong>"main_user"</strong> and password <strong>"main"</strong> to our own username and password.</p>
+<p>In order to change our username we must log in as super user account called <strong>root</strong>.</p>
+<p>This is the only reason why we will enable user root in this unique situation. Normally user <strong>root</strong> should always be disabled and instead all the commands that require root priviledges, can be executed by prefixing them with keyword <strong>sudo</strong>.</p>
+<p>After we are finished with executing priviledged actions using root account, we must disable the <strong>root</strong> account.</p>
+<blockquote>
+<p><strong>root</strong> account, in Linux operating system, is a superuser account that exists in system by default and it can execute any priviledged actions without using prefix <strong>sudo</strong>.</p>
+</blockquote>
+<ul>
+<li>
+<p>Log in as <strong>main_user</strong></p>
+</li>
+<li>
+<p><strong>Enable root account</strong> and reboot</p>
+<p>sudo passwd root
+  sudo reboot</p>
+</li>
+<li>
+<p>Log in as <strong>root</strong></p>
+</li>
+<li>
+<p>If in Desktop view : Open Terminal <kbd>CTRL + ALT + T</kbd></p>
+</li>
+<li>
+<p>Change username <strong>"main_user"</strong> to <strong>"jons"</strong> - where you should use your own username instead of "jons" </p>
+</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>usermod<span class="w"> </span>-l<span class="w"> </span>jons<span class="w"> </span>main_user
+</span></code></pre></div>
+<ul>
+<li>Change password for jons to "mypassword"</li>
+</ul>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>passwd<span class="w"> </span>jons
+</span></code></pre></div>
+  - Enter password <strong>mypassword</strong></p>
+<ul>
+<li>
+<p>Change user's directory name to jons</p>
+<p>usermod -m -d /home/jons jons</p>
+</li>
+<li>
+<p><code>-d /home/jons</code>: Sets the new home directory for the user <code>jons</code>.</p>
+</li>
+<li>
+<p><code>-m</code>: Moves the content from the user's current home directory (e.g., <code>/home/main_user</code>) to the new home directory (<code>/home/jons</code>).</p>
+<ul>
+<li>If <code>/home/jons</code> does not exist, it will be created.</li>
+<li>All files and subdirectories from the old home are moved to the new location.</li>
+<li>The ownership of the files remains with the user (<code>jons</code>).</li>
+<li>The old home directory (<code>/home/main_user</code>) will remain as an empty directory unless you delete it manually.</li>
+</ul>
+</li>
+<li>
+<p>Delete the old home directory</p>
+<p>rmdir /home/main_user</p>
+</li>
+<li>
+<p>Change user's group name to jons</p>
+<p>groupmod -n jons main_user</p>
+</li>
+<li>
+<p>Reboot: <code>reboot</code></p>
+</li>
+<li>
+<p>Log in as <strong>"jons"</strong>, with password <strong>"mypassword"</strong></p>
+</li>
+<li>
+<p>Change password to a strong password - run command <code>passwd</code></p>
+</li>
+<li>
+<p>Confirm that <strong>jons</strong> account has sudo privileges, by running system update command:</p>
+</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+</span></code></pre></div>
+<ul>
+<li>
+<p>You will be prompted for password</p>
+<div class="language-text highlight"><pre><span></span><code>[sudo] password for jons:
+</code></pre></div>
+</li>
+<li>
+<p>Type in password to continue</p>
+</li>
+</ul>
+<p><strong>NOTE:</strong> When we changed the username main_user to jons, it has reset the way sudo behaves to default - asking for password every 15 minutes.
+In the next section we will configure sudo not to prompt <strong>jons</strong> to enter password every time we want to run a priviledged command.</p>
+<ul>
+<li>
+<p><strong>IMPORTANT:</strong> <strong>Disable</strong> <strong>root</strong> account</p>
+<p>sudo passwd -l root</p>
+</li>
+</ul>
+<p><strong>NOTE:</strong> From this point on we will not use <strong>root</strong> account again.</p>
+<h3 id="remove-sudo-password-prompt">Remove Sudo Password Prompt</h3>
+<p>When we want to run priviledged commands we type <strong>sudo</strong> before the command. For this to work, our user account must be a member of <strong>sudo</strong> <strong>group</strong> - which our default account is.</p>
+<p>By default, using sudo asks for password every 15 minutes</p>
+<p>To disable asking for sudo password, do the following:</p>
+<ul>
+<li>
+<p>Open <strong>sudoers</strong> file for editing using <strong>visudo</strong> command (visudo command is a safe and secure way of editing the /etc/sudoers file)</p>
+<p>sudo visudo</p>
+</li>
+<li>
+<p>Look for the line starting with <strong>%sudo</strong>. It should look like this:</p>
+<p># Allow members of group sudo to execute any command
+  %sudo   ALL=(ALL) ALL</p>
+</li>
+<li>
+<p>Add keyword <strong>NOPASSWD</strong> and a column symbol before the last <strong>ALL</strong>. It should now look like this</p>
+<p># Allow members of group sudo to execute any command
+  %sudo   ALL=(ALL) NOPASSWD:ALL</p>
+</li>
+<li>
+<p>Save and close the file: <kbd>CTRL + S</kbd> <kbd>CTRL + X</kbd></p>
+</li>
+<li>
+<p>Reboot and log in with <strong>jons</strong></p>
+</li>
+<li>
+<p>Run update command to make sure you are not being prompted for password:</p>
+<p>sudo apt-get update</p>
+</li>
+<li>
+<p>You should NOT be prompted for password this time</p>
+</li>
+</ul>
+<h3 id="create-user-sysadmin">Create User sysadmin</h3>
+<p>In the previous sections we showed you how to change existing username and password.</p>
+<p>Now we will learn how to create a priviledged account called <strong>sysadmin</strong>. </p>
+<p>We will create the username <strong>"sysadmin"</strong> which will be the main account for adminsitration of our server. In other versions of Linux we would normally call this user <strong>admin</strong>, but in Linux Mint this is already a group name, so we have to call our admin user something else. Therefore sysadmin is a good alternative name.</p>
+<p><strong>IMPORTANT:</strong> <strong>Disable</strong> <strong>root</strong> account - in case you missed to do it before. </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>sudo<span class="w"> </span>passwd<span class="w"> </span>-l<span class="w"> </span>root
+</span></code></pre></div>
+<p><strong>NOTE:</strong> <strong>jons</strong> is already a priviledged account, so we can execute any priviledged commands with jons account by prefixing them with keyword <strong>sudo</strong></p>
+<ul>
+<li>
+<p>Log in with <strong>jons</strong></p>
+</li>
+<li>
+<p>Create user sysadmin</p>
+<p>sudo adduser sysadmin</p>
+</li>
+<li>
+<p>Provide password: <strong>sysadmin</strong> and Full Name: <strong>System Admin</strong>. For all other fields hit <strong>Enter</strong> to continue.</p>
+</li>
+<li>
+<p>The last question of the user creation wizard will ask you if the information is correct. Type <strong>y</strong> and hit <strong>Enter</strong>.</p>
+</li>
+<li>
+<p>You should see :</p>
+<div class="language-text highlight"><pre><span></span><code>  Adding user `sysadmin&#39; ...
+  Adding new group `sysadmin&#39; (1001) ...
+  Adding new user `sysadmin&#39; (1001) with group `sysadmin&#39; ...
+  Creating home directory `/home/sysadmin&#39; ...
+  Copying files from `/etc/skel&#39; ...
+  New password:
+  Retype new password:
+  passwd: password updated successfully
+  Changing the user information for sysadmin
+  Enter the new value, or press ENTER for the default
+        Full Name []: Admin
+        Room Number []:
+        Work Phone []:
+        Home Phone []:
+        Other []:
+  Is the information correct? [Y/n] y
+</code></pre></div>
+</li>
+</ul>
+<p><strong>IMPORTANT:</strong> You should create a <strong>strong password</strong> for your sysadmin account. Password we are using here is just for practice.</p>
+<p><strong>NOTE:</strong> When you create user <strong>sysadmin</strong> with <strong>adduser</strong> command, this will also create a group <strong>sysadmin</strong> and a home directory <strong>/home/sysadmin</strong> </p>
+<ul>
+<li>
+<p>Go inside /home and list the contents</p>
+<p>cd /home
+  ls -l</p>
+</li>
+<li>
+<p>we will get a message:</p>
+<div class="language-text highlight"><pre><span></span><code>ls: cannot open directory &#39;.&#39;: Permission denied
+</code></pre></div>
+</li>
+<li>
+<p>This is because we configured our system, in the previous section, to hide user directories. </p>
+</li>
+<li>
+<p>As a priviledged user we can still see users' directories by using sudo keyword</p>
+<div class="language-text highlight"><pre><span></span><code> sudo ls -l
+</code></pre></div>
+</li>
+<li>
+<p>You should see that a new directory <strong>sysadmin</strong> has been created.</p>
+</li>
+<li>
+<p>Try to enter into sysadmin user's directory /home/sysadmin</p>
+<p>cd /home/sysadmin</p>
+</li>
+<li>
+<p>You will get a message</p>
+<div class="language-text highlight"><pre><span></span><code>-bash: cd: /home/sysadmin: Permission denied
+</code></pre></div>
+</li>
+<li>
+<p>Our security configuration works well. No user can enter inside the directory of the other user.</p>
+</li>
+<li>
+<p>Give elevated priviledges to sysadmin - assign sysadmin user to the <strong>sudo</strong> group:</p>
+<p>sudo usermod -aG sudo sysadmin</p>
+</li>
+<li>
+<p>The <strong>-aG</strong> flag stands for Append and Group. This command instructs <strong>usermod</strong> command to append the username to a group, which in this case is the sudo group.</p>
+</li>
+<li>
+<p>Keyword <strong>sudo</strong> stands for: <strong>"superuser do"</strong>      </p>
+</li>
+<li>
+<p>You now have an <strong>sysadmin</strong> account with sudo priviledges. This means that sysadmin account can execute commands which require elevated root priviledges by prefixing those commands with keyword <strong>sudo</strong>.</p>
+</li>
+<li>
+<p>Check what groups user <strong>sysadmin</strong> is in</p>
+<p>groups sysadmin</p>
+</li>
+<li>
+<p>You should get</p>
+<div class="language-text highlight"><pre><span></span><code>sysadmin : sysadmin sudo
+</code></pre></div>
+</li>
+<li>
+<p>Reboot computer</p>
+</li>
+</ul>
+<p><strong>NOTE:</strong> From this point on we will only use <strong>sysadmin</strong> account.</p>
+<h3 id="change-computer-name">Change Computer Name</h3>
+<p><strong>NOTE:</strong> THROUGHOUT THIS BOOK WE WILL REFER TO YOUR SERVER COMPUTER NAME AS "<strong>my-server</strong>". Wherever you see "my-server", replace it with the actual name of your home server machine.</p>
+<ul>
+<li>
+<p>Log in as <strong>sysadmin</strong></p>
+</li>
+<li>
+<p>Change name in <strong>hostname file</strong> </p>
+</li>
+<li>
+<p>Open file "hostname", located in the "/etc" directory, using nano editor</p>
+<div class="language-text highlight"><pre><span></span><code>sudo nano /etc/hostname
+</code></pre></div>
+</li>
+<li>
+<p>Change the line of text that says "<strong>raspberrypi</strong>" to your desired computer name (e.g. "my-server"). </p>
+</li>
+<li>
+<p>Save and close the file: <kbd>CTRL + S</kbd> <kbd>CTRL + X</kbd></p>
+</li>
+</ul>
+<p><def></p>
+<blockquote>
+<p><strong>nano</strong> - is a popular simple text editor used in Linux to edit text in files.
+</def></p>
+</blockquote>
+<ul>
+<li>
+<p>Change name in <strong>hosts file</strong></p>
+</li>
+<li>
+<p>Open file "hosts", located in the "/etc" directory, with nano</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/hosts
+</span></code></pre></div>
+</li>
+<li>
+<p>Change the line of text that has your old computer name. It should be the last line that starts with 127.0.0.1 </p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="m">127</span>.0.0.1<span class="w">       </span>localhost
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>::1<span class="w">             </span>localhost<span class="w"> </span>ip6-localhost<span class="w"> </span>ip6-loopback
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>ff02::1<span class="w">         </span>ip6-allnodes
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>ff02::2<span class="w">         </span>ip6-allrouters
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="m">127</span>.0.1.1<span class="w">       </span>old-computer-name
+</span></code></pre></div>
+  - Change <strong>old-computer-name</strong> to your new computer name (e.g. <strong>my-server</strong>)</p>
+</li>
+<li>
+<p>Save and close the file: <kbd>CTRL + S</kbd> , <kbd>CTRL + X</kbd></p>
+</li>
+<li>
+<p>Reboot computer</p>
+</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>sudo<span class="w"> </span>reboot
+</span></code></pre></div>
+<ul>
+<li>
+<p>Log in with <strong>sysadmin</strong></p>
+</li>
+<li>
+<p>Your command line prompt should now show</p>
+</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>sysadmin@my-server:~<span class="w"> </span>$
+</span></code></pre></div>
+<ul>
+<li>Confirm hostname has been changed</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>hostname
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code>- it should now say **my-server**
+</code></pre></div>
+<h2 id="set-up-network">Set up Network</h2>
+<h3 id="check-local-network-connectivity">Check Local Network Connectivity</h3>
+<ul>
+<li>
+<p><strong>Ping the machine</strong> - Check that your computer is on the network using ping command</p>
+<p>ping my-server.local</p>
+</li>
+<li>
+<p>Hit <kbd>CTRL + C</kbd> to exit PING (Packet Internet Groper)</p>
+</li>
+<li>
+<p>You should see lines of something like this repeating:</p>
+<div class="language-text highlight"><pre><span></span><code>64 bytes from 192-168-1-105.tpgi.com.au (192.168.1.105): icmp_seq=1 ttl=64 time=0.102 ms
+</code></pre></div>
+</li>
+<li>
+<p><strong>NOTE</strong>: 192.168.1.105 in this example is Server machine's IP address on your local network</p>
+</li>
+</ul>
+<p>You can try running these 2 commands for more information about the network:
+1. <code>ifconfig</code>
+2. <code>ip addr show</code></p>
+<p><strong>To learn more about these commands and how the network works go to Appendix section</strong> <a href="#networking">Networking</a>.</p>
+<h3 id="get-internal-ip-from-command-line">Get Internal IP from Command Line</h3>
+<ul>
+<li><strong>Print internal IP address</strong> of this machine</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>hostname<span class="w"> </span>-I
+</span></code></pre></div>
+<ul>
+<li>
+<p>You should see something like:</p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="m">192</span>.168.1.105<span class="w"> </span>fe80::6941:c5ff:fe0f:3033
+</span></code></pre></div>
+- <strong>Note-down the IPv4 address</strong>, which is <strong>192.168.1.105</strong> in above example. The address starting with <strong>fe80::</strong> is IPv6 address that we will not use in this book.</p>
+</li>
+</ul>
+<p><strong>For more explanation go to Appendix section</strong> <a href="#networking">Networking</a>.</p>
+<h3 id="open-router-admin">Open Router Admin</h3>
+<ul>
+<li>
+<p>On your <a href="#definitions">Local machine</a> open any browser e.g. Chrome, and navigate to your local network <strong>router-admin</strong> web-page by typing in the address bar the following url:</p>
+<div class="language-text highlight"><pre><span></span><code>http://192.168.1.1
+</code></pre></div>
+</li>
+<li>
+<p>If that does not work, then try:</p>
+<div class="language-text highlight"><pre><span></span><code>http://192.168.0.1
+</code></pre></div>
+</li>
+<li>
+<p>If that does not work, search on Google "what is router admin url for {{NAME_OF_YOUR_ROUTER_BRAND}}", for example "what is router admin url for tp-link"</p>
+</li>
+</ul>
+<h3 id="get-internal-ip-from-router-admin">Get Internal IP from Router Admin</h3>
+<ul>
+<li>
+<p>In your Router Admin - <strong>Verify that the your server machine is visible on router admin website</strong> </p>
+</li>
+<li>
+<p>You should see a link that says something like "<strong>Wireless Clients</strong>". It may say something different depending on your router brand.</p>
+</li>
+<li>
+<p>On the list of connected wireless clients you should see a name of your <a href="#definitions">Server computer</a> ( e.g. <strong>my-server</strong> ) and its <strong>Internal IP Address</strong> next to it (e.g. 192.168.1.105)</p>
+</li>
+<li>
+<p>Note down the Internal IP address of your Server machine. You will be using it in the next section to configure Port Forwarding.</p>
+</li>
+</ul>
+<h3 id="set-up-static-internal-ip">Set up Static Internal IP</h3>
+<p>Internal IP addresses are not static. They get changed by the router's DHCP server.</p>
+<p><def></p>
+<blockquote>
+<p><strong>DHCP (Dynamic Host Configuration Protocol)</strong> - is a protocol that provides quick, automatic, and central management for the distribution of IP addresses to devices on the network within a network. A DHCP server dynamically issues unique IP addresses to devices on the network and automatically configures other network information. In most homes and small businesses, the router acts as the DHCP server.
+</def></p>
+</blockquote>
+<p>We need to make sure that our home server machine always has the same IP address on the local network (static IP) so that we can reliably connect to it.</p>
+<ul>
+<li>
+<p>In your router admin look for <strong>LAN Settings</strong>.
+  For example on tp-link modem go to : <strong>Advanced &gt; Network &gt; Lan Settings</strong></p>
+</li>
+<li>
+<p>You should see sections: <strong>DHCP Server, Client List, Address Reservation</strong></p>
+</li>
+<li>
+<p>In <strong>Client List</strong> find your server computer and note it's <strong>MAC Address</strong> and <strong>Assigned IP</strong> for example 192.168.1.105</p>
+</li>
+<li>In <strong>Address Reservation</strong> section, click <strong>Add</strong> button which will prompt you to enter MAC and IP address.</li>
+<li>Type in manually MAC and IP or click on button SCAN if available and select your device from list.</li>
+<li>
+<p>Click OK</p>
+</li>
+<li>
+<p>Your server computer now has static internal IP and it will not be changed by DHCP server.</p>
+</li>
+</ul>
+<h2 id="obtain-static-ip-address-from-isp">Obtain Static IP Address from ISP</h2>
+<p><strong>SKIP this section if you do not want to open your server to Internet or pay extra to your ISP for static IP.</strong>.
+You will still be able to access your server from other machines on your local network but not on the internet.</p>
+<p>In this case go to section <a href="#set-up-firewall">Set up Firewall</a>.</p>
+<hr />
+<p>By default, your <strong>ISP (internet service provider)</strong> will assign your local network a <strong>Dynamic IP Address</strong> - which keeps on changing all the time.</p>
+<p>In order for your server computer to be reachable from outside world (by other computers on the internet), it must have a <strong>Static IP Address</strong>.</p>
+<ul>
+<li>Contact your ISP and ask them to upgrade your internet connection plan to one that provides a <strong>Static IP Address</strong></li>
+</ul>
+<h3 id="get-external-ip">Get External IP</h3>
+<ul>
+<li>
+<p><a href="#open-router-admin">Open Router Admin</a></p>
+</li>
+<li>
+<p>You should see the <strong>External IP</strong> address of your router on the main page of the router admin website. It should look something like this:</p>
+<p>IP Address: 113.216.184.151</p>
+</li>
+</ul>
+<h3 id="configure-port-forwarding">Configure Port Forwarding</h3>
+<p><strong>SKIP this section if you do not want to open your server to Internet</strong>, but rather just want to access it from your local network. In this case go to section <a href="#set-up-firewall">Set up Firewall</a>.</p>
+<p><strong>NOTE:</strong> You can only do this if you have a <strong>Static External IP</strong> that your ISP has provided for you.</p>
+<p>In order to access our Server from anywhere via internet, we need to first set up <strong>port forwarding</strong> on our router.</p>
+<p><def></p>
+<blockquote>
+<p><strong>Port Forwarding</strong> - allows incoming connections from broader Internet (in technical terms known as WAN (Wide Area Network)) to reach a specific device/port on a <strong>LAN</strong> (Local Area Network). Port forwarding is achieved by using <strong>NAT</strong> (Network Address Translation) table that maps <strong>External Port</strong> to the <strong>Internal IP</strong> address.
+</def></p>
+</blockquote>
+<ul>
+<li>
+<p>On your <a href="#definitions">Local machine</a>, open the internet browser window and go to <strong>router admin</strong> webpage which should be located at url <strong>http://192.168.1.1/</strong> or <strong>http://192.168.0.1/</strong></p>
+</li>
+<li>
+<p>Go to the page for port forwarding. It is different for different routers.</p>
+</li>
+<li>
+<p>To find where the port forwarding settings are on your router =&gt; Search on the internet for keywords: "{{NAME_OF_YOUR_ROUTER_BRAND}} port forwarding", for example "tp-link router port forwarding"</p>
+</li>
+<li>
+<p>Here is an example of port forwarding location for tplink router Archer VR1600v:</p>
+<ul>
+<li>On the main menu go to : <strong>Advanced &gt; NAT Forwarding &gt; Virtual Servers</strong></li>
+<li>You should see :</li>
+<li>Buttons <strong>Add</strong> and <strong>Delete</strong></li>
+<li>List of Virtual Servers with IPs and Ports </li>
+</ul>
+</li>
+</ul>
+<p>At this point we want to add a new virtual server that points to our SSH port accessing SSH program. </p>
+<p><strong>SSH (Secure Shell)</strong> is used to remotely execute commands on our home server in a secure way. </p>
+<p>We will install SSH later.</p>
+<ul>
+<li>
+<p>Add new Virtual Server by clicking button <strong>Add</strong></p>
+<ul>
+<li>Set Service Type to "SSH" </li>
+<li>Set External Port to number from 1024 to 49151</li>
+<li>Set Internal IP to your Home Server's IP address on the network e.g. 192.168.1.105</li>
+<li>Set Internal Port to default SSH port 22</li>
+<li>Set Protocol to "TCP"</li>
+</ul>
+</li>
+<li>
+<p>Settings should look something like this:</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Service Type:</td>
+<td>SSH</td>
+</tr>
+<tr>
+<td>External Port:</td>
+<td>1234</td>
+</tr>
+<tr>
+<td>Internal IP:</td>
+<td>192.168.1.105</td>
+</tr>
+<tr>
+<td>Internal Port:</td>
+<td>22</td>
+</tr>
+<tr>
+<td>Protocol:</td>
+<td>TCP</td>
+</tr>
+</tbody>
+</table>
+<p>Now you have forwarded <strong>External Port</strong> 1234 to machine on your network with <strong>Internal IP</strong> 192.168.1.105 and SSH program that is running on that machine's <strong>Internal Port</strong> 22.</p>
+<p>This means that you can now access SSH on that machine from the remote computer via your home network's <strong>Static External IP</strong> e.g. 113.216.184.151 and  <strong>External Port</strong> 1234.</p>
+<p>We will explain later how to connect to your server remotely using SSH in <a href="#set-up-ssh">SSH Setup Section</a>.</p>
+<p><def></p>
+<blockquote>
+<p><strong>Network Port</strong> - is a logical number that identifies to which local <strong>process</strong> or <strong>service</strong>, the specific incoming internet traffic should be directed towards.</p>
+<p>Ports are classified into 3 main categories:</p>
+<ol>
+<li>
+<p><strong>Well Known Ports</strong> - ( 0 - 1023 ) - are used by system or processes run by root or with specific privileges.</p>
+</li>
+<li>
+<p><strong>Registered Ports</strong> - ( 1024 - 49151 ) - are used by programs run by users in the system.</p>
+</li>
+<li>
+<p><strong>Dynamic Ports</strong> - ( 49152 - 65535 ) - are not assigned for any specific purpose.
+</def></p>
+</li>
+</ol>
+</blockquote>
+<p><br></p>
+<h3 id="check-outside-connectivity">Check Outside Connectivity</h3>
+<p>Skip this if you don't have a static IP.</p>
+<hr />
+<p>There are 2 ways to check network ports' outside connectivity. You should know both ways.
+- IsMyPortOpen.com
+- Netcat</p>
+<h4 id="use-ismyportopencom">Use IsMyPortOpen.com</h4>
+<p>Check if your server's ip and port is reachable from outside by using utility website <a href="http://ismyportopen.com">ismyportopen.com</a></p>
+<ul>
+<li>Go to http://ismyportopen.com/</li>
+<li>Type in your IP and port and hit button Check</li>
+<li>You should get a green check and a message : <strong>Port is open</strong></li>
+</ul>
+<h4 id="use-netcat">Use Netcat</h4>
+<ul>
+<li><strong>On Mac OS Install Homebrew first</strong> - If you are on Mac OS make sure to install <strong>homebrew</strong> first. Go to: https://brew.sh/ for more info.</li>
+<li>Open Terminal</li>
+<li>
+<p>Run command</p>
+<div class="language-text highlight"><pre><span></span><code>/bin/bash -c &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;
+</code></pre></div>
+</li>
+<li>
+<p>Add homebrew to your PATH. <strong>NOTE:</strong> replace <strong>jon</strong> with your username:</p>
+<div class="language-text highlight"><pre><span></span><code>(echo; echo &#39;eval &quot;$(/opt/homebrew/bin/brew shellenv)&quot;&#39;) &gt;&gt; /Users/jon/.bash_profile
+
+eval &quot;$(/opt/homebrew/bin/brew shellenv)&quot;
+</code></pre></div>
+</li>
+<li>
+<p>Install Netcat on your Local machine</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Windows</td>
+<td>Go to: https://nmap.org/download.html</td>
+</tr>
+<tr>
+<td>Mac OS</td>
+<td>Run command: <strong>brew install netcat</strong></td>
+</tr>
+<tr>
+<td>Linux</td>
+<td>Run command: <strong>sudo apt install netcat</strong></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>
+<p>Check on your Local machine if you can connect from outside to your server computer ip and port e.g. 113.216.184.151:8333</p>
+</li>
+<li>
+<p>On <strong>Linux</strong> and <strong>Mac OS</strong> run</p>
+<div class="language-text highlight"><pre><span></span><code>nc -zv 113.216.184.151 1234
+</code></pre></div>
+</li>
+<li>
+<p>On <strong>Windows</strong> open command prompt and run</p>
+<div class="language-text highlight"><pre><span></span><code>ncat -zv 113.216.184.151 1234
+</code></pre></div>
+</li>
+</ul>
+<h2 id="set-up-firewall">Set up Firewall</h2>
+<p><def></p>
+<blockquote>
+<p>Firewall - is a network security system that monitors and controls incoming and outgoing network traffic based on predetermined security rules. It  restricts internet traffic in to, out of, or within a private network. Firewall functions by selectively blocking or allowing data packets. Its purpose is to prevent anyone inside or outside of a private network from engaging in unauthorized web activities.
+</def></p>
+</blockquote>
+<p><def></p>
+<blockquote>
+<p><strong>UFW</strong> - <strong>Uncomplicated Firewall</strong> is a standard CLI program for working with the firewall on Linux.
+</def></p>
+</blockquote>
+<h3 id="install-and-enable-ufw">Install and Enable UFW</h3>
+<p><strong>NOTE:</strong> This sequence is safe for remote access (e.g., via SSH) because we add critical rules before enabling the firewall. If doing this physically, it's even safer.</p>
+<ul>
+<li>Install ufw</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>ufw
+</span></code></pre></div>
+<ul>
+<li>Check status:</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>sudo<span class="w"> </span>ufw<span class="w"> </span>status
+</span></code></pre></div>
+<ul>
+<li>
+<p>You may get</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>ERROR:<span class="w"> </span>Couldn<span class="err">&#39;</span>t<span class="w"> </span>determine<span class="w"> </span>iptables<span class="w"> </span>version
+</span></code></pre></div>
+<p>OR</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>Status:<span class="w"> </span>inactive
+</span></code></pre></div>
+</li>
+<li>
+<p>Reboot:</p>
+</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>sudo<span class="w"> </span>reboot
+</span></code></pre></div>
+<ul>
+<li>Check status again: <code>sudo ufw status</code></li>
+<li>This time you should get: <code>Status: inactive</code></li>
+</ul>
+<h3 id="add-firewall-rules-before-enabling">Add Firewall Rules (Before Enabling)</h3>
+<p>We add rules while UFW is inactive to ensure your SSH connection isn't disrupted when we enable it later.</p>
+<ul>
+<li>Add port 22 - the standard port for SSH (Secure Shell) connections, which is how we will connect to our server remotely.</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span><span class="m">22</span>
+</span></code></pre></div>
+<ul>
+<li>Add another port 1234</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span><span class="m">1234</span>
+</span></code></pre></div>
+<ul>
+<li>Show firewall status (still inactive, but rules are queued)</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>sudo<span class="w"> </span>ufw<span class="w"> </span>status
+</span></code></pre></div>
+<ul>
+<li>
+<p>You should see</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>Status:<span class="w"> </span>inactive
+</span></code></pre></div>
+</li>
+</ul>
+<h3 id="enable-ufw">Enable UFW</h3>
+<p>Now that rules are in place, enable the firewall safely.</p>
+<ul>
+<li>Enable firewall:</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>sudo<span class="w"> </span>ufw<span class="w"> </span><span class="nb">enable</span>
+</span></code></pre></div>
+<ul>
+<li>
+<p>You should see</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>Firewall<span class="w"> </span>is<span class="w"> </span>active<span class="w"> </span>and<span class="w"> </span>enabled<span class="w"> </span>on<span class="w"> </span>system<span class="w"> </span>startup
+</span></code></pre></div>
+</li>
+<li>
+<p>Check existing firewall rules (list of allowed ports)</p>
+</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>sudo<span class="w"> </span>ufw<span class="w"> </span>status
+</span></code></pre></div>
+<ul>
+<li>You should see: <code>Status: active</code></li>
+<li>
+<p>With your rules listed, e.g.:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>Status:<span class="w"> </span>active
+</span><span id="__span-40-2"><a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>
+</span><span id="__span-40-3"><a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a>To<span class="w">                         </span>Action<span class="w">      </span>From
+</span><span id="__span-40-4"><a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a>--<span class="w">                         </span>------<span class="w">      </span>----
+</span><span id="__span-40-5"><a id="__codelineno-40-5" name="__codelineno-40-5" href="#__codelineno-40-5"></a><span class="m">22</span><span class="w">                         </span>ALLOW<span class="w">       </span>Anywhere
+</span><span id="__span-40-6"><a id="__codelineno-40-6" name="__codelineno-40-6" href="#__codelineno-40-6"></a><span class="m">1234</span><span class="w">                       </span>ALLOW<span class="w">       </span>Anywhere
+</span><span id="__span-40-7"><a id="__codelineno-40-7" name="__codelineno-40-7" href="#__codelineno-40-7"></a><span class="m">22</span><span class="w"> </span><span class="o">(</span>v6<span class="o">)</span><span class="w">                    </span>ALLOW<span class="w">       </span>Anywhere<span class="w"> </span><span class="o">(</span>v6<span class="o">)</span>
+</span><span id="__span-40-8"><a id="__codelineno-40-8" name="__codelineno-40-8" href="#__codelineno-40-8"></a><span class="m">1234</span><span class="w"> </span><span class="o">(</span>v6<span class="o">)</span><span class="w">                  </span>ALLOW<span class="w">       </span>Anywhere<span class="w"> </span><span class="o">(</span>v6<span class="o">)</span>
+</span></code></pre></div>
+</li>
+<li>
+<p>Reboot</p>
+</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a>sudo<span class="w"> </span>reboot
+</span></code></pre></div>
+<h3 id="remove-firewall-rule">Remove Firewall Rule</h3>
+<ul>
+<li>Display a numbered list of rules</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-42-1"><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>sudo<span class="w"> </span>ufw<span class="w"> </span>status<span class="w"> </span>numbered
+</span></code></pre></div>
+<ul>
+<li>
+<p>You should see something like</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-43-1"><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="w">     </span>To<span class="w">                         </span>Action<span class="w">      </span>From
+</span><span id="__span-43-2"><a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a><span class="w">     </span>--<span class="w">                         </span>------<span class="w">      </span>----
+</span><span id="__span-43-3"><a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a><span class="o">[</span><span class="w"> </span><span class="m">1</span><span class="o">]</span><span class="w"> </span><span class="m">22</span>/tcp<span class="w">                     </span>ALLOW<span class="w"> </span>IN<span class="w">    </span>Anywhere
+</span><span id="__span-43-4"><a id="__codelineno-43-4" name="__codelineno-43-4" href="#__codelineno-43-4"></a><span class="o">[</span><span class="w"> </span><span class="m">2</span><span class="o">]</span><span class="w"> </span><span class="m">1234</span><span class="w">                       </span>ALLOW<span class="w"> </span>IN<span class="w">    </span>Anywhere
+</span><span id="__span-43-5"><a id="__codelineno-43-5" name="__codelineno-43-5" href="#__codelineno-43-5"></a><span class="o">[</span><span class="w"> </span><span class="m">3</span><span class="o">]</span><span class="w"> </span><span class="m">22</span>/tcp<span class="w"> </span><span class="o">(</span>v6<span class="o">)</span><span class="w">                </span>ALLOW<span class="w"> </span>IN<span class="w">    </span>Anywhere<span class="w"> </span><span class="o">(</span>v6<span class="o">)</span>
+</span><span id="__span-43-6"><a id="__codelineno-43-6" name="__codelineno-43-6" href="#__codelineno-43-6"></a><span class="o">[</span><span class="w"> </span><span class="m">4</span><span class="o">]</span><span class="w"> </span><span class="m">1234</span><span class="w"> </span><span class="o">(</span>v6<span class="o">)</span><span class="w">                  </span>ALLOW<span class="w"> </span>IN<span class="w">    </span>Anywhere<span class="w"> </span><span class="o">(</span>v6<span class="o">)</span>
+</span></code></pre></div>
+</li>
+<li>
+<p>Remove port 1234 by rule number</p>
+</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-44-1"><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a>sudo<span class="w"> </span>ufw<span class="w"> </span>delete<span class="w"> </span><span class="m">2</span>
+</span></code></pre></div>
+<ul>
+<li>
+<p>NOTE: When you remove the rule, the number position of all rules after it , decreases by one</p>
+</li>
+<li>
+<p>Display numbered list again</p>
+</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-45-1"><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a>sudo<span class="w"> </span>ufw<span class="w"> </span>status<span class="w"> </span>numbered
+</span></code></pre></div>
+<ul>
+<li>
+<p>You should now see</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-46-1"><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="w">     </span>To<span class="w">                         </span>Action<span class="w">      </span>From
+</span><span id="__span-46-2"><a id="__codelineno-46-2" name="__codelineno-46-2" href="#__codelineno-46-2"></a><span class="w">     </span>--<span class="w">                         </span>------<span class="w">      </span>----
+</span><span id="__span-46-3"><a id="__codelineno-46-3" name="__codelineno-46-3" href="#__codelineno-46-3"></a><span class="o">[</span><span class="w"> </span><span class="m">1</span><span class="o">]</span><span class="w"> </span><span class="m">22</span><span class="w">                         </span>ALLOW<span class="w"> </span>IN<span class="w">    </span>Anywhere
+</span><span id="__span-46-4"><a id="__codelineno-46-4" name="__codelineno-46-4" href="#__codelineno-46-4"></a><span class="o">[</span><span class="w"> </span><span class="m">2</span><span class="o">]</span><span class="w"> </span><span class="m">22</span><span class="w"> </span><span class="o">(</span>v6<span class="o">)</span><span class="w">                    </span>ALLOW<span class="w"> </span>IN<span class="w">    </span>Anywhere<span class="w"> </span><span class="o">(</span>v6<span class="o">)</span>
+</span><span id="__span-46-5"><a id="__codelineno-46-5" name="__codelineno-46-5" href="#__codelineno-46-5"></a><span class="o">[</span><span class="w"> </span><span class="m">3</span><span class="o">]</span><span class="w"> </span><span class="m">1234</span><span class="w"> </span><span class="o">(</span>v6<span class="o">)</span><span class="w">                  </span>ALLOW<span class="w"> </span>IN<span class="w">    </span>Anywhere<span class="w"> </span><span class="o">(</span>v6<span class="o">)</span>
+</span></code></pre></div>
+</li>
+<li>
+<p>Remove port <strong>"1234 (v6)"</strong> by rule number</p>
+</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-47-1"><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a>sudo<span class="w"> </span>ufw<span class="w"> </span>delete<span class="w"> </span><span class="m">3</span>
+</span></code></pre></div>
+<h2 id="remotely-connect-with-ssh">Remotely Connect with SSH</h2>
+<p>Ref: https://www.raspberrypi.org/documentation/remote-access/ssh/</p>
+<p><def></p>
+<blockquote>
+<p><strong>SSH (Secure Shell)</strong> - is a cryptographic network protocol for operating network services securely over an unsecured network. Typical applications include remote command-line, login, and remote command execution, but any network service can be secured with SSH.
+</def></p>
+</blockquote>
+<p>In order to connect to our Server remotely (from the Local machine), we need to enable SSH on the Server.</p>
+<h3 id="step-1-enable-ssh">Step 1 - Enable SSH</h3>
+<ul>
+<li>
+<p>Physically log into your <strong>Server machine</strong> with <strong>sysadmin</strong> user.</p>
+</li>
+<li>
+<p>Open terminal</p>
+</li>
+<li>
+<p>Check if SSH is installed:</p>
+</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-48-1"><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>ssh
+</span></code></pre></div>
+<ul>
+<li>
+<p>If not installed,you will get this message:</p>
+<p><code>Unit ssh.service could not be found.</code></p>
+</li>
+<li>
+<p>If not installed, install it:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-49-1"><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
+</span><span id="__span-49-2"><a id="__codelineno-49-2" name="__codelineno-49-2" href="#__codelineno-49-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>openssh-server
+</span></code></pre></div>
+</li>
+<li>
+<p>Make sure that SSH is running</p>
+</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-50-1"><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>ssh
+</span></code></pre></div>
+<ul>
+<li>Enable SSH  - This will make sure that SSH starts automatically after reboot</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-51-1"><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>ssh
+</span></code></pre></div>
+<ul>
+<li>
+<p>Confirm that SSH is active</p>
+<p>sudo systemctl status ssh</p>
+</li>
+<li>
+<p>You should see a green dot and a text like</p>
+<div class="language-text highlight"><pre><span></span><code>ssh.service - OpenBSD Secure Shell server
+    Loaded: loaded (/lib/systemd/system/ssh.service; enabled; vendor preset: enabled)
+    Active: active (running) ...
+    ...
+</code></pre></div>
+</li>
+</ul>
+<h3 id="step-2-remote-connect-with-ssh">Step 2 - Remote Connect with SSH</h3>
+<ul>
+<li>Physically log into your <strong>Local machine</strong> with user <strong>Jon</strong></li>
+</ul>
+<p>We can connect remotely in 2 ways: 
+1. Via <strong>Local Network (LAN)</strong> 
+2. Via <strong>Internet (WAN)</strong> - In this case you will need to have a <strong>Static External IP</strong> leased from your ISP</p>
+<p>NOTE: In both cases you would have to have <a href="#set-up-static-internal-ip">set up Static Internal IP</a></p>
+<ul>
+<li>For LAN get Server's <strong>Internal IP</strong></li>
+<li><a href="#open-router-admin">Open Router Admin</a></li>
+<li><a href="#get-internal-ip">Get Internal IP</a> of your server e.g. my-server</li>
+<li>
+<p>Suppose that we are using the following details
+    |          |                   |
+    | -------- | ----------------- |
+    | Port     | 22 (default port) |
+    | Username | sysadmin          |
+    | IP       | 192.168.1.105     |</p>
+</li>
+<li>
+<p>For WAN get <strong>External IP</strong> and <strong>External Port</strong></p>
+</li>
+<li><a href="#get-external-ip">Get external IP Address</a></li>
+<li>
+<p><strong>Get the port of the Server machine</strong> - The port should be the same as the one you configured in the section <a href="#configure-port-forwarding">Configure port forwarding</a> e.g. 1234</p>
+</li>
+<li>
+<p>Suppose that we are using the following details</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Port</td>
+<td>1234</td>
+</tr>
+<tr>
+<td>Username</td>
+<td>sysadmin</td>
+</tr>
+<tr>
+<td>IP</td>
+<td>113.216.184.151</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Open <strong>Git Bash</strong> or <strong>Terminal</strong></p>
+</li>
+<li>
+<p><strong>Connect to the Server</strong> using ssh command</p>
+<p>ssh -p {{EXTERNAL_PORT}} {{USERNAME}}@{{IP_ADDRESS}}</p>
+<p><strong>For example:</strong></p>
+<ul>
+<li>Via Internet (using custom port for security):</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-52-1"><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a>ssh<span class="w"> </span>-p<span class="w"> </span><span class="m">1234</span><span class="w"> </span>sysadmin@113.216.184.151
+</span></code></pre></div>
+<ul>
+<li>Via Local Network (using default SSH port 22):</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-53-1"><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a>ssh<span class="w"> </span>sysadmin@192.168.1.105
+</span></code></pre></div>
+</li>
+<li>
+<p>You will get this message</p>
+<div class="language-text highlight"><pre><span></span><code>The authenticity of host &#39;[113.216.184.151]:1234 ([113.216.184.151]:1234)&#39; can&#39;t be established.
+ED25519 key fingerprint is SHA256:1f8b2ad4be0e47c9b52ce4af6c652663.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])?
+</code></pre></div>
+</li>
+<li>
+<p>Enter <strong>yes</strong> to continue. You will get something like this</p>
+<div class="language-text highlight"><pre><span></span><code>Warning: Permanently added &#39;[113.216.184.151]:1234&#39; (ED25519) to the list of known hosts.
+</code></pre></div>
+</li>
+<li>
+<p>You may (or may not) get disconnected with this message</p>
+<div class="language-text highlight"><pre><span></span><code>Connection closed by 113.216.184.151 port 1234
+</code></pre></div>
+<ul>
+<li>
+<p>In this case, just enter ssh connect command again</p>
+<p>ssh -p 1234 sysadmin@113.216.184.151</p>
+</li>
+</ul>
+<p>OR</p>
+<div class="language-text highlight"><pre><span></span><code>  ssh sysadmin@192.168.1.105
+</code></pre></div>
+</li>
+<li>
+<p>You should see a password prompt</p>
+<p>sysadmin@113.216.184.151's password:</p>
+</li>
+<li>
+<p>After you type in the correct password, you will be remotely logged into the Server</p>
+</li>
+<li>
+<p>You can do everything on SSH remote connection as if you were logged in on the physical server computer. You should see a <a href="#command-line-prompt">command line prompt</a> like this:</p>
+</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-54-1"><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a>sysadmin@my-server:~<span class="w"> </span>$
+</span></code></pre></div>
+<ul>
+<li>
+<p><strong>Disconnect from the Server</strong> : Hit <kbd>CTRL + D</kbd></p>
+</li>
+<li>
+<p>From this point onwards you can use your Local machine to access the Server and run all the commands on it.</p>
+<ul>
+<li>Therefore you can disconnect monitor and keyboard from the Server computer if you wish so.</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>NOTE:</strong> On your Local machine, ssh has created a <a href="#dot-directories">dot directory</a> called <strong>.ssh</strong> inside the <a href="#user-home-directory">user home directory</a>
+- To see the hidden .ssh directory : 
+  - Open terminal 
+  - CD into userhome directory: <code>cd ~</code>
+  - List contents of the directory: <code>ls -la</code>
+  - You should see a hidden folder called <strong>.ssh</strong></p>
+</blockquote>
+<ul>
+<li>
+<p>Go inside the .ssh folder and view contents of it</p>
+<p>cd .ssh
+  ls -l</p>
+</li>
+<li>
+<p>You should see the file called <strong>known_hosts</strong></p>
+</li>
+<li>
+<p>Open <strong>known_hosts</strong> file: <code>nano known_hosts</code></p>
+</li>
+<li>
+<p>You should see something like:</p>
+<p>[113.216.184.151]:1234 ssh-ed25519 jfY8xUO1cfDAlbbB ...
+  [113.216.184.151]:1234 ecdsa-sha2-nistp256 FUbUx1a3sM= ...</p>
+</li>
+</ul>
+<p>OR if you connected to server on LAN</p>
+<div class="language-text highlight"><pre><span></span><code>  [192.168.1.105]:22 ssh-ed25519 jfY8xUO1cfDAlbbB ...
+  [192.168.1.105]:22 ecdsa-sha2-nistp256 FUbUx1a3sM= ...
+</code></pre></div>
+<ul>
+<li>These are identifying keys related to your Server. If you connect to any other servers, similar keys will be added to this file to mark those servers/hosts as known hosts.</li>
+</ul>
+<h3 id="step-3-passwordless-connect-with-rsa">Step 3 - Passwordless Connect with RSA</h3>
+<p><def></p>
+<blockquote>
+<p><strong>RSA (Rivest-Shamir-Adleman) encryption</strong> - is a public-key encryption used for securing data transmission of e-mail and other digital transactions over the Internet. "RSA" is the acronym for the surnames of Ron Rivest, Adi Shamir and Leonard Adleman, who publicly described the algorithm in 1977.
+</def></p>
+</blockquote>
+<p>SSH protocol uses RSA encryption to enable Local machine to connect remotely to Server computer by use of <strong>public and private key</strong>, instead of having to type in the password.</p>
+<p>SSH files are stored inside <strong>".ssh"</strong> folder located in the <a href="#user-home-directory">User Home directory</a>.</p>
+<ul>
+<li>
+<p>Let's suppose that we have the following set-up:</p>
+</li>
+<li>
+<p>Local machine:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Local machine Name</td>
+<td>my-pc</td>
+</tr>
+<tr>
+<td>Operating System</td>
+<td>Windows</td>
+</tr>
+<tr>
+<td>Username</td>
+<td>Jon</td>
+</tr>
+<tr>
+<td>User directory</td>
+<td>C:\Users\Jon\</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Replace Jon above with your username</li>
+</ul>
+</li>
+<li>
+<p>Server computer:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Server machine Name (hostname)</td>
+<td>my-server</td>
+</tr>
+<tr>
+<td>Operating System</td>
+<td>Linux Mint</td>
+</tr>
+<tr>
+<td>Username</td>
+<td>sysadmin</td>
+</tr>
+<tr>
+<td>User directory</td>
+<td>/home/sysadmin/</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Replace <strong>my-server</strong> above with your server name</li>
+</ul>
+</li>
+<li>
+<p>On the <a href="#definitions">Local machine</a> open <strong>Git Bash</strong> (on Windows) or <strong>Terminal</strong> (on Linux and Mac)</p>
+</li>
+<li>
+<p><strong>Create RSA encryption keys on Local machine</strong> using <strong>ssh-keygen</strong> command:</p>
+</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-55-1"><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a>ssh-keygen<span class="w"> </span>
+</span></code></pre></div>
+<ul>
+<li>
+<p>You should see a prompt:</p>
+<p>```bash
+Generating public/private rsa key pair.
+  Enter file in which to save the key (/c/Users/Jon/.ssh/id_rsa):
+  <div class="language-text highlight"><pre><span></span><code><span id="__span-56-1"><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a>OR if your machine is using ed25519 algorithm
+</span><span id="__span-56-2"><a id="__codelineno-56-2" name="__codelineno-56-2" href="#__codelineno-56-2"></a>
+</span><span id="__span-56-3"><a id="__codelineno-56-3" name="__codelineno-56-3" href="#__codelineno-56-3"></a>```bash
+</span><span id="__span-56-4"><a id="__codelineno-56-4" name="__codelineno-56-4" href="#__codelineno-56-4"></a>Generating public/private ed25519 key pair.
+</span><span id="__span-56-5"><a id="__codelineno-56-5" name="__codelineno-56-5" href="#__codelineno-56-5"></a>Enter file in which to save the key (/c/Users/Jon/.ssh/id_ed25519):
+</span></code></pre></div></p>
+<p>The prompt gives a suggestion to use a default file called <strong>id_rsa</strong> or <strong>id_ed25519</strong> inside <strong>.ssh/</strong> folder to store the private key.</p>
+<p>However this is not good enough for us. We want to structure our files with the view that we will <strong>connect to many other servers</strong>.</p>
+</li>
+<li>
+<p><strong>Copy the suggested file path</strong> (/c/Users/Jon/.ssh/id_rsa) or (/c/Users/Jon/.ssh/id_ed25519) and <strong>append the Server name at the end</strong> like:</p>
+<p><code>/c/Users/Jon/.ssh/id_rsa_my-server</code></p>
+<p>or</p>
+<p><code>/c/Users/Jon/.ssh/id_ed25519_my-server</code></p>
+</li>
+<li>
+<p>Hit <kbd>Enter</kbd></p>
+</li>
+<li>
+<p>Next you should see passphrase prompts. Just hit <kbd>Enter</kbd> without typing in any text. </p>
+<p>Enter passphrase (empty for no passphrase):
+  Enter same passphrase again:</p>
+</li>
+<li>
+<p>The keys will be generated and you will see the following output (where "my-pc" is the name of your Local machine, "Jon" is your username on your Local machine, "my-server" is your Server computer name):</p>
+<div class="language-text highlight"><pre><span></span><code>Your identification has been saved in /c/Users/Jon/.ssh/id_rsa_my-server
+Your public key has been saved in /c/Users/Jon/.ssh/id_rsa_my-server.pub
+The key fingerprint is:
+SHA256:h7FUEfiH8PtvNANPjc7uZM1VH6pGG/5LmI/PNp83M6E Jon@my-pc
+The key&#39;s randomart image is:
++---[RSA 3072]----+
+|         .+o     |
+|        o.       |
+|        o+ .   +.|
+|       . ++ o + =|
+|        S .= B  o|
+|         .+ * B+.|
+|           O ++o+|
+|          . BEo+o|
+|           .oX*o=|
++----[SHA256]-----+
+</code></pre></div>
+</li>
+</ul>
+<p><strong>NOTE:</strong> your file name will start with <strong>id_rsa</strong> or <strong>id_ed25519</strong> and then the server name. We will refer to it as <strong>{{SSH_KEY_FILE_NAME}}</strong></p>
+<ul>
+<li><strong>Copy the public key to the Server machine</strong> using <code>ssh-copy-id</code> command. </li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-57-1"><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a>ssh-copy-id<span class="w"> </span>-i<span class="w"> </span>~/.ssh/<span class="o">{{</span>SSH_KEY_FILE_NAME<span class="o">}}</span>.pub<span class="w"> </span>-p<span class="w"> </span><span class="o">{{</span>SERVER_PORT<span class="o">}}</span><span class="w"> </span><span class="o">{{</span>SERVER_USERNAME<span class="o">}}</span>@<span class="o">{{</span>SERVER_IP_ADDRESS<span class="o">}}</span>
+</span></code></pre></div>
+<p><strong>For example:</strong></p>
+<div class="language-text highlight"><pre><span></span><code>- Via Internet (using custom port for security):
+
+  ```bash
+  ssh-copy-id -i ~/.ssh/id_rsa_my-server.pub -p 1234 sysadmin@113.216.184.151
+  ```
+
+- Via Local Network (using default SSH port 22):
+
+  ```bash
+  ssh-copy-id -i ~/.ssh/id_ed25519_my-server.pub sysadmin@192.168.1.105
+  ```
+
+- **NOTE:** 
+  - Path **&quot;~/&quot;** is a short notation for your [user home directory path](#user-home-directory) e.g. &quot;/c/Users/Jon/&quot; 
+  - When connecting via local network, you can omit the **-p** parameter because SSH uses port 22 by default. For internet connections, we use a custom port (like 1234) for additional security.
+
+- You will be prompted for password:
+
+      /usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: &quot;/c/Users/Jon/.ssh/id_rsa_my-server.pub&quot;
+      /usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
+      /usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
+      sysadmin@113.216.184.151&#39;s password:
+
+- After you type in the password you will see output:
+
+      Number of key(s) added: 1
+
+      Now try logging into the machine, with:   &quot;ssh -p &#39;1234&#39; &#39;sysadmin@113.216.184.151&#39;&quot;
+      and check to make sure that only the key(s) you wanted were added.
+
+- **NOTE:** logging into the Server machine by using command `ssh -p 1234 sysadmin@113.216.184.151` (or `ssh sysadmin@192.168.1.105` for LAN) will still ask us for password. This is because we have not created our RSA keys in the default file &quot;id_rsa&quot; but instead we have created it in the custom file named &quot;id_rsa_my-server&quot;. Therefore we need to specify the location of the key file when using ssh to connect, for example: **&quot;ssh -i ~/.ssh/id_rsa_my-server -p 1234 sysadmin@113.216.184.151&quot;**
+</code></pre></div>
+<ul>
+<li>
+<p><strong>Connect to Server without a password</strong></p>
+<ul>
+<li>Via Internet (using custom port for security):</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-60-1"><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a>ssh<span class="w"> </span>-i<span class="w"> </span>~/.ssh/id_rsa_my-server<span class="w"> </span>-p<span class="w"> </span><span class="m">1234</span><span class="w"> </span>sysadmin@113.216.184.151
+</span></code></pre></div>
+<ul>
+<li>Via Local Network (using default SSH port 22):</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-61-1"><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a>ssh<span class="w"> </span>-i<span class="w"> </span>~/.ssh/id_ed25519_my-server<span class="w"> </span>sysadmin@192.168.1.105
+</span></code></pre></div>
+</li>
+<li>
+<p><strong>NOTE:</strong> We are using the path to file "id_rsa_my-server" and NOT "id_rsa_my-server.pub" (private key, not public key).</p>
+</li>
+<li>
+<p>This time, you should be logged into Server without a password prompt</p>
+</li>
+<li>
+<p>View public key on Server (for the purpose of understanding the private-public key handshake)</p>
+</li>
+<li>
+<p>Navigate to .ssh folder on the server</p>
+<div class="language-text highlight"><pre><span></span><code>cd ~/.ssh
+</code></pre></div>
+<ul>
+<li>
+<p>View contents of the folder</p>
+<p>ls -l</p>
+</li>
+<li>
+<p>You should see one file <strong>"authorized_keys"</strong></p>
+</li>
+</ul>
+</li>
+<li>
+<p>Open <strong>authorized_keys</strong> file</p>
+<div class="language-text highlight"><pre><span></span><code>nano authorized_keys
+</code></pre></div>
+</li>
+<li>
+<p>You will see inside the file <strong>authorized_keys</strong>, the copied public key from the Local machine that looks like <strong>"ssh-rsa VMXfGsZk9MmnTFvkwSZ11O ..."</strong></p>
+</li>
+<li>
+<p>This is how Server authorizes Local machine connection - by making sure that the public RSA key matches the one stored in <strong>authorized_keys</strong> file.</p>
+</li>
+<li>
+<p>Exit nano editor  : <kbd>CTRL + X</kbd></p>
+</li>
+</ul>
+<p>As you can see, eventhough we now don't need to provide the password, it is still cumbersome to type in all the connection data every time we want to connect to the Server.</p>
+<p>In the next section we will learn how to connect to the Server by just providing the Server name in ssh command like: <strong>"ssh my-server"</strong>.</p>
+<ul>
+<li>Disconnect from the Server : <kbd>CTRL + D</kbd></li>
+<li>Clean the terminal window : <kbd>CTRL + L</kbd></li>
+</ul>
+<h3 id="step-4-connect-with-server-name">Step 4 - Connect with Server Name</h3>
+<ul>
+<li>On the Local machine, go into .ssh folder:</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-62-1"><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a><span class="nb">cd</span><span class="w"> </span>~/.ssh
+</span></code></pre></div>
+<ul>
+<li>If it doesn't exist , create file <strong>"config"</strong> without any file extension</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-63-1"><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a>touch<span class="w"> </span>config
+</span></code></pre></div>
+<ul>
+<li>Open file config</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-64-1"><a id="__codelineno-64-1" name="__codelineno-64-1" href="#__codelineno-64-1"></a>nano<span class="w"> </span>config
+</span></code></pre></div>
+<ul>
+<li>
+<p>Paste into it Host connection configuration like:     </p>
+<p>Host {{SERVER_NAME}}
+    HostName {{SERVER_IP_ADDRESS}}
+    Port {{SERVER_PORT}}
+    User {{SERVER_USERNAME}}</p>
+<p><strong>For example:</strong></p>
+<ul>
+<li>Via Internet (using custom port for security):</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-65-1"><a id="__codelineno-65-1" name="__codelineno-65-1" href="#__codelineno-65-1"></a>Host<span class="w"> </span>my-server
+</span><span id="__span-65-2"><a id="__codelineno-65-2" name="__codelineno-65-2" href="#__codelineno-65-2"></a><span class="w">  </span>HostName<span class="w"> </span><span class="m">113</span>.216.184.151
+</span><span id="__span-65-3"><a id="__codelineno-65-3" name="__codelineno-65-3" href="#__codelineno-65-3"></a><span class="w">  </span>Port<span class="w"> </span><span class="m">1234</span>
+</span><span id="__span-65-4"><a id="__codelineno-65-4" name="__codelineno-65-4" href="#__codelineno-65-4"></a><span class="w">  </span>User<span class="w"> </span>sysadmin
+</span><span id="__span-65-5"><a id="__codelineno-65-5" name="__codelineno-65-5" href="#__codelineno-65-5"></a><span class="w">  </span>IdentityFile<span class="w">  </span>~/.ssh/id_rsa_my-server
+</span></code></pre></div>
+<ul>
+<li>Via Local Network (using default SSH port 22):</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-66-1"><a id="__codelineno-66-1" name="__codelineno-66-1" href="#__codelineno-66-1"></a>Host<span class="w"> </span>my-server
+</span><span id="__span-66-2"><a id="__codelineno-66-2" name="__codelineno-66-2" href="#__codelineno-66-2"></a><span class="w">  </span>HostName<span class="w"> </span><span class="m">192</span>.168.1.105
+</span><span id="__span-66-3"><a id="__codelineno-66-3" name="__codelineno-66-3" href="#__codelineno-66-3"></a><span class="w">  </span>User<span class="w"> </span>sysadmin
+</span><span id="__span-66-4"><a id="__codelineno-66-4" name="__codelineno-66-4" href="#__codelineno-66-4"></a><span class="w">  </span>IdentityFile<span class="w">  </span>~/.ssh/id_ed25519_my-server
+</span></code></pre></div>
+</li>
+<li>
+<p>Save and exit nano editor : <kbd>CTRL + S</kbd> <kbd>CTRL + X</kbd></p>
+</li>
+<li>
+<p>Connect to Server</p>
+</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-67-1"><a id="__codelineno-67-1" name="__codelineno-67-1" href="#__codelineno-67-1"></a>ssh<span class="w"> </span>my-server
+</span></code></pre></div>
+<ul>
+<li>You should be automatically logged into Server without password prompt</li>
+</ul>
+<h2 id="remotely-connect-with-rdp-on-windows">Remotely Connect with RDP - On Windows</h2>
+<p><strong>NOTE:</strong> This section is relevant only to Windows Local machine.</p>
+<p><def></p>
+<blockquote>
+<p>RDP (Remote Desktop Protocol) is a proprietary protocol developed by Microsoft which provides a user with a graphical interface to connect to another computer over a network connection.
+</def></p>
+</blockquote>
+<p>If we want to access remotely graphical user interface (GUI) of our server, from Windows personal computer, we can use <strong>Remote Desktop Connection</strong> program that comes pre-installed on Windows.</p>
+<p>But first we need to install program called <strong>xrdp</strong> on the Linux home server and then we can connect to it from our Windows computer.
+Ref: http://www.xrdp.org/</p>
+<h3 id="configure-xrdp-on-server">Configure XRDP on Server</h3>
+<ul>
+<li>Open terminal on your Local machine and SSH into your server machine</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-68-1"><a id="__codelineno-68-1" name="__codelineno-68-1" href="#__codelineno-68-1"></a>ssh<span class="w"> </span>my-server
+</span></code></pre></div>
+<ul>
+<li>Update and upgrade packages</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-69-1"><a id="__codelineno-69-1" name="__codelineno-69-1" href="#__codelineno-69-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
+</span><span id="__span-69-2"><a id="__codelineno-69-2" name="__codelineno-69-2" href="#__codelineno-69-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>upgrade
+</span></code></pre></div>
+<ul>
+<li>Install <strong>xrdp</strong></li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-70-1"><a id="__codelineno-70-1" name="__codelineno-70-1" href="#__codelineno-70-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>xrdp
+</span></code></pre></div>
+<ul>
+<li>Check status of xrdp service</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-71-1"><a id="__codelineno-71-1" name="__codelineno-71-1" href="#__codelineno-71-1"></a>sudo<span class="w"> </span>service<span class="w"> </span>xrdp<span class="w"> </span>status
+</span></code></pre></div>
+<ul>
+<li>
+<p>You should see something like</p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-72-1"><a id="__codelineno-72-1" name="__codelineno-72-1" href="#__codelineno-72-1"></a>●<span class="w"> </span>xrdp.service<span class="w"> </span>-<span class="w"> </span>xrdp<span class="w"> </span>daemon
+</span><span id="__span-72-2"><a id="__codelineno-72-2" name="__codelineno-72-2" href="#__codelineno-72-2"></a><span class="w">       </span>Loaded:<span class="w"> </span>loaded<span class="w"> </span><span class="o">(</span>/lib/systemd/system/xrdp.service<span class="p">;</span><span class="w"> </span>enabled<span class="p">;</span><span class="w"> </span>vendor<span class="w"> </span>preset:<span class="w"> </span>enabled<span class="o">)</span>
+</span><span id="__span-72-3"><a id="__codelineno-72-3" name="__codelineno-72-3" href="#__codelineno-72-3"></a><span class="w">       </span>Active:<span class="w"> </span>active<span class="w"> </span><span class="o">(</span>running<span class="o">)</span><span class="w"> </span>since<span class="w"> </span>Mon<span class="w"> </span><span class="m">2023</span>-09-04<span class="w"> </span><span class="m">22</span>:55:13<span class="w"> </span>BST<span class="p">;</span><span class="w"> </span>4min<span class="w"> </span>18s<span class="w"> </span>ago
+</span><span id="__span-72-4"><a id="__codelineno-72-4" name="__codelineno-72-4" href="#__codelineno-72-4"></a><span class="w">         </span>Docs:<span class="w"> </span>man:xrdp<span class="o">(</span><span class="m">8</span><span class="o">)</span>
+</span><span id="__span-72-5"><a id="__codelineno-72-5" name="__codelineno-72-5" href="#__codelineno-72-5"></a><span class="w">               </span>man:xrdp.ini<span class="o">(</span><span class="m">5</span><span class="o">)</span>
+</span></code></pre></div>
+<strong>XRDP</strong> listens on port <strong>3389</strong>, so you will need to open that port on your firewall.</p>
+</li>
+<li>
+<p>Allow port 3389 in your firewall</p>
+</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-73-1"><a id="__codelineno-73-1" name="__codelineno-73-1" href="#__codelineno-73-1"></a>sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span><span class="m">3389</span>
+</span></code></pre></div>
+<ul>
+<li>Get your server's IP address and note it down</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-74-1"><a id="__codelineno-74-1" name="__codelineno-74-1" href="#__codelineno-74-1"></a>hostname<span class="w"> </span>-I
+</span></code></pre></div>
+<ul>
+<li>NOTE: this will give you internal IP address of your server on your local network. If you want to connect to your server from outside your local network, you will need to get your external IP address. See section <a href="#get-external-ip">Get External IP</a> for more info.</li>
+</ul>
+<h3 id="connect-from-local-machine">Connect from Local machine</h3>
+<ul>
+<li>On your Windows computer, open <strong>Remote Desktop Connection</strong> program</li>
+<li>You can find it by typing <strong>"Remote Desktop Connection"</strong> in the search bar at the bottom left of your screen</li>
+<li>
+<p>Or you can find it in the Start Menu under <strong>Windows Accessories</strong> folder</p>
+</li>
+<li>
+<p>In the <strong>Remote Desktop Connection</strong> window, type the IP address of your server and click <strong>Connect</strong></p>
+</li>
+<li>
+<p>You will get a warning message about certificate. Click <strong>Yes</strong> to continue</p>
+</li>
+<li>You will get a login screen. Enter your username and password and click <strong>OK</strong></li>
+<li>You should be logged in and see the desktop of your Linux server on the screen of your Windows computer</li>
+</ul>
+<p>That's it. Now you can use your Linux server's GUI from your Windows computer, from anywhere in the world.</p>
+<h2 id="upload-download-with-scp">Upload / Download with SCP</h2>
+<h3 id="upload">Upload</h3>
+<ul>
+<li>
+<p>Copy file from your local computer to server </p>
+<div class="language-text highlight"><pre><span></span><code>scp -P {{SERVER_SSH_PORT}} {{LOCAL_MACHINE_FILE_PATH}} {{USERNAME}}@{{SERVER_IP_ADDRESS}}:/{{SERVER_FILE_OR_FOLDER_PATH}}
+</code></pre></div>
+<ul>
+<li>
+<p>Example: from directory of the source files</p>
+<div class="language-text highlight"><pre><span></span><code>scp -P 1234 file1.json sysadmin@220.237.80.202:/home/my-files/
+scp -P 1234 file2.json file3.txt sysadmin@220.237.80.202:/home/my-files/
+</code></pre></div>
+</li>
+<li>
+<p>Example: from any directory using full path</p>
+<div class="language-text highlight"><pre><span></span><code>scp -P 1234 /C/my-files/file1.json sysadmin@220.237.80.202:/home/my-files/
+scp -P 1234 /C/my-files/file2.json /C/my-files/file3.txt sysadmin@220.237.80.202:/home/my-files/
+</code></pre></div>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="download">Download</h3>
+<ul>
+<li>Copy file from Raspbery Pi server to local windows computer</li>
+</ul>
+<h2 id="upload-download-with-sftp">Upload / Download with SFTP</h2>
+<ul>
+<li>Refs: </li>
+<li><a href="https://linuxize.com/post/how-to-use-linux-sftp-command-to-transfer-files/">Linuxize - How to Use SFTP Command to Transfer Files</a></li>
+<li><a href="https://www.digitalocean.com/community/tutorials/how-to-use-sftp-to-securely-transfer-files-with-a-remote-server">Digital Ocean - How To Use SFTP to Securely Transfer Files with a Remote Server</a></li>
+<li><a href="https://www.hostinger.com/tutorials/how-to-use-sftp-to-safely-transfer-files/">Hostinger - How to use SFTP</a></li>
+</ul>
+<p>Suppose we are deploying the files for <strong>Dev environment</strong>. Then local and remote folder will be the following:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Local folder</strong></td>
+<td>~/dev/mysite1.com/src/Server/bin/Dev</td>
+</tr>
+<tr>
+<td><strong>Remote folder</strong></td>
+<td>/var/www/dev.mysite1.com/server/</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Open terminal and navigate to project root folder </li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-75-1"><a id="__codelineno-75-1" name="__codelineno-75-1" href="#__codelineno-75-1"></a><span class="nb">cd</span><span class="w"> </span>~/dev/mysite1.com/src/Server
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code>OR with your project folder open in VS Code, open terminal : &lt;kbd&gt;CTRL + `&lt;/kbd&gt;
+</code></pre></div>
+<ul>
+<li>SFTP into your remote server machine </li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-76-1"><a id="__codelineno-76-1" name="__codelineno-76-1" href="#__codelineno-76-1"></a>sftp<span class="w"> </span>mysite1.com
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code>OR if ssh connection is not stored in `~/.ssh/config`      sftp sysadmin@123.234.345.45
+</code></pre></div>
+<ul>
+<li>
+<p>You should see a prompt like this: <code>sftp&gt;</code></p>
+</li>
+<li>
+<p>Copy local bin/Dev/ folder into remote host's server/ folder <em>(NOTE: server folder does not exist. It will be created when the command is run)</em></p>
+</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-77-1"><a id="__codelineno-77-1" name="__codelineno-77-1" href="#__codelineno-77-1"></a>put<span class="w"> </span>-r<span class="w"> </span>./bin/Dev/<span class="w"> </span>/var/www/dev.mysite1.com/server
+</span></code></pre></div>
+<ul>
+<li>
+<p><strong>-r</strong> flag is used to copy directories recursively.</p>
+</li>
+<li>
+<p>Exit out of SFTP:  <code>exit</code></p>
+</li>
+</ul>
+<p>Below is a longer way to deploy your files. It explains how to navigate between local and remote folders and how to copy files from local to remote host.</p>
+<ul>
+<li>SFTP to remote : <code>sftp mysite1</code></li>
+<li>Navigate to <strong>remote working directory</strong> </li>
+</ul>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-78-1"><a id="__codelineno-78-1" name="__codelineno-78-1" href="#__codelineno-78-1"></a><span class="nb">cd</span><span class="w"> </span>/var/www/dev.mysite1.com/
+</span></code></pre></div>
+- Print <strong>remote working directory</strong> : <code>pwd</code></p>
+<ul>
+<li>Navigate to <strong>local working directory</strong> - we have to prefix commands to local working directory with <code>l</code> to indicate that we are working on local machine.</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-79-1"><a id="__codelineno-79-1" name="__codelineno-79-1" href="#__codelineno-79-1"></a>lcd<span class="w"> </span>~/dev/mysite1.com/src/Server
+</span></code></pre></div>
+<ul>
+<li>
+<p>Print <strong>local working directory</strong> : <code>lpwd</code></p>
+</li>
+<li>
+<p>Switch to our local shell by typing <code>!</code> . Now you can use local shell commands without prefixing them with <code>l</code>.</p>
+</li>
+<li>
+<p>Switch back to SFTP shell by typing <code>exit</code></p>
+</li>
+<li>
+<p>Copy files from local to remote </p>
+</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-80-1"><a id="__codelineno-80-1" name="__codelineno-80-1" href="#__codelineno-80-1"></a>put<span class="w"> </span>-r<span class="w"> </span>./bin/Dev<span class="w"> </span>./server
+</span></code></pre></div>
+<ul>
+<li>Exit SFTP</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-81-1"><a id="__codelineno-81-1" name="__codelineno-81-1" href="#__codelineno-81-1"></a><span class="nb">exit</span>
+</span></code></pre></div>
+<h2 id="upload-download-with-filezilla">Upload / Download with Filezilla</h2>
+<ul>
+<li>On Local PC - Install <a href="https://filezilla-project.org/">Filezilla</a></li>
+<li>Open Filezilla and connect to your Linux remote server using sftp. Type in connection details in the top connection bar as per bellow. </li>
+<li>
+<p>NOTE: you have to put <strong>sftp://</strong> prefix before your server ip in Host field. </p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Host</td>
+<td>sftp://123.234.345.45</td>
+</tr>
+<tr>
+<td>Username</td>
+<td>sysadmin</td>
+</tr>
+<tr>
+<td>Password</td>
+<td><strong>*</strong>*</td>
+</tr>
+<tr>
+<td>Port</td>
+<td>22</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Click <strong>Quickconnect</strong>    </p>
+</li>
+<li>
+<p>In the right panel - <strong>Remote site</strong> - navigate to your <strong>Dev environment</strong> website directory e.g. <strong>/var/www/dev.mysite1.com/</strong></p>
+</li>
+<li>
+<p>Right-click on the folder and create a new folder called <strong>server</strong>. This is where we will deploy our files.</p>
+</li>
+<li>
+<p>Double-click on the <strong>server</strong> folder to open it</p>
+</li>
+<li>
+<p>In the left panel - <strong>Local site</strong> - navigate to  your <strong>Dev environment</strong> publish folder, for example:</p>
+<table>
+<thead>
+<tr>
+<th>OS</th>
+<th>Path to publish folder</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Windows</td>
+<td>C:\Users\Jon\dev\mysite1.com\src\Server\bin\Dev</td>
+</tr>
+<tr>
+<td>Linux</td>
+<td>/home/jon/dev/mysite1.com/src/Server/bin/Dev</td>
+</tr>
+<tr>
+<td>Mac OS</td>
+<td>/Users/jon/dev/mysite1.com/src/Server/bin/Dev</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Select all the files on the left side</p>
+</li>
+<li>Right-click on selected files &gt; Upload</li>
+</ul>
+<p>You should be able to repeat above instructions for publishing also <strong>Test</strong> and <strong>Prod</strong> environments to the server. You just have to change the word dev to test or prod in the path of source and target folders.
+<strong>NOTE:</strong> For Prod environment our server path does not contain the word prod. It is just /var/www/mysite1.com/htdocs/ . This is because we want to deploy our Prod environment to the root of our domain.</p>
+<h1 id="appendix">Appendix</h1>
+<p>This section is used to explain concepts in more detail. It is not meant for reading from start to finish. It is meant to be used as a reference when you need to understand a particular concept in more detail. </p>
+<p>There will be reference links to Appendix sections from other parts of the book.</p>
+<h2 id="command-line-prompt">Command Line Prompt</h2>
+<blockquote>
+<p><definition /></p>
+<p><strong>Command Line Prompt</strong> - is a small text inside the command line interface that is printed by the system before every command that you execute. This text informs user of his username, computer name, current folder location, and account type (normal user or root).</p>
+</blockquote>
+<p>The format of the command line prompt is</p>
+<div class="language-text highlight"><pre><span></span><code>{{USERNAME}}@{{COMPUTER_NAME}}:{{CURRENT_DIRECTORY_LOCATION_PATH}} {{ACCOUNT_TYPE}}
+</code></pre></div>
+<p><strong>For example</strong>:</p>
+<div class="language-text highlight"><pre><span></span><code>john@my-home-server:/home $
+</code></pre></div>
+<p><def></p>
+<blockquote>
+<p><strong>Account Type Symbol</strong> - is the symbol printed at the end of the Command Line Prompt. It can be $ or #</p>
+<p><strong>$</strong> - stands for normal account</p>
+<p><strong>#</strong> - stands for superuser / root account. # symbol will be visible instead of $ <strong>only when you are logged in as a root account</strong>
+</def></p>
+</blockquote>
+<p>When you first open command line, you are automatically placed inside ~ (tilde) folder - which in fact is your <a href="#user-home-directory">User Home folder</a>.</p>
+<p><strong>For example:</strong> if we log into computer called <strong>my-home-server</strong> with a username <strong>john</strong>, we will see prompt:</p>
+<div class="language-text highlight"><pre><span></span><code>john@my-home-server:~ $
+</code></pre></div>
+<ul>
+<li>In above example <strong>"~"</strong> is a short notation for <strong>"/home/john/"</strong></li>
+</ul>
+<h2 id="user-home-directory">User Home Directory</h2>
+<p><def></p>
+<blockquote>
+<p><strong>User Home Directory</strong> - is a directory created automatically by the operating system at the time of user account creation. This directory is intended for storing only user related documents and programs.
+</def></p>
+</blockquote>
+<p>The following is the location of user's home directory on the main 3 operating systems:</p>
+<table>
+<thead>
+<tr>
+<th>OS (Operating System)</th>
+<th>User's Home location</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Linux</td>
+<td>/home/{{USERNAME}}</td>
+</tr>
+<tr>
+<td>macOS</td>
+<td>/Users/{{USERNAME}}</td>
+</tr>
+<tr>
+<td>Windows</td>
+<td>C:\Users\{{USERNAME}}</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>NOTE: In Windows operating system we use back slash symbol <strong>"\"</strong> to separate folders in the file path. In most other operating systems we use forward slash <strong>"/"</strong>.</p>
+</blockquote>
+<p><def></p>
+<blockquote>
+<p><strong>~ (tilde symbol)</strong> - is a shorthand notation for User Home directory path. In Linux command line, User Home directory path can be replaced with <strong>tilde symbol ~</strong>
+</def></p>
+</blockquote>
+<p>You can navigate into User Home directory by using short notation <strong>"~"</strong> instead of the whole User Home path</p>
+<div class="language-text highlight"><pre><span></span><code>cd ~
+</code></pre></div>
+<p>When inside User Home directory, the command line prompt will display ~ instead of the full directory path. It will look like this:</p>
+<div class="language-text highlight"><pre><span></span><code>john@my-home-server:~ $
+</code></pre></div>
+<h2 id="dot-directories">Dot Directories</h2>
+<p><def></p>
+<blockquote>
+<p><strong>Dot Directories</strong> - are hidden directories whose names start with a dot symbol. Dot directories are normally used to store configuration data for the application named the same as the dot-directory without a dot. 
+</def></p>
+</blockquote>
+<p><strong>For example:</strong> 
+- <strong>Visual Studio Code</strong> application data for user <strong>John</strong> on <strong>Windows</strong> is stored inside "<strong>C:\Users\John\.vscode</strong>"</p>
+<p>Because the dot directories are hidden, we need to show them to be able to view them:</p>
+<ul>
+<li>In <strong>Windows 11</strong> : Open <strong>File Explorer &gt; View &gt; Show &gt; Hidden items</strong></li>
+<li>
+<p>In <strong>Linux</strong> and <strong>OS X</strong> terminal : Add argument "<strong>a</strong>" to list command (it means show <strong>all</strong> files and folders including hidden)</p>
+<p>ls -a
+OR</p>
+<p>ls -la</p>
+</li>
+</ul>
+<h2 id="permissions-explained">Permissions Explained</h2>
+<p>When we run command <strong>ls -l</strong> we can see file permissions displayed at the start of each line representing file or folder inside the folder we are currently in.</p>
+<p>It looks something like this:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-82-1"><a id="__codelineno-82-1" name="__codelineno-82-1" href="#__codelineno-82-1"></a>drwxr-xr-x<span class="w"> </span><span class="m">5</span><span class="w"> </span>admin<span class="w"> </span>developers<span class="w"> </span><span class="m">4096</span><span class="w"> </span>Apr<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="m">02</span>:21<span class="w"> </span>repos
+</span></code></pre></div>
+<h3 id="symbolic-notation">Symbolic notation</h3>
+<p>Ten characters that represent symbolic notation of file or folder permisisons are:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-83-1"><a id="__codelineno-83-1" name="__codelineno-83-1" href="#__codelineno-83-1"></a>drwxrwxrwx
+</span></code></pre></div></p>
+<p>The first character, d, signifies that the file is a directory.
+It can be blank (-) or one of the following characters:</p>
+<div class="language-text highlight"><pre><span></span><code>d: directory
+c: Character device
+b: Block device
+s: socket
+p: pipe
+D: Door
+l: symbolic link etc.
+</code></pre></div>
+<ul>
+<li>
+<p>Owner - Next three characters (d<strong>rwx</strong>r-xr-x), are permissions for the owner of the file/folder</p>
+</li>
+<li>
+<p>Group - Next three characters (drwx<strong>r-x</strong>r-x), permissions for the group</p>
+</li>
+<li>
+<p>Others - Last three characters (drwxr-x<strong>r-x</strong>), permissions for all the other users</p>
+</li>
+</ul>
+<p>Meaning of each character is as follows:</p>
+<div class="language-text highlight"><pre><span></span><code>    - : Empty - no permission
+    r : Read
+    w : Write
+    x : Execute
+</code></pre></div>
+<p><br></p>
+<h3 id="numeric-notation">Numeric notation</h3>
+<p><br></p>
+<p>Permisisons can be displayed in numeric notation.
+Numerals used are the following:</p>
+<div class="language-text highlight"><pre><span></span><code>0 : No permission
+1 : Execute (x)
+2 : Write (w)
+4 : Read (r)
+</code></pre></div>
+<p>The numbers are added together to form one digit number that represents combination of rwx for either an owner, group or other. For example :</p>
+<table>
+<thead>
+<tr>
+<th>Numeric</th>
+<th>Symbolic</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7</td>
+<td>rwx</td>
+</tr>
+<tr>
+<td>6</td>
+<td>rw-</td>
+</tr>
+<tr>
+<td>3</td>
+<td>-wx</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>So the permission rwxrwxrwx is same as 777, rwxr-xr-x is same as 755, and so on.</p>
+<h2 id="networking">Networking</h2>
+<table>
+<thead>
+<tr>
+<th>Address Type</th>
+<th>Example</th>
+<th>Used For</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Internal IPv4</td>
+<td>192.168.1.105</td>
+<td>Local network communication</td>
+</tr>
+<tr>
+<td>External IPv4</td>
+<td>113.216.184.151</td>
+<td>Internet communication</td>
+</tr>
+<tr>
+<td>Internal IPv6</td>
+<td>fe80::6941:c5ff:fe0f:3033</td>
+<td>Local network communication</td>
+</tr>
+<tr>
+<td>External IPv6</td>
+<td>2a02:4780:14:c78a::1</td>
+<td>Internet communication</td>
+</tr>
+</tbody>
+</table>
+<p><def></p>
+<blockquote>
+<p><strong>IP Address</strong> (Internet Protocol Address) - is a unique identifier assigned to a device on a network. It is used to identify the device and route data packets to the correct destination.
+</def></p>
+</blockquote>
+<p><def></p>
+<blockquote>
+<p><strong>IPv4</strong> (Internet Protocol Version 4) - is a numbering system for IP addresses which has 32-bit address space. It allows for 4.3 billion unique addresses.
+</def></p>
+</blockquote>
+<p><def></p>
+<blockquote>
+<p><strong>IPv6</strong> (Internet Protocol Version 6) - is a newer numbering system for IP addresses which has 128-bit address space. It allows for 3.4 x 10^38 unique addresses.
+</def></p>
+</blockquote>
+<p><def></p>
+<blockquote>
+<p><strong>Internal IP Address</strong> - is an IP address assigned to a device on a local area network (LAN). It is used to identify the device on the local network.
+</def></p>
+</blockquote>
+<p><def></p>
+<blockquote>
+<p><strong>External IP Address</strong> - is an IP address assigned to a device on a public network / WAN (Wide Area Network) / Internet. It is used to identify the device or a network of devices globally - on the internet. On your home network typically it is assigned by your router. The External IP Address on home network routers keeps changing all the time. It is dynamically assigned by your ISP (Internet Service Provider). In order to access your home server from outside world, you need to have a <strong>Static External IP Address</strong> which is generally a plan upgrade to your internet connection that will cost you extra money.
+</def></p>
+</blockquote>
+<ul>
+<li>
+<p>Print interface configuration using <strong>ifconfig</strong> command</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-84-1"><a id="__codelineno-84-1" name="__codelineno-84-1" href="#__codelineno-84-1"></a>ifconfig
+</span></code></pre></div>
+<ul>
+<li>You should see your Ethernet, loopback and wireless network interfaces: eth0, lo, wlan0</li>
+<li>Under wlan0 you should see your Internal IP Address in the line that starts with "inet" like:</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-85-1"><a id="__codelineno-85-1" name="__codelineno-85-1" href="#__codelineno-85-1"></a>wlan0:<span class="w"> </span><span class="nv">flags</span><span class="o">=</span><span class="m">4163</span>&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;<span class="w">  </span>mtu<span class="w"> </span><span class="m">1500</span>
+</span><span id="__span-85-2"><a id="__codelineno-85-2" name="__codelineno-85-2" href="#__codelineno-85-2"></a><span class="w">          </span>inet<span class="w"> </span><span class="m">192</span>.168.1.105<span class="w">  </span>netmask<span class="w"> </span><span class="m">255</span>.255.255.0<span class="w">  </span>broadcast<span class="w"> </span><span class="m">192</span>.168.1.255
+</span></code></pre></div>
+</li>
+<li>
+<p>If <code>ifconfig</code> not found, install it using:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-86-1"><a id="__codelineno-86-1" name="__codelineno-86-1" href="#__codelineno-86-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>net-tools
+</span></code></pre></div>
+</li>
+</ul>
+<p><def></p>
+<blockquote>
+<p>ifconfig - is the old command to print interface configuration. It is deprecated and will be replaced by ip command in newer versions of Linux. However, it is still widely used.
+</def></p>
+</blockquote>
+<ul>
+<li>Print interface configuration using ip command</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-87-1"><a id="__codelineno-87-1" name="__codelineno-87-1" href="#__codelineno-87-1"></a>ip<span class="w"> </span>addr<span class="w"> </span>show
+</span></code></pre></div>
+<p><def></p>
+<blockquote>
+<p><strong>Network interface</strong> - is a software or hardware endpoint that allows a device to connect and communicate over a network. Think of it as a "door" through which your computer sends and receives data over a network.
+</def></p>
+</blockquote>
+<p><strong>Types of Network Interfaces:</strong>
+1. <strong>Physical Interfaces</strong> – Hardware-based:
+- <code>eth0</code>, <code>eth1</code>: Ethernet (wired) connections
+- <code>wlan0</code>, <code>wlan1</code>: Wireless (Wi-Fi) connections
+- <code>usb0</code>: USB-based network connections (e.g., tethering)
+2. <strong>Virtual Interfaces</strong> – Software-based:
+- <code>lo</code>: The loopback interface (used to access your own machine, usually with IP 127.0.0.1)
+- <code>tun0</code>, <code>tap0</code>: Used by VPNs
+- <code>docker0</code>: Used by Docker for container networking
+- VLAN interfaces (e.g., eth0.10)</p>
+<p>Each interface typically has:
+- An IP address (e.g., <code>192.168.1.5</code>)
+- A MAC address (hardware address for Ethernet/Wi-Fi)
+- A netmask (defines the network size)
+- Status (UP/DOWN – whether it's active)
+- Packet statistics (packets sent/received)</p>
+<hr />
+<p><em>© 2025 VEXIT® — Tomorrow is today...® — <a href="https://www.vexit.com">www.vexit.com</a></em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 VEXIT &reg;, Tomorrow is Today &trade;, www.vexit.com
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com"></script>
+      
+    
+  </body>
+</html>

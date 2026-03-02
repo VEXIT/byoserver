@@ -1,0 +1,4061 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://vexit.github.io/byoserver/2_WebServer_Nginx_Apache/">
+      
+      
+        <link rel="prev" href="../1_SetUpServer_VPS/">
+      
+      
+        <link rel="next" href="../3_WebApp_NetCore_Angular/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+    
+    
+      
+        <title>Web Server (Nginx/Apache) - BYO Server</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#linux-web-server-nginx-apache" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="BYO Server" class="md-header__button md-logo" aria-label="BYO Server" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BYO Server
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Web Server (Nginx/Apache)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="green"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="BYO Server" class="md-nav__button md-logo" aria-label="BYO Server" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    BYO Server
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0.1_File_System_Basics_with_Bash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core Concepts (Bash/CLI)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0.2_Linux_Users_Groups_and_Permissions_Reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Permissions Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Choose Your Server Setup
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Choose Your Server Setup
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_SetUpServer_Overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Server Setup Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_SetUpServer_HomeServer_Ubuntu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home Server (Ubuntu)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_SetUpServer_HomeServer_RaspberryPi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home Server (Raspberry Pi)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_SetUpServer_HomeServer_LinuxMint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home Server (Linux Mint)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_SetUpServer_VPS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VPS / Hosting Provider
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web Server (Nginx/Apache)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web Server (Nginx/Apache)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#web-server-nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Web Server - Nginx
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Web Server - Nginx">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-nginx-file-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Nginx File Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-install-nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Install Nginx
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Install Nginx">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install NGINX
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uninstall-apache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Uninstall Apache
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uninstall-nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Uninstall Nginx
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-install-ufw-firewall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Install UFW Firewall
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-configure-firewall-for-nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Configure Firewall for Nginx
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-configure-default-site" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Configure Default Site
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Configure Default Site">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-server-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get Server IP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#open-url-in-browser" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Open URL in Browser
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#home-server-set-up-port-forwarding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Home Server - Set up Port Forwarding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#server-blocks-structure-explained" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Server Blocks Structure Explained
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-default-site-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Change Default Site Mapping
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-create-a-new-site-on-nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Create a New Site on Nginx
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Create a New Site on Nginx">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-create-directories-and-set-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1. Create Directories and Set Permissions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-create-sample-web-page" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2. Create Sample Web Page
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-create-server-blocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3. Create Server Blocks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.3. Create Server Blocks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#option-1-create-server-block-from-default-block" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option 1 - Create Server Block From Default Block
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-2-create-server-block-from-scratch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option 2 - Create Server Block From Scratch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-dev-and-test-server-blocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create Dev and Test Server Blocks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verify-nginx-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verify Nginx config
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-create-symbolic-links" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 Create Symbolic Links
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65-verify-reload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.5 Verify &amp; Reload
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-point-domain-name-to-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Point Domain Name to Server
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Point Domain Name to Server">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dns-records-explained" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DNS Records explained
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edit-dns-records" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Edit DNS Records
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#navigate-to-website-url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Navigate to Website URL
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-set-up-ssl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Set Up SSL
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Set Up SSL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-get-ssl-certificate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 Get SSL Certificate
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.1 Get SSL Certificate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#progression-1-set-up-specific-ssl-certificate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Progression 1 : Set up Specific SSL Certificate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#progression-2-uninstall-ssl-certificate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Progression 2 : Uninstall SSL Certificate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#progression-3-set-up-wildcard-ssl-certificate-with-manual-dns-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Progression 3 : Set up Wildcard SSL Certificate with Manual DNS Verification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#final-solution-set-up-multi-domain-ssl-with-auto-renewal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final Solution : Set up Multi-Domain SSL with Auto Renewal
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#81-navigate-to-website-url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 Navigate to Website URL
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#web-server-apache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Web Server - Apache
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Web Server - Apache">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-apache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install Apache
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-default-port" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Change Default Port
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verify-apache-is-working" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verify Apache is working
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nginx-proxy-to-apache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nginx Proxy to Apache
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3_WebApp_NetCore_Angular/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    App Deployment (.NET/Angular)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4_Cron_Jobs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Task Automation (Cron Jobs)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5_Database_PostgreSQL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database (PostgreSQL)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6_MailServer_Postfix_Dovecot_Thunderbird/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mail Server (Postfix/Dovecot)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#web-server-nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Web Server - Nginx
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Web Server - Nginx">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-nginx-file-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Nginx File Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-install-nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Install Nginx
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Install Nginx">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install NGINX
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uninstall-apache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Uninstall Apache
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uninstall-nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Uninstall Nginx
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-install-ufw-firewall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Install UFW Firewall
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-configure-firewall-for-nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Configure Firewall for Nginx
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-configure-default-site" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Configure Default Site
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Configure Default Site">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-server-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get Server IP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#open-url-in-browser" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Open URL in Browser
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#home-server-set-up-port-forwarding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Home Server - Set up Port Forwarding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#server-blocks-structure-explained" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Server Blocks Structure Explained
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-default-site-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Change Default Site Mapping
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-create-a-new-site-on-nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Create a New Site on Nginx
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Create a New Site on Nginx">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-create-directories-and-set-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1. Create Directories and Set Permissions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-create-sample-web-page" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2. Create Sample Web Page
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-create-server-blocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3. Create Server Blocks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.3. Create Server Blocks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#option-1-create-server-block-from-default-block" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option 1 - Create Server Block From Default Block
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-2-create-server-block-from-scratch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option 2 - Create Server Block From Scratch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-dev-and-test-server-blocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create Dev and Test Server Blocks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verify-nginx-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verify Nginx config
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-create-symbolic-links" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 Create Symbolic Links
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65-verify-reload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.5 Verify &amp; Reload
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-point-domain-name-to-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Point Domain Name to Server
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Point Domain Name to Server">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dns-records-explained" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DNS Records explained
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edit-dns-records" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Edit DNS Records
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#navigate-to-website-url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Navigate to Website URL
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-set-up-ssl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Set Up SSL
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Set Up SSL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-get-ssl-certificate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 Get SSL Certificate
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.1 Get SSL Certificate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#progression-1-set-up-specific-ssl-certificate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Progression 1 : Set up Specific SSL Certificate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#progression-2-uninstall-ssl-certificate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Progression 2 : Uninstall SSL Certificate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#progression-3-set-up-wildcard-ssl-certificate-with-manual-dns-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Progression 3 : Set up Wildcard SSL Certificate with Manual DNS Verification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#final-solution-set-up-multi-domain-ssl-with-auto-renewal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final Solution : Set up Multi-Domain SSL with Auto Renewal
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#81-navigate-to-website-url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 Navigate to Website URL
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#web-server-apache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Web Server - Apache
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Web Server - Apache">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-apache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install Apache
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-default-port" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Change Default Port
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verify-apache-is-working" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verify Apache is working
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nginx-proxy-to-apache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nginx Proxy to Apache
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="linux-web-server-nginx-apache">Linux - Web Server - Nginx &amp; Apache</h1>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Copyright:</td>
+<td>© 2022 VEXIT , Tomorow is today ® , www.vexit.com</td>
+</tr>
+<tr>
+<td>Author:</td>
+<td>Vex Tatarevic</td>
+</tr>
+<tr>
+<td>Date Created:</td>
+<td>2022-10-24</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><definition></p>
+<blockquote>
+<p><strong>Web Server</strong> - is a computer software and underlying hardware that accepts requests via HTTP or HTTPS. A user agent, (web browser or web crawler) makes a request for a web page or other resource using HTTP, and the server responds with the content of that resource or an error message. A web server can also accept and store resources sent from the user agent if configured to do so.
+</definition></p>
+</blockquote>
+<p><definition></p>
+<blockquote>
+<p><strong>HTTP</strong> - is the network protocol created to distribute web content. HTTPS is a secure version of HTTP which transfers data in encrypted form.
+</definition></p>
+</blockquote>
+<h2 id="web-server-nginx">Web Server - Nginx</h2>
+<p>Ref: <a href="https://nginx.org/en/docs/">Nginx Docs</a></p>
+<h3 id="1-nginx-file-structure">1. Nginx File Structure</h3>
+<p>Before we install Nginx we will display here a table explaining a short summary of its files and directories and their purpose. You can use this as a reference throughout this course.</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/var/www/html</td>
+<td>Website content as seen by visitors</td>
+</tr>
+<tr>
+<td>/etc/nginx</td>
+<td>Location of the main Nginx application files</td>
+</tr>
+<tr>
+<td>/etc/nginx/nginx.conf</td>
+<td>The main Nginx configuration file</td>
+</tr>
+<tr>
+<td>/etc/nginx/sites-available</td>
+<td>List of all websites configured through Nginx</td>
+</tr>
+<tr>
+<td>/etc/nginx/sites-enabled</td>
+<td>List of websites actively being served by Nginx</td>
+</tr>
+<tr>
+<td>/var/log/nginx/access.log</td>
+<td>Access logs tracking every request to your server</td>
+</tr>
+<tr>
+<td>/var/log/ngins/error.log</td>
+<td>A log of any errors generated in Nginx</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-install-nginx">2. Install Nginx</h3>
+<h4 id="install-nginx">Install NGINX</h4>
+<ul>
+<li>
+<p>Install Nginx</p>
+<p>sudo apt update
+  sudo apt install nginx</p>
+</li>
+<li>
+<p>This will create dir <strong>/www</strong> inside <strong>/var</strong> and add default html page inside <strong>/var/www/html/index.nginx-debian.html</strong></p>
+</li>
+<li>
+<p>NOTE: On Linux <strong>/var/www/</strong> is a default directory for web applications/websites</p>
+</li>
+<li>
+<p>Verify Nginx version</p>
+<p>sudo nginx -v</p>
+</li>
+<li>
+<p>Check to see if the Nginx service is running.</p>
+<p>sudo service nginx status</p>
+</li>
+<li>
+<p>You should see</p>
+<p>● nginx.service - A high performance web server and a reverse proxy server
+       Loaded: loaded (/lib/systemd/system/nginx.service; enabled; vendor preset: enabled)
+       Active: active (running) since Wed 2023-08-30 01:13:46 UTC; 3min 51s ago
+         Docs: man:nginx(8)
+      Process: 395149 ExecStartPre=/usr/sbin/nginx -t -q -g daemon on; master_process on; (code=exited, status=0/SUCCESS)
+      Process: 395150 ExecStart=/usr/sbin/nginx -g daemon on; master_process on; (code=exited, status=0/SUCCESS)
+     Main PID: 395151 (nginx)
+       CGroup: /system.slice/nginx.service
+               ├─395151 "nginx: master process /usr/sbin/nginx -g daemon on; master_process on;"
+               └─395152 "nginx: worker process" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ""</p>
+<p>Aug 30 01:13:46 mysite1.com systemd[1]: Starting A high performance web server and a reverse proxy server...
+  Aug 30 01:13:46 mysite1.com systemd[1]: Started A high performance web server and a reverse proxy server.</p>
+</li>
+<li>
+<p>You may get error like this</p>
+<p>× nginx.service - A high performance web server and a reverse proxy server
+       Loaded: loaded (/lib/systemd/system/nginx.service; enabled; vendor preset: enabled)
+       Active: failed (Result: exit-code) since Wed 2023-08-30 00:39:29 UTC; 4min 18s ago
+         Docs: man:nginx(8)
+      Process: 386794 ExecStartPre=/usr/sbin/nginx -t -q -g daemon on; master_process on; (code=exited, status=0/SUCCESS)
+      Process: 386795 ExecStart=/usr/sbin/nginx -g daemon on; master_process on; (code=exited, status=1/FAILURE)</p>
+<p>Aug 30 00:39:28 mysite1.com nginx[386795]: nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Unknown error)
+  ...
+  Aug 30 00:39:29 mysite1.com nginx[386795]: nginx: [emerg] still could not bind()
+  Aug 30 00:39:29 mysite1.com systemd[1]: nginx.service: Control process exited, code=exited, status=1/FAILURE
+  Aug 30 00:39:29 mysite1.com systemd[1]: nginx.service: Failed with result 'exit-code'.
+  Aug 30 00:39:29 mysite1.com systemd[1]: Failed to start A high performance web server and a reverse proxy server.</p>
+</li>
+</ul>
+<p>In this case you need to check if there is another web server running on port 80. You can do this by running the following command:</p>
+<div class="language-text highlight"><pre><span></span><code>sudo netstat -tulpn | grep :80
+</code></pre></div>
+<p>Most likely you have Apache server installed and it's running on port 80. 
+You should :
+1. <a href="#uninstall-apache">Uninstall Apache</a>
+2. <a href="#uninstall-nginx">Uninstall Nginx</a>
+3. <a href="#install-nginx">Reinstall Nginx</a></p>
+<h4 id="uninstall-apache">Uninstall Apache</h4>
+<ul>
+<li><strong>SKIP THIS</strong> if you don't have Apache installed.</li>
+</ul>
+<p>Most VPS linux servers come preinstalled with Apache web server software.</p>
+<p>This may cause a clas and a problem when you try to install and run nginx web server instead.</p>
+<p>This is why we need to uninstall Apache first. We can reinstall Apache later if we need it.</p>
+<ul>
+<li>
+<p>Check Apache info</p>
+<p>apt info apache2</p>
+</li>
+<li>
+<p>Stop Apache server</p>
+<p>sudo service apache2 stop</p>
+</li>
+<li>
+<p>Uninstall Apache</p>
+<p>sudo apt remove apache2</p>
+</li>
+<li>
+<p>Purge Apache</p>
+<p>sudo apt purge apache2*</p>
+</li>
+<li>
+<p>Confirm Apache is uninstalled</p>
+<p>sudo service apache2 status</p>
+</li>
+<li>
+<p>You should get</p>
+<div class="language-text highlight"><pre><span></span><code>Unit apache2.service could not be found.
+</code></pre></div>
+</li>
+<li>
+<p>Confirm there are no left over files from apache</p>
+<p>which apache2</p>
+</li>
+<li>
+<p>You should get a blank line</p>
+</li>
+</ul>
+<h4 id="uninstall-nginx">Uninstall Nginx</h4>
+<ul>
+<li>
+<p><strong>SKIP THIS</strong> if NGINX installation was successful.</p>
+</li>
+<li>
+<p>Stop Nginx server</p>
+<p>sudo service nginx stop</p>
+</li>
+<li>
+<p>Uninstall Nginx</p>
+<p>sudo apt remove nginx</p>
+</li>
+<li>
+<p>Purge Nginx</p>
+<p>sudo apt purge nginx</p>
+</li>
+<li>
+<p>Remove all the remaining dependencies that were used by NGINX but are not required anymore:</p>
+<p>sudo apt-get autoremove</p>
+</li>
+<li>
+<p>In some occurrences, running the above commands may not wipe out NGINX completely. Runthis command for extra cleanup:</p>
+<p>sudo apt-get remove --purge nginx*</p>
+<p>sudo apt-get autoremove --purge</p>
+</li>
+<li>
+<p>Confirm Nginx is uninstalled</p>
+<p>sudo service nginx status</p>
+</li>
+<li>
+<p>You should get</p>
+<div class="language-text highlight"><pre><span></span><code>Unit nginx.service could not be found.
+</code></pre></div>
+</li>
+<li>
+<p>Reinstall Nginx - go to <a href="#install-nginx">Install Nginx</a> section</p>
+</li>
+</ul>
+<h3 id="3-install-ufw-firewall">3. Install UFW Firewall</h3>
+<p><definition></p>
+<blockquote>
+<p><strong>Packets</strong> - In networking, a packet is a small segment of a larger message. Data sent over Internet, is divided into packets. These packets are then recombined by the receiving device.
+</definition></p>
+</blockquote>
+<p><definition></p>
+<blockquote>
+<p><strong>Kernel</strong> - is the main program of a computer's operating system (like Linux) that has complete control over everything in the system. This part of operating system code is always active in memory and facilitates interactions between hardware and software.
+</definition></p>
+</blockquote>
+<p><definition></p>
+<blockquote>
+<p><strong>Firewall</strong> - is a generic name for a network security software or hardware that monitors and controls incoming and outgoing network traffic (<strong>packets</strong>) based on predefined security rules. A firewall creates a barrier between a trusted network and an untrusted network, such as the Internet.
+</definition></p>
+</blockquote>
+<p><definition></p>
+<blockquote>
+<p><strong>Netfilter</strong> - is a networking framework used by <strong>Linux kernel</strong> that provides customized handlers required for directing packets through a network and prohibiting packets from reaching sensitive locations within a network.
+</definition></p>
+</blockquote>
+<p><definition></p>
+<blockquote>
+<p><strong>Iptables</strong> - is a firewall program for Linux. It monitors traffic from and to Linux server machine using tables. These tables contain sets of rules, called chains, that will filter incoming and outgoing data packets. The iptables firewall interacts with the <strong>netfilter</strong>'s packet filtering hooks to filter both incoming and outgoing packets as well as route network <strong>packets</strong>.
+</definition></p>
+</blockquote>
+<p><strong>Iptables</strong> and <strong>Netfilter</strong> are complex to learn and use. </p>
+<p>This is why  <strong>UFW</strong> has been developed.</p>
+<p><definition></p>
+<blockquote>
+<p><strong>UFW</strong> (Uncomplicated Firewall) - is a program for managing <strong>netfilter</strong>, designed to be easy to use. It uses a command-line interface consisting of a small number of simple commands, and uses <strong>iptables</strong> for configuration.
+</definition></p>
+</blockquote>
+<ul>
+<li>
+<p>Check if UFW is installed</p>
+<p>sudo ufw --help</p>
+</li>
+<li>
+<p>If not installed you will get:</p>
+<div class="language-text highlight"><pre><span></span><code>sudo: ufw: command not found
+</code></pre></div>
+</li>
+</ul>
+<p>If ufw is not installed follow the below steps to install it, otherwise skip to <a href="#configure-firewall-for-nginx">Configure Firewall for Nginx</a>:</p>
+<ul>
+<li>
+<p>Update and upgrade apt packages</p>
+<p>sudo apt update
+  sudo apt full-upgrade</p>
+</li>
+<li>
+<p>Install UFW</p>
+<p>sudo apt install ufw</p>
+</li>
+<li>
+<p>Check to see if the UFW service is running.</p>
+<p>sudo service ufw status</p>
+</li>
+</ul>
+<h3 id="4-configure-firewall-for-nginx">4. Configure Firewall for Nginx</h3>
+<ul>
+<li>
+<p>Before enabling ufw firewall, make sure you add a rule for SSH, otherwise you may get locked out of your server if you’re connected remotely.</p>
+<p>sudo ufw allow OpenSSH</p>
+</li>
+<li>
+<p>We want to open HTTP (80) and HTTPS (443) ports by allowing the ‘Nginx Full’ profile.​​​​​​​</p>
+</li>
+<li>
+<p>List the profiles available</p>
+<p>sudo ufw app list</p>
+</li>
+<li>
+<p>You should see</p>
+<div class="language-text highlight"><pre><span></span><code>Available applications:
+    Nginx Full
+    Nginx HTTP
+    Nginx HTTPS
+    OpenSSH
+</code></pre></div>
+</li>
+<li>
+<p>Allow <strong>Nginx Full</strong></p>
+<p>sudo ufw allow 'Nginx Full'</p>
+</li>
+<li>
+<p>Enable ufw firewall.</p>
+<p>sudo ufw enable</p>
+</li>
+<li>
+<p>Press y when asked to proceed.</p>
+</li>
+<li>
+<p>You should get</p>
+<div class="language-text highlight"><pre><span></span><code>Command may disrupt existing ssh connections. Proceed with operation (y|n)? y
+Firewall is active and enabled on system startup
+</code></pre></div>
+</li>
+<li>
+<p>Verify firewall status</p>
+<p>sudo ufw status</p>
+</li>
+<li>
+<p>You should see</p>
+<div class="language-text highlight"><pre><span></span><code>Status: active
+
+To                         Action      From
+--                         ------      ----
+Nginx Full                 ALLOW       Anywhere
+OpenSSH                    ALLOW       Anywhere
+Nginx Full (v6)            ALLOW       Anywhere (v6)
+OpenSSH (v6)               ALLOW       Anywhere (v6)
+</code></pre></div>
+</li>
+<li>
+<p>Reboot</p>
+<p>sudo reboot</p>
+</li>
+</ul>
+<h3 id="5-configure-default-site">5. Configure Default Site</h3>
+<ul>
+<li>
+<p>Verify the Nginx service is running</p>
+<p>sudo systemctl status nginx</p>
+</li>
+</ul>
+<h4 id="get-server-ip">Get Server IP</h4>
+<p>Your server is hosted on either <strong>Home Server</strong> or <strong>VPS (Virtual Private Server)</strong></p>
+<ol>
+<li>
+<p>On <strong>VPS Server</strong>:</p>
+<ul>
+<li>Run <code>hostname -I</code></li>
+</ul>
+<p>OR</p>
+<ul>
+<li>Run <code>ifconfig</code>. Get IP address after the word <strong>inet</strong> in the section <strong>eth0</strong>. It should look like:<div class="language-text highlight"><pre><span></span><code>  eth0: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500
+        inet 123.234.345.45  netmask 255.255.255.0  broadcast 123.234.345.255
+</code></pre></div>
+</li>
+</ul>
+<p>OR</p>
+<ul>
+<li>
+<p>Run curl to ipinfo.io website <code>curl https://ipinfo.io/ip</code></p>
+</li>
+<li>
+<p>You should get IP like <strong>123.234.345.45</strong></p>
+</li>
+</ul>
+</li>
+<li>
+<p>On <strong>Home Server</strong> - Internal IP - Get local (LAN) IP address (you can access this address only on your home network but not from outside internet)</p>
+<div class="language-text highlight"><pre><span></span><code>  hostname -I
+</code></pre></div>
+<ul>
+<li>You should get address like <strong>192.168.1.105</strong></li>
+</ul>
+</li>
+<li>
+<p><strong>Home Server</strong> - External IP - Get Internet (WAN) IP address that you can access from outside internet. NOTE: This works  only if you have been assigned static IP address from your internet provider. Otherwise you will have to use a dynamic DNS service like <a href="https://www.noip.com/">noip.com</a> to get a domain name that will point to your dynamic IP address.</p>
+<p>3.1 Log into your router admin website in browser  ( e.g. http://192.168.1.1) and you should see your Internet IP address on the first page of the router admin website.</p>
+<div class="language-text highlight"><pre><span></span><code>OR
+</code></pre></div>
+<p>3.2 Run curl to ipinfo.io website <code>curl https://ipinfo.io/ip</code> in your server's terminal</p>
+<div class="language-text highlight"><pre><span></span><code>OR
+
+3.3 Open URL in browser - https://www.whatismyip.com/
+
+NOTE: 3.2 and 3.3 will give you wrong IP if you have VPN running
+</code></pre></div>
+<ul>
+<li>You should see your Internet IP address like <strong>123.234.345.45</strong></li>
+</ul>
+</li>
+</ol>
+<h4 id="open-url-in-browser">Open URL in Browser</h4>
+<p>If you are using VPS Server, you can open URL in browser like: http://{{IP}} where {{IP}} is your server's IP address like: http://123.234.345.45</p>
+<p>If you are using Home Server, you can only test your server on your local network - for now - until we set up port forwarding in the next section. You can open URL in browser like: http://{{IP}} where {{IP}} is your server's local IP address like: http://192.168.1.105</p>
+<ul>
+<li>
+<p>Open URL in browser - http://{{IP}} - You should see default page that says</p>
+<p>Welcome to nginx!
+  If you see this page, the nginx web server is successfully installed and working. Further configuration is required.</p>
+<p>For online documentation and support please refer to nginx.org.
+  Commercial support is available at nginx.com.</p>
+<p>Thank you for using nginx.</p>
+</li>
+</ul>
+<p>The default page is called <strong>index.nginx-debian.html</strong> and is located in the web sites root directory of your server: <strong>/var/www/html</strong>. </p>
+<ul>
+<li>
+<p>Edit default page in nano text editor:</p>
+<p>sudo nano /var/www/html/index.nginx-debian.html</p>
+</li>
+<li>
+<p>Change line <strong>"Welcome to nginx!"</strong> to <strong>"Welcome to nginx on {{MY_SITE_NAME}}!"</strong> - Replace {{MY_SITE_NAME}} with your site name e.g. mysite1.com</p>
+</li>
+<li>
+<p>Save and exit: <strong>CTRL + S</strong> , <strong>CTRL + X</strong></p>
+</li>
+<li>
+<p>Refresh page in browser - You should see your changes</p>
+</li>
+</ul>
+<h4 id="home-server-set-up-port-forwarding">Home Server - Set up Port Forwarding</h4>
+<p><strong><em>SKIP this section if you are using VPS Server.</em></strong></p>
+<hr/>
+
+<p>In order to expose your Home Server to the internet, you must create a new <strong>Virtual Server</strong> with a new <strong>External Port</strong> that maps to <strong>Internal IP</strong> address of your Server machine and the <strong>Internal Port 80</strong>. This is known as <strong>Port Forwarding</strong>. Port 80 is a default port which NGINX server listens on.</p>
+<ul>
+<li>
+<p><strong>Open router admin website</strong> in browser  (<strong>http://192.168.1.1/</strong> or <strong>http://192.168.0.1/</strong>)</p>
+</li>
+<li>
+<p><strong>Copy External IP</strong> - IP address should be visible on the first page of the router admin website.</p>
+</li>
+<li>
+<p><strong>Add new Virtual Server</strong>. To find Virtual Servers it may be differend on different routers. On tplink router you go to: <strong>Advanced &gt; NAT Forwarding &gt; Virtual Servers &gt; + Add</strong>.  Enter the following configuration (0)</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Service Type</td>
+<td>HTTP</td>
+<td></td>
+</tr>
+<tr>
+<td>External Port</td>
+<td>1234</td>
+<td>Pick any number 1024 - 49151 that is not already used for other Virtual Servers</td>
+</tr>
+<tr>
+<td>Internal IP</td>
+<td>192.168.1.105</td>
+<td>This should be the Internal IP we copied previously</td>
+</tr>
+<tr>
+<td>Internal Port</td>
+<td>80</td>
+<td>NGNX default site is configured to listen port 80</td>
+</tr>
+<tr>
+<td>Protocol</td>
+<td>TCP</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p><strong>Open URL in browser</strong> - Enter URL and port http://{{IP}}:{{PORT}} in your browser like: http://123.234.345.45:1234</p>
+</li>
+<li>
+<p>You should see default Nginx page</p>
+</li>
+<li>If you don't see the page, reboot your server and try again</li>
+</ul>
+<p>You can also check if your port is open by using a tool like : <a href="https://ismyportopen.com/">IsMyPortOpen</a></p>
+<h4 id="server-blocks-structure-explained">Server Blocks Structure Explained</h4>
+<p>In Apache web server we have <strong>Virtual Hosts</strong> for hosting multiple websites on the same IP. </p>
+<p>In <strong>NGINX web server</strong>, we have a concept called <strong>Server Blocks</strong> for hosting multiple virtual websites on the same IP.</p>
+<p>Server Blocks should be configured inside the file <strong>named same as the website's domain name</strong> and they contain the configuration for that website inside the <strong>server</strong> code block like:</p>
+<div class="language-text highlight"><pre><span></span><code>server {
+      ...
+}
+</code></pre></div>
+<p>Server Block file must be located inside <strong>/etc/nginx/sites-available/</strong> directory.</p>
+<p>After creating the Server Block file, we will create a symbolic link to it inside <strong>/etc/nginx/sites-enabled/</strong> directory, for the sites we want to be active.</p>
+<p>Finally all the enabled Server Block files are included in the main Nginx configuration file <strong>/etc/nginx/nginx.conf</strong> using the <strong>include</strong> directive like:</p>
+<div class="language-text highlight"><pre><span></span><code>include /etc/nginx/sites-enabled/*;
+</code></pre></div>
+<blockquote>
+<p><strong>nginx.conf</strong> file is the main configuration file for Nginx web server. It contains directives that affect the overall operation of Nginx web server.</p>
+</blockquote>
+<p><strong>NOTE:</strong> In some examples online, authors will demonstrate using <strong>server block</strong> configuration directly inside the <strong>nginx.conf</strong> file for the simplicity like:</p>
+<div class="language-text highlight"><pre><span></span><code>/etc/nginx/nginx.conf
+--------------------
+  ...
+  http {
+    index index.html;
+
+    server {
+        server_name www.domain1.com;
+        access_log logs/domain1.access.log main;
+
+        root /var/www/domain1.com/htdocs;
+    }
+
+    server {
+        server_name www.domain2.com;
+        access_log  logs/domain2.access.log main;
+
+        root /var/www/domain2.com/htdocs;
+    }
+  }
+</code></pre></div>
+<p><strong>YOU SHOULD NOT</strong> place server blocks for sites directly inside nginx.conf in your real server setup. Above snippet is only for demonstration.</p>
+<p>Instead you should configure each Server Block inside its respective <strong>sites_available</strong> file e.g. /etc/nginx/sites-available/mysite1.com and then sym link only the sites we want to be active to <strong>/etc/nginx/sites-enabled/</strong> directory.</p>
+<h4 id="change-default-site-mapping">Change Default Site Mapping</h4>
+<ul>
+<li>
+<p>Go inside <strong>/etc/nginx/sites-available/</strong> directory </p>
+<p>cd /etc/nginx/sites-available/</p>
+</li>
+<li>
+<p>You should see a file named <strong>default</strong> which is the default site configuration file for Nginx</p>
+</li>
+<li>
+<p>Backup the default site file</p>
+</li>
+<li>
+<p>Create directory inside our user home directory to store backups of NGINX server block configuration files </p>
+<div class="language-text highlight"><pre><span></span><code>mkdir -p ~/backups/etc_nginx_sites-available
+</code></pre></div>
+</li>
+<li>
+<p>Copy default site file to backups directory, naming the backup file as default_{{current_date_stamp}} like this</p>
+<div class="language-text highlight"><pre><span></span><code>cp default ~/backups/etc_nginx_sites-available/default_$(date +%Y-%m-%d_%H:%M:%S)
+</code></pre></div>
+</li>
+<li>
+<p>Open the default site file for edit</p>
+<p>sudo nano default</p>
+</li>
+<li>
+<p>Change line <strong>"root /var/www/html;"</strong> to <strong>"root /var/www/default;"</strong> . Save and exit <code>CTRL + S</code> , <code>CTRL + X</code></p>
+</li>
+<li>
+<p>Rename directory <strong>/var/www/html</strong> to <strong>/var/www/default</strong></p>
+<p>sudo mv /var/www/html /var/www/default</p>
+</li>
+<li>
+<p><strong>NOTE:</strong> /var/www/html is the directory where the html and other code files for the default site are stored. We have renamed it to /var/www/default to make it the same as the name of the default site configuration file inside <strong>sites-available</strong> directory. We will follow this convention for all other sites we create.</p>
+</li>
+<li>
+<p>Restart Nginx</p>
+<p>sudo service nginx restart</p>
+</li>
+<li>
+<p>Open URL in browser - http://{{IP}} - You should see default page that says</p>
+<p>Welcome to nginx!
+  If you see this page, the nginx web server is successfully installed and working. Further configuration is required.</p>
+<p>For online documentation and support please refer to nginx.org.
+  Commercial support is available at nginx.com.</p>
+<p>Thank you for using nginx.</p>
+</li>
+</ul>
+<p>In summary we have renamed directory "html" to "default" because we want the name of every site's configuration file inside <strong>sites-available</strong> to match the name of the site's source directory inside <strong>/var/www/</strong>.</p>
+<p>Directory name <strong>html</strong> was too vague, so we renamed it to <strong>default</strong>, which makes sense because it's a folder for our default site.</p>
+<h3 id="6-create-a-new-site-on-nginx">6. Create a New Site on Nginx</h3>
+<h4 id="61-create-directories-and-set-permissions">6.1. Create Directories and Set Permissions</h4>
+<p>Now we will setup a site for a sample domain name <strong>"mysite1.com"</strong> and its 2 subdomains <strong>"dev.mysite1.com"</strong> and <strong>"test.mysite1.com"</strong> that will be used for development and testing environments of the site mysite1.com.</p>
+<p>mysite1.com is just an example for the purpose of demonstration. You should use your own domain name.</p>
+<ul>
+<li>
+<p>Create three new directories inside the <strong>/var/www/</strong> for our three sites - copy and paste the following command in your terminal and hit Enter. <em><strong>(Replace mysite1.com with your domain name)</strong></em></p>
+<p>sudo mkdir -p /var/www/mysite1.com/htdocs &amp;&amp; \
+  sudo mkdir -p /var/www/dev.mysite1.com/htdocs &amp;&amp; \
+  sudo mkdir -p /var/www/test.mysite1.com/htdocs</p>
+</li>
+<li>
+<p><strong>-p</strong> is used to create nested directories - in our case we are creating htdocs directory inside each site's directory.</p>
+</li>
+<li><strong>Double Ampersand</strong> <code>&amp;&amp;</code> is used to separate multiple commands. It executes the next command only if the previous command was successful. This is a good practice to avoid errors in case the previous command fails.</li>
+<li><strong>Backslash</strong> <code>\</code> at the end of each line is used to continue the command on the next line. This is done for readability and to avoid long lines of code. Also it is used when we are executing multiple commands in one line</li>
+</ul>
+<p>We have created a folder named <strong>htdocs</strong> inside each site's directory.</p>
+<blockquote>
+<p><strong>htdocs</strong> is traditionally the directory for the compiled files of your clientside application (like images, html files, javascript and css files) that are downloaded to visitors' device for viewing via browser. This directory name can be changed to whatever value you want. However this is the traditional naming convention for this directory which is also used in other web servers like Apache.</p>
+</blockquote>
+<ul>
+<li>
+<p>View created directories</p>
+<p>ll /var/www/</p>
+</li>
+<li>
+<p>You should see something like</p>
+<div class="language-text highlight"><pre><span></span><code>drwxr-xr-x 2 root root 4096 Sep  1 12:00 dev.mysite1.com
+drwxr-xr-x 2 root root 4096 Sep  1 12:00 mysite1.com
+drwxr-xr-x 2 root root 4096 Sep  1 12:00 test.mysite1.com
+</code></pre></div>
+</li>
+<li>
+<p>Allow current admin user to modify files in all www directories</p>
+<p>sudo chown -R $(whoami):$(whoami) /var/www/</p>
+<ul>
+<li>The $(whoami) variable will take the value of the user you are currently logged in as.</li>
+</ul>
+</li>
+<li>
+<p>Set permissions to <strong>/var/www</strong> and its contents to 755 so that pages can be served correctly.</p>
+<p>sudo chmod -R 755 /var/www</p>
+</li>
+</ul>
+<h4 id="62-create-sample-web-page">6.2. Create Sample Web Page</h4>
+<ul>
+<li>
+<p>Create index.html for each site using echo command - copy and paste the following command in your terminal and hit Enter. <em><strong>(Replace mysite1.com with your domain name)</strong></em></p>
+<p>sudo echo "Welcome to mysite1.com!" &gt; /var/www/mysite1.com/htdocs/index.html &amp;&amp; \
+  sudo echo "Welcome to dev.mysite1.com!" &gt; /var/www/dev.mysite1.com/htdocs/index.html &amp;&amp; \
+  sudo echo "Welcome to test.mysite1.com!" &gt; /var/www/test.mysite1.com/htdocs/index.html</p>
+</li>
+</ul>
+<h4 id="63-create-server-blocks">6.3. Create Server Blocks</h4>
+<p>Server blocks are configuration files for each site that contain the configuration for that site. They are stored in <strong>/etc/nginx/sites-available/</strong> directory.</p>
+<p>We can create server block for mysite1.com in one of 2 ways:
+1. <a href="#option-1---create-server-block-from-default-block">Option 1 - Create server block by duplicating the default server block file and modifying it to suit our needs</a>
+2. <a href="#option-2---create-server-block-from-scratch">Option 2 - Create server block from scratch</a></p>
+<h5 id="option-1-create-server-block-from-default-block">Option 1 - Create Server Block From Default Block</h5>
+<ul>
+<li>
+<p><strong>Use default block as a template</strong> - Copy default server block <strong>"/etc/nginx/sites-available/default"</strong> to use as a template for our new server blocks</p>
+<p>sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/mysite1.com</p>
+</li>
+</ul>
+<p><strong>IMPORTANT:</strong> Your server block file should be named after your domain name. In this example we are using mysite1.com and mysite2.com as domain names. You should replace these with your own domain names.</p>
+<ul>
+<li>
+<p>Open for edit mysite1.com</p>
+<p>sudo nano /etc/nginx/sites-available/mysite1.com</p>
+</li>
+<li>
+<p><strong>Set site's port on which it should listen</strong> - Search for listen directive : <strong>Ctrl + W</strong> , Type <strong>"listen 80"</strong> , hit <strong>Enter</strong> . You should see</p>
+<p>listen 80 default_server;
+  listen [::]:80 default_server;</p>
+</li>
+<li>
+<p>Delete the word <strong>"default_server"</strong> from lines above.</p>
+</li>
+<li>
+<p><strong>NOTE:</strong> Only one server block can be default_server. This keyword defines which block nginx should navigate to if the server_name requested does not match any server blocks.</p>
+</li>
+<li>
+<p><strong>Set site's root location</strong> - Search <strong>CTRL + W</strong> , type <strong>"root /var/www/default;"</strong> , hit Enter  :</p>
+</li>
+<li>
+<p>Replace <strong>"root /var/www/default;"</strong> with</p>
+<div class="language-text highlight"><pre><span></span><code>root /var/www/mysite1.com/htdocs;
+</code></pre></div>
+</li>
+<li>
+<p>Set site's default start page - Search <strong>CTRL + W</strong> , type <strong>"index index.html index.htm index.nginx-debian.html;"</strong> :</p>
+</li>
+<li>
+<p>Remove <strong>"index.nginx-debian.html;"</strong></p>
+</li>
+<li>
+<p><strong>Set site's server_name</strong> - Search <strong>CTRL + W</strong> , type <strong>"server_name _;"</strong>  :</p>
+</li>
+<li>
+<p>Replace <strong>"server_name _;"</strong> with</p>
+<div class="language-text highlight"><pre><span></span><code>server_name mysite1.com www.mysite1.com;
+</code></pre></div>
+</li>
+<li>
+<p>Remove all the comments in the file by deleting lines that start with <strong>#</strong>.</p>
+</li>
+<li>Select comment block - Set Mark at the start of the comment  <code>ALT + A</code> , </li>
+<li>Press arrow down till you select the last line of the comment</li>
+<li>Delete <code>CTRL + K</code></li>
+</ul>
+<p>The file should look like this:</p>
+<div class="language-text highlight"><pre><span></span><code>server {
+    listen 80;
+    listen [::]:80;
+
+    root /var/www/mysite1.com/htdocs;
+
+    index index.html index.htm;
+
+    server_name mysite1.com www.mysite1.com;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}
+</code></pre></div>
+<ul>
+<li>Save and close file : <strong>CTRL + S</strong> , <strong>CTRL + X</strong></li>
+</ul>
+<h5 id="option-2-create-server-block-from-scratch">Option 2 - Create Server Block From Scratch</h5>
+<ul>
+<li>
+<p>Create new server block file for mysite1.com. <em><strong>(Replace mysite1.com with your domain name)</strong></em></p>
+<p>sudo nano /etc/nginx/sites-available/mysite1.com</p>
+</li>
+<li>
+<p>Add the following configuration to the file. <em><strong>(Replace mysite1.com with your domain name)</strong></em></p>
+<p>server {
+      listen 80;
+      listen [::]:80;</p>
+<div class="language-text highlight"><pre><span></span><code>  root /var/www/mysite1.com/htdocs;
+
+  index index.html index.htm;
+
+  server_name mysite1.com www.mysite1.com;
+
+  location / {
+      try_files $uri $uri/ =404;
+  }
+</code></pre></div>
+<p>}</p>
+</li>
+<li>
+<p>Save and close file : <strong>CTRL + S</strong> , <strong>CTRL + X</strong></p>
+</li>
+</ul>
+<h5 id="create-dev-and-test-server-blocks">Create Dev and Test Server Blocks</h5>
+<ul>
+<li>
+<p>Go to <strong>/etc/nginx/sites-available/</strong> directory</p>
+<p>cd /etc/nginx/sites-available/</p>
+</li>
+<li>
+<p>Copy mysite1.com file to dev.mysite1.com and test.mysite1.com files. <em><strong>(Replace mysite1.com with your domain name)</strong></em></p>
+<p>sudo cp mysite1.com dev.mysite1.com &amp;&amp; \
+  sudo cp mysite1.com test.mysite1.com</p>
+</li>
+<li>
+<p>Edit dev.mysite1.com. <em><strong>(Replace mysite1.com with your domain name)</strong></em></p>
+<p>sudo nano dev.mysite1.com</p>
+</li>
+<li>
+<p>Replace all occurences of word mysite1.com with dev.mysite1.com in the file</p>
+</li>
+<li>
+<p>Save and close the file : <strong>CTRL + S</strong> , <strong>CTRL + X</strong></p>
+</li>
+<li>
+<p>Edit test.mysite1.com file. <em><strong>(Replace mysite1.com with your domain name)</strong></em> </p>
+<p>sudo nano test.mysite1.com</p>
+</li>
+<li>
+<p>Replace all occurences of word mysite1.com with test.mysite1.com in the file</p>
+</li>
+<li>
+<p>Save and close the file : <strong>CTRL + S</strong> , <strong>CTRL + X</strong></p>
+</li>
+</ul>
+<h5 id="verify-nginx-config">Verify Nginx config</h5>
+<ul>
+<li>
+<p><strong>Verify Nginx config</strong></p>
+<p>sudo nginx -t</p>
+</li>
+<li>
+<p>Should produce</p>
+<div class="language-text highlight"><pre><span></span><code>nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+</code></pre></div>
+</li>
+<li>
+<p>Above command checks the syntax of the configuration files and tests the configuration files for errors.</p>
+</li>
+</ul>
+<h4 id="64-create-symbolic-links">6.4 Create Symbolic Links</h4>
+<p>Nginx reads Symbolic Links during the startup. Only sites inside sites-enabled directory will be accessible via the internet.</p>
+<p>We will create 3 symbolic links for our 3 sites: mysite1.com, dev.mysite1.com and test.mysite1.com</p>
+<ul>
+<li>
+<p>Create symbolic links from sites-available to the sites-enabled. <em><strong>(Replace mysite1.com with your domain name)</strong></em></p>
+<p>sudo ln -s /etc/nginx/sites-available/mysite1.com /etc/nginx/sites-enabled/ &amp;&amp; \
+  sudo ln -s /etc/nginx/sites-available/dev.mysite1.com /etc/nginx/sites-enabled/ &amp;&amp; \
+  sudo ln -s /etc/nginx/sites-available/test.mysite1.com /etc/nginx/sites-enabled/</p>
+</li>
+<li>
+<p>If later you want to deactivate the site without deleting it, you can remove the symbolic link like</p>
+<p>sudo rm /etc/nginx/sites-enabled/{{SITE_NAME}}</p>
+</li>
+<li>
+<p>Verify sym links - list files in /etc/nginx/sites-enabled/ directory and confirm that desired active sites are visible</p>
+<p>ll /etc/nginx/sites-enabled/</p>
+</li>
+</ul>
+<h4 id="65-verify-reload">6.5 Verify &amp; Reload</h4>
+<p>Every time you edit or create nginx server block files you MUST verify the config and then reload nginx in order for the changes to take effect.</p>
+<ul>
+<li>
+<p>Verify and Reload Nginx</p>
+<p>sudo nginx -t &amp;&amp; \
+  sudo nginx -s reload</p>
+</li>
+</ul>
+<h3 id="7-point-domain-name-to-server">7. Point Domain Name to Server</h3>
+<p>In order for site on Nginx to be accessible via internet by typing our custom domain name, we need to point the domain name to our server.</p>
+<p>We need to edit DNS (Domain Name System) settings of our domain name, on the website of the domain name host where the domain name is registered.</p>
+<p>In this example we will use Godaddy.com, as an example domain name server, to explain how to do this, but the process should be very simillar with other domain name hosts.</p>
+<p>Ref: https://www.godaddy.com/garage/configuring-and-working-with-domains-dns/</p>
+<p>Let's assume we have registered domain name mysite1.com on godaddy.com</p>
+<ul>
+<li>
+<p>Go to domain management page with list of your domain names : https://dcc.godaddy.com/domains</p>
+</li>
+<li>
+<p>Select your desired domain name and navigate to DNS management page for that domain</p>
+</li>
+<li>
+<p>You should see a section for <strong>DNS Records</strong> and another section for <strong>Nameservers</strong></p>
+</li>
+</ul>
+<p><strong>IMPORTANT:</strong> If You are not using the nameservers of the domain name host, you will not be able to edit DNS records. You will <strong>have to change the nameservers to the default nameservers of the domain name host first.</strong> For example if you are using Godaddy.com domain name host, you will have to change the nameservers to the default Godaddy.com nameservers e.g. ns21.domaincontrol.com and ns22.domaincontrol.com. After that you will be able to edit DNS records.</p>
+<ul>
+<li>You should see a table of default <strong>DNS Records</strong> for the domain like</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Name</th>
+<th>Data</th>
+<th>TTL</th>
+<th>Delete</th>
+<th>Edit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>@</td>
+<td>Parked</td>
+<td>600 Seconds</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>NS</td>
+<td>@</td>
+<td>ns21.domaincontrol.com.</td>
+<td>1 Hour</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>NS</td>
+<td>@</td>
+<td>ns22.domaincontrol.com.</td>
+<td>1 Hour</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>CNAME</td>
+<td>www</td>
+<td>mysite1.com</td>
+<td>1 Hour</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>CNAME</td>
+<td>_domainconnect</td>
+<td>_domainconnect.gd.domaincontrol.com.</td>
+<td>1 Hour</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>SOA</td>
+<td>@</td>
+<td>Primary nameserver: ns21.domaincontrol.com.</td>
+<td>1 Hour</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="dns-records-explained">DNS Records explained</h4>
+<p>Ref: https://phoenixnap.com/kb/dns-record-types </p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A</strong></td>
+<td>(Address) record</td>
+<td>Uses an IP address to connect your domain to a website. It is also used to create subdomain such as www, that points to an IP address.</td>
+</tr>
+<tr>
+<td><strong>AAAA</strong></td>
+<td>(Address) record</td>
+<td>Similar to A record, but it maps IPv6 address to your domain.</td>
+</tr>
+<tr>
+<td><strong>@</strong></td>
+<td>Shorthand symbol for ORIGIN</td>
+<td>It points to your base domain, e.g. mysite1.com</td>
+</tr>
+<tr>
+<td><strong>CNAME</strong></td>
+<td>(Canonical Name) record - is also a subdomain</td>
+<td>The difference between a A record and a CName record is that a A record points to the IP address of a server, while CName points to a domain name e.g. mysite1.com</td>
+</tr>
+<tr>
+<td><strong>TTL</strong></td>
+<td>(Time to Live)</td>
+<td>the average time it will take for your changes to take into effect</td>
+</tr>
+</tbody>
+</table>
+<h4 id="edit-dns-records">Edit DNS Records</h4>
+<ul>
+<li>
+<p>First get your <strong>IPv4 and IPv6</strong> addresses - in your server terminal run:</p>
+<p>hostname -I</p>
+</li>
+<li>
+<p>You should see something like</p>
+<div class="language-text highlight"><pre><span></span><code>127.0.0.1 123.234.345.45 12ab:1234:12:cd56:0:0:0:7
+</code></pre></div>
+</li>
+<li>
+<p>These are your {{LOCALHOST}} {{IPv4}} {{IPv6}} addresses separated by space</p>
+</li>
+</ul>
+<p>In our Domain name host control panel DNS Records table 
+- Delete all records that are allowed to be deleted - which should be just the A records and CNAME records 
+- Add 3 new A records (@, www, *) and set TTL to Default which should be 600 seconds = 1/2 Hour
+- Add 1 AAAA record and set TTL to Default which should be 600 seconds = 1/2 Hour. </p>
+<p>It should look like this:</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Name</th>
+<th>Data</th>
+<th>TTL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>@</td>
+<td>123.234.345.45</td>
+<td>600 Seconds</td>
+</tr>
+<tr>
+<td>A</td>
+<td>www</td>
+<td>123.234.345.45</td>
+<td>600 Seconds</td>
+</tr>
+<tr>
+<td>A</td>
+<td>*</td>
+<td>123.234.345.45</td>
+<td>600 Seconds</td>
+</tr>
+<tr>
+<td>AAAA</td>
+<td>@</td>
+<td>12ab:1234:12:cd56:0:0:0:7</td>
+<td>600 Seconds</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>NOTE:</strong> 123.234.345.45 is the IPv4 address of our web server machine and 12ab:1234:12:cd56:0:0:0:7 is IPv6 address.</li>
+<li><strong>@</strong> - is a shorthand symbol for ORIGIN. It points to your base domain, e.g. mysite1.com</li>
+<li><strong>www</strong> - is a subdomain that points to your base domain, e.g. www.mysite1.com</li>
+<li><strong>*</strong> - wildcard symbol - It means that any subdomain that is not explicitly defined will point to your base domain's IP address. For example subdomain dev.mysite1.com will point to the same IP address as mysite1.com</li>
+</ul>
+<p><strong>IMPORTANT:</strong> We MUST add AAAA record if we are planning to use our own SMTP mail server. Otherwise it's not necessary, but its a good practice to add it. </p>
+<h4 id="navigate-to-website-url">Navigate to Website URL</h4>
+<p>You may have to wait for 1 hour after domain name server changes before the changes take effect.</p>
+<ul>
+<li>
+<p>Open browser</p>
+</li>
+<li>
+<p>Type in your main domain name: mysite1.com. <em><strong>(Replace mysite1.com with your domain name)</strong></em></p>
+</li>
+</ul>
+<p>You will almost certainly not see your page in any of the browsers <strong>because you have not set up SSL certificate</strong> yet. Browsers will block your site because it is not secure.</p>
+<p>Here are the typical error messages you will see in different browsers:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chrome</td>
+<td>Your connection is not private</td>
+</tr>
+<tr>
+<td>Firefox</td>
+<td>Did Not Connect: Potential Security Issue</td>
+</tr>
+<tr>
+<td>Edge</td>
+<td>Your connection isn't private</td>
+</tr>
+<tr>
+<td>Brave</td>
+<td>Your connection is not private</td>
+</tr>
+<tr>
+<td>Safari</td>
+<td>Safari Can't Open the Page</td>
+</tr>
+</tbody>
+</table>
+<p>In the next steps we will set up SSL certificate and enable secure HTTPS protocol.</p>
+<h3 id="8-set-up-ssl">8. Set Up SSL</h3>
+<p><definition></p>
+<blockquote>
+<p><strong>SSL (Secure Sockets Layer)</strong> - is a security protocol that provides privacy, authentication, and integrity to Internet communications.
+</definition></p>
+</blockquote>
+<p><definition></p>
+<blockquote>
+<p><strong>SSL certificate</strong> - is a file installed on a web server that digitally engraves an encrypted key. It enables encrypted exchange of data between a server and users’ browsers.
+</definition></p>
+</blockquote>
+<p><definition></p>
+<blockquote>
+<p><strong>CA (Certificate Authority)</strong> - is the organization that provides the SSL certificate.
+</definition></p>
+</blockquote>
+<p><definition></p>
+<blockquote>
+<p><strong>CSR (Certificate Signing Request)</strong> - is the first step in setting up an SSL Certificate on your website. SSL certificates are provided by Certificate Authorities (CA), which require a Certificate Signing Request (CSR).
+</definition></p>
+</blockquote>
+<h4 id="81-get-ssl-certificate">8.1 Get SSL Certificate</h4>
+<p>To skip explanation and get straight to the Final Solution, <a href="#final-solution--set-up-multi-domain-ssl-with-auto-renewal">click here</a> .</p>
+<hr />
+<p>Normally SSL Certificate costs money to set up with CA. The process involves generating a private key and CSR, submitting the CSR through CA's website and paying them for the certificate.</p>
+<p>However you can set up a free SSL Certificate using CA organization called  <a href="https://letsencrypt.org/">Let's Encrypt</a>.</p>
+<ul>
+<li>
+<p>Install Lets Encrypt CLI program</p>
+<p>sudo apt update &amp;&amp; \
+  sudo apt upgrade &amp;&amp; \
+  sudo apt install letsencrypt</p>
+</li>
+</ul>
+<p><strong>NOTE:</strong> The above will also install <strong>certbot</strong> program which we will use later on to manage our certificates.</p>
+<p><strong>NOTE:</strong> In the next 3 sections we show you progression of learning for how to set up the most flexible SSL certificate.  If you are in a rush and just want to set up SSL certificate that works for all subdomains and can be auto renewed, then skip the next 3 progression sections and go directly to <strong>Final Solution section</strong> <a href="#final-solution--set-up-multi-domain-ssl-with-auto-renewal">Set up Multi-Domain SSL with Auto Renewal</a></p>
+<h5 id="progression-1-set-up-specific-ssl-certificate">Progression 1 : Set up Specific SSL Certificate</h5>
+<p>In this section we will learn how to set up a specific SSL certificate for our domain name and then how to uninstall it. This certificate will not cater for subdomains like dev.mysite1.com and test.mysite1.com and that's why we will uninstall it afterwards and install a wildcard certificate. </p>
+<ul>
+<li>
+<p>Get certificate from LetsEncrypt</p>
+<p>sudo letsencrypt certonly 
+    -a webroot \
+    --webroot-path=/var/www/mysite1.com/htdocs/ \
+    -d mysite1.com \
+    -d www.mysite1.com \</p>
+</li>
+<li>
+<p>The letsencrypt client will now ask you to enter your e-mail address and to accept the terms of usage. It looks like this:</p>
+<div class="language-text highlight"><pre><span></span><code>Saving debug log to /var/log/letsencrypt/letsencrypt.log
+Enter email address (used for urgent renewal and security notices)
+ (Enter &#39;c&#39; to cancel): contact@mysite1.com
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Please read the Terms of Service at
+https://letsencrypt.org/documents/LE-SA-v1.3-September-21-2022.pdf. You must
+agree in order to register with the ACME server. Do you agree?
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(Y)es/(N)o: y
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Would you be willing, once your first certificate is successfully issued, to
+share your email address with the Electronic Frontier Foundation, a founding
+partner of the Let&#39;s Encrypt project and the non-profit organization that
+develops Certbot? We&#39;d like to send you email about our work encrypting the web,
+EFF news, campaigns, and ways to support digital freedom.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(Y)es/(N)o: y
+Account registered.
+Requesting a certificate for mysite1.com and www.mysite1.com
+
+Successfully received certificate.
+Certificate is saved at: /etc/letsencrypt/live/mysite1.com/fullchain.pem
+Key is saved at:         /etc/letsencrypt/live/mysite1.com/privkey.pem
+This certificate expires on 2023-05-22.
+These files will be updated when the certificate renews.
+Certbot has set up a scheduled task to automatically renew this certificate in the background.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+If you like Certbot, please consider supporting our work by:
+ * Donating to ISRG / Let&#39;s Encrypt:   https://letsencrypt.org/donate
+ * Donating to EFF:                    https://eff.org/donate-le
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+</code></pre></div>
+</li>
+<li>
+<p>The following files will be placed on your server instance:</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/etc/letsencrypt/live/mysite1.com/cert.pem</td>
+<td>The signed certificate</td>
+</tr>
+<tr>
+<td>/etc/letsencrypt/live/mysite1.com/chain.pem</td>
+<td>The certificate chain (root certificate and all intermediate certificates) needed to validate the certificate is signed by a trusted root certificate.</td>
+</tr>
+<tr>
+<td>/etc/letsencrypt/live/mysite1.com/fullchain.pem</td>
+<td>A combination of both cert.pem and fullchain.pem.</td>
+</tr>
+<tr>
+<td>/etc/letsencrypt/live/mysite1.com/privkey.pem</td>
+<td>The private key. Keep this file private and secure at all times. Compromise of this file (for example, emailing this file, downloaded by a third party etc.) can allow third parties to hijack your SSL certificate.</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>PROBLEM</strong> - This certificate set-up will not allow you to have https on subdomains other than <strong>www</strong>. This is a problem because later on we want to have other subdomains for other environments where we will deploy our application like <strong>dev.mysite1.com</strong> and <strong>test.mysite1.com</strong>.</li>
+</ul>
+<p>In the next 2 sections we will uninstall this certificate and set up a wildcard certificate that will allow us to have https on any subdomain as well as the main domain of our website.</p>
+<h5 id="progression-2-uninstall-ssl-certificate">Progression 2 : Uninstall SSL Certificate</h5>
+<ul>
+<li>
+<p>Show list of installed certificate folders</p>
+<p>sudo ls -l /etc/letsencrypt/live/</p>
+</li>
+<li>
+<p>You should see folder with same name as your domain e.g. mysite1.com</p>
+</li>
+<li>
+<p><strong>List certificates</strong> using certbot command</p>
+<p>sudo certbot certificates</p>
+</li>
+<li>
+<p>You should see something like</p>
+<div class="language-text highlight"><pre><span></span><code>Saving debug log to /var/log/letsencrypt/letsencrypt.log
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Found the following certs:
+  Certificate Name: mysite1.com
+    Serial Number: 5e1d70f5ae264525a75e2654c64677ae
+    Key Type: RSA
+    Domains: mysite1.com www.mysite1.com
+    Expiry Date: 2023-12-12 21:18:38+00:00 (VALID: 70 days)
+    Certificate Path: /etc/letsencrypt/live/mysite1.com/fullchain.pem
+    Private Key Path: /etc/letsencrypt/live/mysite1.com/privkey.pem
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+</code></pre></div>
+</li>
+<li>
+<p>Take a note of the <strong>Certificate Name</strong> above</p>
+</li>
+<li>
+<p><strong>Revoke certificate</strong></p>
+<p>sudo certbot revoke --cert-name mysite1.com</p>
+</li>
+<li>
+<p>You should get</p>
+<div class="language-text highlight"><pre><span></span><code>Saving debug log to /var/log/letsencrypt/letsencrypt.log  
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Would you like to delete the certificate(s) you just revoked, along with all
+earlier and later versions of the certificate?
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(Y)es (recommended)/(N)o: Y  
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+The following certificate(s) are selected for deletion:  
+  * mysite1.com  
+WARNING: Before continuing, ensure that the listed certificates are not being
+used by any installed server software (e.g. Apache, nginx, mail servers).
+Deleting a certificate that is still being used will cause the server software
+to stop working. See https://certbot.org/deleting-certs for information on
+deleting certificates safely.  
+Are you sure you want to delete the above certificate(s)?
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(Y)es/(N)o: Y
+Deleted all files relating to certificate mysite1.com.
+Congratulations! You have successfully revoked the certificate that was located at /etc/letsencrypt/live/mysite1.com/cert.pem.
+</code></pre></div>
+</li>
+<li>
+<p>Show list of installed certificate folders again and you will see that the folder with same name as your domain e.g. mysite1.com is gone</p>
+<p>sudo ls -l /etc/letsencrypt/live/</p>
+</li>
+</ul>
+<h5 id="progression-3-set-up-wildcard-ssl-certificate-with-manual-dns-verification">Progression 3 : Set up Wildcard SSL Certificate with Manual DNS Verification</h5>
+<p>In the previous section we learnt how to set up SSL certificate for a specific domain. This certificate is enough if we just want to cover our domain name e.g. mysite1.com and www.mysite1.com. However if we want to have https on subdomains like something.mysite1.com, then we need to set up a wildcard certificate.</p>
+<p>We will use certbot program to generate the wildcard certificate.</p>
+<ul>
+<li>
+<p>Show all certbot functions</p>
+<p>sudo certbot --help</p>
+</li>
+<li>
+<p>Generate wildcard ssl certificate with certbot</p>
+<p>sudo certbot certonly \
+        --manual \
+        --preferred-challenges=dns \
+        --email=my-email@gmail.com \
+        --agree-tos \
+        -d mysite1.com \
+        -d *.mysite1.com</p>
+</li>
+<li>
+<p>Replace my-email@gmail.com with your email address</p>
+</li>
+<li>Replace mysite1.com with your domain name</li>
+<li>
+<p>The meaning of the arguments in the above command is:
+      |                             |                                                   |
+      | --------------------------- | ------------------------------------------------- |
+      | certonly                    | Obtain or renew a certificate, but do not install |
+      | --manual                    | Obtain certificates interactively                 |
+      | --preferred-challenges=dns: | Use dns to authenticate domain ownership          |
+      | --server                    | Specify the endpoint to use to generate           |
+      | --agree-tos                 | Agree to the ACME server’s subscriber terms       |
+      | -d                          | Domain name to provide certificates for           |</p>
+</li>
+<li>
+<p><strong>NOTE:</strong> The wild card specification in the above command is <strong>-d *.mysite1.com</strong> . The actual wild card part of the domain name is specified with the asterisk character (<em>). The asterisk must be the first character of the domain name, and it must be a valid domain name component. For example, </em>.mysite1.com will match mysite1.com, www.mysite1.com, dev.mysite1.com, test.mysite1.com, but not mysite1.com.uk or www.mysite1.com.uk.</p>
+</li>
+<li>
+<p>After you run above command you will get this prompt:</p>
+<p>Saving debug log to /var/log/letsencrypt/letsencrypt.log
+  Requesting a certificate for mysite1.com and *.mysite1.com</p>
+<hr />
+<p>Please deploy a DNS TXT record under the name:</p>
+<p>_acme-challenge.mysite1.com.</p>
+<p>with the following value:</p>
+<p>c8171dd5-a761-4311-b44f-c7fe9175abe3</p>
+<p>Before continuing, verify the TXT record has been deployed. Depending on the DNS
+  provider, this may take some time, from a few seconds to multiple minutes. You can
+  check if it has finished deploying with aid of online tools, such as the Google
+  Admin Toolbox: https://toolbox.googleapps.com/apps/dig/#TXT/_acme-challenge.mysite1.com.
+  Look for one or more bolded line(s) below the line ';ANSWER'. It should show the
+  value(s) you've just added.</p>
+<hr />
+<p>Press Enter to Continue</p>
+</li>
+</ul>
+<p><strong>DO NOT PRESS ENTER YET.</strong> We need to do the following steps first.</p>
+<ul>
+<li><strong>Go to your DNS management page</strong> on your domain name host website and add a new TXT record with the name _acme-challenge and value that was given to you in the command response above e.g. c8171dd5-a761-4311-b44f-c7fe9175abe3. It should look like this:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Name</th>
+<th>Data</th>
+<th>TTL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TXT</td>
+<td>_acme-challenge</td>
+<td>c8171dd5-a761-4311-b44f-c7fe9175abe3</td>
+<td>Auto</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>
+<p><strong>Verify TXT record deployed</strong> - Open a second terminal and connect to your server and use dig to check if the TXT record has been deployed</p>
+<p>dig TXT _acme-challenge.mysite1.com +short</p>
+</li>
+<li>
+<p>You should get as a response the value that you entered in the DNS management page e.g. c8171dd5-a761-4311-b44f-c7fe9175abe3</p>
+</li>
+<li>
+<p>If not, try google toolbox to check if the TXT record has been deployed</p>
+<p>https://toolbox.googleapps.com/apps/dig/#TXT/_acme-challenge.mysite1.com</p>
+</li>
+<li>
+<p>If not, wait for a few minutes and try again</p>
+</li>
+<li>
+<p><strong>Continue certificate set-up</strong> - in the first terminal where your certificate setup is waiting on you to set DNS record, hit <strong>Enter</strong> . You will get this response</p>
+<p>Successfully received certificate.
+  Certificate is saved at: /etc/letsencrypt/live/mysite1.com/fullchain.pem
+  Key is saved at:         /etc/letsencrypt/live/mysite1.com/privkey.pem
+  This certificate expires on 2024-01-01.
+  These files will be updated when the certificate renews.</p>
+<p>NEXT STEPS:
+  - This certificate will not be renewed automatically. Autorenewal of --manual certificates requires the use of an authentication hook script (--manual-auth-hook) but one     was not provided. To renew this certificate, repeat this same certbot command before the certificate's expiry date.</p>
+<hr />
+<p>If you like Certbot, please consider supporting our work by:
+   * Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
+   * Donating to EFF:                    https://eff.org/donate-le</p>
+<hr />
+</li>
+</ul>
+<p>Your wildcard certificate is now installed inside <strong>/etc/letsencrypt/live/mysite1.com/</strong> folder.</p>
+<ul>
+<li><strong>PROBLEM</strong> - The above certificate set-up is manual and will not be renewed automatically. To renew this certificate, you will have to repeat the same certbot command before the certificate's expiry date. This is not practical for a production website.</li>
+</ul>
+<p>In the next section we will learn how to set up a wildcard certificate that will be renewed automatically.</p>
+<h5 id="final-solution-set-up-multi-domain-ssl-with-auto-renewal">Final Solution : Set up Multi-Domain SSL with Auto Renewal</h5>
+<ul>
+<li>Refs: </li>
+<li><a href="https://eff-certbot.readthedocs.io/en/stable/using.html#nginx">Certbot Docs - Nginx Plugin</a></li>
+<li>
+<p><a href="https://www.nginx.com/blog/using-free-ssltls-certificates-from-lets-encrypt-with-nginx/">NGINX.com - Using Letsencrypt SSL Certificate on NGINX web server</a></p>
+</li>
+<li>
+<p>If you have installed SSL certificate in the previous sections, then first go and  <a href="#progression-2--uninstall-ssl-certificate">Uninstall SSL Certificate</a></p>
+</li>
+<li>
+<p>If you have installed Letsencrypt in previous sections, Uninstall it first</p>
+</li>
+<li>
+<p>Remove certbot packages</p>
+<div class="language-text highlight"><pre><span></span><code>sudo apt remove --purge certbot
+</code></pre></div>
+</li>
+<li>
+<p>If you installed Certbot using certbot-auto, remove the script</p>
+<div class="language-text highlight"><pre><span></span><code>sudo rm /usr/local/bin/certbot-auto
+</code></pre></div>
+</li>
+<li>
+<p>Remove the Letsencrypt directories</p>
+<div class="language-text highlight"><pre><span></span><code>sudo rm -rf /etc/letsencrypt &amp;&amp; \
+sudo rm -rf /var/lib/letsencrypt
+</code></pre></div>
+</li>
+<li>
+<p>Remove unused dependencies and packages</p>
+<div class="language-text highlight"><pre><span></span><code>sudo apt autoremove
+</code></pre></div>
+</li>
+<li>
+<p>Install <strong>certbot</strong></p>
+<p>sudo apt install certbot</p>
+</li>
+<li>
+<p>Install certbot <strong>plugin for nginx</strong></p>
+<p>sudo apt install python3-certbot-nginx</p>
+</li>
+<li>
+<p><strong>Generate certificates with certbot</strong> and nginx plugin, for your domain mysite1.com and all its subdomains: www.mysite1.com, dev.mysite1.com, test.mysite1.com. <em><strong>(Replace mysite1.com with your domain name)</strong></em></p>
+<p>sudo certbot --nginx -d mysite1.com -d www.mysite1.com -d dev.mysite1.com -d test.mysite1.com</p>
+</li>
+<li>
+<p>Type <code>Y</code> to agree with all the prompts</p>
+</li>
+<li>
+<p>You should see output like this:</p>
+<p>Saving debug log to /var/log/letsencrypt/letsencrypt.log
+  Enter email address (used for urgent renewal and security notices)
+   (Enter 'c' to cancel): my-email@my-website.com</p>
+<hr />
+<p>Please read the Terms of Service at
+  https://letsencrypt.org/documents/LE-SA-v1.3-September-21-2022.pdf. You must
+  agree in order to register with the ACME server. Do you agree?</p>
+<hr />
+<p>(Y)es/(N)o: y</p>
+<hr />
+<p>Would you be willing, once your first certificate is successfully issued, to
+  share your email address with the Electronic Frontier Foundation, a founding
+  partner of the Let's Encrypt project and the non-profit organization that
+  develops Certbot? We'd like to send you email about our work encrypting the web,
+  EFF news, campaigns, and ways to support digital freedom.</p>
+<hr />
+<p>(Y)es/(N)o: y
+  Account registered.
+  Requesting a certificate for mysite1.com and 3 more domains</p>
+<p>Successfully received certificate.
+  Certificate is saved at: /etc/letsencrypt/live/mysite1.com/fullchain.pem
+  Key is saved at:         /etc/letsencrypt/live/mysite1.com/privkey.pem
+  This certificate expires on 2024-06-23.
+  These files will be updated when the certificate renews.
+  Certbot has set up a scheduled task to automatically renew this certificate in the background.</p>
+<p>Deploying certificate
+  Successfully deployed certificate for mysite1.com to /etc/nginx/sites-enabled/mysite1.com
+  Successfully deployed certificate for www.mysite1.com to /etc/nginx/sites-enabled/mysite1.com
+  Successfully deployed certificate for dev.mysite1.com to /etc/nginx/sites-enabled/dev.mysite1.com
+  Successfully deployed certificate for test.mysite1.com to /etc/nginx/sites-enabled/test.mysite1.com
+  Congratulations! You have successfully enabled HTTPS on https://mysite1.com, https://www.mysite1.com, https://dev.mysite1.com, and https://test.mysite1.com
+  We were unable to subscribe you the EFF mailing list because your e-mail address appears to be invalid. You can try again later by visiting https://act.eff.org.</p>
+<hr />
+<p>If you like Certbot, please consider supporting our work by:
+   * Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
+   * Donating to EFF:                    https://eff.org/donate-le</p>
+<hr />
+</li>
+</ul>
+<p><strong>IMPORTANT:</strong> In the above command (for SSL certificate creation) you CANNOT use a wild card domain like -d *.mysite1.com. You have to specify all the subdomains that you want to secure. If you try using a wilc card domain you will get an error.</p>
+<p><strong>NOTE:</strong> The certificate is valid for 90 days. Certbot should automatically renew it. Pay attention to the text above that says:</p>
+<div class="language-text highlight"><pre><span></span><code>These files will be updated when the certificate renews.
+Certbot has set up a scheduled task to automatically renew this certificate in the background.
+</code></pre></div>
+<p><strong>NOTE:</strong> If you now open the Server block config files for the domains we created an SSL certificate for, you will see that certbot has added a configuration code for SSL certificate. You can check this by opening the file with nano editor like this:</p>
+<div class="language-text highlight"><pre><span></span><code>sudo nano /etc/nginx/sites-available/mysite1.com
+</code></pre></div>
+<ul>
+<li>
+<p>You should see something like this:</p>
+<p>server {</p>
+<div class="language-text highlight"><pre><span></span><code>  root /var/www/mysite1.com/htdocs;
+
+  index index.html index.htm;
+
+  server_name mysite1.com www.mysite1.com;
+
+  location / {
+      try_files $uri $uri/ =404;
+  }
+
+  listen [::]:443 ssl ipv6only=on; # managed by Certbot
+  listen 443 ssl; # managed by Certbot
+  ssl_certificate /etc/letsencrypt/live/mysite1.com/fullchain.pem; # managed by Certbot
+  ssl_certificate_key /etc/letsencrypt/live/mysite1.com/privkey.pem; # managed by Certbot
+  include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+  ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+</code></pre></div>
+<p>}
+  server {
+      if ($host = www.mysite1.com) {
+          return 301 https://$host$request_uri;
+      } # managed by Certbot</p>
+<div class="language-text highlight"><pre><span></span><code>  if ($host = mysite1.com) {
+      return 301 https://$host$request_uri;
+  } # managed by Certbot
+
+  listen 80;
+  listen [::]:80;
+
+  server_name mysite1.com www.mysite1.com;
+  return 404; # managed by Certbot
+</code></pre></div>
+<p>}</p>
+</li>
+</ul>
+<h4 id="81-navigate-to-website-url">8.1 Navigate to Website URL</h4>
+<ul>
+<li>
+<p>Open a browser</p>
+</li>
+<li>
+<p>Type in your main domain name: mysite1.com</p>
+</li>
+<li>
+<p>You should now see the content of your index.html file in your browser</p>
+<div class="language-text highlight"><pre><span></span><code>Welcome to mysite1.com!
+</code></pre></div>
+</li>
+<li>
+<p><strong>NOTE:</strong> You should also see the lock icon (or similar) in the address bar indicating that your site is secure. </p>
+</li>
+<li>
+<p>Repeat the same for subdomain dev.mysite1.com </p>
+<ul>
+<li>
+<p>You should see</p>
+<p>Welcome to dev.mysite1.com!</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Repeat the same for subdomain test.mysite1.com</p>
+<ul>
+<li>
+<p>You should see</p>
+<p>Welcome to test.mysite1.com!</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="web-server-apache">Web Server - Apache</h2>
+<p>-Ref: <a href="https://ubuntu.com/tutorials/install-and-configure-apache">Ubuntu - Install and Configure Apache</a></p>
+<p>Why do we need Apache server when we already have Nginx web server ?</p>
+<p>The answer is: Because there are a lot of useful web based administartion tools that are built to work with Apache server. For example:
+- pgAdmin4 - web interface for administration of PostgreSQL database is built to work with Apache server
+- Webmin - a web-based interface for system administration for Unix is built to work with Apache server</p>
+<p>However, because we have Nginx running on default port 80 (same as Apache's default port), we cannot run Apache server on the same port. </p>
+<p>Furthermore, because we already use Nginx to receive all the incoming requests from internet, we will use Apache just as a local server and forward all the requests that require Apache server to it. For example if we want to use Webmin application that runs on Apache server on port 10000, we will create Nginx sever block that listens on port 10000 and redirects all the requests to Apache server running on localhost:10000.</p>
+<p>What we nwe will do next is:
+1. Install Apache
+2. Change default port 80 that Apache listens on to 8080 - because Nginx is already listening on port 80
+3. Proxy Nginx to Apache - so that when we call a specific url that requires Apache server, Nginx will listen for that url and redirect the request to Apache server locally.</p>
+<h3 id="install-apache">Install Apache</h3>
+<div class="language-text highlight"><pre><span></span><code>  sudo apt update
+  sudo apt install apache2
+</code></pre></div>
+<h3 id="change-default-port">Change Default Port</h3>
+<p>By default Apache listens on the same port as Nginx. We need to change the port so they don't clash.</p>
+<ul>
+<li>
+<p>Open ports.conf - Change default Apache port 80 to 8080</p>
+<p>sudo nano /etc/apache2/ports.conf</p>
+</li>
+<li>
+<p>Look for <strong>Listen 80</strong> and change it to <strong>Listen 8080</strong></p>
+</li>
+<li>
+<p>Edit default virtual host file</p>
+<p>sudo nano /etc/apache2/sites-available/000-default.conf</p>
+</li>
+<li>
+<p>Look for </p>
+<div class="language-text highlight"><pre><span></span><code>&lt;VirtualHost *:80&gt;
+</code></pre></div>
+<ul>
+<li>
+<p>Change to</p>
+<p><VirtualHost *:8080></p>
+</li>
+</ul>
+</li>
+<li>
+<p>Check Apache Status</p>
+<p>sudo service apache2 status</p>
+</li>
+<li>
+<p>If not started then start it</p>
+<div class="language-text highlight"><pre><span></span><code>sudo service apache2 start
+</code></pre></div>
+</li>
+<li>
+<p>Restart Apache</p>
+<p>systemctl restart apache2</p>
+</li>
+<li>
+<p>You will be prompeted to enter your password</p>
+</li>
+<li>
+<p>Check Apache Status</p>
+<p>sudo service apache2 status</p>
+</li>
+</ul>
+<h3 id="verify-apache-is-working">Verify Apache is working</h3>
+<ul>
+<li>
+<p>Verify that Apache is now listening on 8080</p>
+<p>sudo netstat -tlpn</p>
+</li>
+<li>
+<p>You should see a list of tcp process listening on different ports. You should see Apache listening on port 8080, like:</p>
+<div class="language-text highlight"><pre><span></span><code>tcp6       0      0 :::8080                 :::*                    LISTEN      595571/apache2
+</code></pre></div>
+</li>
+<li>
+<p>Verify default page working in browser. Enter your server IP in browser address bar e.g. 123.234.345.45 </p>
+</li>
+<li>You should see now apche default page titled: <strong>Apache2 Default Page</strong></li>
+</ul>
+<h3 id="nginx-proxy-to-apache">Nginx Proxy to Apache</h3>
+<p>Because Apache is only listening on localhost as we have not exposed port 8080 in our firewall, we will still receive all the outside requests on port 80 which will be handled by Nginx.</p>
+<p>We can then proxy those requests to the requested resource on Apache.</p>
+<p>For example we will later install pgAdmin4 web interface for administration of PostgreSQL database. The installation is configured to work on Apache Server at url http://localhost/pgadmin4 </p>
+<p>If we call this from outside address like : http://123.234.345.45/pgadmin4 it will run Nginx default Server block which will not be able to resolve the address and therefore it will show page <strong>404 Not Found</strong></p>
+<p>To fix this we can implement a proxy inside default server block that redirects to Apache on localhost:8080 like:</p>
+<div class="language-text highlight"><pre><span></span><code>location /pgadmin4 {
+        # Redirect to Apache Web Server we configured to listen on port 8080
+        proxy_pass http://localhost:8080/pgadmin4;
+}
+</code></pre></div>
+<p>For full implementation of above example check <a href="#install-pgadmin">pgAdmin Installation</a></p>
+<h1 id="proof-read">&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; PROOF-READ &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</h1>
+<h4 id="82-auto-renew-certificate">8.2 Auto Renew Certificate</h4>
+<p>You can skip this section. It is no longer required because the certbot program has already set up a scheduled task to automatically renew the certificate in the background.</p>
+<hr />
+<p>The certificate issued by letsencrypt is valid for 90 days.</p>
+<p>We need to set up auto renewal so that our certificate does not expire.</p>
+<ul>
+<li>
+<p>Create renewal shell script inside /opt/renewSSLCerts.sh</p>
+<p>sudo nano /opt/renewSSLCerts.sh</p>
+</li>
+<li>
+<p>Paste this code inside renewSSLCerts.sh</p>
+<p>#!/bin/sh
+  # This script renews all the Let's Encrypt certificates with a validity &lt; 30 days
+  if ! letsencrypt renew &gt; /var/log/letsencrypt/renew.log 2&gt;&amp;1 ; then
+      echo Automated renewal failed:
+      cat /var/log/letsencrypt/renew.log
+      exit 1
+  fi
+  nginx -t &amp;&amp; nginx -s reload</p>
+</li>
+<li>
+<p>Save and exit: <strong>CTRL + S</strong>, <strong>CTRL + X</strong></p>
+</li>
+<li>
+<p>Give own and execute permissions to root user on file renewSSLCerts.sh</p>
+<p>sudo chown root.root /opt/renewSSLCerts.sh
+  sudo chmod u+x /opt/renewSSLCerts.sh</p>
+</li>
+<li>
+<p>Add a cron job for automatic weekly execution of our SSL renewal script</p>
+<p>sudo crontab -u root -e</p>
+<ul>
+<li><strong>IMPORTANT:</strong>  We are adding the job to root user's crontab (not our current user's crontab) because the renewal script needs root privileges to run and also the log file is written to /var/log/letsencrypt/renew.log which is a directory that only root user can write to.</li>
+</ul>
+</li>
+<li>
+<p>You may get this if it's a first time you are running crontab</p>
+<div class="language-text highlight"><pre><span></span><code>no crontab for root - using an empty one
+
+Select an editor.  To change later, run &#39;select-editor&#39;.
+  1. /bin/nano        &lt;---- easiest
+  2. /usr/bin/vim.basic
+  3. /usr/bin/vim.tiny
+  4. /bin/ed
+
+Choose 1-4 [1]:
+</code></pre></div>
+</li>
+<li>
+<p>Just type 1 to select nano as your crontab editor and hit Enter</p>
+</li>
+<li>
+<p>The cron tasks file will then open in nano</p>
+</li>
+<li>
+<p>Add the following line at the end of the cron file</p>
+<p>@weekly /opt/renewSSLCerts.sh</p>
+</li>
+<li>
+<p>Save and exit: <strong>CTRL + S</strong>, <strong>CTRL + X</strong></p>
+</li>
+</ul>
+<p>To learn more about Cron jobs, please read our book <strong>Linux Cron Jobs</strong>.</p>
+<h4 id="83-update-main-site-server-block">8.3 Update Main Site Server Block</h4>
+<ul>
+<li>Refs: </li>
+<li><a href="https://nginx.org/en/docs/http/configuring_https_servers.html">Nginx - Configuring HTTPS servers</a></li>
+<li>
+<p><a href="https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver">Nginx - Configuring resolver</a></p>
+</li>
+<li>
+<p>In your terminal connected to remote server - Open your sites's configuration file which should be <strong>/etc/nginx/sites-available/{{YOUR_DOMAIN_NAME}}</strong> e.g. mysite1.com</p>
+<p>sudo nano /etc/nginx/sites-available/mysite1.com</p>
+</li>
+<li>
+<p>Delete all the text inside the file </p>
+</li>
+<li>Hit <strong>ALT + A</strong> - to start selecting</li>
+<li>Hit <strong>Page Down</strong> key repeatedly or press and hold <strong>Arrow Down</strong> key until you reach the end of the file</li>
+<li>
+<p>Hit <strong>CTRL + K</strong> to cut out the selected text</p>
+</li>
+<li>
+<p>On your local computer - Open text editor like Notepad and paste the following text inside it</p>
+<p>server {</p>
+<div class="language-text highlight"><pre><span></span><code>      # Listen for http requests
+      listen          80;
+      listen          [::]:80;
+
+      # Listen for https requests
+      listen          443 ssl;
+      listen          [::]:443 ssl;
+
+      # Standard config
+      root /var/www/mysite1.com/htdocs;
+      index index.html index.htm;
+      server_name mysite1.com www.mysite1.com;
+
+      location / {
+              # First attempt to serve request as file, then
+              # as directory, then fall back to displaying a 404.
+              try_files $uri $uri/ =404;
+      }
+
+      # deny access to .htaccess files, if Apache&#39;s document root
+      # concurs with nginx&#39;s one
+      location ~ /\.ht {
+             deny all;
+      }
+
+      # If a user tries to come through http, redirect them through https
+      if ($scheme != &quot;https&quot;) {
+              return 301 https://$host$request_uri;
+      }
+
+      # SSL config
+      ssl_certificate     /etc/letsencrypt/live/mysite1.com/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/mysite1.com/privkey.pem;
+      ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
+      ssl_ciphers         HIGH:!aNULL:!MD5:EECDH+AES128:RSA+AES128:EECDH+AES256:RSA+AES256:EECDH+3DES:RSA+3DES;
+      ssl_prefer_server_ciphers On;
+      ssl_stapling on;
+      ssl_stapling_verify on;
+
+      # Your favorite resolver may be used instead of the Google one below
+      resolver 8.8.8.8;
+
+      # HTTPS server optimization
+      keepalive_timeout   70;
+
+      # Logging
+      access_log /var/log/nginx/mysite1.com_access.log;
+      error_log /var/log/nginx/mysite1.com_error.log;
+
+      # Security Headers
+      add_header Strict-Transport-Security &quot;max-age=31557600; includeSubDomains&quot;;
+      add_header X-Content-Type-Options &quot;nosniff&quot; always;
+      add_header X-Frame-Options &quot;SAMEORIGIN&quot; always;
+      add_header X-Xss-Protection &quot;1&quot;;
+      add_header Content-Security-Policy &quot;default-src &#39;self&#39;; font-src *;img-src * data:; script-src *; style-src *&quot;;
+</code></pre></div>
+<p>}</p>
+</li>
+<li>
+<p><strong>Replace</strong> all ocurrences of the word <strong>mysite1.com</strong> with <strong>your own domain name</strong>.</p>
+</li>
+<li>
+<p><strong>Copy-Paste</strong> the edited text into configuration file you have opened in the terminal conected to your remote server.</p>
+</li>
+<li>
+<p>Save and exit: <strong>CTRL + S</strong>, <strong>CTRL + X</strong></p>
+</li>
+</ul>
+<p><strong>NOTE:</strong> In the header <strong>add_header Content-Security-Policy ...</strong> - the config that we have provided, <strong>does not allow</strong> for <strong>inline styles and scripts</strong> in order to prevent malicious script injection. To find more about this setting and how to configure it for your needs, read the following articles: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy and here: https://content-security-policy.com/ ... </p>
+<ul>
+<li>
+<p>Add optimization configuration to <strong>nginx.conf</strong></p>
+<ul>
+<li>
+<p>Open nginx.conf</p>
+<p>sudo nano /etc/nginx/nginx.conf</p>
+</li>
+<li>
+<p>Add the following lines above and below <strong>"http {"</strong>. It should look like this</p>
+<p># Automatically adjust the number of Nginx worker processes based on available cores.
+  worker_processes auto;</p>
+<p>http {</p>
+<div class="language-text highlight"><pre><span></span><code>  # Optimize SSL handshake for a multi-core system with 10 megabyte shared session cache, and increase cache timeout from default 5 minutes to 10.
+  ssl_session_cache   shared:SSL:10m;
+  ssl_session_timeout 10m;
+</code></pre></div>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>NOTE:</strong> <strong>worker_processes auto;</strong> may already be written inside your nginx.conf. Search for it : CTRL + W , type "worker_processes auto;" , hit Enter. If it's already there, then don't add it again.</p>
+<ul>
+<li>
+<p>Explanation of the <strong>optimization</strong> parameters:</p>
+</li>
+<li>
+<p><strong>worker_processes auto;</strong> - Nginx is an event-based web server. This means that instead of creating a new process for each simultaneous connection (as Apache does), Nginx uses a <strong>master process</strong> and <strong>worker processes</strong>. The <strong>master process</strong> reads and evaluates configuration, and <strong>worker processes</strong> do the actual processing. Since Nginx is event-based, it is able to handle multiple connections in a single thread. This means that the number of worker processes should be equal to the number of CPU cores. The <strong>auto</strong> parameter allows Nginx to automatically detect the number of CPU cores available and set the number of worker processes accordingly.
+SSL operations consume extra CPU resources. On multi-processor systems several <a href="https://nginx.org/en/docs/ngx_core_module.html#worker_processes">worker processes</a> should be run, no less than the number of available CPU cores. This is why we set <strong>worker_process auto;</strong> - to automatically adjust the number of Nginx worker processes based on available cores.</p>
+</li>
+<li>
+<p><strong>ssl_session_cache   shared:SSL:10m;  ssl_session_timeout 10m;</strong> -
+The most CPU-intensive operation is the SSL handshake. There are two ways to minimize the number of these operations per client:</p>
+</li>
+<li>Enabling <a href="https://nginx.org/en/docs/http/ngx_http_core_module.html#keepalive_timeout">keepalive</a> connections to send several requests via one connection and the second is to reuse SSL session parameters to avoid SSL handshakes for parallel and subsequent connections. We have added this configuration inside our site configuration file above : <strong>keepalive_timeout   70;</strong></li>
+<li>
+<p>Increasing session cache - The sessions are stored in an SSL session cache shared between workers and configured by the <a href="https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_session_cache">ssl_session_cache</a> directive. One megabyte of the cache contains about 4000 sessions. The default cache timeout is 5 minutes. It can be increased by using the <a href="https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_session_timeout">ssl_session_timeout</a> directive.   Configuration that we implemented, is optimized for a multi-core system with 10 megabyte shared session cache, and session timeout is increased from default 5 minutes to 10. We have added this configuration inside nginx.conf above : <strong>ssl_session_cache   shared:SSL:10m;  ssl_session_timeout 10m;</strong></p>
+</li>
+<li>
+<p>Save and exit nginx.conf: <strong>CTRL + S</strong>, <strong>CTRL + X</strong></p>
+</li>
+<li>
+<p>Verify config and reload nginx server</p>
+<p>sudo nginx -t &amp;&amp; \
+  sudo nginx -s reload     </p>
+</li>
+<li>
+<p>Open your website in the browser - type the domain name into address bar and hit Enter e.g. mysite1.com</p>
+</li>
+<li>
+<p><strong>IMPORTANT:</strong> You should always open the site inside <strong>Incognito/Private window</strong> of the browser when testing if the new configuration has been applied. Otherwise you may get old cached version of the site.</p>
+</li>
+<li>
+<p>To open <strong>Incognito/Private window</strong> these are the keyboard shortcuts for different browsers:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chrome</td>
+<td>CTRL + SHIFT + N</td>
+</tr>
+<tr>
+<td>Firefox</td>
+<td>CTRL + SHIFT + P</td>
+</tr>
+<tr>
+<td>Edge</td>
+<td>CTRL + SHIFT + P</td>
+</tr>
+<tr>
+<td>Safari</td>
+<td>COMMAND + SHIFT + N</td>
+</tr>
+<tr>
+<td>Brave</td>
+<td>CTRL + SHIFT + N</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>You should see the page we configured on our server that says : <strong>Welcome to mysite1.com!</strong></p>
+</li>
+</ul>
+<h4 id="84-update-default-site-server-block">8.4 Update Default Site Server Block</h4>
+<ul>
+<li>
+<p>Create index.html page for default site</p>
+<p>nano /var/www/default/index.html</p>
+</li>
+<li>
+<p>Paste the following text inside index.html</p>
+<p><h2 style="text-align:center;margin-top:3rem;">
+          404 : The page you are trying to access does not exist.
+    </h2></p>
+</li>
+<li>
+<p>You can also add your website branding into this page as well</p>
+</li>
+<li>
+<p>This page will be displayed every time someone tries to access a subdomain that does not exist on your server</p>
+</li>
+<li>
+<p>Open default server block</p>
+<p>sudo nano /etc/nginx/sites-available/default</p>
+</li>
+<li>
+<p>Delete all the text inside the file: <strong>ALT + A</strong>, <strong>PAGE-DOWN</strong>, <strong>CTRL + K</strong></p>
+</li>
+<li>
+<p>Paste the following configuration</p>
+<p>server {</p>
+<div class="language-text highlight"><pre><span></span><code>      listen 80 default_server;
+      listen [::]:80 default_server;
+
+      listen 443 ssl default_server;
+      listen [::]:443 ssl default_server;
+
+      root /var/www/default;
+
+      index index.html index.htm;
+
+      server_name _;
+
+      location / {
+              # First attempt to serve request as file, then
+              # as directory, then fall back to displaying a 404.
+              try_files $uri $uri/ =404;
+      }
+
+      # SSL Certificate
+      ssl_certificate     /etc/letsencrypt/live/mysite1.com/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/mysite1.com/privkey.pem;
+</code></pre></div>
+<p>}</p>
+</li>
+<li>
+<p>We added listen directives for 443 ssl - to handle https requests</p>
+</li>
+<li>
+<p>We added ssl_certificate and ssl_certificate_key directives to point to our wildcard certificate</p>
+</li>
+<li>
+<p>Save and exit: <strong>CTRL + S</strong>, <strong>CTRL + X</strong></p>
+</li>
+<li>
+<p>Verify nginx configuration and restart nginx server</p>
+<p>sudo nginx -t &amp;&amp; \
+  sudo nginx -s reload</p>
+</li>
+<li>
+<p>Open browser and type in subdomain that does not exist for example: <strong>something.mysite1.com</strong></p>
+</li>
+<li>
+<p>You should see the page that says "404 : The page you are trying to access does not exist."</p>
+</li>
+</ul>
+<h4 id="85-test-your-ssl">8.5 Test your SSL</h4>
+<ul>
+<li>
+<p>Test your ssl at https://www.ssllabs.com/ssltest/</p>
+</li>
+<li>
+<p>Type your domain name e.g. mysite1.com and hit Enter</p>
+</li>
+<li>
+<p>You should get <strong>A+</strong> rating for both IPv4 and IPv6</p>
+</li>
+<li>
+<p>It should look like this</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Server</th>
+<th>Test time</th>
+<th>Grade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>123.234.345.45 <br> mysite1.com <br> Ready</td>
+<td>Wed, 04 Oct 2023 03:52:27 UTC <br> Duration: 146.87 sec</td>
+<td>A+</td>
+</tr>
+<tr>
+<td>2</td>
+<td>12ab:1234:12:cd56:0:0:0:7 <br> mysite1.com <br> Ready</td>
+<td>Wed, 04 Oct 2023 03:54:53 UTC <br> Duration: 147.929 sec</td>
+<td>A+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>NOTE:</strong> You may get a warning message <strong>"Warning: Inconsistent server configuration"</strong> and under your IPv6 instead of Ready it will say <strong>Unable to connect</strong>, while your IPv4 will look good and have a Grade A+.</p>
+<p>This happens because in our domain name server DNS management panel we only set up one record for AAAA with Name @ and IPv6 address as a value, while for the IPv4 we added 3 A records with names @, * and www and IPv4 address as a value.</p>
+<p>To solve the problem :</p>
+<ul>
+<li>Log into your DNS Management panel</li>
+<li>Add AAAA record with Name field containing <strong>"www"</strong> and Value/Data field containing your IPv6 address</li>
+<li>Add AAAA record with Name field containing <strong>"*"</strong> and Value/Data field containing your IPv6 address</li>
+</ul>
+<p>Your DNS records should look like this now:</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Name</th>
+<th>Data</th>
+<th>TTL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>@</td>
+<td>123.234.345.45</td>
+<td>Auto</td>
+</tr>
+<tr>
+<td>A</td>
+<td>www</td>
+<td>123.234.345.45</td>
+<td>Auto</td>
+</tr>
+<tr>
+<td>A</td>
+<td>*</td>
+<td>123.234.345.45</td>
+<td>Auto</td>
+</tr>
+<tr>
+<td>AAAA</td>
+<td>@</td>
+<td>12ab:1234:12:cd56:0:0:0:7</td>
+<td>Auto</td>
+</tr>
+<tr>
+<td>AAAA</td>
+<td>www</td>
+<td>12ab:1234:12:cd56:0:0:0:7</td>
+<td>Auto</td>
+</tr>
+<tr>
+<td>AAAA</td>
+<td>*</td>
+<td>12ab:1234:12:cd56:0:0:0:7</td>
+<td>Auto</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>
+<p>Wait one hour for DNS propagation</p>
+</li>
+<li>
+<p>Test your ssl at https://www.ssllabs.com/ssltest/ again</p>
+</li>
+<li>
+<p>This time you should get <strong>A+</strong> rating for both IPv4 and IPv6</p>
+</li>
+</ul>
+<h3 id="9-set-up-subdomains">9. Set Up Subdomains</h3>
+<p>There are many reasons why you would want to have a subdomain. </p>
+<p>Our specific scenario is that we want to have a subdomain for each environment where we will deploy our application. </p>
+<p>In serious software development we normally have 3 environments: <strong>development, testing and production</strong>. We want to have a subdomain for development and testing environments, whereas production environment will be on our main domain name.</p>
+<table>
+<thead>
+<tr>
+<th><strong>Environment</strong></th>
+<th><strong>Domain URL</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Development</td>
+<td>dev.mysite1.com</td>
+</tr>
+<tr>
+<td>Testing</td>
+<td>test.mysite1.com</td>
+</tr>
+<tr>
+<td>Production</td>
+<td>mysite1.com</td>
+</tr>
+</tbody>
+</table>
+<p><strong>NOTE:</strong> Test environment is also referred to as <strong>UAT</strong> (user acceptance testing) environment or <strong>Staging</strong> environment. These are all different names for the same concept.</p>
+<p>We will create subdomains:</p>
+<ul>
+<li>
+<p><strong>dev.mysite1.com</strong> - This domain will have the latest copy of our website that has been only tested on developer's local machine. The dev environment website will be used by our developers to do some more developer testing.</p>
+</li>
+<li>
+<p><strong>test.mysite1.com</strong> - This domain will have the latest copy of our website that has been already tested on development environment by developers. The test environment website will be used by our quality assurance testers to do <strong>UAT</strong> (user acceptance testing). </p>
+</li>
+</ul>
+<p><strong>NOTE:</strong> Our DNS is already configured to point all subdomains to our server IP address. So we don't need to do anything in our domain name host. Its the A record with wildcard asterisk symbol * that we have configured in DNS setup dashboard. This asterisk symbol * means that all subdomains will point to our server IP address. You can revise this in the section <a href="#dns-records-explained">DNS Records explained</a></p>
+<h4 id="set-up-subdomain-for-dev-environment">Set up Subdomain for Dev Environment</h4>
+<ul>
+<li>
+<p>Create directory for subdomain</p>
+<p>mkdir -p /var/www/dev.mysite1.com/htdocs</p>
+</li>
+<li>
+<p>Create page index.html for subdomain</p>
+<p>echo "Welcome to dev.mysite1.com!" &gt; /var/www/dev.mysite1.com/htdocs/index.html</p>
+</li>
+<li>
+<p>Create server block for subdomain - by coping the server block for main domain</p>
+<p>sudo cp /etc/nginx/sites-available/mysite1.com /etc/nginx/sites-available/dev.mysite1.com</p>
+</li>
+<li>
+<p>Open server block for edit</p>
+<p>sudo nano /etc/nginx/sites-available/dev.mysite1.com</p>
+</li>
+<li>
+<p>Search for all occurences of <strong>mysite1.com</strong> and replace with <strong>dev.mysite1.com</strong>, except for the SSL config part. <strong>NOTE:</strong> DO NOT replace wildcard certificate with specific certificate for dev.mysite1.com. We will use the wildcard certificate for all subdomains. SSL Config should look like this:</p>
+<p># SSL config
+  ssl_certificate     /etc/letsencrypt/live/mysite1.com/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/mysite1.com/privkey.pem;</p>
+</li>
+<li>
+<p>Save and exit: <strong>CTRL + S</strong>, <strong>CTRL + X</strong></p>
+</li>
+<li>
+<p>Create symbolic link for subdomain</p>
+<p>sudo ln -s /etc/nginx/sites-available/dev.mysite1.com /etc/nginx/sites-enabled/</p>
+</li>
+<li>
+<p>Verify config and reload nginx</p>
+<p>sudo nginx -t &amp;&amp; sudo nginx -s reload</p>
+</li>
+<li>
+<p>Open your subdomain in browser e.g. dev.mysite1.com</p>
+</li>
+<li>
+<p>You should see the page that says "Welcome to dev.mysite1.com!" </p>
+</li>
+<li>Url should be https://dev.mysite1.com as the server block configuration has automatically redirected http to https</li>
+</ul>
+<h4 id="set-up-subdomain-for-test-environment">Set up Subdomain for Test Environment</h4>
+<ul>
+<li>
+<p>Create directory for subdomain</p>
+<p>mkdir -p /var/www/test.mysite1.com/htdocs</p>
+</li>
+<li>
+<p>Create page index.html for subdomain</p>
+<p>echo "Welcome to test.mysite1.com!" &gt; /var/www/test.mysite1.com/htdocs/index.html</p>
+</li>
+<li>
+<p>Create server block for subdomain - by coping the server block for main domain</p>
+<p>sudo cp /etc/nginx/sites-available/mysite1.com /etc/nginx/sites-available/test.mysite1.com</p>
+</li>
+<li>
+<p>Open server block for edit</p>
+<p>sudo nano /etc/nginx/sites-available/test.mysite1.com</p>
+</li>
+<li>
+<p>Search for all occurences of <strong>mysite1.com</strong> and replace with <strong>test.mysite1.com</strong>, except for the SSL config part. <strong>NOTE:</strong> DO NOT replace wildcard certificate with specific certificate for test.mysite1.com. We will use the wildcard certificate for all subdomains. SSL Config should look like this:</p>
+<p># SSL config
+  ssl_certificate     /etc/letsencrypt/live/mysite1.com/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/mysite1.com/privkey.pem;</p>
+</li>
+<li>
+<p>Save and exit: <strong>CTRL + S</strong>, <strong>CTRL + X</strong></p>
+</li>
+<li>
+<p>Create symbolic link for subdomain</p>
+<p>sudo ln -s /etc/nginx/sites-available/test.mysite1.com /etc/nginx/sites-enabled/</p>
+</li>
+<li>
+<p>Verify config and reload nginx</p>
+<p>sudo nginx -t &amp;&amp; sudo nginx -s reload</p>
+</li>
+<li>
+<p>Open your subdomain in browser e.g. test.mysite1.com</p>
+</li>
+<li>
+<p>You should see the page that says "Welcome to test.mysite1.com!" </p>
+</li>
+<li>Url should be https://test.mysite1.com as the server block configuration has automatically redirected http to https</li>
+</ul>
+<h4 id="warning-www-and-subdomains">Warning - WWW and Subdomains</h4>
+<p><strong>IMPORTANT:</strong> If you try including "www." before your subdomain in the url you put in address bar (e.g. <strong>www.test.mysite1.com</strong>), the browser will show you something like:</p>
+<div class="language-text highlight"><pre><span></span><code>  Your connection is not private
+  Attackers might be trying to steal your information from www.test.mysite1.com (for example, passwords, messages, or credit cards). Learn more
+  NET::ERR_CERT_COMMON_NAME_INVALID
+</code></pre></div>
+<p>This happens because our wildcard certificate covers only one level.</p>
+<p>In other words <strong>a wildcard (*) will only match a single label in a domain and you can only have one wildcard as the very left leftmost label in a domain name</strong>.</p>
+<p>Therefore if our wildcard certificate was created for *.mysite1.com, then it will match mysite1.com and test.mysite1.com but it will not match www.test.mysite1.com.</p>
+<p><strong>NOTE:</strong> In our specific scenario - using subdomains for dev and test environments - we do not require www. subdomain because these subdomains will not be used by the public. They will be used only by our developers and testers. Therefore we will not set up www. subdomain for our dev and test environments.</p>
+<p>However, if you want to allow ssl for www.test.mysite1.com you can do that by creating a new <strong>specific certificate</strong> for www.test.mysite1.com using the process in section <a href="#set-up-specific-ssl-certificate">Set up Specific SSL Certificate</a>.</p>
+<ul>
+<li>
+<p>Create SSL certificate for <strong>www.test.mysite1.com</strong></p>
+<p>sudo letsencrypt certonly 
+    -a webroot \
+    --webroot-path=/var/www/test.mysite1.com/htdocs/ \
+    -d test.mysite1.com \
+    -d www.test.mysite1.com \</p>
+</li>
+</ul>
+<p>You will also have to change your server block configuration for <strong>test.mysite1.com</strong> to use the new certificate for <strong>"test.mysite1.com"</strong> instead of the wildcard certificate for <strong>"*.mysite1.com"</strong>.</p>
+<ul>
+<li>
+<p>Open server block for edit</p>
+<p>sudo nano /etc/nginx/sites-available/test.mysite1.com</p>
+</li>
+<li>
+<p>Change SSL config to use the new certificate for <strong>"test.mysite1.com"</strong> instead of the wildcard certificate for <strong>"*.mysite1.com"</strong></p>
+<p># SSL config
+  ssl_certificate     /etc/letsencrypt/live/test.mysite1.com/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/test.mysite1.com/privkey.pem;</p>
+</li>
+</ul>
+<h3 id="optional-use-cloudflarecom-as-proxy-to-point-domain-name">Optional - Use Cloudflare.com as Proxy to point Domain Name</h3>
+<p>If you do not want to host your own certificate but you still want to use free SSL certificate, then you can use Cloudflare.com as a proxy to point your domain name to your server.</p>
+<p>If this is your preferred option continue reading, otherwise skip this section.</p>
+<p>Easiest way to point your domain name to your hosting, get the free SSL certificate and have your domain url automatically display as safe https:// in every browser, is to use Cloudflare.com as proxy.</p>
+<ul>
+<li>
+<p>Open account with Cloudflare.com</p>
+</li>
+<li>
+<p>Go to Dashboard &gt; Click <strong>Add site</strong> at the top menu &gt; Enter your domain name e.g. mysite2.com &gt; Select <strong>Free plan</strong> &gt; Click <strong>Continue</strong> &gt; Keep clicking continue until wizard finishes</p>
+</li>
+<li>
+<p>Click <strong>DNS</strong> on the left menu. You should arrive to DNS page and see :</p>
+</li>
+<li><strong>DNS Records</strong> table with 3 rows</li>
+<li>
+<p><strong>Cloudflare Nameserves</strong> table with 2 nameservers</p>
+<ul>
+<li>annabel.ns.cloudflare.com</li>
+<li>dean.ns.cloudflare.com</li>
+</ul>
+</li>
+<li>
+<p>Configure DNS Records tables.</p>
+</li>
+<li>Delete all the existing rows. In Actions column: Click <strong>Edit</strong> &gt; Click <strong>Delete</strong></li>
+<li>Add 3 new records by clicking on button <strong>+ Add Record</strong><ul>
+<li>First record &gt; Type: A, Name: *, Content: {{SERVER_IP}}</li>
+<li>Second record &gt; Type: A, Name: {{SITE_DOMAIN}}, Content: {{SERVER_IP}}</li>
+<li>Third record &gt; Type: A, Name: www, Content: {{SERVER_IP}}</li>
+</ul>
+</li>
+<li>
+<p>Your DNS records table should now look like this</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Name</th>
+<th>Content</th>
+<th>Proxy status</th>
+<th>TTL</th>
+<th>Actions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>*</td>
+<td>123.234.345.45</td>
+<td>Proxied</td>
+<td>Auto</td>
+<td>Edit</td>
+</tr>
+<tr>
+<td>A</td>
+<td>mysite2.com</td>
+<td>123.234.345.45</td>
+<td>Proxied</td>
+<td>Auto</td>
+<td>Edit</td>
+</tr>
+<tr>
+<td>A</td>
+<td>www</td>
+<td>123.234.345.45</td>
+<td>Proxied</td>
+<td>Auto</td>
+<td>Edit</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Point your domain name host to Cloudflare</p>
+</li>
+<li>Log into your domain name host where you registered your domain mysite2.com , e.g. Godaddy.com</li>
+<li>Go inside your domain name management page and look for <strong>Manage DNS</strong> link. It may be called something different on your domain name provider but it should have word DNS or Domain Name Servers. </li>
+<li>
+<p><strong>Change Nameservers</strong>. There should be a section Nameservers which allows you to change name servers. Click button to change nameservers and replace them with Cloudflare nameservers you obtained on Cloudflaire.com e.g. annabel.ns.cloudflare.com, dean.ns.cloudflare.com</p>
+</li>
+<li>
+<p>Wait to receive email from Cloudflare</p>
+</li>
+<li>Cloudflare will keep trying to connect to your domain name host and check that it points to Cloudflare nameservers.</li>
+<li>
+<p>Once that change has synced you will receive the email from Cloudflare to let you know that your domain name now points to Cloudflare</p>
+</li>
+<li>
+<p>Verify that domain name has propagated</p>
+</li>
+<li>Type your domain name e.g. mysite2.com into any browser </li>
+<li>It should display your web page that says "Welcome to mysite2.com!"</li>
+<li>The url should have automatically redirect to https:// version of domain e.g. https://mysite2.com and you should see a secure url icon like padlock on the left of your url in browser address bar.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 VEXIT &reg;, Tomorrow is Today &trade;, www.vexit.com
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com"></script>
+      
+    
+  </body>
+</html>
