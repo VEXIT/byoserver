@@ -2,6 +2,7 @@ site_name: BYO Server
 site_url: https://vexit.github.io/byoserver
 theme:
   name: material
+  custom_dir: overrides  # <--- THIS tells MkDocs to check your "Kill" file overrides/partials/build.html which is supposed to remove the "Made with MkDocs" line
   palette:
     - scheme: slate      # The Dark Background
       primary: green     # The Header/Sidebar color
