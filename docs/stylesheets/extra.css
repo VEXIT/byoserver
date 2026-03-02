@@ -1,0 +1,9 @@
+/* Hide everything in the copyright container */
+.md-copyright {
+    font-size: 0;
+}
+
+/* Bring back only your VEXIT branding at normal size */
+.md-copyright__highlight {
+    font-size: 0.64rem; /* This is the default theme size */
+}
