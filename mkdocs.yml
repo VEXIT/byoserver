@@ -11,6 +11,9 @@ theme:
     - content.code.copy  # <--- THIS adds the One-Click Copy button
   hide:
     - generator # <--- THIS removes the "Made with Material for MkDocs" line
+    
+extra_css:
+  - stylesheets/extra.css  # <--- THIS removes the "Made with Material for MkDocs" line
 
 copyright: "Copyright &copy; 2026 VEXIT &reg;, Tomorrow is Today &trade;, www.vexit.com"
 
