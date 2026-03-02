@@ -1,0 +1,20 @@
+site_name: BYO Server
+theme:
+  name: material
+  palette:
+    scheme: slate # Dark mode by default
+nav:
+  - Home: index.md
+  - Core Concepts (Bash/CLI): 0.1_File_System_Basics_with_Bash.md
+  - Linux Permissions Reference: 0.2_Linux_Users_Groups_and_Permissions_Reference.md
+  - "Choose Your Server Setup":
+      - Home Server (Ubuntu): 1_SetUpServer_HomeServer_Ubuntu.md
+      - Home Server (Raspberry Pi): 1_SetUpServer_HomeServer_RaspberryPi.md
+      - Home Server (Linux Mint): 1_SetUpServer_HomeServer_LinuxMint.md
+      - VPS / Hosting Provider (Ubuntu): 1_SetUpServer_VPS_Ubuntu.md
+  - Web Server (Nginx/Apache): 2_WebServer_Nginx_Apache.md
+  - App Deployment (.NET/Angular): 3_WebApp_NetCore_Angular.md
+  - Task Automation (Cron Jobs): 4_Cron_Jobs.md
+  - Database (PostgreSQL): 5_Database_PostgreSQL.md
+  - Mail Server (Postfix/Dovecot): 6_MailServer_Postfix_Dovecot_Thunderbird.md
+

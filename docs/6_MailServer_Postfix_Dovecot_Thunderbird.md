@@ -23,7 +23,7 @@ Then we will explore three different types of client interfaces to access the ma
 We will use:
 - **Thunderbird** as the desktop email client 
 - **Edison Mail** as the mobile email client
-- **Roundcube** as the webmail client
+- **Roundcube** as the webmail client (TODO: this is not done yet)
 
 We will learn how to programatically send emails using .Net.
 
