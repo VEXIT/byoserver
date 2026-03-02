@@ -1,4 +1,5 @@
 site_name: BYO Server
+site_url: https://vexit.github.io/byoserver
 theme:
   name: material
   palette:
@@ -7,6 +8,10 @@ theme:
       accent: green      # The Link/Button color
   features:
     - content.code.copy  # <--- THIS adds the One-Click Copy button
+  hide:
+    - footer.generator # <--- THIS removes the "Made with MkDocs" line
+
+copyright: "Copyright &copy; 2026 VEXIT &trade;, Tomorrow is Today &reg;, www.vexit.com"
 
 markdown_extensions:
   - admonition  # <--- This is what makes the !!! danger box work
@@ -18,7 +23,21 @@ markdown_extensions:
       pygments_lang_class: true
   - pymdownx.inlinehilite
   - pymdownx.snippets
-  
+
+extra:
+  # social:  # Commented out - website not ready yet
+  #   - icon: fontawesome/solid/globe
+  #     link: https://www.vexit.com
+  social_cards:
+    image: images/social-cover.jpg # This tells sites what image to use when sharing the link on social media
+  # This section handles the link preview
+  description: "Build your own Linux server from scratch. A Sovereign Systems Development guide to self-hosting web, database, and mail servers."
+  # image: images/cover.jpeg  # Link preview image for social media
+ 
+# This is the pro way to hide the generator if the simple 'hide' fails
+extra_javascript:
+  - https://unpkg.com
+
 nav:
   - Home: index.md
   - Core Concepts (Bash/CLI): 0.1_File_System_Basics_with_Bash.md
@@ -34,16 +53,5 @@ nav:
   - Task Automation (Cron Jobs): 4_Cron_Jobs.md
   - Database (PostgreSQL): 5_Database_PostgreSQL.md
   - Mail Server (Postfix/Dovecot): 6_MailServer_Postfix_Dovecot_Thunderbird.md
-
-extra:
-  # social:  # Commented out - website not ready yet
-  #   - icon: fontawesome/solid/globe
-  #     link: https://www.vexit.com
-  social_cards:
-    image: images/social-cover.jpg # This tells sites what image to use when sharing the link on social media
-  # This section handles the link preview
-  site_url: https://vexit.github.io/byoserver
-  description: "Build your own Linux server from scratch. A Sovereign Systems Development guide to self-hosting web, database, and mail servers."
-  # image: images/cover.jpeg  # Link preview image for social media
 
 
